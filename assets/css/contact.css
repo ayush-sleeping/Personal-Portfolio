@@ -1,0 +1,176 @@
+
+/*--- --- --- Css Variables --- ---- --- */
+:root {
+   /*--- --- ---Colors --- --- ---*/
+   --bright-text-color: #86C232 ;
+   --text-W-color: #fff;
+   --text-para-color: #acafb3;
+   --black-color: #000;
+   --background-color: #222629;
+ 
+   /*--- --- ---Font and typography --- --- ---*/
+   --roboto-font: 'Roboto', sans-serif;
+   --mono-font: 'Roboto Mono', monospace;
+ 
+   /*--- --- --- Font Weight --- --- ---*/
+   --medium: 500;
+   --semibold: 600;
+   --bold: 700;
+
+   /* --- --- --- Box shadow --- --- */
+  --box-shadow-4: 0 1px 29px rgb(0 0 0 /40%);
+}
+
+
+/*--- --- ---  Contact form css --- --- --- */
+.contact{
+   margin-top: 5%;
+   margin-bottom: 5%;
+}
+
+.contact__content{
+   z-index: 10;
+   position: relative;
+}
+
+.contact__container{
+   grid-template-columns: 4fr 5fr 3fr;
+   column-gap: 1.875rem;
+   padding-top: 1.25rem;
+}
+
+.contact .contact__form-title {
+   color:var(--bright-text-color) ;
+   font-family: var(--mono-font);
+}
+.contact .contact__social-link{
+   color: var(--text-W-color);
+   font-family: var(--mono-font);
+
+}
+.contact .contact__list dt{
+   color: var(--text-W-color);
+   font-family: var(--mono-font);
+}
+.contact .contact__list dd{
+   color:var(--bright-text-color) ;
+   font-family: var(--mono-font);
+}
+.contact .section__title{
+   color: var(--text-W-color);
+   font-family: var(--mono-font);
+}
+
+.contact ::placeholder, .contact__input{
+   color:var(--bright-text-color) ;
+   font-family: var(--mono-font);
+}
+.contact__list{
+   margin-bottom: 3.25rem;
+}
+
+.contact__list dt{
+   float: left;
+   font-weight: var(--bold);
+   text-transform: uppercase;
+}
+
+.contact .contact-linkedin{
+   text-decoration: none;
+   color: var(--black-color);
+}
+
+.contact__list dd{
+   margin-bottom: 0.94em;
+}
+
+.contact__socials li{
+   margin-bottom: 0.75rem;
+}
+
+.contact__social-link{
+   font-family: var(--mono-font);
+}
+
+.contact__form{
+   position: relative;
+}
+
+.contact__form-tile{
+   margin-bottom: 1.25em;
+}
+
+.contact__input-div{
+   margin-bottom: 0.94em;
+}
+
+.contact__input{
+   width: 100%;
+   border: 1px solid rgb(61, 61, 61);
+   border-radius: 3px;
+   padding: 0.625rem;
+}
+
+.textarea{
+   height: 7.2rem;
+   resize: none;
+}
+
+.contact__input:focus{
+   box-shadow: var(--box-shadow-4);
+}
+
+.contact__message{
+   position: absolute;
+   left: 0;
+   font-family: var(--mono-font);
+   color:var(--bright-text-color) ;
+}
+
+.color-light{
+   opacity: 1;
+}
+
+.color-dark{
+   opacity: 0.4;
+}
+
+.contact__button{
+   margin-top: 1.875rem;
+   width: 100%;
+   box-shadow: var(--box-shadow-4);
+}
+
+/* for large devices */
+@media screen and (max-width: 1200px) {
+   .container{
+     max-width: 960px;
+   }
+ }
+ 
+ @media screen and (max-width: 992px) {
+   .container{
+     max-width: 720px;
+   }
+ }
+ 
+ @media screen and (max-width: 800px) {
+   .section{
+     padding-top: 3rem;
+     padding-bottom: 3rem;
+   }
+   .contact__container{
+      grid-template-columns: 5fr 7fr;
+   }
+ }
+ /* for medium devices */
+ @media screen and (max-width: 768px) {
+   .container{
+      max-width: 540px;
+   }
+   .contact__container{
+      grid-template-columns: 1fr;
+      row-gap: 2rem;
+   }
+ }
+ 

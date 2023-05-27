@@ -1,0 +1,298 @@
+/*--- --- --- Google Fonts --- ---- --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+
+
+/*--- --- --- Css Variables --- ---- --- */
+:root {
+  /*--- --- ---Colors --- --- ---*/
+  --bright-text-color: #86C232 ;
+  --dark-green-color: #61892F;
+  --text-W-color: #fff;
+  --bg-color: #fff;
+  --text-para-color: #acafb3;
+  --black-color: #000;
+  --hover-color:#2b2a2a; 
+  --background-color: #222629;
+  --bg-color3: rgba(255, 255, 255, 0.158);
+
+  /*--- --- ---Font and typography --- --- ---*/
+  --roboto-font: 'Roboto', sans-serif;
+  --mono-font: 'Roboto Mono', monospace;
+
+  /*--- --- --- Font Weight --- --- ---*/
+  --medium: 500;
+  --semibold: 600;
+  --bold: 700;
+ 
+  --linear-gradient: linear-gradient(54deg,
+      rgba(45, 45, 45, 0.95) 34%,
+      rgba(45, 45, 45, 0.95)); 
+      
+  /* --- --- --- Box shadow --- --- */
+  --box-shadow-1: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  --box-shadow-2:0 .5rem 1rem rgba(143, 142, 142, 0.15) !important; 
+  --box-shadow-4: 0 1px 29px rgb(0 0 0 /40%);
+
+  /*--- --- ---Font and typography --- --- ---*/
+  --mono-font: 'Roboto Mono', monospace; 
+  --fs-h1: 2.75rem; 
+
+  /*--- --- --- Font Weight --- --- ---*/
+  --medium: 500;
+  --semibold: 600;
+  --bold: 700; /*-*/
+}
+
+
+/*--- --- --- Base --- --- --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+input,
+textarea {
+  font-family: var(--roboto-font);
+  font-size: var(--fs-base);
+}
+
+body {
+  background: var(--background-color);
+  color: var(--bg-color);
+  line-height: 1.5em;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--mono-font);
+  font-weight: var(--bold);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+textarea,
+input {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+
+/*--- --- --- Reusable Css --- --- --- */
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+}
+
+.container_contact {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+}
+
+
+/*--- --- ---  Home css starts --- --- --- */
+.home {
+  background: url(../img/A1.jpg);
+  background-size: cover;
+  background-position: 50%;
+  position: relative;
+  padding-top: 5.5rem;
+  background-attachment: fixed;
+}
+
+.home::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--linear-gradient);
+}
+
+.home__container {
+  grid-template-columns: 4fr 8fr;
+  column-gap: 1.875rem;
+}
+
+.home__img,
+.home__data {
+  z-index: 10;
+}
+
+.home__img {
+  width: 90%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 0.3rem;
+  transform: translateY(3.125rem);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.home__name,
+.home__list,
+.home__social-link {
+  color: var(--bg-color);
+  font-family: var(--mono-font);
+}
+
+.home__name {
+  font-size: var(--fs-h1);
+  line-height: 1.14em;
+  margin: 0.9em 0 0.23em;
+}
+
+.home__work {
+  margin-bottom: 2.5em;
+  color: var(--bright-text-color);
+  font-family: var(--mono-font);
+  font-weight: var(--bold);
+}
+
+.home__list dt {
+  float: left;
+  font-weight: var(--bold);
+  opacity: 0.4;
+}
+
+.home__list dd {
+  padding-left: 6.25em;
+}
+
+.home__list dd:not(:last-child) {
+  margin-bottom: 0.94em;
+}
+
+.home__socials {
+  margin: 1.25rem 0 2.2rem;
+}
+
+.home__social-link {
+  font-size: 1.7rem;
+  line-height: 1.36em;
+  margin-right: 0.25rem;
+  opacity: 1;
+  transition: 0.3s;
+  color: var(--bright-text-color) ;
+}
+
+.home__social-link:hover {
+  color: var(--bg-color);
+}
+
+
+/*--- --- ---  for large devices --- --- --- */
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+
+  .home__container {
+    grid-template-columns: 5fr 7fr;
+  }
+}
+
+
+@media screen and (max-width: 992px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  .home {
+    padding-top: 5.25rem;
+  }
+
+  .home__container {
+    grid-template-columns: 1fr;
+  }
+
+  .home__img {
+    display: none;
+  }
+
+  .section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+
+/*--- --- ---  for medium devices --- --- --- */
+@media screen and (max-width: 768px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+/*--- --- ---  for small devices --- --- --- */
+@media screen and (max-width: 350px) {
+  .home__work {
+    font-size: 0.875rem;
+  }
+
+  .home__list {
+    font-size: 0.875rem;
+  }
+
+  .home__list dd {
+    padding-left: 5.75rem;
+  }
+
+  .home__social-link {
+    font-size: 1.3rem;
+  }
+}
+
+
+/* --------- Button CSS (It's used for all the buttons)*/
+.button {
+  font-family: var(--mono-font);
+  font-size: 0.9rem;
+  align-items: center;
+  height: 40px;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  padding: 0 1.2rem;
+  color: var(--bg-color);
+  border: none;
+  box-shadow: var(--box-shadow-2);
+  background: var(--dark-green-color);
+  cursor: pointer;
+}
+
+.download-btn .Download {
+  font-size: 0.9rem;
+  color: var(--bg-color);
+}
+
+.button:hover {
+  background: var(--hover-color);
+}

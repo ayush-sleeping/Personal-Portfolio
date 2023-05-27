@@ -1,0 +1,244 @@
+/*--- --- --- Google Fonts --- ---- --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+
+
+/*--- --- --- Css Variables --- ---- --- */
+:root {
+  /*--- --- ---Colors --- --- ---*/
+  --bright-text-color: #86C232;
+  --dark-green-color: #61892F;
+  --text-W-color: #fff;
+  --bg-color: #fff;
+  --text-para-color: #acafb3;
+  --black-color: #000;
+  --background-color: #222629;
+  --bg-color3: rgba(255, 255, 255, 0.158);
+
+  /*--- --- ---Font and typography --- --- ---*/
+  --roboto-font: 'Roboto', sans-serif;
+  --mono-font: 'Roboto Mono', monospace;
+
+  /*--- --- --- Font Weight --- --- ---*/
+  --medium: 500;
+  --semibold: 600;
+  --bold: 700;
+
+  /* --- --- --- Box shadow --- --- */
+  --box-shadow-4: 0 1px 29px rgb(0 0 0 /40%);
+
+}
+
+/*--- --- --- Projects CSS - cards CSS --- --- --- */
+
+.workcards {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.workcards .heading {
+  height: 40vh;
+  background-position: 50% 100%;
+  text-align: center;
+  color: var(--text-W-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.workcards .heading h2 {
+  font-size: 30px;
+  text-transform: uppercase;
+  color:var(--text-W-color);
+  text-shadow: 3px 3px 5px #000;
+}
+
+.workcards .heading h3 {
+  font-size: 18px;
+  font-weight: 450;
+  color: #acafb3;
+}
+
+.workcards .card ul li {
+  list-style-type: none;
+}
+
+.workcards .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 12px;
+  width: 312px;
+  height: 85%;
+  background: var(--bg-color3);
+  border: 1px solid #dfe1e6;
+  border-radius: 16px;
+  margin-top: 65px;
+}
+
+.works-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 3px;
+}
+
+.workcards .works-details .comp-title {
+  color: var(--text-W-color);
+  font-family: var(--mono-font);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 44px;
+}
+
+.work-title {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 15px 0;
+}
+
+
+.workcards .work-title .client a {
+  color: var(--bright-text-color);
+}
+
+.workcards .work-title .dim {
+  color: var(--text-W-color);
+}
+
+
+.workcards .work-title li {
+  color: var(--text-W-color);
+}
+
+.project-desc {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--text-W-color);
+  margin: 10px 10px 10px 0;
+}
+.project-desc p{
+  color: var(--text-W-color);
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/*--- --- --- For Responsiveness --- --- --- */
+@media only screen and (min-width: 768px) {
+  .workcards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .workcards .card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 60vh;
+    border: 1px solid #dfe1e6;
+    border-radius: 16px;
+    gap: 30px;
+  }
+
+  .workcards .card:hover {
+    cursor: pointer;
+    border: 1px solid var(--dark-green-color);
+  }
+
+  .workcards .portfolio-img {
+    width: 46%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .workcards .works-details {
+    padding-left: 3px;
+    width: 45%;
+    height: 100%;
+  }
+
+  .workcards .work-title {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .workcards .works-details .comp-title {
+    font-family: var(--mono-font);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 44px;
+  }
+
+  .workcards .workcards .work-title .client a {
+    font-family: var(--mono-font);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .workcards .workcards .work-title .dim {
+    font-family: var(--mono-font);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .workcards .project-desc {
+    font-family: var(--mono-font);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 10px 10px 10px 0;
+  }
+
+  .workcards .tags {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .workcards .tag:hover {
+    cursor: pointer;
+    transform: scale(1.15);
+    transition: all 0.5s;
+  }
+}
