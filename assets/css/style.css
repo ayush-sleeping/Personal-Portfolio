@@ -5,13 +5,13 @@
 /*--- --- --- Css Variables --- ---- --- */
 :root {
   /*--- --- ---Colors --- --- ---*/
-  --bright-text-color: #86C232 ;
+  --bright-text-color: #86C232;
   --dark-green-color: #61892F;
   --text-W-color: #fff;
   --bg-color: #fff;
   --text-para-color: #acafb3;
   --black-color: #000;
-  --hover-color:#2b2a2a; 
+  --hover-color: #2b2a2a;
   --background-color: #222629;
   --bg-color3: rgba(255, 255, 255, 0.158);
 
@@ -23,24 +23,25 @@
   --medium: 500;
   --semibold: 600;
   --bold: 700;
- 
+
   --linear-gradient: linear-gradient(54deg,
       rgba(45, 45, 45, 0.95) 34%,
-      rgba(45, 45, 45, 0.95)); 
-      
+      rgba(45, 45, 45, 0.95));
+
   /* --- --- --- Box shadow --- --- */
   --box-shadow-1: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-  --box-shadow-2:0 .5rem 1rem rgba(143, 142, 142, 0.15) !important; 
+  --box-shadow-2: 0 .5rem 1rem rgba(143, 142, 142, 0.15) !important;
   --box-shadow-4: 0 1px 29px rgb(0 0 0 /40%);
 
   /*--- --- ---Font and typography --- --- ---*/
-  --mono-font: 'Roboto Mono', monospace; 
-  --fs-h1: 2.75rem; 
+  --mono-font: 'Roboto Mono', monospace;
+  --fs-h1: 2.75rem;
 
   /*--- --- --- Font Weight --- --- ---*/
   --medium: 500;
   --semibold: 600;
-  --bold: 700; /*-*/
+  --bold: 700;
+  /*-*/
 }
 
 
@@ -198,7 +199,7 @@ input {
   margin-right: 0.25rem;
   opacity: 1;
   transition: 0.3s;
-  color: var(--bright-text-color) ;
+  color: var(--bright-text-color);
 }
 
 .home__social-link:hover {
@@ -227,7 +228,11 @@ input {
 
 @media screen and (max-width: 800px) {
   .home {
-    padding-top: 5.25rem;
+    padding-top: 0.3rem;
+  }
+
+  .home__name {
+    margin: 1.5em 0 0.23em;
   }
 
   .home__container {
@@ -235,7 +240,8 @@ input {
   }
 
   .home__img {
-    display: none;
+    width: 100%;
+    height: 400px;
   }
 
   .section {

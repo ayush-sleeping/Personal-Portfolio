@@ -34,6 +34,7 @@
   display: grid;
   align-items: center;
   justify-content: center;
+  padding: 5rem 5em;
 }
 
 .workcards .heading {
@@ -50,7 +51,7 @@
 .workcards .heading h2 {
   font-size: 30px;
   text-transform: uppercase;
-  color:var(--text-W-color);
+  color: var(--text-W-color);
   text-shadow: 3px 3px 5px #000;
 }
 
@@ -129,7 +130,8 @@
   color: var(--text-W-color);
   margin: 10px 10px 10px 0;
 }
-.project-desc p{
+
+.project-desc p {
   color: var(--text-W-color);
 }
 
