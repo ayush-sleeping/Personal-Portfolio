@@ -1,4 +1,3 @@
-
 // --------------------------------------------------------------------------------------
 //                Contact Form - script
 
@@ -11,48 +10,52 @@ const contactForm = document.getElementById("contact-form"),
 const sendEmail = (e) => {
   e.preventDefault();
 
-  // check if the field has a value
-  if (
-    contactName.value === "" ||
-    contactEmail.value === "" ||
-    Message.value === ""
-  ) {
-    // add and remove color
-    contactMessage.classList.remove("color-Light");
+  // Check if all fields have values
+  if (contactName.value === "" || contactEmail.value === "" || Message.value === "") {
+    // Add and remove color to indicate error
+    contactMessage.classList.remove("color-light");
     contactMessage.classList.add("color-dark");
 
-    //show message
-    contactMessage.textContent = "Write all input fields";
+    // Show message
+    contactMessage.textContent = "Please fill in all fields.";
   } else {
-    // serviceID - templateID - #form - publickey
+    // Send email via EmailJS
     emailjs
       .sendForm(
-        "service_g3vv0sw",
-        "template_wg7j2k6",
-        "#contact-form",
-        "0Vtn0gI9c1Ks3SZnC"
+        "service_g3vv0sw",   // Service ID
+        "template_wg7j2k6",  // Template ID
+        "#contact-form",     // Form selector
+        "0Vtn0gI9c1Ks3SZnC"  // Public Key
       )
       .then(
         () => {
-          //show message and add color
+          // Show success message and change color
+          contactMessage.classList.remove("color-dark");
           contactMessage.classList.add("color-light");
           contactMessage.textContent = "Message successfully sent ✔";
 
-          //remove message after 5 seconds
+          // Remove the message after 5 seconds
           setTimeout(() => {
             contactMessage.textContent = "";
           }, 5000);
+
+          // Clear input fields after submission
+          contactName.value = "";
+          contactEmail.value = "";
+          Message.value = "";
         },
         (error) => {
-          alert("OOPs! Something went wrong...", error);
+          // Log the error in the console for debugging
+          console.error("Error sending email:", error);
+
+          // Show error message and change color
+          contactMessage.classList.remove("color-light");
+          contactMessage.classList.add("color-dark");
+          contactMessage.textContent = "Oops! Something went wrong. Please try again.";
         }
       );
-
-    // clear input fields
-    contactName.value = "";
-    contactEmail.value = "";
-    Message.value = "";
   }
 };
 
+// Event listener for form submission
 contactForm.addEventListener("submit", sendEmail);
