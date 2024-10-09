@@ -1,6 +1,5 @@
 // --------------------------------------------------------------------------------------
 //                Contact Form - script
-
 const contactForm = document.getElementById("contact-form"),
   contactName = document.getElementById("contact-name"),
   contactEmail = document.getElementById("contact-email"),
@@ -15,7 +14,6 @@ const sendEmail = (e) => {
     // Add and remove color to indicate error
     contactMessage.classList.remove("color-light");
     contactMessage.classList.add("color-dark");
-
     // Show message
     contactMessage.textContent = "Please fill in all fields.";
   } else {
@@ -47,7 +45,6 @@ const sendEmail = (e) => {
         (error) => {
           // Log the error in the console for debugging
           console.error("Error sending email:", error);
-
           // Show error message and change color
           contactMessage.classList.remove("color-light");
           contactMessage.classList.add("color-dark");
