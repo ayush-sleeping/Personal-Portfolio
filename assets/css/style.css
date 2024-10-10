@@ -35,7 +35,7 @@
 
   /*--- --- ---Font and typography --- --- ---*/
   --mono-font: 'Roboto Mono', monospace;
-  --fs-h1: 2.75rem;
+  --fs-h1: 2.50rem;
 
   /*--- --- --- Font Weight --- --- ---*/
   --medium: 500;
@@ -139,6 +139,8 @@ input {
 .home__container {
   grid-template-columns: 4fr 8fr;
   column-gap: 1.875rem;
+  padding-bottom: 2rem; /* Adjust the value as needed */
+  margin-bottom: 1rem;  /* Adjust the value as needed */
 }
 
 .home__img,
@@ -153,6 +155,10 @@ input {
   border-radius: 0.3rem;
   transform: translateY(3.125rem);
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.home__img:hover {
+  box-shadow: rgba(134, 194, 50, 0.4) 0px 2px 4px, rgba(134, 194, 50, 0.3) 0px 7px 13px -3px, rgba(134, 194, 50, 0.2) 0px -3px 0px inset;
 }
 
 .home__name,
