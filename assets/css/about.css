@@ -8,11 +8,12 @@
   --text-W-color: #fff;
   --text-para-color: #acafb3;
   --black-color: #000;
-  --background-color: #222629;
+  --background-color: #0F0F0F !important;
 
   /*--- --- ---Font and typography --- --- ---*/
   --roboto-font: 'Roboto', sans-serif;
   --mono-font: 'Roboto Mono', monospace;
+  --fs-base: 14px;
 
   /*--- --- --- Font Weight --- --- ---*/
   --medium: 500;
@@ -25,14 +26,14 @@
 .main-home {
   margin: 0 auto;
   padding: 0px 20px;
-  background: var(--background-color);
+  background: #0F0F0F !important;
 }
 
 .card {
   padding: 5px;
   margin: 24px;
   border-radius: 2px;
-  background-color: var(--background-color);
+  background-color: #0F0F0F !important;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 

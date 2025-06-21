@@ -1,0 +1,327 @@
+/* --- --- About Css starts from here ---- --- */
+:root {
+    --text-color: #a1a1a1;
+    --accent-color: #111;
+    --geist-foreground-rgb: 255, 255, 255;
+    --border-radius: 12px;
+}
+
+h2 {
+    font-size: 1.8rem !important;
+}
+
+.infos h2 {
+    font-size: 36px;
+    line-height: 40px;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: -15px !important;
+}
+
+.last-infos h2 {
+    font-size: 44px !important;
+    line-height: 52px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: -15px !important;
+    margin-top: 50px !important;
+}
+
+.last-infos span {
+    color: #5B78F6 !important;
+}
+
+.infos h5 {
+    color: #BCBCBC;
+    opacity: 0.7;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    margin-bottom: 5px;
+}
+
+.infos p {
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+
+.infos .about-btn {
+    display: block;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    opacity: 0.2;
+    transition: .3s;
+}
+
+.gradient-border-card:hover .about-btn {
+    opacity: 1.0;
+}
+
+.credentials-card .about-btn {
+    display: block;
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    opacity: 0.2;
+    transition: .3s;
+}
+
+.credentials-card:hover .about-btn {
+    opacity: 1.0;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("https://res.cloudinary.com/du6mfjbbd/raw/upload/v1696975586/wegxkv6mdriebvpvokwf.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/******************************/
+.gradient-border-card {
+    position: relative;
+    padding: 50px 46px;
+    gap: 30px;
+    flex: 1 1;
+    cursor: pointer;
+    height: 100%;
+    z-index: 1;
+    transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow:
+        rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+        rgba(50, 50, 93, 0.10) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+        rgb(91 120 246 / 5%) 0px 10px 40px 0px;
+    /* subtle #5B78F6 shadow */
+    border-radius: 30px;
+    background: #1c1c1c !important;
+}
+
+.gradient-border-card2 {
+    position: relative;
+    padding: 17px 25px;
+    gap: 30px;
+    flex: 1 1;
+    cursor: pointer;
+    height: 100%;
+    z-index: 1;
+    transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow:
+        rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+        rgba(50, 50, 93, 0.10) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+        rgb(91 120 246 / 5%) 0px 10px 40px 0px;
+    /* subtle #5B78F6 shadow */
+    border-radius: 30px;
+    background: #1c1c1c !important;
+}
+
+.gradient-border-card .inner-profile-icons {
+    position: relative;
+    flex: 1 1;
+    cursor: pointer;
+    height: 80%;
+    z-index: 1;
+    transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow:
+        rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+        rgba(50, 50, 93, 0.10) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+        rgb(91 120 246 / 5%) 0px 10px 40px 0px;
+    /* subtle #5B78F6 shadow */
+    border-radius: 30px;
+    background: #1c1c1c !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 0px 0px !important;
+}
+
+.gradient-border-card .social-card {
+    position: relative;
+    padding: 30px 30px;
+    gap: 30px;
+    flex: 1 1;
+    cursor: pointer;
+    height: 100%;
+    z-index: 1;
+    transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow:
+        rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+        rgba(50, 50, 93, 0.10) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+        rgb(91 120 246 / 5%) 0px 10px 40px 0px;
+    /* subtle #5B78F6 shadow */
+    border-radius: 50px;
+    background: #1c1c1c !important;
+}
+
+.gradient-border-card .social-card i {
+    font-size: 40px;
+    color: #ffffff;
+}
+
+.gradient-border-card .bg-img {
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 30px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gradient-border-card2 .bg-img {
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 30px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gradient-border-card .star-icon {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    opacity: 0.5;
+    margin: 0;
+}
+
+.gradient-border-card .icon-boxes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.gradient-border-card .icon-boxes i {
+    font-size: 40px;
+    color: #ffffff;
+}
+
+.gradient-border-card .client-card {
+    position: relative;
+    padding: 25px 25px;
+    gap: 30px;
+    flex: 1 1;
+    cursor: pointer;
+    height: 100%;
+    z-index: 1;
+    transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow:
+        rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+        rgba(50, 50, 93, 0.10) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+        rgb(91 120 246 / 5%) 0px 10px 40px 0px;
+    /* subtle #5B78F6 shadow */
+    border-radius: 50px;
+    background: #1c1c1c !important;
+    text-align: center;
+}
+.gradient-border-card .client-card h2{
+    color: #ffffff;
+    font-size: 25px !important;
+    margin-bottom: 17px;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+@keyframes shimmer {
+    0% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 0;
+        background-position: -50%;
+    }
+
+    10% {
+        opacity: 0.7;
+    }
+
+    15% {
+        opacity: 0;
+        background-position: 150%;
+    }
+
+    20% {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.gradient-border-card .shimmer {
+    background: linear-gradient(112deg, transparent 30%, rgba(var(--geist-foreground-rgb), 0.1) 40%, rgba(var(--geist-foreground-rgb), 0.3) 50%, rgba(var(--geist-foreground-rgb), 0.1) 60%, transparent 80%);
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+    border-radius: inherit;
+    background-size: 200% auto;
+    background-position: 0;
+    animation: shimmer 18s cubic-bezier(0.8, 0, 0.05, 1) infinite;
+    animation-delay: var(--delay);
+}
+
+.gradient-border-card p {
+    color: var(--text-color);
+}
+
+/* Favorite Button *************************/
+.favorite-item {
+    margin: 0 -8px;
+    padding: 0 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.marquee-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 19px;
+    overflow-x: hidden;
+}
+
+.marquee {
+    position: absolute;
+    white-space: nowrap;
+    will-change: transform;
+    font-size: 12px;
+    animation: marquee 8s linear infinite;
+}
+
+.marquee span {
+    white-space: nowrap;
+    margin-right: 2rem;
+    /* space between repeats */
+    font-size: 1rem;
+}
+
+.marquee span b {
+    color: #fff;
+    font-weight: 400;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-33.33%);
+    }
+}
