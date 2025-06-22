@@ -183,11 +183,11 @@ input {
 .home__name {
     font-size: var(--fs-h1);
     line-height: 1.14em;
-    margin: 0.9em 0 0.23em;
+    margin: 0.5em 0 0.2em;
 }
 
 .home__work {
-    margin-bottom: 2.5em;
+    margin-bottom: 1em;
     color: var(--bright-text-color);
     font-family: var(--mono-font);
     font-weight: var(--bold);
@@ -208,21 +208,30 @@ input {
 }
 
 .home__socials {
-    margin: 1.25rem 0 2.2rem;
+    gap: 10px;
+    margin: 1rem 0 1rem;
 }
 
 .home__social-link {
-    font-size: 1.7rem;
-    line-height: 1.36em;
-    margin-right: 0.25rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+    line-height: 50px;
+    color: #fff;
+    font-size: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+    transition: .3s;
+    text-align: center;
     opacity: 1;
     transition: 0.3s;
-    color: var(--bright-text-color);
     text-decoration: none;
 }
 
 .home__social-link:hover {
-    color: var(--bg-color);
+    background: #ffffff ;
+    color: #0F0F0F;
 }
 
 

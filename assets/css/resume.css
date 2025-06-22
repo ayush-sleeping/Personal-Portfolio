@@ -24,7 +24,7 @@
 
   /* --- --- --- Box shadow --- --- */
  --box-shadow-4: 0 1px 29px rgb(0 0 0 /40%);
- 
+
 }
 
 
@@ -118,11 +118,11 @@ p {
     display: inline;
     justify-content: space-between;
   }
-  
+
   .skill {
     width: 90%;
   }
-  
+
 }
 
 
@@ -154,4 +154,23 @@ p {
 .fa-building,
 .fa-calendar-alt {
   margin-right: 5px;
+}
+
+.container .gradient-border-card .contact-card-btn{
+    width: 100%;
+    background: #323232;
+    color: #fff;
+    display: inline-block;
+    transition: .3s;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.container .gradient-border-card .contact-card-btn:hover {
+    background: #fff;
+    color: var(--dark);
 }
