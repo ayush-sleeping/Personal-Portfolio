@@ -10,7 +10,7 @@
    --text-para-color: #acafb3;
    --text-color-alt: #999;
    --black-color: #000;
-   --background-color: #222629;
+  --background-color: #0F0F0F !important;
 
    /*--- --- ---Font and typography --- --- ---*/
    --roboto-font: 'Roboto', sans-serif;

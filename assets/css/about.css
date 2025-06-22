@@ -56,3 +56,52 @@
   color: var(--text-para-color);
   font-family: var(--mono-font);
 }
+
+.container .section-heading {
+    color: #ffffff;
+    font-size: 60px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: -01px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2px;
+    justify-content: center;
+}
+
+.gradient-border-card .img-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  min-height: 200px; /* Optional: set a min height for better centering */
+}
+
+.home__img {
+  display: block;
+  max-width: 100%;
+  max-height: 300px; /* Adjust as needed */
+  margin: 0 auto;
+}
+.about-exp ul li .date {
+    color: #BCBCBC;
+    opacity: 0.6;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+.about-exp ul li h3 {
+    font-size: 18px;
+    color: #fff;
+    opacity: 0.9;
+    margin-bottom: 7px;
+}
+.about-exp ul li .type {
+    color: #BCBCBC;
+    font-size: 14px;
+    opacity: 0.6;
+    font-weight: 400;
+    margin: 0;
+}

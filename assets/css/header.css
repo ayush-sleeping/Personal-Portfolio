@@ -40,10 +40,9 @@
 }
 
 .header.active {
-  background: var(--bg-color3);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.178);
   backdrop-filter: blur(2px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 0px solid rgba(255, 255, 255, 0.1);
 }
 
 .header .logo {
