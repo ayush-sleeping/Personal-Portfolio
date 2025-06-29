@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="assets/css/resume.css">
     <link rel="stylesheet" href="assets/css/contact.css">
     <link rel="stylesheet" href="assets/css/home.css" />
+    <link rel="stylesheet" href="assets/css/project.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
     <!-- Social-icons script  -->
     <script src="https://kit.fontawesome.com/4bff2ef1c5.js" crossorigin="anonymous"></script>
@@ -35,10 +36,11 @@
         </div>
         <nav class="navbar">
             <div id="nav-close"></div>
-            <a href="index.html" target="_parent">About</a>
+            <a href="index.html">Home</a>
+            <a href="about.html" target="_parent">About</a>
             <a href="resume.html">Resume</a>
-            <a href="project.html">Projects </a>
-            <a href="contact.html">Contact</a>
+            <a href="#">Projects </a>
+            <a href="#">Contact</a>
         </nav>
         <button class="hamburger hamburger--emphatic" type="button">
             <span class="hamburger-box">
@@ -54,9 +56,10 @@
     <!-- ------- -------    --------   ---------    ---------    --------- --------->
     <nav class="navigation__menu">
         <ul class="nav-categories ul-base">
-            <li><a href="index.html" target="_parent">About </a></li>
+            <li><a href="index.html">Home </a></li>
+            <li><a href="about.html">About </a></li>
             <li><a href="resume.html">Resume</a></li>
-            <li><a href="project.html">Projects </a></li>
+            <li><a href="projects.html" target="_parent">Projects </a></li>
             <li><a href="contact.html">Contact</a></li>
             <li><a href="https://twitter.com/AyushBM1" target=_blank> Twitter </a></li>
             <li><a href="https://www.instagram.com/ayush.bm/" target=_blank> Instagram</a></li>
@@ -66,181 +69,200 @@
         </ul>
     </nav>
 
-    <!-- Home section starts  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <section class="home" id="home">
-        <div class="home__container container_contact grid">
-            <div class="home__data">
-                <h1 class="home__name">Projects</h1>
-                <p class="home__work">For latest projects visit my GitHub
-                    <br><br>
-                    <a href="https://github.com/ayush-sleeping" class="Download">
-                        <button class="button download-btn">GitHub</button>
-                    </a>
-                </p>
-            </div>
-        </div>
-    </section>
-
     <!-- Projects Cards section starts  -->
     <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <section id="portfolio" class="workcards">
-        <div class="heading">
-            <h2>Latest Projects</h2>
-            <br>
-            <h3>Here are some of my personal projects, I have done in my free time. For more visit my GitHub.</h3>
-        </div>
-        <!-- Project 4 -->
-        <div class="card" id="card1">
-            <div class="portfolio-img pic1">
-                <img class="pic" src="assets/img/1.2 User homepage.png" alt="card1" />
-            </div>
-            <div class="works-details">
-                <h2 class="comp-title">NFT Ecommerce</h2>
-                <ul class="work-title">
-                    <li class="client"><a href="https://github.com/ayush-sleeping/NFT-Ecommerce">Visit-Repository</a>
-                    </li>
-                    <li>|</li>
-                    <li class="dim">Angular CRUD Project</li>
-                    <li>|</li>
-                    <li class="dim">Oct/2023</li>
-                </ul>
-                <div class="project-desc">
-                    <p>
-                        Offering user authentication, product listings, shopping cart management & order tracking for
-                        users, while providing sellers with tools for product addition + updates.
-                    </p>
+    <div class="container max-w-7xl pb-12 mb-12" style="padding-top: 60px !important; padding-bottom: 50px !important;">
+        <div class="row g-4 mt-3">
+            <div class="col-lg-12 col-12">
+                <div class="gradient-border-card credentials-card" style="padding: 25px 25px !important;">
+                    <img class="bg-img"
+                        src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
+                        decoding="async">
+                    <div class="d-flex align-items-center justify-content-between pt-2">
+                        <div class="infos">
+                            <h3>My Latest Projects</h3>
+                            <p class="mb-0">Here are some of my personal projects, I have done in my free time. For
+                                more visit my GitHub.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <ul class="tags">
-                    <li class="tag"><a href="#"><img alt="HTML"
-                                src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white"></a>
-                    </li>
-                    <li class="tag"><a href="#"><img alt="CSS"
-                                src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"></a>
-                    </li>
-                    <li class="tag"><a href="#"><img alt="JavaScript"
-                                src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white"></a>
-                    </li>
-                </ul>
-                <br>
-                <a href="https://github.com/ayush-sleeping/Brija-Stream" class="Download">
-                    <button class="button download-btn">Project Repository</button>
-                </a>
             </div>
-        </div>
+            <div class="col-lg-12 col-12">
+                <div class="row">
+                    <div class="col-lg-6 col-12 mt-4">
+                        <div class="gradient-border-card" style="padding: 25px 25px 25px 25px !important;">
+                            <div class="img-box" style="height: 55% !important; border-radius: 0 0 0 0 !important;">
+                                <img src="assets/img/1.2 User homepage.png" class="home__img" alt="hero-img">
+                            </div>
+                            <div class="home__data" style=" margin-top: 0px !important;">
+                                <h2 class="home__name  d-flex justify-content-center mt-2"
+                                    style="font-size: 25px !important;">NFT
+                                    Ecommerce</h2>
+                                <div class="works-details">
+                                    <div class="project-desc">
+                                        <p> Angular CRUD Project | Oct - 2023 | <a
+                                                href="https://github.com/ayush-sleeping/NFT-Ecommerce" target="_blank"
+                                                style="text-decoration: none; color: #5B78F6 !important;">Source
+                                                Code</a> <br>
+                                            Offering user authentication, product listings, shopping cart management &
+                                            order
+                                            tracking for
+                                            users, while providing sellers with tools for product addition + updates.
+                                        </p>
+                                    </div>
+                                    <ul class="tags d-flex justify-content-center w-100"
+                                        style="padding-left: 0rem !important;">
+                                        <li class="tag">JavaScript</li>
+                                        <li class="tag">Angular</li>
+                                        <li class="tag">Bootstrap</li>
+                                        <li class="tag">CSS</li>
+                                        <li class="tag">HTML</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 mt-4">
+                        <div class="gradient-border-card" style="padding: 25px 25px 25px 25px !important;">
+                            <div class="img-box" style="height: 55% !important; border-radius: 0 0 0 0 !important;">
+                                <img src="assets/img/2 .png" class="home__img" alt="hero-img">
+                            </div>
+                            <div class="home__data" style=" margin-top: 0px !important;">
+                                <h2 class="home__name  d-flex justify-content-center"
+                                    style="font-size: 25px !important;">Brija Stream</h2>
+                                <div class="works-details">
+                                    <div class="project-desc">
+                                        <p> Frontend Dev + Search API | Sep - 2023 |
+                                            <a href="https://github.com/ayush-sleeping/Brija-Stream" target="_blank"
+                                                style="text-decoration: none; color: #5B78F6 !important;">Source
+                                                Code</a> |
+                                            <a href="https://ayush-sleeping.github.io/Brija-Stream/" target="_blank"
+                                                style="text-decoration: none; color: #5B78F6 !important;">Live</a>
+                                            <br>
 
-        <!-- Project 3 -->
-        <div class="card" id="card1">
-            <div class="portfolio-img pic1">
-                <img class="pic" src="assets/img/2 .png" alt="card1" />
-            </div>
-            <div class="works-details">
-                <h2 class="comp-title">Brija Stream</h2>
-                <ul class="work-title">
-                    <li class="client"><a href="https://ayush-sleeping.github.io/Brija-Stream/">Live-Site</a></li>
-                    <li>|</li>
-                    <li class="dim">Frontend Dev + Search API</li>
-                    <li>|</li>
-                    <li class="dim">Sep/2023</li>
-                </ul>
-                <div class="project-desc">
-                    <p>
-                        Goal: Streaming platform that combines the best features inspired by Disney+, Prime, Netflix,
-                        Hulu, and AppleTV+,
-                    </p>
+                                            Goal: Streaming platform that combines the best features inspired by
+                                            Disney+, Prime, Netflix,
+                                            Hulu, and AppleTV+,
+                                        </p>
+                                    </div>
+                                    <ul class="tags d-flex justify-content-center w-100"
+                                        style="padding-left: 0rem !important;">
+                                        <li class="tag">JavaScript</li>
+                                        <li class="tag">CSS</li>
+                                        <li class="tag">HTML</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 mt-4">
+                        <div class="gradient-border-card" style="padding: 25px 25px 25px 25px !important;">
+                            <div class="img-box" style="height: 55% !important; border-radius: 0 0 0 0 !important;">
+                                <img src="assets/img/jabritravelss.png" class="home__img" alt="hero-img">
+                            </div>
+                            <div class="home__data" style=" margin-top: 0px !important;">
+                                <h2 class="home__name  d-flex justify-content-center"
+                                    style="font-size: 25px !important;">JaBri Travel</h2>
+                                <div class="works-details">
+                                    <div class="project-desc">
+                                        <p> Frontend Dev | Jun - 2022 |
+                                            <a href="https://github.com/ayush-sleeping/JaBri-Travel" target="_blank"
+                                                style="text-decoration: none; color: #5B78F6 !important;">Source
+                                                Code</a> |
+                                            <a href="https://jabri-travel.netlify.app" target="_blank"
+                                                style="text-decoration: none; color: #5B78F6 !important;">Live</a>
+                                            <br>
+                                            Goal: To Create a nice looking "Tour and travel booking frontend-website"
+                                        </p>
+                                    </div>
+                                    <ul class="tags d-flex justify-content-center w-100"
+                                        style="padding-left: 0rem !important;">
+                                        <li class="tag">JavaScript</li>
+                                        <li class="tag">CSS</li>
+                                        <li class="tag">HTML</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <ul class="tags">
-                    <li class="tag"><a href="#"><img alt="HTML"
-                                src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"></a>
-                    </li>
-                    <li class="tag"><a href="#"><img alt="CSS"
-                                src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"></a>
-                    </li>
-                    <li class="tag"><a href="#"><img alt="JavaScript"
-                                src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"></a>
-                    </li>
-                </ul>
-                <br>
-                <a href="https://github.com/ayush-sleeping/Brija-Stream" class="Download">
-                    <button class="button download-btn">Project Repository</button>
-                </a>
+            </div>
+            <!--  -->
+            <div class="col-lg-12 col-12">
+                <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
+                    <div class="align-items-center justify-content-between">
+                        <div class="infos">
+                            <h4>Skills</h4>
+                            <div class="row">
+                                <h5>Present</h5>
+                                <div class="col-lg-3 col-6">
+                                    <ul class="mb-0 mt-4">
+                                        <li>
+                                            <p class="date">Backend</p>
+                                            <h3>Laravel Framework</h3>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-2 col-6">
+                                    <ul class="mb-0 mt-4">
+                                        <li>
+                                            <p class="date">Database</p>
+                                            <h3>MySQL</h3>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-4 col-6">
+                                    <ul class="mb-0 mt-4">
+                                        <li>
+                                            <p class="date">Frontend</p>
+                                            <h3>JavaScript, Bootstrap, HTML, CSS</h3>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-3 col-6">
+                                    <ul class="mb-0 mt-4">
+                                        <li>
+                                            <p class="date">Others</p>
+                                            <h3>API, Git, AWS</h3>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <h5>Familiar with</h5>
+                                <div class="col-lg-3 col-6">
+                                    <ul class="mb-0 mt-4">
+                                        <li>
+                                            <p class="date">Backend</p>
+                                            <h3>Java SpringBoot</h3>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-4 col-6">
+                                    <ul class="mb-0 mt-4">
+                                        <li>
+                                            <p class="date">Frontend</p>
+                                            <h3>AngularJS, ReactJS</h3>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-3 col-6">
+                                    <ul class="mb-0 mt-4">
+                                        <li>
+                                            <p class="date">Others</p>
+                                            <h3>Core Java</h3>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Project 2 -->
-        <div class="card" id="card1">
-            <div class="portfolio-img pic1">
-                <img class="pic" src="assets/img/portfolioss.jpeg" alt="card1" />
-            </div>
-            <div class="works-details">
-                <h2 class="comp-title">Ayush Portfolio</h2>
-                <ul class="work-title">
-                    <li class="client"><a href="https://jabri-travel.netlify.app/">Live-Site</a></li>
-                    <li>|</li>
-                    <li class="dim">Frontend Dev + Firebase contact page</li>
-                    <li>|</li>
-                    <li class="dim">May/2023</li>
-                </ul>
-                <div class="project-desc">
-                    <p>
-                        Goal: To Create a simple & minimalist portfolio website for myself,
-                    </p>
-                </div>
-                <ul class="tags">
-                    <li class="tag"><a href="#"><img alt="HTML"
-                                src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"></a>
-                    </li>
-                    <li class="tag"><a href="#"><img alt="CSS"
-                                src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"></a>
-                    </li>
-                    <li class="tag"><a href="#"><img alt="JavaScript"
-                                src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"></a>
-                    </li>
-                </ul>
-                <br>
-                <a href="https://github.com/ayush-sleeping/Personal-Portfolio" class="Download">
-                    <button class="button download-btn">Project Repository</button>
-                </a>
-            </div>
-        </div>
-
-        <!-- Project 1 -->
-        <div class="card" id="card1">
-            <div class="portfolio-img pic1">
-                <img class="pic" src="assets/img/jabritravelss.png" alt="card1" />
-            </div>
-            <div class="works-details">
-                <h2 class="comp-title">JaBri Travel</h2>
-                <ul class="work-title">
-                    <li class="client"><a href="https://jabri-travel.netlify.app/">Live Site</a></li>
-                    <li>|</li>
-                    <li class="dim">Frontend Dev</li>
-                    <li>|</li>
-                    <li class="dim">Jun/2022</li>
-                </ul>
-                <div class="project-desc">
-                    <p>
-                        Goal: To Create a nice looking "Tour and travel booking frontend-website"
-                    </p>
-                </div>
-                <ul class="tags">
-                    <li class="tag"><a href="#"><img alt="HTML"
-                                src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"></a>
-                    </li>
-                    <li class="tag"><a href="#"><img alt="CSS"
-                                src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"></a>
-                    </li>
-                    <li class="tag"><a href="#"><img alt="JavaScript"
-                                src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"></a>
-                    </li>
-                </ul>
-                <br>
-                <a href="https://github.com/ayush-sleeping/JaBri-Travel" class="Download">
-                    <button class="button download-btn">Project Repository</button>
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer section starts  -->
     <!-- ------- -------    --------   ---------    ---------    --------- --------->
@@ -251,18 +273,16 @@
             </div>
             <div class="row">
                 <ul>
-                    <li><a href="index.html" target="_parent">Home </a></li>
-                    <li><a href="resume.html">About</a></li>
-                    <li><a href="project.html">Projects</a></li>
+                    <li><a href="index.html">Home </a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="project.html" target="_parent">Projects</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="https://drive.google.com/file/d/169uQkHJC5THcKCzs2NvaF4hBrZUpSMAm/view?usp=sharing">
-                            Download - Resume</a></li>
                 </ul>
             </div>
             <div class="row copyright">
                 <p class="text-center mb-0">&copy; Copyright 2025 - <span class="name"> Ayush Mishra </span></p>
             </div>
-        </div>
         </div>
     </footer>
 

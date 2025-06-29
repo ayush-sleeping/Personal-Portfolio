@@ -31,6 +31,13 @@ h2 {
     color: #5B78F6 !important;
 }
 
+.infos h3 {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 12px !important;
+}
+
 .infos h4 {
     font-size: 16px;
     text-transform: uppercase;
