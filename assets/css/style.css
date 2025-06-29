@@ -183,12 +183,10 @@ input {
 .home__name {
     font-size: var(--fs-h1);
     line-height: 1.14em;
-    margin: 0.5em 0 0.2em;
 }
 
 .home__work {
-    margin-bottom: 1em;
-    color: var(--bright-text-color);
+    color: #5B78F6 !important;
     font-family: var(--mono-font);
     font-weight: var(--bold);
 }
@@ -209,7 +207,7 @@ input {
 
 .home__socials {
     gap: 10px;
-    margin: 1rem 0 1rem;
+    margin: 5rem 0 0rem;
 }
 
 .home__social-link {
@@ -257,10 +255,6 @@ input {
 @media screen and (max-width: 800px) {
     .home {
         padding-top: 0.3rem;
-    }
-
-    .home__name {
-        margin: 1.5em 0 0.23em;
     }
 
     .home__container {
@@ -318,7 +312,7 @@ input {
     color: var(--bg-color);
     border: none;
     box-shadow: var(--box-shadow-2);
-    background: var(--dark-green-color);
+    background: #5B78F6 !important;
     cursor: pointer;
 }
 
