@@ -1,9 +1,7 @@
 /* --- --- About Css starts from here ---- --- */
 :root {
     --text-color: #a1a1a1;
-    --accent-color: #111;
     --geist-foreground-rgb: 255, 255, 255;
-    --border-radius: 12px;
 }
 
 h2 {

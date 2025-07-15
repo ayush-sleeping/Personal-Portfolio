@@ -6,26 +6,13 @@
 :root {
     /*--- --- ---Colors --- --- ---*/
     --bright-text-color: #86C232;
-    --dark-green-color: #61892F;
     --text-W-color: #fff;
     --bg-color: #fff;
     --text-para-color: #acafb3;
-    --black-color: #000;
-    --background-color: #222629;
     --bg-color3: rgba(255, 255, 255, 0.158);
 
     /*--- --- ---Font and typography --- --- ---*/
-    --roboto-font: 'Roboto', sans-serif;
     --mono-font: 'Roboto Mono', monospace;
-
-    /*--- --- --- Font Weight --- --- ---*/
-    --medium: 500;
-    --semibold: 600;
-    --bold: 700;
-
-    /* --- --- --- Box shadow --- --- */
-    --box-shadow-4: 0 1px 29px rgb(0 0 0 /40%);
-
 }
 
 /*--- --- --- Projects CSS - cards CSS --- --- --- */

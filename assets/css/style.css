@@ -5,20 +5,15 @@
 /*--- --- --- Css Variables --- ---- --- */
 :root {
     /*--- --- ---Colors --- --- ---*/
-    --bright-text-color: #86C232;
-    --dark-green-color: #61892F;
-    --text-W-color: #fff;
     --bg-color: #fff;
-    --text-para-color: #acafb3;
-    --black-color: #000;
     --hover-color: #2b2a2a;
     --background-color: #0F0F0F;
-    --bg-color3: #9f9f9f;
 
     /*--- --- ---Font and typography --- --- ---*/
     --roboto-font: 'Roboto', sans-serif;
     --mono-font: 'Roboto Mono', monospace;
     --fs-base: 14px;
+    --fs-h1: 2.50rem;
 
     /*--- --- --- Font Weight --- --- ---*/
     --medium: 500;
@@ -33,16 +28,6 @@
     --box-shadow-1: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     --box-shadow-2: 0 .5rem 1rem rgba(143, 142, 142, 0.15) !important;
     --box-shadow-4: 0 1px 29px rgb(0 0 0 /40%);
-
-    /*--- --- ---Font and typography --- --- ---*/
-    --mono-font: 'Roboto Mono', monospace;
-    --fs-h1: 2.50rem;
-
-    /*--- --- --- Font Weight --- --- ---*/
-    --medium: 500;
-    --semibold: 600;
-    --bold: 700;
-    /*-*/
 }
 
 
@@ -228,7 +213,7 @@ input {
 }
 
 .home__social-link:hover {
-    background: #ffffff ;
+    background: #ffffff;
     color: #0F0F0F;
 }
 

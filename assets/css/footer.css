@@ -5,25 +5,12 @@
 /*--- --- --- Css Variables --- ---- --- */
 :root {
    /*--- --- ---Colors --- --- ---*/
-   --bright-text-color: #86C232 ;
-   --text-W-color: #fff;
-   --text-para-color: #acafb3;
    --text-color-alt: #999;
    --black-color: #000;
   --background-color: #0F0F0F !important;
 
    /*--- --- ---Font and typography --- --- ---*/
-   --roboto-font: 'Roboto', sans-serif;
    --mono-font: 'Roboto Mono', monospace;
-
-   /*--- --- --- Font Weight --- --- ---*/
-   --medium: 500;
-   --semibold: 600;
-   --bold: 700;
-
-   /* --- --- --- Box shadow --- --- */
-  --box-shadow-4: 0 1px 29px rgb(0 0 0 /40%);
-
 }
 
 

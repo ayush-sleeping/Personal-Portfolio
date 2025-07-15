@@ -1,61 +1,7 @@
 /*--- --- --- Google Fonts --- ---- --- */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
 
-
-/*--- --- --- Css Variables --- ---- --- */
-:root {
-  /*--- --- ---Colors --- --- ---*/
-  --text-W-color: #fff;
-  --text-para-color: #acafb3;
-  --black-color: #000;
-  --background-color: #0F0F0F !important;
-
-  /*--- --- ---Font and typography --- --- ---*/
-  --roboto-font: 'Roboto', sans-serif;
-  --mono-font: 'Roboto Mono', monospace;
-  --fs-base: 14px;
-
-  /*--- --- --- Font Weight --- --- ---*/
-  --medium: 500;
-  --semibold: 600;
-  --bold: 700;
-}
-
-
 /* --- --- About Css starts from here ---- --- */
-.main-home {
-  margin: 0 auto;
-  padding: 0px 20px;
-  background: #0F0F0F !important;
-}
-
-.card {
-  padding: 5px;
-  margin: 24px;
-  border-radius: 2px;
-  background-color: #0F0F0F !important;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-}
-
-.card .card-title {
-  padding: 24px 16px 8px;
-  font-size: 24px;
-  font-weight: var(--semibold);
-  line-height: 32px;
-  color: var(--text-W-color);
-  font-family: var(--mono-font);
-  text-shadow: var(--black-color);
-}
-
-.card p {
-  font-size: 100%;
-  font-weight: var(--medium);
-  letter-spacing: 0.01em;
-  line-height: 1.6em;
-  padding: 0 16px;
-  color: var(--text-para-color);
-  font-family: var(--mono-font);
-}
 
 .container .section-heading {
     color: #ffffff;
@@ -85,6 +31,7 @@
   max-height: 300px; /* Adjust as needed */
   margin: 0 auto;
 }
+
 .about-exp ul li .date {
     color: #BCBCBC;
     opacity: 0.6;
@@ -92,12 +39,14 @@
     font-weight: 500;
     margin-bottom: 12px;
 }
+
 .about-exp ul li h3 {
     font-size: 18px;
     color: #fff;
     opacity: 0.9;
     margin-bottom: 7px;
 }
+
 .about-exp ul li .type {
     color: #BCBCBC;
     font-size: 14px;

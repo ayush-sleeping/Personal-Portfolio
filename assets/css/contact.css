@@ -1,12 +1,8 @@
-
 /*--- --- --- Css Variables --- ---- --- */
+
 :root {
    /*--- --- ---Colors --- --- ---*/
-   --bright-text-color: #86C232 ;
    --text-W-color: #fff;
-   --text-para-color: #acafb3;
-   --black-color: #000;
-   --background-color: #222629;
 
    /*--- --- ---Font and typography --- --- ---*/
    --roboto-font: 'Roboto', sans-serif;
@@ -28,34 +24,11 @@
    margin-bottom: 5%;
 }
 
-.contact__content{
-   z-index: 10;
-   position: relative;
-}
-
-.contact__container{
-   grid-template-columns: 4fr 5fr 3fr;
-   column-gap: 1.875rem;
-   padding-top: 1.25rem;
-}
-
 .contact__form-title {
     color: #5B78F6 !important;
    font-family: var(--mono-font);
 }
-.contact__social-link{
-   color: var(--text-W-color);
-   font-family: var(--mono-font);
 
-}
-.contact__list dt{
-   color: var(--text-W-color);
-   font-family: var(--mono-font);
-}
-.contact__list dd{
-    color: #5B78F6 !important;
-   font-family: var(--mono-font);
-}
 .section__title{
    color: var(--text-W-color);
    font-family: var(--mono-font);
@@ -63,32 +36,6 @@
 
 .contact ::placeholder, .contact__input{
     color: #5B78F6 !important;
-   font-family: var(--mono-font);
-}
-.contact__list{
-   margin-bottom: 3.25rem;
-}
-
-.contact__list dt{
-   float: left;
-   font-weight: var(--bold);
-   text-transform: uppercase;
-}
-
-.contact-linkedin{
-   text-decoration: none;
-   color: var(--black-color);
-}
-
-.contact__list dd{
-   margin-bottom: 0.94em;
-}
-
-.contact__socials li{
-   margin-bottom: 0.75rem;
-}
-
-.contact__social-link{
    font-family: var(--mono-font);
 }
 
@@ -159,17 +106,10 @@
      padding-top: 3rem;
      padding-bottom: 3rem;
    }
-   .contact__container{
-      grid-template-columns: 5fr 7fr;
-   }
  }
  /* for medium devices */
  @media screen and (max-width: 768px) {
    .container{
       max-width: 540px;
-   }
-   .contact__container{
-      grid-template-columns: 1fr;
-      row-gap: 2rem;
    }
  }
