@@ -19,32 +19,38 @@
 </head>
 
 <body style="background-color: #0F0F0F !important;">
-    <!-- Header section starts  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <header class="header">
-        <div class="logo">
-            <div class="icon rounded pt-1 pb-1">
-                <span><a class="logo-text" style="text-decoration: none;" href="index.html">ayushSleeping</a></span>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-bg"></div>
+        <div class="preloader-content">
+            <div class="loader-container">
+                <div class="loader-text">
+                    <span class="loader-letter">a</span>
+                    <span class="loader-letter">y</span>
+                    <span class="loader-letter">u</span>
+                    <span class="loader-letter">s</span>
+                    <span class="loader-letter">h</span>
+                    <span class="loader-letter">S</span>
+                    <span class="loader-letter">l</span>
+                    <span class="loader-letter">e</span>
+                    <span class="loader-letter">e</span>
+                    <span class="loader-letter">p</span>
+                    <span class="loader-letter">i</span>
+                    <span class="loader-letter">n</span>
+                    <span class="loader-letter">g</span>
+                </div>
+                <div class="loader-bar">
+                    <div class="loader-progress"></div>
+                </div>
+                <div class="loader-percentage">0%</div>
             </div>
         </div>
-        <nav class="navbar">
-            <div id="nav-close"></div>
-            <a href="index.html" target="_parent">Home</a>
-            <a href="about.html">About</a>
-            <a href="resume.html">Resume</a>
-            <a href="project.html">Projects </a>
-            <a href="services.html">Services</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-        <button class="hamburger hamburger--emphatic" type="button">
-            <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-            </span>
-        </button>
-        <div class="rounded pt-1 pb-1">
-            <span class="talk-text"><a href="contact.html" class="lets-talk-btn">Let's talk</a></span>
-        </div>
-    </header>
+    </div>
+
+    <!-- Slide reveal panel -->
+    <div class="slide-reveal-panel"></div>
+
 
     <!--   Navigation Menu starts   -->
     <!-- ------- -------    --------   ---------    ---------    --------- --------->
@@ -63,265 +69,303 @@
         </ul>
     </nav>
 
-    <!-- Projects Cards section starts  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <div class="container max-w-7xl pb-12 mb-12" style="padding-top: 60px !important; padding-bottom: 50px !important;">
-        <div class="row g-4 mt-3">
-            <!-- -->
-            <div class="col-lg-12 col-12">
-                <div class="gradient-border-card credentials-card" style="padding: 25px 25px !important;">
-                    <img class="bg-img"
-                        src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
-                        decoding="async">
-                    <div class="d-flex align-items-center justify-content-between pt-2">
-                        <div class="infos">
-                            <h3>My Latest Projects</h3>
-                            <p class="mb-0">Here are some of my personal projects, I have done in my free time. For
-                                more visit my GitHub.
-                            </p>
+
+    <!-- Main content wrapper -->
+    <div class="main-content">
+
+        <!-- Header section starts  -->
+        <!-- ------- -------    --------   ---------    ---------    --------- --------->
+        <header class="header">
+            <div class="logo">
+                <div class="icon rounded pt-1 pb-1">
+                    <span><a class="logo-text" style="text-decoration: none;" href="index.html">ayushSleeping</a></span>
+                </div>
+            </div>
+            <nav class="navbar">
+                <div id="nav-close"></div>
+                <a href="index.html" target="_parent">Home</a>
+                <a href="about.html">About</a>
+                <a href="resume.html">Resume</a>
+                <a href="project.html">Projects </a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="hamburger hamburger--emphatic" type="button">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+            <div class="rounded pt-1 pb-1">
+                <span class="talk-text"><a href="contact.html" class="lets-talk-btn">Let's talk</a></span>
+            </div>
+        </header>
+
+        <!-- Projects Cards section starts  -->
+        <!-- ------- -------    --------   ---------    ---------    --------- --------->
+        <div class="container max-w-7xl pb-12 mb-12"
+            style="padding-top: 60px !important; padding-bottom: 50px !important;">
+            <div class="row g-4 mt-3">
+                <!-- -->
+                <div class="col-lg-12 col-12">
+                    <div class="gradient-border-card credentials-card" style="padding: 25px 25px !important;">
+                        <img class="bg-img"
+                            src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
+                            decoding="async">
+                        <div class="d-flex align-items-center justify-content-between pt-2">
+                            <div class="infos">
+                                <h3>My Latest Projects</h3>
+                                <p class="mb-0">Here are some of my personal projects, I have done in my free time. For
+                                    more visit my GitHub.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+                <div class="col-lg-12 col-12">
+                    <div class="row">
+                        <!-- -->
+                        <div class="col-lg-6 col-12 mt-4">
+                            <div class="gradient-border-card" style="padding: 25px 25px 25px 25px !important;">
+                                <div class="img-box" style="height: 55% !important; border-radius: 0 0 0 0 !important;">
+                                    <img src="assets/img/portfolio project.png" class="home__img" alt="hero-img">
+                                </div>
+                                <div class="home__data" style=" margin-top: 0px !important;">
+                                    <h2 class="home__name d-flex justify-content-center mt-2"
+                                        style="font-size: 25px !important;">Personal Portfolio</h2>
+                                    <div class="works-details">
+                                        <div class="project-desc">
+                                            <p> Frontend Dev | Jun - 2025 |
+                                                <a href="https://github.com/ayush-sleeping/Personal-Portfolio"
+                                                    target="_blank"
+                                                    style="text-decoration: none; color: #5B78F6 !important;">Source
+                                                    Code</a> |
+                                                <a href="https://ayush-sleeping.github.io/Personal-Portfolio/"
+                                                    target="_blank"
+                                                    style="text-decoration: none; color: #5B78F6 !important;">Live</a>
+                                                <br>
+                                                Goal: To showcase my skills and projects as a web developer.
+                                            </p>
+                                        </div>
+                                        <ul class="tags d-flex justify-content-center w-100"
+                                            style="padding-left: 0rem !important;">
+                                            <li class="tag">JavaScript</li>
+                                            <li class="tag">CSS</li>
+                                            <li class="tag">HTML</li>
+                                            <li class="tag">Bootstrap</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- -->
+                        <div class="col-lg-6 col-12 mt-4">
+                            <div class="gradient-border-card" style="padding: 25px 25px 25px 25px !important;">
+                                <div class="img-box" style="height: 55% !important; border-radius: 0 0 0 0 !important;">
+                                    <img src="assets/img/1.2 User homepage.png" class="home__img" alt="hero-img">
+                                </div>
+                                <div class="home__data" style=" margin-top: 0px !important;">
+                                    <h2 class="home__name d-flex justify-content-center mt-2"
+                                        style="font-size: 25px !important;">NFT
+                                        Ecommerce</h2>
+                                    <div class="works-details">
+                                        <div class="project-desc">
+                                            <p> Angular CRUD Project | Oct - 2023 | <a
+                                                    href="https://github.com/ayush-sleeping/NFT-Ecommerce"
+                                                    target="_blank"
+                                                    style="text-decoration: none; color: #5B78F6 !important;">Source
+                                                    Code</a> <br>
+                                                Offering user authentication, product listings, shopping cart management
+                                                &
+                                                order
+                                                tracking for
+                                                users, while providing sellers with tools for product addition +
+                                                updates.
+                                            </p>
+                                        </div>
+                                        <ul class="tags d-flex justify-content-center w-100"
+                                            style="padding-left: 0rem !important;">
+                                            <li class="tag">JavaScript</li>
+                                            <li class="tag">Angular</li>
+                                            <li class="tag">Bootstrap</li>
+                                            <li class="tag">CSS</li>
+                                            <li class="tag">HTML</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- -->
+                        <div class="col-lg-6 col-12 mt-4">
+                            <div class="gradient-border-card" style="padding: 25px 25px 25px 25px !important;">
+                                <div class="img-box" style="height: 55% !important; border-radius: 0 0 0 0 !important;">
+                                    <img src="assets/img/2 .png" class="home__img" alt="hero-img">
+                                </div>
+                                <div class="home__data" style=" margin-top: 0px !important;">
+                                    <h2 class="home__name d-flex justify-content-center mt-2"
+                                        style="font-size: 25px !important;">Brija Stream</h2>
+                                    <div class="works-details">
+                                        <div class="project-desc">
+                                            <p> Frontend Dev + Search API | Sep - 2023 |
+                                                <a href="https://github.com/ayush-sleeping/Brija-Stream" target="_blank"
+                                                    style="text-decoration: none; color: #5B78F6 !important;">Source
+                                                    Code</a> |
+                                                <a href="https://ayush-sleeping.github.io/Brija-Stream/" target="_blank"
+                                                    style="text-decoration: none; color: #5B78F6 !important;">Live</a>
+                                                <br>
+
+                                                Goal: Streaming platform that combines the best features inspired by
+                                                Disney+, Prime, Netflix,
+                                                Hulu, and AppleTV+,
+                                            </p>
+                                        </div>
+                                        <ul class="tags d-flex justify-content-center w-100"
+                                            style="padding-left: 0rem !important;">
+                                            <li class="tag">JavaScript</li>
+                                            <li class="tag">CSS</li>
+                                            <li class="tag">HTML</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- -->
+                        <div class="col-lg-6 col-12 mt-4">
+                            <div class="gradient-border-card" style="padding: 25px 25px 25px 25px !important;">
+                                <div class="img-box" style="height: 55% !important; border-radius: 0 0 0 0 !important;">
+                                    <img src="assets/img/jabritravelss.png" class="home__img" alt="hero-img">
+                                </div>
+                                <div class="home__data" style=" margin-top: 0px !important;">
+                                    <h2 class="home__name d-flex justify-content-center mt-2"
+                                        style="font-size: 25px !important;">JaBri Travel</h2>
+                                    <div class="works-details">
+                                        <div class="project-desc">
+                                            <p> Frontend Dev | Jun - 2022 |
+                                                <a href="https://github.com/ayush-sleeping/JaBri-Travel" target="_blank"
+                                                    style="text-decoration: none; color: #5B78F6 !important;">Source
+                                                    Code</a> |
+                                                <a href="https://jabri-travel.netlify.app" target="_blank"
+                                                    style="text-decoration: none; color: #5B78F6 !important;">Live</a>
+                                                <br>
+                                                Goal: To Create a nice looking "Tour and travel booking
+                                                frontend-website"
+                                            </p>
+                                        </div>
+                                        <ul class="tags d-flex justify-content-center w-100"
+                                            style="padding-left: 0rem !important;">
+                                            <li class="tag">JavaScript</li>
+                                            <li class="tag">CSS</li>
+                                            <li class="tag">HTML</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="col-lg-12 col-12">
+                    <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
+                        <div class="align-items-center justify-content-between">
+                            <div class="infos">
+                                <h4 style="color: #5B78F6 !important;">Skills</h4>
+                                <div class="row">
+                                    <h5>Present</h5>
+                                    <div class="col-lg-3 col-6">
+                                        <ul class="mb-0 mt-4">
+                                            <li>
+                                                <p class="date">Backend</p>
+                                                <h3>Laravel Framework</h3>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-2 col-6">
+                                        <ul class="mb-0 mt-4">
+                                            <li>
+                                                <p class="date">Database</p>
+                                                <h3>MySQL</h3>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-4 col-6">
+                                        <ul class="mb-0 mt-4">
+                                            <li>
+                                                <p class="date">Frontend</p>
+                                                <h3>JavaScript, Bootstrap, HTML, CSS</h3>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-3 col-6">
+                                        <ul class="mb-0 mt-4">
+                                            <li>
+                                                <p class="date">Others</p>
+                                                <h3>API, Git, AWS</h3>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row mt-5">
+                                    <h5>Familiar with</h5>
+                                    <div class="col-lg-3 col-6">
+                                        <ul class="mb-0 mt-4">
+                                            <li>
+                                                <p class="date">Backend</p>
+                                                <h3>Java SpringBoot</h3>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-4 col-6">
+                                        <ul class="mb-0 mt-4">
+                                            <li>
+                                                <p class="date">Frontend</p>
+                                                <h3>AngularJS, ReactJS</h3>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-3 col-6">
+                                        <ul class="mb-0 mt-4">
+                                            <li>
+                                                <p class="date">Others</p>
+                                                <h3>Core Java</h3>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- -->
-            <div class="col-lg-12 col-12">
+        </div>
+
+
+        <!-- Footer section starts  -->
+        <!-- ------- -------    --------   ---------    ---------    --------- --------->
+        <footer>
+            <div class="footer">
+                <div class="footer-content text-center">
+                    <h4 class="mb-4" style="color: #fff;">ayushSleeping</h4>
+                </div>
                 <div class="row">
-                    <!-- -->
-                    <div class="col-lg-6 col-12 mt-4">
-                        <div class="gradient-border-card" style="padding: 25px 25px 25px 25px !important;">
-                            <div class="img-box" style="height: 55% !important; border-radius: 0 0 0 0 !important;">
-                                <img src="assets/img/portfolio project.png" class="home__img" alt="hero-img">
-                            </div>
-                            <div class="home__data" style=" margin-top: 0px !important;">
-                                <h2 class="home__name d-flex justify-content-center mt-2"
-                                    style="font-size: 25px !important;">Personal Portfolio</h2>
-                                <div class="works-details">
-                                    <div class="project-desc">
-                                        <p> Frontend Dev | Jun - 2025 |
-                                            <a href="https://github.com/ayush-sleeping/Personal-Portfolio"
-                                                target="_blank"
-                                                style="text-decoration: none; color: #5B78F6 !important;">Source
-                                                Code</a> |
-                                            <a href="https://ayush-sleeping.github.io/Personal-Portfolio/"
-                                                target="_blank"
-                                                style="text-decoration: none; color: #5B78F6 !important;">Live</a>
-                                            <br>
-                                            Goal: To showcase my skills and projects as a web developer.
-                                        </p>
-                                    </div>
-                                    <ul class="tags d-flex justify-content-center w-100"
-                                        style="padding-left: 0rem !important;">
-                                        <li class="tag">JavaScript</li>
-                                        <li class="tag">CSS</li>
-                                        <li class="tag">HTML</li>
-                                        <li class="tag">Bootstrap</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- -->
-                    <div class="col-lg-6 col-12 mt-4">
-                        <div class="gradient-border-card" style="padding: 25px 25px 25px 25px !important;">
-                            <div class="img-box" style="height: 55% !important; border-radius: 0 0 0 0 !important;">
-                                <img src="assets/img/1.2 User homepage.png" class="home__img" alt="hero-img">
-                            </div>
-                            <div class="home__data" style=" margin-top: 0px !important;">
-                                <h2 class="home__name d-flex justify-content-center mt-2"
-                                    style="font-size: 25px !important;">NFT
-                                    Ecommerce</h2>
-                                <div class="works-details">
-                                    <div class="project-desc">
-                                        <p> Angular CRUD Project | Oct - 2023 | <a
-                                                href="https://github.com/ayush-sleeping/NFT-Ecommerce" target="_blank"
-                                                style="text-decoration: none; color: #5B78F6 !important;">Source
-                                                Code</a> <br>
-                                            Offering user authentication, product listings, shopping cart management &
-                                            order
-                                            tracking for
-                                            users, while providing sellers with tools for product addition + updates.
-                                        </p>
-                                    </div>
-                                    <ul class="tags d-flex justify-content-center w-100"
-                                        style="padding-left: 0rem !important;">
-                                        <li class="tag">JavaScript</li>
-                                        <li class="tag">Angular</li>
-                                        <li class="tag">Bootstrap</li>
-                                        <li class="tag">CSS</li>
-                                        <li class="tag">HTML</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- -->
-                    <div class="col-lg-6 col-12 mt-4">
-                        <div class="gradient-border-card" style="padding: 25px 25px 25px 25px !important;">
-                            <div class="img-box" style="height: 55% !important; border-radius: 0 0 0 0 !important;">
-                                <img src="assets/img/2 .png" class="home__img" alt="hero-img">
-                            </div>
-                            <div class="home__data" style=" margin-top: 0px !important;">
-                                <h2 class="home__name d-flex justify-content-center mt-2"
-                                    style="font-size: 25px !important;">Brija Stream</h2>
-                                <div class="works-details">
-                                    <div class="project-desc">
-                                        <p> Frontend Dev + Search API | Sep - 2023 |
-                                            <a href="https://github.com/ayush-sleeping/Brija-Stream" target="_blank"
-                                                style="text-decoration: none; color: #5B78F6 !important;">Source
-                                                Code</a> |
-                                            <a href="https://ayush-sleeping.github.io/Brija-Stream/" target="_blank"
-                                                style="text-decoration: none; color: #5B78F6 !important;">Live</a>
-                                            <br>
-
-                                            Goal: Streaming platform that combines the best features inspired by
-                                            Disney+, Prime, Netflix,
-                                            Hulu, and AppleTV+,
-                                        </p>
-                                    </div>
-                                    <ul class="tags d-flex justify-content-center w-100"
-                                        style="padding-left: 0rem !important;">
-                                        <li class="tag">JavaScript</li>
-                                        <li class="tag">CSS</li>
-                                        <li class="tag">HTML</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- -->
-                    <div class="col-lg-6 col-12 mt-4">
-                        <div class="gradient-border-card" style="padding: 25px 25px 25px 25px !important;">
-                            <div class="img-box" style="height: 55% !important; border-radius: 0 0 0 0 !important;">
-                                <img src="assets/img/jabritravelss.png" class="home__img" alt="hero-img">
-                            </div>
-                            <div class="home__data" style=" margin-top: 0px !important;">
-                                <h2 class="home__name d-flex justify-content-center mt-2"
-                                    style="font-size: 25px !important;">JaBri Travel</h2>
-                                <div class="works-details">
-                                    <div class="project-desc">
-                                        <p> Frontend Dev | Jun - 2022 |
-                                            <a href="https://github.com/ayush-sleeping/JaBri-Travel" target="_blank"
-                                                style="text-decoration: none; color: #5B78F6 !important;">Source
-                                                Code</a> |
-                                            <a href="https://jabri-travel.netlify.app" target="_blank"
-                                                style="text-decoration: none; color: #5B78F6 !important;">Live</a>
-                                            <br>
-                                            Goal: To Create a nice looking "Tour and travel booking frontend-website"
-                                        </p>
-                                    </div>
-                                    <ul class="tags d-flex justify-content-center w-100"
-                                        style="padding-left: 0rem !important;">
-                                        <li class="tag">JavaScript</li>
-                                        <li class="tag">CSS</li>
-                                        <li class="tag">HTML</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <ul>
+                        <li><a href="index.html">Home </a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li><a href="project.html" target="_parent">Projects</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="row copyright">
+                    <p class="text-center mb-0">&copy; Copyright 2025 - <span class="name"> Ayush Mishra </span></p>
                 </div>
             </div>
-            <!--  -->
-            <div class="col-lg-12 col-12">
-                <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
-                    <div class="align-items-center justify-content-between">
-                        <div class="infos">
-                            <h4 style="color: #5B78F6 !important;">Skills</h4>
-                            <div class="row">
-                                <h5>Present</h5>
-                                <div class="col-lg-3 col-6">
-                                    <ul class="mb-0 mt-4">
-                                        <li>
-                                            <p class="date">Backend</p>
-                                            <h3>Laravel Framework</h3>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-2 col-6">
-                                    <ul class="mb-0 mt-4">
-                                        <li>
-                                            <p class="date">Database</p>
-                                            <h3>MySQL</h3>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-4 col-6">
-                                    <ul class="mb-0 mt-4">
-                                        <li>
-                                            <p class="date">Frontend</p>
-                                            <h3>JavaScript, Bootstrap, HTML, CSS</h3>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <ul class="mb-0 mt-4">
-                                        <li>
-                                            <p class="date">Others</p>
-                                            <h3>API, Git, AWS</h3>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="row mt-5">
-                                <h5>Familiar with</h5>
-                                <div class="col-lg-3 col-6">
-                                    <ul class="mb-0 mt-4">
-                                        <li>
-                                            <p class="date">Backend</p>
-                                            <h3>Java SpringBoot</h3>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-4 col-6">
-                                    <ul class="mb-0 mt-4">
-                                        <li>
-                                            <p class="date">Frontend</p>
-                                            <h3>AngularJS, ReactJS</h3>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-3 col-6">
-                                    <ul class="mb-0 mt-4">
-                                        <li>
-                                            <p class="date">Others</p>
-                                            <h3>Core Java</h3>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </footer>
     </div>
-
-
-    <!-- Footer section starts  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <footer>
-        <div class="footer">
-            <div class="footer-content text-center">
-                <h4 class="mb-4" style="color: #fff;">ayushSleeping</h4>
-            </div>
-            <div class="row">
-                <ul>
-                    <li><a href="index.html">Home </a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="resume.html">Resume</a></li>
-                    <li><a href="project.html" target="_parent">Projects</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="row copyright">
-                <p class="text-center mb-0">&copy; Copyright 2025 - <span class="name"> Ayush Mishra </span></p>
-            </div>
-        </div>
-    </footer>
 
     <!-- Linking main JavaScript  -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/preloader.js"></script>
     <!-- Icons link  -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

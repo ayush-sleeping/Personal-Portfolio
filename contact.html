@@ -19,32 +19,38 @@
 </head>
 
 <body style="background-color: #0F0F0F !important;">
-    <!-- Header section starts  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <header class="header">
-        <div class="logo">
-            <div class="icon rounded pt-1 pb-1">
-                <span><a class="logo-text" style="text-decoration: none;" href="index.html">ayushSleeping</a></span>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-bg"></div>
+        <div class="preloader-content">
+            <div class="loader-container">
+                <div class="loader-text">
+                    <span class="loader-letter">a</span>
+                    <span class="loader-letter">y</span>
+                    <span class="loader-letter">u</span>
+                    <span class="loader-letter">s</span>
+                    <span class="loader-letter">h</span>
+                    <span class="loader-letter">S</span>
+                    <span class="loader-letter">l</span>
+                    <span class="loader-letter">e</span>
+                    <span class="loader-letter">e</span>
+                    <span class="loader-letter">p</span>
+                    <span class="loader-letter">i</span>
+                    <span class="loader-letter">n</span>
+                    <span class="loader-letter">g</span>
+                </div>
+                <div class="loader-bar">
+                    <div class="loader-progress"></div>
+                </div>
+                <div class="loader-percentage">0%</div>
             </div>
         </div>
-        <nav class="navbar">
-            <div id="nav-close"></div>
-            <a href="index.html" target="_parent">Home</a>
-            <a href="about.html">About</a>
-            <a href="resume.html">Resume</a>
-            <a href="project.html">Projects </a>
-            <a href="services.html">Services</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-        <button class="hamburger hamburger--emphatic" type="button">
-            <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-            </span>
-        </button>
-        <div class="rounded pt-1 pb-1">
-            <span class="talk-text"><a href="contact.html" class="lets-talk-btn">Let's talk</a></span>
-        </div>
-    </header>
+    </div>
+
+    <!-- Slide reveal panel -->
+    <div class="slide-reveal-panel"></div>
+
 
     <!--   Navigation Menu starts   -->
     <!-- ------- -------    --------   ---------    ---------    --------- --------->
@@ -63,103 +69,139 @@
         </ul>
     </nav>
 
-    <!-- Contact Section  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <div class="container max-w-7xl pb-12 mb-12" style="padding-top: 60px !important; padding-bottom: 50px !important;">
-        <div class="row g-4 mt-3">
-            <!--  -->
-            <div class="col-lg-4 col-12">
-                <div class="gradient-border-card"
-                    style="padding: 25px 25px 25px 25px !important; background: none !important; box-shadow: none !important;">
-                    <div class="home__data" style=" margin-top: 0px !important;">
-                        <div class="home__data">
-                            <h1 class="home__name">Contact Me</h1>
-                            <p class="home__work">Have any question? I'd love to hear from you...</p>
-                            <h2 class="home__name mt-5">Get in touch_</h2>
-                            <p class="home__work mt-4"><span style="color: #fff !important;">Email :
-                                </span>ayushbm84@gmail.com</p>
-                            <p class="home__work"><span style="color: #fff !important;">Location :
-                                </span>Mumbai, Maharashtra, India</p>
-                        </div>
-                        <div class="home__socials  d-flex justify-content-center">
-                            <a href="https://github.com/ayush-sleeping" target="_blank" class="home__social-link">
-                                <i class="ri-github-fill"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/ayush-bm/" target="_blank" class="home__social-link">
-                                <i class="ri-linkedin-box-fill"></i>
-                            </a>
-                            <a href="https://twitter.com/AyushBM1" target="_blank" class="home__social-link">
-                                <i class="ri-twitter-line"></i>
-                            </a>
+
+    <!-- Main content wrapper -->
+    <div class="main-content">
+
+        <!-- Header section starts  -->
+        <!-- ------- -------    --------   ---------    ---------    --------- --------->
+        <header class="header">
+            <div class="logo">
+                <div class="icon rounded pt-1 pb-1">
+                    <span><a class="logo-text" style="text-decoration: none;" href="index.html">ayushSleeping</a></span>
+                </div>
+            </div>
+            <nav class="navbar">
+                <div id="nav-close"></div>
+                <a href="index.html" target="_parent">Home</a>
+                <a href="about.html">About</a>
+                <a href="resume.html">Resume</a>
+                <a href="project.html">Projects </a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="hamburger hamburger--emphatic" type="button">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+            <div class="rounded pt-1 pb-1">
+                <span class="talk-text"><a href="contact.html" class="lets-talk-btn">Let's talk</a></span>
+            </div>
+        </header>
+
+        <!-- Contact Section  -->
+        <!-- ------- -------    --------   ---------    ---------    --------- --------->
+        <div class="container max-w-7xl pb-12 mb-12"
+            style="padding-top: 60px !important; padding-bottom: 50px !important;">
+            <div class="row g-4 mt-3">
+                <!--  -->
+                <div class="col-lg-4 col-12">
+                    <div class="gradient-border-card"
+                        style="padding: 25px 25px 25px 25px !important; background: none !important; box-shadow: none !important;">
+                        <div class="home__data" style=" margin-top: 0px !important;">
+                            <div class="home__data">
+                                <h1 class="home__name">Contact Me</h1>
+                                <p class="home__work">Have any question? I'd love to hear from you...</p>
+                                <h2 class="home__name mt-5">Get in touch_</h2>
+                                <p class="home__work mt-4"><span style="color: #fff !important;">Email :
+                                    </span>ayushbm84@gmail.com</p>
+                                <p class="home__work"><span style="color: #fff !important;">Location :
+                                    </span>Mumbai, Maharashtra, India</p>
+                            </div>
+                            <div class="home__socials  d-flex justify-content-center">
+                                <a href="https://github.com/ayush-sleeping" target="_blank" class="home__social-link">
+                                    <i class="ri-github-fill"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/ayush-bm/" target="_blank"
+                                    class="home__social-link">
+                                    <i class="ri-linkedin-box-fill"></i>
+                                </a>
+                                <a href="https://twitter.com/AyushBM1" target="_blank" class="home__social-link">
+                                    <i class="ri-twitter-line"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--  -->
-            <div class="col-lg-8 col-12">
-                <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
-                    <img class="bg-img"
-                        src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
-                        decoding="async">
-                    <div class="contact__form">
-                        <p class="contact__form-title" style="font-size: 44px; color: #fff !important;">Let’s work <span
-                                style="color: #5B78F6 !important;"> together. </span></p>
-                        <form action="" id="contact-form">
-                            <div class="contact__input-div">
-                                <input type="text" name="name" placeholder="Your name" class="contact__input"
-                                    id="contact-name">
-                            </div>
-                            <div class="contact__input-div">
-                                <input type="email" name="email" placeholder="Your e-mail" class="contact__input"
-                                    id="contact-email">
-                            </div>
-                            <div class="contact__input-div">
-                                <textarea name="message" placeholder="type the message here ..."
-                                    class="contact__input textarea" id="message" cols="30" rows="10"></textarea>
-                            </div>
-                            <p class="contact__message text-sm" id="contact-message">
-                                Message
+                <!--  -->
+                <div class="col-lg-8 col-12">
+                    <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
+                        <img class="bg-img"
+                            src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
+                            decoding="async">
+                        <div class="contact__form">
+                            <p class="contact__form-title" style="font-size: 44px; color: #fff !important;">Let’s work
+                                <span style="color: #5B78F6 !important;"> together. </span>
                             </p>
-                            <button type="submit" class="button contact__button">
-                                SEND
-                            </button>
-                        </form>
+                            <form action="" id="contact-form">
+                                <div class="contact__input-div">
+                                    <input type="text" name="name" placeholder="Your name" class="contact__input"
+                                        id="contact-name">
+                                </div>
+                                <div class="contact__input-div">
+                                    <input type="email" name="email" placeholder="Your e-mail" class="contact__input"
+                                        id="contact-email">
+                                </div>
+                                <div class="contact__input-div">
+                                    <textarea name="message" placeholder="type the message here ..."
+                                        class="contact__input textarea" id="message" cols="30" rows="10"></textarea>
+                                </div>
+                                <p class="contact__message text-sm" id="contact-message">
+                                    Message
+                                </p>
+                                <button type="submit" class="button contact__button">
+                                    SEND
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- Footer section starts  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <footer>
-        <div class="footer">
-            <div class="footer-content text-center">
-                <h4 class="mb-4" style="color: #fff;">ayushSleeping</h4>
-            </div>
-            <div class="row">
-                <ul>
-                    <li><a href="index.html">Home </a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="resume.html">Resume</a></li>
-                    <li><a href="project.html">Projects</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html" target="_parent">Contact</a></li>
-                    <!-- <li><a href="https://drive.google.com/file/d/169uQkHJC5THcKCzs2NvaF4hBrZUpSMAm/view?usp=sharing">
+        <!-- Footer section starts  -->
+        <!-- ------- -------    --------   ---------    ---------    --------- --------->
+        <footer>
+            <div class="footer">
+                <div class="footer-content text-center">
+                    <h4 class="mb-4" style="color: #fff;">ayushSleeping</h4>
+                </div>
+                <div class="row">
+                    <ul>
+                        <li><a href="index.html">Home </a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li><a href="project.html">Projects</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html" target="_parent">Contact</a></li>
+                        <!-- <li><a href="https://drive.google.com/file/d/169uQkHJC5THcKCzs2NvaF4hBrZUpSMAm/view?usp=sharing">
                             Download - Resume</a></li> -->
-                </ul>
+                    </ul>
+                </div>
+                <div class="row copyright">
+                    <p class="text-center mb-0">&copy; Copyright 2025 - <span class="name"> Ayush Mishra </span></p>
+                </div>
             </div>
-            <div class="row copyright">
-                <p class="text-center mb-0">&copy; Copyright 2025 - <span class="name"> Ayush Mishra </span></p>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <!-- email js -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <!-- main JS -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/preloader.js"></script>
     <script src="assets/js/contactform.js"></script>
     <!-- Icons link  -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

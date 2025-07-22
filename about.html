@@ -19,32 +19,37 @@
 </head>
 
 <body style="background-color: #0F0F0F !important;">
-    <!-- Header section starts  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <header class="header">
-        <div class="logo">
-            <div class="icon rounded pt-1 pb-1">
-                <span><a class="logo-text" style="text-decoration: none;" href="index.html">ayushSleeping</a></span>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-bg"></div>
+        <div class="preloader-content">
+            <div class="loader-container">
+                <div class="loader-text">
+                    <span class="loader-letter">a</span>
+                    <span class="loader-letter">y</span>
+                    <span class="loader-letter">u</span>
+                    <span class="loader-letter">s</span>
+                    <span class="loader-letter">h</span>
+                    <span class="loader-letter">S</span>
+                    <span class="loader-letter">l</span>
+                    <span class="loader-letter">e</span>
+                    <span class="loader-letter">e</span>
+                    <span class="loader-letter">p</span>
+                    <span class="loader-letter">i</span>
+                    <span class="loader-letter">n</span>
+                    <span class="loader-letter">g</span>
+                </div>
+                <div class="loader-bar">
+                    <div class="loader-progress"></div>
+                </div>
+                <div class="loader-percentage">0%</div>
             </div>
         </div>
-        <nav class="navbar">
-            <div id="nav-close"></div>
-            <a href="index.html" target="_parent">Home</a>
-            <a href="about.html">About</a>
-            <a href="resume.html">Resume</a>
-            <a href="project.html">Projects </a>
-            <a href="services.html">Services</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-        <button class="hamburger hamburger--emphatic" type="button">
-            <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-            </span>
-        </button>
-        <div class="rounded pt-1 pb-1">
-            <span class="talk-text"><a href="contact.html" class="lets-talk-btn">Let's talk</a></span>
-        </div>
-    </header>
+    </div>
+
+    <!-- Slide reveal panel -->
+    <div class="slide-reveal-panel"></div>
 
     <!--   Navigation Menu starts   -->
     <!-- ------- -------    --------   ---------    ---------    --------- --------->
@@ -63,170 +68,181 @@
         </ul>
     </nav>
 
-    <!-- About section starts  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <div class="container max-w-7xl pb-12 mb-12" style="padding-top: 60px !important; padding-bottom: 50px !important;">
-        <div class="row g-4 mt-3">
-            <!-- A short info. Name, Photo, and a subject and link to visit about page -->
-            <div class="col-lg-4 col-12">
-                <div class="gradient-border-card" style="padding: 25px 25px !important;">
-                    <img class="bg-img"
-                        src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
-                        decoding="async">
-                    <div class="img-box" style="height: 295px !important;">
-                        <img src="assets/img/about me.png" class="home__img" alt="hero-img">
-                    </div>
+
+    <!-- Main content wrapper -->
+    <div class="main-content">
+
+        <!-- Header section starts  -->
+        <!-- ------- -------    --------   ---------    ---------    --------- --------->
+        <header class="header">
+            <div class="logo">
+                <div class="icon rounded pt-1 pb-1">
+                    <span><a class="logo-text" style="text-decoration: none;" href="index.html">ayushSleeping</a></span>
                 </div>
             </div>
-            <!-- A title of me what things i can do in development -->
-            <div class="col-lg-8 col-12">
-                <div class="row">
-                    <!-- Heading ::  -->
-                    <div class="col-lg-12 col-12">
-                        <h1 style="font-size: 40px !important;" class="section-heading">
-                            <img decoding="async"
-                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/star-2.png"
-                                alt="img">
-                            Self-summary
-                            <img decoding="async"
-                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/star-2.png"
-                                alt="img">
-                        </h1>
-                    </div>
-                    <!-- In short ::  -->
-                    <div class="col-lg-12 col-12">
-                        <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
-                            <img class="bg-img"
-                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
-                                alt="BG" decoding="async">
-                            <img decoding="async"
-                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon2.png"
-                                alt="star" class="star-icon">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="last-infos">
-                                    <h2 style="font-size: 35px !important; margin-top: 30px !important;">Ayush Mishra
-                                    </h2>
-                                    <p class="mb-0 mt-4">
-                                        A Fullstack Web Developer based in India, passionate about building dynamic and
-                                        responsive web applications. I have 1+ year of experience working with Laravel,
-                                        JavaScript, and modern web technologies, and I enjoy learning and collaborating
-                                        on new projects.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <nav class="navbar">
+                <div id="nav-close"></div>
+                <a href="index.html" target="_parent">Home</a>
+                <a href="about.html">About</a>
+                <a href="resume.html">Resume</a>
+                <a href="project.html">Projects </a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="hamburger hamburger--emphatic" type="button">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+            <div class="rounded pt-1 pb-1">
+                <span class="talk-text"><a href="contact.html" class="lets-talk-btn">Let's talk</a></span>
             </div>
-            <!--  -->
-            <div class="col-lg-6 col-12">
-                <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
-                    <img class="bg-img"
-                        src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
-                        decoding="async">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="infos">
-                            <h4 style="color: #5B78F6 !important;">Experience</h4>
-                            <ul class="mb-0 mt-4">
-                                <li>
-                                    <p class="date">Oct 2023 - Sept 2024</p>
-                                    <h3>FullStack Web Developer</h3>
-                                    <p class="type">Technicul Cloud LLP (Mumbai, India)</p>
-                                </li>
-                                <li class="mt-4">
-                                    <p class="date">Jun 2023 - Sept 2024</p>
-                                    <h3> Java Fullstack Development (Paid Training Course) </h3>
-                                    <p class="type">Anudip Foundation (Mumbai, India)</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--  -->
-            <div class="col-lg-6 col-12">
-                <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
-                    <img class="bg-img"
-                        src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
-                        decoding="async">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="infos">
-                            <h4 style="color: #5B78F6 !important;">Education</h4>
-                            <ul class="mb-0 mt-4">
-                                <li>
-                                    <p class="date">Jul 2020 - Jul 2023</p>
-                                    <h3>Bachelor of Science in Computer Science</h3>
-                                    <p class="type">Shankar Narayan College of Arts & Commerce (Bhayander, Maharashtra,
-                                        India)</p>
-                                </li>
-                                <li class="mt-4">
-                                    <p class="date"> &nbsp; - Jul 2020</p>
-                                    <h3> Schooling </h3>
-                                    <p class="type">Divine Providence High School & Jr. College</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--  -->
-            <div class="row g-4 mt-2">
-                <!--  -->
-                <div class="col-lg-3 col-12">
-                    <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
+        </header>
+
+        <!-- About section starts  -->
+        <!-- ------- -------    --------   ---------    ---------    --------- --------->
+        <div class="container max-w-7xl pb-12 mb-12"
+            style="padding-top: 60px !important; padding-bottom: 50px !important;">
+            <div class="row g-4 mt-3">
+                <!-- A short info. Name, Photo, and a subject and link to visit about page -->
+                <div class="col-lg-4 col-12">
+                    <div class="gradient-border-card" style="padding: 25px 25px !important;">
                         <img class="bg-img"
                             src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
                             decoding="async">
-                        <div class="inner-profile-icons">
-                            <div class="row">
-                                <div class="col-lg-6 col-6">
-                                    <a href="https://twitter.com/AyushBM1" target="_blank"
-                                        style="text-decoration: none;">
-                                        <div class="social-card">
-                                            <i class="fab fa-twitter fa-lg"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-lg-6 col-6">
-                                    <a href="https://www.linkedin.com/in/ayush-bm/" target="_blank"
-                                        style="text-decoration: none;">
-                                        <div class="social-card">
-                                            <i class="fab fa-linkedin fa-lg"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="img-box" style="height: 295px !important;">
+                            <img src="assets/img/about me.png" class="home__img" alt="hero-img">
                         </div>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="infos">
-                                <h5 style="font-size: 14px !important;">STAY WITH ME</h5>
-                                <h2 style="font-size: 20px !important;">Profiles</h2>
-                            </div>
-                            <a href="contact.html" class="about-btn">
+                    </div>
+                </div>
+                <!-- A title of me what things i can do in development -->
+                <div class="col-lg-8 col-12">
+                    <div class="row">
+                        <!-- Heading ::  -->
+                        <div class="col-lg-12 col-12">
+                            <h1 style="font-size: 40px !important;" class="section-heading">
                                 <img decoding="async"
-                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
-                                    alt="star">
-                            </a>
+                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/star-2.png"
+                                    alt="img">
+                                Self-summary
+                                <img decoding="async"
+                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/star-2.png"
+                                    alt="img">
+                            </h1>
+                        </div>
+                        <!-- In short ::  -->
+                        <div class="col-lg-12 col-12">
+                            <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
+                                <img class="bg-img"
+                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
+                                    alt="BG" decoding="async">
+                                <img decoding="async"
+                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon2.png"
+                                    alt="star" class="star-icon">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="last-infos">
+                                        <h2 style="font-size: 35px !important; margin-top: 30px !important;">Ayush
+                                            Mishra
+                                        </h2>
+                                        <p class="mb-0 mt-4">
+                                            A Fullstack Web Developer based in India, passionate about building dynamic
+                                            and
+                                            responsive web applications. I have 1+ year of experience working with
+                                            Laravel,
+                                            JavaScript, and modern web technologies, and I enjoy learning and
+                                            collaborating
+                                            on new projects.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!--  -->
                 <div class="col-lg-6 col-12">
-                    <a href="contact.html" class="text-decoration-none text-reset" style="display: block;">
+                    <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
+                        <img class="bg-img"
+                            src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
+                            decoding="async">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="infos">
+                                <h4 style="color: #5B78F6 !important;">Experience</h4>
+                                <ul class="mb-0 mt-4">
+                                    <li>
+                                        <p class="date">Oct 2023 - Sept 2024</p>
+                                        <h3>FullStack Web Developer</h3>
+                                        <p class="type">Technicul Cloud LLP (Mumbai, India)</p>
+                                    </li>
+                                    <li class="mt-4">
+                                        <p class="date">Jun 2023 - Sept 2024</p>
+                                        <h3> Java Fullstack Development (Paid Training Course) </h3>
+                                        <p class="type">Anudip Foundation (Mumbai, India)</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="col-lg-6 col-12">
+                    <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
+                        <img class="bg-img"
+                            src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
+                            decoding="async">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="infos">
+                                <h4 style="color: #5B78F6 !important;">Education</h4>
+                                <ul class="mb-0 mt-4">
+                                    <li>
+                                        <p class="date">Jul 2020 - Jul 2023</p>
+                                        <h3>Bachelor of Science in Computer Science</h3>
+                                        <p class="type">Shankar Narayan College of Arts & Commerce (Bhayander,
+                                            Maharashtra,
+                                            India)</p>
+                                    </li>
+                                    <li class="mt-4">
+                                        <p class="date"> &nbsp; - Jul 2020</p>
+                                        <h3> Schooling </h3>
+                                        <p class="type">Divine Providence High School & Jr. College</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="row g-4 mt-2">
+                    <!--  -->
+                    <div class="col-lg-3 col-12">
                         <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
                             <img class="bg-img"
                                 src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
                                 alt="BG" decoding="async">
-                            <img decoding="async"
-                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon2.png"
-                                alt="star" class="star-icon">
+                            <div class="inner-profile-icons">
+                                <div class="row">
+                                    <div class="col-lg-6 col-6">
+                                        <a href="https://twitter.com/AyushBM1" target="_blank"
+                                            style="text-decoration: none;">
+                                            <div class="social-card">
+                                                <i class="fab fa-twitter fa-lg"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-6 col-6">
+                                        <a href="https://www.linkedin.com/in/ayush-bm/" target="_blank"
+                                            style="text-decoration: none;">
+                                            <div class="social-card">
+                                                <i class="fab fa-linkedin fa-lg"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="d-flex align-items-center justify-content-between">
-                                <div class="last-infos">
-                                    <h2>Let's
-                                        <br>
-                                        Work
-                                        <span>Together.</span>
-                                    </h2>
+                                <div class="infos">
+                                    <h5 style="font-size: 14px !important;">STAY WITH ME</h5>
+                                    <h2 style="font-size: 20px !important;">Profiles</h2>
                                 </div>
                                 <a href="contact.html" class="about-btn">
                                     <img decoding="async"
@@ -235,59 +251,88 @@
                                 </a>
                             </div>
                         </div>
-                    </a>
-                </div>
-                <!--  -->
-                <div class="col-lg-3 col-12">
-                    <a href="resume.html" class="text-decoration-none text-reset" style="display: block;">
-                        <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
-                            <img class="bg-img"
-                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
-                                alt="BG" decoding="async">
-                            <img src="assets/img/ayush sign.png" class="proj-img mx-auto d-block mb-3" alt="hero-img">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="infos">
-                                    <h5 style="font-size: 14px !important;">MORE ABOUT ME</h5>
-                                    <h2 style="font-size: 20px !important;">Credentials</h2>
+                    </div>
+                    <!--  -->
+                    <div class="col-lg-6 col-12">
+                        <a href="contact.html" class="text-decoration-none text-reset" style="display: block;">
+                            <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
+                                <img class="bg-img"
+                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
+                                    alt="BG" decoding="async">
+                                <img decoding="async"
+                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon2.png"
+                                    alt="star" class="star-icon">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="last-infos">
+                                        <h2>Let's
+                                            <br>
+                                            Work
+                                            <span>Together.</span>
+                                        </h2>
+                                    </div>
+                                    <a href="contact.html" class="about-btn">
+                                        <img decoding="async"
+                                            src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
+                                            alt="star">
+                                    </a>
                                 </div>
-                                <a href="resume.html" class="about-btn">
-                                    <img decoding="async"
-                                        src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
-                                        alt="star">
-                                </a>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
+                    <!--  -->
+                    <div class="col-lg-3 col-12">
+                        <a href="resume.html" class="text-decoration-none text-reset" style="display: block;">
+                            <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
+                                <img class="bg-img"
+                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
+                                    alt="BG" decoding="async">
+                                <img src="assets/img/ayush sign.png" class="proj-img mx-auto d-block mb-3"
+                                    alt="hero-img">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="infos">
+                                        <h5 style="font-size: 14px !important;">MORE ABOUT ME</h5>
+                                        <h2 style="font-size: 20px !important;">Credentials</h2>
+                                    </div>
+                                    <a href="resume.html" class="about-btn">
+                                        <img decoding="async"
+                                            src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
+                                            alt="star">
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Footer section starts  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <footer>
-        <div class="footer">
-            <div class="footer-content text-center">
-                <h4 class="mb-4" style="color: #fff;">ayushSleeping</h4>
+        <!-- Footer section starts  -->
+        <!-- ------- -------    --------   ---------    ---------    --------- --------->
+        <footer>
+            <div class="footer">
+                <div class="footer-content text-center">
+                    <h4 class="mb-4" style="color: #fff;">ayushSleeping</h4>
+                </div>
+                <div class="row">
+                    <ul>
+                        <li><a href="index.html">Home </a></li>
+                        <li><a href="about.html" target="_parent">About</a></li>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li><a href="project.html">Projects</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="row copyright">
+                    <p class="text-center mb-0">&copy; Copyright 2025 - <span class="name"> Ayush Mishra </span></p>
+                </div>
             </div>
-            <div class="row">
-                <ul>
-                    <li><a href="index.html">Home </a></li>
-                    <li><a href="about.html" target="_parent">About</a></li>
-                    <li><a href="resume.html">Resume</a></li>
-                    <li><a href="project.html">Projects</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="row copyright">
-                <p class="text-center mb-0">&copy; Copyright 2025 - <span class="name"> Ayush Mishra </span></p>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <!-- Linking main JavaScript  -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/preloader.js"></script>
     <!-- Icons link  -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

@@ -19,32 +19,37 @@
 </head>
 
 <body style="background-color: #0F0F0F !important;">
-    <!-- Header section starts  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <header class="header">
-        <div class="logo">
-            <div class="icon rounded pt-1 pb-1">
-                <span><a class="logo-text" style="text-decoration: none;" href="index.html">ayushSleeping</a></span>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-bg"></div>
+        <div class="preloader-content">
+            <div class="loader-container">
+                <div class="loader-text">
+                    <span class="loader-letter">a</span>
+                    <span class="loader-letter">y</span>
+                    <span class="loader-letter">u</span>
+                    <span class="loader-letter">s</span>
+                    <span class="loader-letter">h</span>
+                    <span class="loader-letter">S</span>
+                    <span class="loader-letter">l</span>
+                    <span class="loader-letter">e</span>
+                    <span class="loader-letter">e</span>
+                    <span class="loader-letter">p</span>
+                    <span class="loader-letter">i</span>
+                    <span class="loader-letter">n</span>
+                    <span class="loader-letter">g</span>
+                </div>
+                <div class="loader-bar">
+                    <div class="loader-progress"></div>
+                </div>
+                <div class="loader-percentage">0%</div>
             </div>
         </div>
-        <nav class="navbar">
-            <div id="nav-close"></div>
-            <a href="index.html" target="_parent">Home</a>
-            <a href="about.html">About</a>
-            <a href="resume.html">Resume</a>
-            <a href="project.html">Projects </a>
-            <a href="services.html" target="_parent">Services</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-        <button class="hamburger hamburger--emphatic" type="button">
-            <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-            </span>
-        </button>
-        <div class="rounded pt-1 pb-1">
-            <span class="talk-text"><a href="contact.html" class="lets-talk-btn">Let's talk</a></span>
-        </div>
-    </header>
+    </div>
+
+    <!-- Slide reveal panel -->
+    <div class="slide-reveal-panel"></div>
 
     <!--   Navigation Menu starts   -->
     <!-- ------- -------    --------   ---------    ---------    --------- --------->
@@ -63,259 +68,296 @@
         </ul>
     </nav>
 
-    <!-- Services Section  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <div class="container max-w-7xl pb-12 mb-12" style="padding-top: 60px !important; padding-bottom: 50px !important;">
-        <div class="row g-4 mt-3">
-            <!-- A title of me what things i can do in development -->
-            <div class="col-lg-12 col-12">
-                <div class="row">
-                    <!-- Heading ::  -->
-                    <div class="col-lg-12 col-12">
-                        <h1 class="section-heading">
-                            <img decoding="async"
-                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/star-2.png"
-                                alt="img">
-                            My Offerings
-                            <img decoding="async"
-                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/star-2.png"
-                                alt="img">
-                        </h1>
-                    </div>
-                </div>
-            </div>
-            <!--  -->
-            <div class="col-lg-12 col-12">
-                <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
-                    <img class="bg-img"
-                        src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
-                        decoding="async">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="row">
-                            <!-- Section 1: Full Stack Web Development -->
-                            <div class="col-lg-6 col-12 mt-3">
-                                <div class="gradient-border-card credentials-card about-exp"
-                                    style="padding: 25px 25px !important;">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="infos">
-                                            <h4>Full Stack Web Development</h4>
-                                            <ul class="mb-0 mt-4">
-                                                <li>
-                                                    <p>Complete web solutions with Laravel + JavaScript</p>
-                                                    <p class="type mt-2">End-to-end development from database design to
-                                                        user
-                                                        interface, creating seamless web applications.</p>
-                                                </li>
-                                                <li class="mt-3">
-                                                    <p>Production experience at Technicul Cloud LLP</p>
-                                                    <p class="type mt-2">1+ year building real-world applications with
-                                                        proper
-                                                        version control and deployment workflows.</p>
-                                                </li>
-                                            </ul>
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Section 2: Backend Development -->
-                            <div class="col-lg-6 col-12 mt-3">
-                                <div class="gradient-border-card credentials-card about-exp"
-                                    style="padding: 25px 25px !important;">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="infos">
-                                            <h4>Backend Development</h4>
-                                            <ul class="mb-0 mt-4">
-                                                <li>
-                                                    <p>Laravel framework expertise</p>
-                                                    <p class="type mt-2">MVC architecture, Eloquent ORM, and middleware
-                                                        for
-                                                        robust server-side applications.</p>
-                                                </li>
-                                                <li class="mt-3">
-                                                    <p>RESTful API development</p>
-                                                    <p class="type mt-2">Creating scalable APIs with proper
-                                                        authentication,
-                                                        validation, and error handling for web & mobile apps.</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Section 3: Frontend Development -->
-                            <div class="col-lg-6 col-12 mt-3">
-                                <div class="gradient-border-card credentials-card about-exp"
-                                    style="padding: 25px 25px !important;">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="infos">
-                                            <h4>Frontend Development</h4>
-                                            <ul class="mb-0 mt-4">
-                                                <li>
-                                                    <p>Responsive design with Bootstrap & CSS</p>
-                                                    <p class="type mt-2">Mobile-first approach ensuring optimal user
-                                                        experience across all devices and screen sizes.</p>
-                                                </li>
-                                                <li class="mt-3">
-                                                    <p>Interactive JavaScript functionality</p>
-                                                    <p class="type mt-2">Dynamic user interfaces with modern ES6+
-                                                        features
-                                                        and DOM manipulation for engaging web experiences.</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Section 4: Production & Team Skills -->
-                            <div class="col-lg-6 col-12 mt-3">
-                                <div class="gradient-border-card credentials-card about-exp"
-                                    style="padding: 25px 25px !important;">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="infos">
-                                            <h4>Production-Ready Code & Team Skills</h4>
-                                            <ul class="mb-0 mt-4">
-                                                <li>
-                                                    <p>Git workflows & collaboration</p>
-                                                    <p class="type mt-2">Experience with branching strategies, code
-                                                        reviews,
-                                                        and team-based development environments.</p>
-                                                </li>
-                                                <li class="mt-3">
-                                                    <p>AWS deployment & debugging</p>
-                                                    <p class="type mt-2">Cloud hosting, server management, and real-time
-                                                        troubleshooting for production applications.</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Main content wrapper -->
+    <div class="main-content">
+
+
+        <!-- Header section starts  -->
+        <!-- ------- -------    --------   ---------    ---------    --------- --------->
+        <header class="header">
+            <div class="logo">
+                <div class="icon rounded pt-1 pb-1">
+                    <span><a class="logo-text" style="text-decoration: none;" href="index.html">ayushSleeping</a></span>
                 </div>
             </div>
-            <!--  -->
-            <div class="row g-4 mt-2">
+            <nav class="navbar">
+                <div id="nav-close"></div>
+                <a href="index.html" target="_parent">Home</a>
+                <a href="about.html">About</a>
+                <a href="resume.html">Resume</a>
+                <a href="project.html">Projects </a>
+                <a href="services.html" target="_parent">Services</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="hamburger hamburger--emphatic" type="button">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+            <div class="rounded pt-1 pb-1">
+                <span class="talk-text"><a href="contact.html" class="lets-talk-btn">Let's talk</a></span>
+            </div>
+        </header>
+
+        <!-- Services Section  -->
+        <!-- ------- -------    --------   ---------    ---------    --------- --------->
+        <div class="container max-w-7xl pb-12 mb-12"
+            style="padding-top: 60px !important; padding-bottom: 50px !important;">
+            <div class="row g-4 mt-3">
+                <!-- A title of me what things i can do in development -->
+                <div class="col-lg-12 col-12">
+                    <div class="row">
+                        <!-- Heading ::  -->
+                        <div class="col-lg-12 col-12">
+                            <h1 class="section-heading">
+                                <img decoding="async"
+                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/star-2.png"
+                                    alt="img">
+                                My Offerings
+                                <img decoding="async"
+                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/star-2.png"
+                                    alt="img">
+                            </h1>
+                        </div>
+                    </div>
+                </div>
                 <!--  -->
-                <div class="col-lg-3 col-12">
-                    <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
+                <div class="col-lg-12 col-12">
+                    <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
                         <img class="bg-img"
                             src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
                             decoding="async">
-                        <div class="inner-profile-icons">
+                        <div class="d-flex align-items-center justify-content-between">
                             <div class="row">
-                                <div class="col-lg-6 col-6">
-                                    <a href="https://twitter.com/AyushBM1" target="_blank"
-                                        style="text-decoration: none;">
-                                        <div class="social-card">
-                                            <i class="fab fa-twitter fa-lg"></i>
+                                <!-- Section 1: Full Stack Web Development -->
+                                <div class="col-lg-6 col-12 mt-3">
+                                    <div class="gradient-border-card credentials-card about-exp"
+                                        style="padding: 25px 25px !important;">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="infos">
+                                                <h4>Full Stack Web Development</h4>
+                                                <ul class="mb-0 mt-4">
+                                                    <li>
+                                                        <p>Complete web solutions with Laravel + JavaScript</p>
+                                                        <p class="type mt-2">End-to-end development from database design
+                                                            to
+                                                            user
+                                                            interface, creating seamless web applications.</p>
+                                                    </li>
+                                                    <li class="mt-3">
+                                                        <p>Production experience at Technicul Cloud LLP</p>
+                                                        <p class="type mt-2">1+ year building real-world applications
+                                                            with
+                                                            proper
+                                                            version control and deployment workflows.</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
                                         </div>
-                                    </a>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6 col-6">
-                                    <a href="https://www.linkedin.com/in/ayush-bm/" target="_blank"
-                                        style="text-decoration: none;">
-                                        <div class="social-card">
-                                            <i class="fab fa-linkedin fa-lg"></i>
+                                <!-- Section 2: Backend Development -->
+                                <div class="col-lg-6 col-12 mt-3">
+                                    <div class="gradient-border-card credentials-card about-exp"
+                                        style="padding: 25px 25px !important;">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="infos">
+                                                <h4>Backend Development</h4>
+                                                <ul class="mb-0 mt-4">
+                                                    <li>
+                                                        <p>Laravel framework expertise</p>
+                                                        <p class="type mt-2">MVC architecture, Eloquent ORM, and
+                                                            middleware
+                                                            for
+                                                            robust server-side applications.</p>
+                                                    </li>
+                                                    <li class="mt-3">
+                                                        <p>RESTful API development</p>
+                                                        <p class="type mt-2">Creating scalable APIs with proper
+                                                            authentication,
+                                                            validation, and error handling for web & mobile apps.</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </a>
+                                    </div>
+                                </div>
+                                <!-- Section 3: Frontend Development -->
+                                <div class="col-lg-6 col-12 mt-3">
+                                    <div class="gradient-border-card credentials-card about-exp"
+                                        style="padding: 25px 25px !important;">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="infos">
+                                                <h4>Frontend Development</h4>
+                                                <ul class="mb-0 mt-4">
+                                                    <li>
+                                                        <p>Responsive design with Bootstrap & CSS</p>
+                                                        <p class="type mt-2">Mobile-first approach ensuring optimal user
+                                                            experience across all devices and screen sizes.</p>
+                                                    </li>
+                                                    <li class="mt-3">
+                                                        <p>Interactive JavaScript functionality</p>
+                                                        <p class="type mt-2">Dynamic user interfaces with modern ES6+
+                                                            features
+                                                            and DOM manipulation for engaging web experiences.</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Section 4: Production & Team Skills -->
+                                <div class="col-lg-6 col-12 mt-3">
+                                    <div class="gradient-border-card credentials-card about-exp"
+                                        style="padding: 25px 25px !important;">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="infos">
+                                                <h4>Production-Ready Code & Team Skills</h4>
+                                                <ul class="mb-0 mt-4">
+                                                    <li>
+                                                        <p>Git workflows & collaboration</p>
+                                                        <p class="type mt-2">Experience with branching strategies, code
+                                                            reviews,
+                                                            and team-based development environments.</p>
+                                                    </li>
+                                                    <li class="mt-3">
+                                                        <p>AWS deployment & debugging</p>
+                                                        <p class="type mt-2">Cloud hosting, server management, and
+                                                            real-time
+                                                            troubleshooting for production applications.</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="infos">
-                                <h5 style="font-size: 14px !important;">STAY WITH ME</h5>
-                                <h2 style="font-size: 20px !important;">Profiles</h2>
-                            </div>
-                            <a href="contact.html" class="about-btn">
-                                <img decoding="async"
-                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
-                                    alt="star">
-                            </a>
                         </div>
                     </div>
                 </div>
                 <!--  -->
-                <div class="col-lg-6 col-12">
-                    <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
-                        <img class="bg-img"
-                            src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
-                            decoding="async">
-                        <img decoding="async"
-                            src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon2.png"
-                            alt="star" class="star-icon">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="last-infos">
-                                <h2>Let's
-                                    <br>
-                                    Work
-                                    <span>Together.</span>
-                                </h2>
+                <div class="row g-4 mt-2">
+                    <!--  -->
+                    <div class="col-lg-3 col-12">
+                        <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
+                            <img class="bg-img"
+                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
+                                alt="BG" decoding="async">
+                            <div class="inner-profile-icons">
+                                <div class="row">
+                                    <div class="col-lg-6 col-6">
+                                        <a href="https://twitter.com/AyushBM1" target="_blank"
+                                            style="text-decoration: none;">
+                                            <div class="social-card">
+                                                <i class="fab fa-twitter fa-lg"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-6 col-6">
+                                        <a href="https://www.linkedin.com/in/ayush-bm/" target="_blank"
+                                            style="text-decoration: none;">
+                                            <div class="social-card">
+                                                <i class="fab fa-linkedin fa-lg"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <a href="contact.html" class="about-btn">
-                                <img decoding="async"
-                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
-                                    alt="star">
-                            </a>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="infos">
+                                    <h5 style="font-size: 14px !important;">STAY WITH ME</h5>
+                                    <h2 style="font-size: 20px !important;">Profiles</h2>
+                                </div>
+                                <a href="contact.html" class="about-btn">
+                                    <img decoding="async"
+                                        src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
+                                        alt="star">
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--  -->
-                <div class="col-lg-3 col-12">
-                    <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
-                        <img class="bg-img"
-                            src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
-                            decoding="async">
-                        <img src="assets/img/ayush sign.png" class="proj-img mx-auto d-block mb-3" alt="hero-img">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="infos">
-                                <h5 style="font-size: 14px !important;">MORE ABOUT ME</h5>
-                                <h2 style="font-size: 20px !important;">Credentials</h2>
+                    <!--  -->
+                    <div class="col-lg-6 col-12">
+                        <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
+                            <img class="bg-img"
+                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
+                                alt="BG" decoding="async">
+                            <img decoding="async"
+                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon2.png"
+                                alt="star" class="star-icon">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="last-infos">
+                                    <h2>Let's
+                                        <br>
+                                        Work
+                                        <span>Together.</span>
+                                    </h2>
+                                </div>
+                                <a href="contact.html" class="about-btn">
+                                    <img decoding="async"
+                                        src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
+                                        alt="star">
+                                </a>
                             </div>
-                            <a href="resume.html" class="about-btn">
-                                <img decoding="async"
-                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
-                                    alt="star">
-                            </a>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="col-lg-3 col-12">
+                        <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
+                            <img class="bg-img"
+                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
+                                alt="BG" decoding="async">
+                            <img src="assets/img/ayush sign.png" class="proj-img mx-auto d-block mb-3" alt="hero-img">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="infos">
+                                    <h5 style="font-size: 14px !important;">MORE ABOUT ME</h5>
+                                    <h2 style="font-size: 20px !important;">Credentials</h2>
+                                </div>
+                                <a href="resume.html" class="about-btn">
+                                    <img decoding="async"
+                                        src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
+                                        alt="star">
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <!-- Footer section starts  -->
+        <!-- ------- -------    --------   ---------    ---------    --------- --------->
+        <footer>
+            <div class="footer">
+                <div class="footer-content text-center">
+                    <h4 class="mb-4" style="color: #fff;">ayushSleeping</h4>
+                </div>
+                <div class="row">
+                    <ul>
+                        <li><a href="index.html">Home </a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li><a href="project.html">Projects</a></li>
+                        <li><a href="services.html" target="_parent">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <!-- <li><a href="https://drive.google.com/file/d/169uQkHJC5THcKCzs2NvaF4hBrZUpSMAm/view?usp=sharing">
+                            Download - Resume</a></li> -->
+                    </ul>
+                </div>
+                <div class="row copyright">
+                    <p class="text-center mb-0">&copy; Copyright 2025 - <span class="name"> Ayush Mishra </span></p>
+                </div>
+            </div>
+        </footer>
     </div>
 
 
-    <!-- Footer section starts  -->
-    <!-- ------- -------    --------   ---------    ---------    --------- --------->
-    <footer>
-        <div class="footer">
-            <div class="footer-content text-center">
-                <h4 class="mb-4" style="color: #fff;">ayushSleeping</h4>
-            </div>
-            <div class="row">
-                <ul>
-                    <li><a href="index.html">Home </a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="resume.html">Resume</a></li>
-                    <li><a href="project.html">Projects</a></li>
-                    <li><a href="services.html" target="_parent">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <!-- <li><a href="https://drive.google.com/file/d/169uQkHJC5THcKCzs2NvaF4hBrZUpSMAm/view?usp=sharing">
-                            Download - Resume</a></li> -->
-                </ul>
-            </div>
-            <div class="row copyright">
-                <p class="text-center mb-0">&copy; Copyright 2025 - <span class="name"> Ayush Mishra </span></p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- email js -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <!-- main JS -->
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/contactform.js"></script>
+    <script src="assets/js/preloader.js"></script>
     <!-- Icons link  -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
