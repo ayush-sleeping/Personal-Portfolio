@@ -5,6 +5,71 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Ayush Mishra - FullStack Web Developer & Software Developer. Passionate developer building modern web and software solutions using Laravel, JavaScript, ReactJS, and more.">
+    <meta name="keywords"
+        content="Ayush Mishra, FullStack Developer, Web Developer, Software Developer, Laravel, JavaScript, ReactJS, PHP, Portfolio">
+    <meta name="author" content="Ayush Mishra">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ayush-sleeping.github.io/Personal-Portfolio/">
+    <meta property="og:title" content="Ayush Mishra - FullStack Web Developer Portfolio">
+    <meta property="og:description"
+        content="Passionate developer building modern web and software solutions using Laravel, JavaScript, ReactJS, and more.">
+    <meta property="og:image" content="https://ayush-sleeping.github.io/Personal-Portfolio/assets/img/about me.png">
+    <meta property="og:site_name" content="Ayush Mishra Portfolio">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ayush-sleeping.github.io/Personal-Portfolio/">
+    <meta property="twitter:title" content="Ayush Mishra - FullStack Web Developer Portfolio">
+    <meta property="twitter:description"
+        content="Passionate developer building modern web and software solutions using Laravel, JavaScript, ReactJS, and more.">
+    <meta property="twitter:image"
+        content="https://ayush-sleeping.github.io/Personal-Portfolio/assets/img/about me.png">
+    <meta property="twitter:creator" content="@AyushBM1">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#5B78F6">
+    <meta name="msapplication-TileColor" content="#5B78F6">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ayush-sleeping.github.io/Personal-Portfolio/">
+
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://kit.fontawesome.com">
+    <link rel="dns-prefetch" href="//wpriverthemes.com">
+
+    <!-- Additional Favicon Support -->
+    <link rel="apple-touch-icon" href="assets/img/favicon-portfolio.svg">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Structured Data for Better SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ayush Mishra",
+        "jobTitle": "FullStack Web Developer",
+        "description": "Passionate developer building modern web and software solutions",
+        "url": "https://ayush-sleeping.github.io/Personal-Portfolio/",
+        "sameAs": [
+            "https://github.com/ayush-sleeping",
+            "https://www.linkedin.com/in/ayush-bm/",
+            "https://twitter.com/AyushBM1"
+        ],
+        "knowsAbout": ["Laravel", "JavaScript", "ReactJS", "PHP", "MySQL", "Web Development"],
+        "email": "ayushbm84@gmail.com"
+    }
+    </script>
+
     <!-- Favicon  -->
     <link rel="icon" href="assets/img/favicon-portfolio.svg" type="image/png">
     <!-- Remixicon -->
@@ -106,7 +171,7 @@
             <div class="row g-4 mt-3">
                 <!-- A short info. Name, Photo, and a subject and link to visit about page -->
                 <div class="col-lg-4 col-12">
-                    <div class="gradient-border-card" style="padding: 25px 25px !important;">
+                    <div class="primary-card" style="padding: 25px 25px !important;">
                         <img class="bg-img"
                             src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
                             decoding="async">
@@ -132,7 +197,7 @@
                         </div>
                         <!-- In short ::  -->
                         <div class="col-lg-12 col-12">
-                            <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
+                            <div class="primary-card credentials-card" style="padding: 50px 25px !important;">
                                 <img class="bg-img"
                                     src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
                                     alt="BG" decoding="async">
@@ -161,7 +226,7 @@
                 </div>
                 <!--  -->
                 <div class="col-lg-6 col-12">
-                    <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
+                    <div class="primary-card credentials-card about-exp" style="padding: 25px 25px !important;">
                         <img class="bg-img"
                             src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
                             decoding="async">
@@ -186,7 +251,7 @@
                 </div>
                 <!--  -->
                 <div class="col-lg-6 col-12">
-                    <div class="gradient-border-card credentials-card about-exp" style="padding: 25px 25px !important;">
+                    <div class="primary-card credentials-card about-exp" style="padding: 25px 25px !important;">
                         <img class="bg-img"
                             src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
                             decoding="async">
@@ -212,37 +277,61 @@
                     </div>
                 </div>
                 <!--  -->
-                <div class="row g-4 mt-2">
-                    <!--  -->
-                    <div class="col-lg-3 col-12">
-                        <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
+                <div class="col-lg-3 col-12">
+                    <div class="primary-card credentials-card" style="padding: 50px 25px !important;">
+                        <img class="bg-img"
+                            src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
+                            decoding="async">
+                        <div class="inner-profile-icons">
+                            <div class="row mt-lg-0 mt-4">
+                                <div class="col-lg-6 col-6">
+                                    <a href="https://twitter.com/AyushBM1" target="_blank"
+                                        style="text-decoration: none;">
+                                        <div class="social-card">
+                                            <i class="fab fa-twitter fa-lg"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-6 col-6">
+                                    <a href="https://www.linkedin.com/in/ayush-bm/" target="_blank"
+                                        style="text-decoration: none;">
+                                        <div class="social-card">
+                                            <i class="fab fa-linkedin fa-lg"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="infos">
+                                <h5 style="font-size: 14px !important;">STAY WITH ME</h5>
+                                <h2 style="font-size: 20px !important;">Profiles</h2>
+                            </div>
+                            <a href="contact.html" class="about-btn">
+                                <img decoding="async"
+                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
+                                    alt="star">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="col-lg-6 col-12">
+                    <a href="contact.html" class="text-decoration-none text-reset" style="display: block;">
+                        <div class="primary-card credentials-card" style="padding: 50px 25px !important;">
                             <img class="bg-img"
                                 src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
                                 alt="BG" decoding="async">
-                            <div class="inner-profile-icons">
-                                <div class="row">
-                                    <div class="col-lg-6 col-6">
-                                        <a href="https://twitter.com/AyushBM1" target="_blank"
-                                            style="text-decoration: none;">
-                                            <div class="social-card">
-                                                <i class="fab fa-twitter fa-lg"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-6 col-6">
-                                        <a href="https://www.linkedin.com/in/ayush-bm/" target="_blank"
-                                            style="text-decoration: none;">
-                                            <div class="social-card">
-                                                <i class="fab fa-linkedin fa-lg"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            <img decoding="async"
+                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon2.png"
+                                alt="star" class="star-icon">
                             <div class="d-flex align-items-center justify-content-between">
-                                <div class="infos">
-                                    <h5 style="font-size: 14px !important;">STAY WITH ME</h5>
-                                    <h2 style="font-size: 20px !important;">Profiles</h2>
+                                <div class="last-infos">
+                                    <h2>Let's
+                                        <br>
+                                        Work
+                                        <span>Together.</span>
+                                    </h2>
                                 </div>
                                 <a href="contact.html" class="about-btn">
                                     <img decoding="async"
@@ -251,57 +340,29 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    <!--  -->
-                    <div class="col-lg-6 col-12">
-                        <a href="contact.html" class="text-decoration-none text-reset" style="display: block;">
-                            <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
-                                <img class="bg-img"
-                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
-                                    alt="BG" decoding="async">
-                                <img decoding="async"
-                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon2.png"
-                                    alt="star" class="star-icon">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="last-infos">
-                                        <h2>Let's
-                                            <br>
-                                            Work
-                                            <span>Together.</span>
-                                        </h2>
-                                    </div>
-                                    <a href="contact.html" class="about-btn">
-                                        <img decoding="async"
-                                            src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
-                                            alt="star">
-                                    </a>
+                    </a>
+                </div>
+                <!--  -->
+                <div class="col-lg-3 col-12">
+                    <a href="resume.html" class="text-decoration-none text-reset" style="display: block;">
+                        <div class="primary-card credentials-card" style="padding: 50px 25px !important;">
+                            <img class="bg-img"
+                                src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
+                                alt="BG" decoding="async">
+                            <img src="assets/img/ayush sign.png" class="proj-img mx-auto d-block mb-3" alt="hero-img">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="infos">
+                                    <h5 style="font-size: 14px !important;">MORE ABOUT ME</h5>
+                                    <h2 style="font-size: 20px !important;">Credentials</h2>
                                 </div>
+                                <a href="resume.html" class="about-btn">
+                                    <img decoding="async"
+                                        src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
+                                        alt="star">
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    <!--  -->
-                    <div class="col-lg-3 col-12">
-                        <a href="resume.html" class="text-decoration-none text-reset" style="display: block;">
-                            <div class="gradient-border-card credentials-card" style="padding: 50px 25px !important;">
-                                <img class="bg-img"
-                                    src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
-                                    alt="BG" decoding="async">
-                                <img src="assets/img/ayush sign.png" class="proj-img mx-auto d-block mb-3"
-                                    alt="hero-img">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="infos">
-                                        <h5 style="font-size: 14px !important;">MORE ABOUT ME</h5>
-                                        <h2 style="font-size: 20px !important;">Credentials</h2>
-                                    </div>
-                                    <a href="resume.html" class="about-btn">
-                                        <img decoding="async"
-                                            src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/icon.svg"
-                                            alt="star">
-                                    </a>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -333,6 +394,7 @@
     <!-- Linking main JavaScript  -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/preloader.js"></script>
+    <script src="assets/js/scroll-animations.js"></script>
     <!-- Icons link  -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

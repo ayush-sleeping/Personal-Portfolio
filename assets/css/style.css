@@ -63,7 +63,7 @@ textarea {
 }
 
 /* GPU acceleration for animations */
-.gradient-border-card,
+.primary-card,
 .hamburger,
 .home__social-link {
     will-change: transform;
@@ -1214,7 +1214,7 @@ h2 {
     transition: .3s;
 }
 
-.gradient-border-card:hover .about-btn {
+.primary-card:hover .about-btn {
     opacity: 1.0;
 }
 
@@ -1239,7 +1239,7 @@ h2 {
 }
 
 /******************************/
-.gradient-border-card {
+.primary-card {
     position: relative;
     padding: 50px 46px;
     gap: 30px;
@@ -1258,7 +1258,7 @@ h2 {
     background: #1c1c1c !important;
 }
 
-.gradient-border-card:hover {
+.primary-card:hover {
     position: relative;
     padding: 50px 46px;
     gap: 30px;
@@ -1271,7 +1271,7 @@ h2 {
     background: #1c1c1c !important;
 }
 
-.gradient-border-card2 {
+.primary-card2 {
     position: relative;
     padding: 17px 25px;
     gap: 30px;
@@ -1290,7 +1290,7 @@ h2 {
     background: #1c1c1c !important;
 }
 
-.gradient-border-card2:hover {
+.primary-card2:hover {
     position: relative;
     padding: 17px 25px;
     gap: 30px;
@@ -1303,7 +1303,7 @@ h2 {
     background: #1c1c1c !important;
 }
 
-.gradient-border-card .inner-profile-icons {
+.primary-card .inner-profile-icons {
     position: relative;
     cursor: pointer;
     height: 65%;
@@ -1325,9 +1325,9 @@ h2 {
 }
 
 /* social-card with premium styling */
-.gradient-border-card .social-card {
+.primary-card .social-card {
     position: relative;
-    padding: 20px 20px;
+    padding: 15px 15px;
     cursor: pointer;
     height: 100%;
     z-index: 1;
@@ -1341,7 +1341,7 @@ h2 {
 }
 
 /* Add a subtle animated gradient border */
-.gradient-border-card .social-card::before {
+.primary-card .social-card::before {
     content: '';
     position: absolute;
     inset: -2px;
@@ -1367,11 +1367,11 @@ h2 {
     }
 }
 
-.gradient-border-card .social-card:hover::before {
+.primary-card .social-card:hover::before {
     opacity: 1;
 }
 
-.gradient-border-card .social-card:hover {
+.primary-card .social-card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow:
         rgba(255, 255, 255, 0.2) 0px 2px 4px 0px inset,
@@ -1382,7 +1382,7 @@ h2 {
     border-color: rgba(91, 120, 246, 0.3);
 }
 
-.gradient-border-card .social-card i {
+.primary-card .social-card i {
     font-size: 25px;
     color: #ffffff;
     transition: all 0.4s ease;
@@ -1391,7 +1391,7 @@ h2 {
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.gradient-border-card .social-card:hover i {
+.primary-card .social-card:hover i {
     color: #5B78F6;
     transform: scale(1.1) rotate(5deg);
     text-shadow:
@@ -1399,16 +1399,16 @@ h2 {
         0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.gradient-border-card .social-card {
+.primary-card .social-card {
     animation: socialPulse 6s ease-in-out infinite;
 }
 
-.gradient-border-card .social-card:hover {
+.primary-card .social-card:hover {
     animation: none; /* Stop pulse on hover */
 }
 
 /* Add a subtle shimmer effect */
-.gradient-border-card .social-card::after {
+.primary-card .social-card::after {
     content: '';
     position: absolute;
     top: 0;
@@ -1424,42 +1424,42 @@ h2 {
     z-index: 1;
 }
 
-.gradient-border-card .social-card:hover::after {
+.primary-card .social-card:hover::after {
     left: 100%;
 }
 
 /* Responsive improvements */
 @media (max-width: 768px) {
-    .gradient-border-card .social-card {
-        padding: 25px 25px;
+    .primary-card .social-card {
+        padding: 20px 20px;
         border-radius: 40px;
     }
 
-    .gradient-border-card .social-card::before {
-        border-radius: 42px;
+    .primary-card .social-card::before {
+        border-radius: 50px;
     }
 
-    .gradient-border-card .social-card i {
+    .primary-card .social-card i {
         font-size: 35px;
     }
 }
 
 @media (max-width: 480px) {
-    .gradient-border-card .social-card {
-        padding: 20px 20px;
-        border-radius: 30px;
+    .primary-card .social-card {
+        padding: 15px 15px;
+        border-radius: 50px;
     }
 
-    .gradient-border-card .social-card::before {
+    .primary-card .social-card::before {
         border-radius: 32px;
     }
 
-    .gradient-border-card .social-card i {
+    .primary-card .social-card i {
         font-size: 30px;
     }
 }
 
-.gradient-border-card .bg-img {
+.primary-card .bg-img {
     opacity: 0.5;
     position: absolute;
     left: 0;
@@ -1470,7 +1470,7 @@ h2 {
     object-fit: cover;
 }
 
-.gradient-border-card2 .bg-img {
+.primary-card2 .bg-img {
     opacity: 0.5;
     position: absolute;
     left: 0;
@@ -1482,7 +1482,7 @@ h2 {
 }
 
 /* star-icon with hover effect */
-.gradient-border-card .star-icon {
+.primary-card .star-icon {
     position: absolute;
     left: 30px;
     top: 0;
@@ -1492,19 +1492,19 @@ h2 {
     cursor: pointer;
 }
 
-.gradient-border-card .star-icon:hover {
+.primary-card .star-icon:hover {
     opacity: 1;
     transform: scale(1.1);
 }
 
 /* Alternative: Hover effect when hovering the entire card */
-.gradient-border-card:hover .star-icon {
+.primary-card:hover .star-icon {
     opacity: 0.9;
     transform: translateY(-2px);
 }
 
-/* .gradient-border-card .icon-boxes */
-.gradient-border-card .icon-boxes {
+/* .primary-card .icon-boxes */
+.primary-card .icon-boxes {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1512,7 +1512,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-.gradient-border-card .icon-boxes i {
+.primary-card .icon-boxes i {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -1531,7 +1531,7 @@ h2 {
         rgba(0, 0, 0, 0.2) 0px 4px 8px;
 }
 
-.gradient-border-card .icon-boxes i:hover {
+.primary-card .icon-boxes i:hover {
     background: #ffffff;
     color: #0F0F0F;
     transform: translateY(-4px);
@@ -1542,11 +1542,11 @@ h2 {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .gradient-border-card .icon-boxes {
+    .primary-card .icon-boxes {
         gap: 40px;
     }
 
-    .gradient-border-card .icon-boxes i {
+    .primary-card .icon-boxes i {
         width: 60px;
         height: 60px;
         font-size: 24px;
@@ -1554,13 +1554,13 @@ h2 {
 }
 
 @media (max-width: 480px) {
-    .gradient-border-card .icon-boxes {
+    .primary-card .icon-boxes {
         gap: 30px;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .gradient-border-card .icon-boxes i {
+    .primary-card .icon-boxes i {
         width: 50px;
         height: 50px;
         font-size: 20px;
@@ -1568,7 +1568,7 @@ h2 {
 }
 
 /* client-card with premium styling */
-.gradient-border-card .client-card {
+.primary-card .client-card {
     position: relative;
     padding: 35px 30px;
     gap: 30px;
@@ -1587,7 +1587,7 @@ h2 {
 }
 
 /* Add animated gradient border like social-card */
-.gradient-border-card .client-card::before {
+.primary-card .client-card::before {
     content: '';
     position: absolute;
     inset: -2px;
@@ -1613,11 +1613,11 @@ h2 {
     }
 }
 
-.gradient-border-card .client-card:hover::before {
+.primary-card .client-card:hover::before {
     opacity: 1;
 }
 
-.gradient-border-card .client-card:hover {
+.primary-card .client-card:hover {
     transform: translateY(-10px) scale(1.03);
     box-shadow:
         rgba(255, 255, 255, 0.2) 0px 2px 4px 0px inset,
@@ -1628,7 +1628,7 @@ h2 {
     border-color: rgba(91, 120, 246, 0.3);
 }
 
-.gradient-border-card .client-card h2 {
+.primary-card .client-card h2 {
     color: #5B78F6;
     font-size: 48px !important;
     font-weight: 700;
@@ -1647,14 +1647,14 @@ h2 {
     background-clip: text;
 }
 
-.gradient-border-card .client-card:hover h2 {
+.primary-card .client-card:hover h2 {
     transform: scale(1.1);
     text-shadow:
         0 0 40px rgba(91, 120, 246, 0.6),
         0 2px 15px rgba(0, 0, 0, 0.4);
 }
 
-.gradient-border-card .client-card p {
+.primary-card .client-card p {
     color: #BCBCBC;
     font-size: 14px;
     font-weight: 500;
@@ -1668,22 +1668,22 @@ h2 {
     opacity: 0.8;
 }
 
-.gradient-border-card .client-card:hover p {
+.primary-card .client-card:hover p {
     color: #ffffff;
     opacity: 1;
     transform: translateY(-2px);
 }
 
-.gradient-border-card .client-card {
+.primary-card .client-card {
     animation: clientPulse 7s ease-in-out infinite;
 }
 
-.gradient-border-card .client-card:hover {
+.primary-card .client-card:hover {
     animation: none; /* Stop pulse on hover */
 }
 
 /* Add shimmer effect */
-.gradient-border-card .client-card::after {
+.primary-card .client-card::after {
     content: '';
     position: absolute;
     top: 0;
@@ -1699,12 +1699,12 @@ h2 {
     z-index: 1;
 }
 
-.gradient-border-card .client-card:hover::after {
+.primary-card .client-card:hover::after {
     left: 100%;
 }
 
 /* Add a subtle icon or decoration */
-.gradient-border-card .client-card h2::before {
+.primary-card .client-card h2::before {
     content: '';
     position: absolute;
     top: -10px;
@@ -1717,46 +1717,46 @@ h2 {
     transition: opacity 0.4s ease;
 }
 
-.gradient-border-card .client-card:hover h2::before {
+.primary-card .client-card:hover h2::before {
     opacity: 1;
 }
 
 /* Responsive improvements */
 @media (max-width: 768px) {
-    .gradient-border-card .client-card {
+    .primary-card .client-card {
         padding: 30px 25px;
         border-radius: 40px;
     }
 
-    .gradient-border-card .client-card::before {
+    .primary-card .client-card::before {
         border-radius: 42px;
     }
 
-    .gradient-border-card .client-card h2 {
+    .primary-card .client-card h2 {
         font-size: 40px !important;
     }
 
-    .gradient-border-card .client-card p {
+    .primary-card .client-card p {
         font-size: 13px;
     }
 }
 
 @media (max-width: 480px) {
-    .gradient-border-card .client-card {
+    .primary-card .client-card {
         padding: 25px 20px;
         border-radius: 30px;
     }
 
-    .gradient-border-card .client-card::before {
+    .primary-card .client-card::before {
         border-radius: 32px;
     }
 
-    .gradient-border-card .client-card h2 {
+    .primary-card .client-card h2 {
         font-size: 36px !important;
         margin-bottom: 12px;
     }
 
-    .gradient-border-card .client-card p {
+    .primary-card .client-card p {
         font-size: 12px;
         line-height: 1.3;
     }
@@ -1790,7 +1790,7 @@ h2 {
     }
 }
 
-.gradient-border-card .shimmer {
+.primary-card .shimmer {
     background: linear-gradient(112deg, transparent 30%, rgba(var(--geist-foreground-rgb), 0.1) 40%, rgba(var(--geist-foreground-rgb), 0.3) 50%, rgba(var(--geist-foreground-rgb), 0.1) 60%, transparent 80%);
     position: absolute;
     inset: 0;
@@ -1803,7 +1803,7 @@ h2 {
     animation-delay: var(--delay);
 }
 
-.gradient-border-card p {
+.primary-card p {
     color: var(--text-color);
 }
 
@@ -1873,7 +1873,7 @@ h2 {
     justify-content: center;
 }
 
-.gradient-border-card .img-box {
+.primary-card .img-box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2028,7 +2028,7 @@ p {
   margin-right: 5px;
 }
 
-.container .gradient-border-card .contact-card-btn{
+.container .primary-card .contact-card-btn{
     width: 100%;
     background: #323232;
     color: #fff;
@@ -2042,7 +2042,7 @@ p {
     text-align: center;
 }
 
-.container .gradient-border-card .contact-card-btn:hover {
+.container .primary-card .contact-card-btn:hover {
     background: #fff;
     color: var(--dark);
 }
@@ -2426,3 +2426,156 @@ p {
       margin: 0% 3%;
    }
 }
+
+
+/*--- --- --- Scroll css from here --- --- --- */
+/* ===== ================================================= ================================================= ===== */
+/* ===== ================================================= ================================================= ===== */
+
+
+/* Mobile Scroll Animations :: */
+@media (max-width: 768px) {
+    .primary-card,
+    .primary-card2,
+    .client-card,
+    .social-card,
+    .home__social-link {
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Primary Card - Exact Desktop Hover Style */
+    .primary-card.scroll-animated {
+        position: relative;
+        padding: 50px 46px;
+        gap: 30px;
+        flex: 1 1;
+        cursor: pointer;
+        height: 100%;
+        z-index: 1;
+        transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border-radius: 30px;
+        background: #1c1c1c !important;
+    }
+
+    /* Primary Card 2 - Exact Desktop Hover Style */
+    .primary-card2.scroll-animated {
+        position: relative;
+        padding: 17px 25px;
+        gap: 30px;
+        flex: 1 1;
+        cursor: pointer;
+        height: 100%;
+        z-index: 1;
+        transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border-radius: 30px;
+        background: #1c1c1c !important;
+    }
+
+    /* About Button - Exact Desktop Hover Style */
+    .primary-card.scroll-animated .about-btn {
+        transform: rotate(90deg);
+        opacity: 1.0;
+    }
+
+    .credentials-card.scroll-animated .about-btn {
+        transform: rotate(90deg);
+        opacity: 1.0;
+    }
+
+    /* Client Card - Exact Desktop Hover Style */
+    .primary-card .client-card.scroll-animated::before {
+        opacity: 1;
+    }
+
+    .primary-card .client-card.scroll-animated {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow:
+            rgba(255, 255, 255, 0.2) 0px 2px 4px 0px inset,
+            rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+            rgba(0, 0, 0, 0.4) 0px 30px 60px -30px,
+            rgb(91 120 246 / 25%) 0px 20px 60px 0px;
+        background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+        border-color: rgba(91, 120, 246, 0.3);
+        animation: none; /* Stop pulse on animation */
+    }
+
+    .primary-card .client-card.scroll-animated h2 {
+        transform: scale(1.1);
+        text-shadow:
+            0 0 40px rgba(91, 120, 246, 0.6),
+            0 2px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .primary-card .client-card.scroll-animated p {
+        color: #ffffff;
+        opacity: 1;
+        transform: translateY(-2px);
+    }
+
+    /* Social Card - Exact Desktop Hover Style */
+    .primary-card .social-card.scroll-animated::before {
+        opacity: 1;
+    }
+
+    .primary-card .social-card.scroll-animated {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow:
+            rgba(255, 255, 255, 0.2) 0px 2px 4px 0px inset,
+            rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+            rgba(0, 0, 0, 0.4) 0px 30px 60px -30px,
+            rgb(91 120 246 / 20%) 0px 15px 50px 0px;
+        background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+        border-color: rgba(91, 120, 246, 0.3);
+    }
+
+    .primary-card .social-card.scroll-animated i {
+        color: #5B78F6;
+        transform: scale(1.1) rotate(5deg);
+        text-shadow:
+            0 0 20px rgba(91, 120, 246, 0.5),
+            0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Star Icon - Exact Desktop Hover Style (if you have this) */
+    .primary-card.scroll-animated .star-icon {
+        opacity: 1;
+        filter: brightness(1.3);
+    }
+
+    /* Icon Boxes - Exact Desktop Hover Style (if you have this) */
+    .primary-card .icon-boxes i.scroll-animated {
+        transform: translateY(-3px) scale(1.1);
+        color: #5B78F6;
+        text-shadow: 0 0 15px rgba(91, 120, 246, 0.5);
+    }
+
+    /* Scroll Progress Indicator (Optional) */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--scroll-progress, 0%);
+        height: 3px;
+        background: linear-gradient(90deg, #5B78F6 0%, #8B5CF6 100%);
+        z-index: 9999;
+        transition: width 0.1s ease-out;
+    }
+}
+
+/* Debug: Center line indicator */
+/* @media (max-width: 768px) {
+    body::after {
+        content: '';
+        position: fixed;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: red;
+        z-index: 9999;
+        opacity: 0.3;
+        pointer-events: none;
+        transform: translateY(-50%);
+    }
+} */
