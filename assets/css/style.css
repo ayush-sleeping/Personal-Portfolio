@@ -511,7 +511,7 @@ input {
 }
 
 .header .logo .logo-text {
-  font-size: 1.1em;
+  font-size: 1.3em;
   font-weight: bold;
   color: var(--bg-color);
   margin-left: 1.5rem; /* Adjust spacing between icon and text */
@@ -945,7 +945,7 @@ input {
 .proj-img {
     object-fit: cover;
     object-position: center center;
-    width: 150px;
+    width: 140px;
 }
 
 .home__name,
@@ -980,11 +980,12 @@ input {
     margin-bottom: 0.94em;
 }
 
+/* home__social-link with tooltips */
 .home__socials {
     gap: 10px;
-    margin: 5rem 0 0rem;
+    margin: 2rem 0 0rem;
 }
-/* Enhanced home__social-link with tooltips */
+
 .home__social-link {
     width: 50px;
     height: 50px;
@@ -1012,7 +1013,7 @@ input {
 .home__social-link::before {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: 60px;
+    top: 60px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.9);
@@ -1036,7 +1037,7 @@ input {
 .home__social-link::after {
     content: '';
     position: absolute;
-    bottom: 50px;
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
@@ -1257,6 +1258,19 @@ h2 {
     background: #1c1c1c !important;
 }
 
+.gradient-border-card:hover {
+    position: relative;
+    padding: 50px 46px;
+    gap: 30px;
+    flex: 1 1;
+    cursor: pointer;
+    height: 100%;
+    z-index: 1;
+    transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border-radius: 30px;
+    background: #1c1c1c !important;
+}
+
 .gradient-border-card2 {
     position: relative;
     padding: 17px 25px;
@@ -1272,6 +1286,19 @@ h2 {
         rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
         rgb(91 120 246 / 5%) 0px 10px 40px 0px;
     /* subtle #5B78F6 shadow */
+    border-radius: 30px;
+    background: #1c1c1c !important;
+}
+
+.gradient-border-card2:hover {
+    position: relative;
+    padding: 17px 25px;
+    gap: 30px;
+    flex: 1 1;
+    cursor: pointer;
+    height: 100%;
+    z-index: 1;
+    transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     border-radius: 30px;
     background: #1c1c1c !important;
 }
@@ -1850,7 +1877,6 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
   width: 100%;
   min-height: 200px; /* Optional: set a min height for better centering */
 }
