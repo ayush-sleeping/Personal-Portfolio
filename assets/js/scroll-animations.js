@@ -99,9 +99,9 @@ class ScrollCardAnimations {
         }, 800);
 
         // Haptic feedback
-        if ('vibrate' in navigator) {
-            navigator.vibrate(30);
-        }
+        // if ('vibrate' in navigator) {
+        //     navigator.vibrate(30);
+        // }
     }
 
     checkElementsInCenter() {
