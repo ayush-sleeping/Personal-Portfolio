@@ -1254,8 +1254,8 @@ h2 {
         rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
         rgb(91 120 246 / 5%) 0px 10px 40px 0px;
     /* subtle #5B78F6 shadow */
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
     border-radius: 30px;
-    background: #1c1c1c !important;
 }
 
 .primary-card:hover {
@@ -1268,7 +1268,7 @@ h2 {
     z-index: 1;
     transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     border-radius: 30px;
-    background: #1c1c1c !important;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
 }
 
 .primary-card2 {
@@ -1316,46 +1316,29 @@ h2 {
         rgb(91 120 246 / 5%) 0px 10px 40px 0px;
     /* subtle #5B78F6 shadow */
     border-radius: 30px;
-    background: #1c1c1c !important;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
     padding: 0px 0px !important;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
 }
 
 /* social-card with premium styling */
 .primary-card .social-card {
+    width: 82px;
+    height: 82px;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
     position: relative;
-    padding: 15px 15px;
-    cursor: pointer;
-    height: 100%;
-    z-index: 1;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border-radius: 50px;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    overflow: hidden;
-}
-
-/* Add a subtle animated gradient border */
-.primary-card .social-card::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: 52px;
-    background: linear-gradient(45deg,
-        rgba(91, 120, 246, 0.3),
-        rgba(255, 255, 255, 0.1),
-        rgba(91, 120, 246, 0.3),
-        rgba(255, 255, 255, 0.1));
-    background-size: 200% 200%;
-    z-index: -1;
-    opacity: 0;
-    animation: gradientBorder 4s ease-in-out infinite;
-    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: .3s;
+    flex: none;
 }
 
 @keyframes gradientBorder {
@@ -1405,23 +1388,6 @@ h2 {
 
 .primary-card .social-card:hover {
     animation: none; /* Stop pulse on hover */
-}
-
-/* Add a subtle shimmer effect */
-.primary-card .social-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        transparent);
-    transition: left 0.6s ease;
-    border-radius: 50px;
-    z-index: 1;
 }
 
 .primary-card .social-card:hover::after {
@@ -1862,7 +1828,7 @@ h2 {
 /* ===== ================================================= ================================================= ===== */
 .container .section-heading {
     color: #ffffff;
-    font-size: 60px;
+    font-size: 45px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: -01px;
@@ -1909,6 +1875,237 @@ h2 {
     opacity: 0.6;
     font-weight: 400;
     margin: 0;
+}
+/* Timeline CSS - Updated based on your reference example */
+
+.timeline-container {
+    position: relative;
+    padding-left: 30px;
+    max-width: 100%;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 40px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Create the line segments and dots like the reference */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 10px !important;
+    left: -5px;
+    height: 95%;
+    width: 1px;
+    background: linear-gradient(180deg, #5B78F6 0%, #8B5CF6 100%);
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: -10px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #5B78F6;
+    background-color: #1c1c1c;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+/* Create gaps at top and bottom of first and last items */
+.timeline-item:first-child .timeline-content::before {
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: 6px;
+    width: 2px;
+    height: 4px;
+    background-color: #1c1c1c;
+}
+
+.timeline-item:first-child .timeline-content::after {
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: 16px;
+    width: 2px;
+    height: 4px;
+    background-color: #1c1c1c;
+}
+
+.timeline-item:last-child .timeline-content::before {
+    content: '';
+    position: absolute;
+    left: -40px;
+    bottom: 6px;
+    width: 2px;
+    height: 4px;
+    background-color: #1c1c1c;
+}
+
+.timeline-item:last-child .timeline-content::after {
+    content: '';
+    position: absolute;
+    left: -40px;
+    bottom: 16px;
+    width: 2px;
+    height: 4px;
+    background-color: #1c1c1c;
+}
+
+/* Timeline Marker (remove this since we're using ::after now) */
+.timeline-marker {
+    display: none;
+}
+
+/* Timeline Content */
+.timeline-content {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+    border-radius: 15px;
+    padding: 25px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effects - matching the reference example */
+.timeline-item:hover::after {
+    background-color: #5B78F6;
+    transform: scale(1.4);
+}
+
+.timeline-item:hover .timeline-content {
+    transform: translateX(5px);
+    border: 1px solid rgba(91, 120, 246, 0.2);
+    background: linear-gradient(135deg, rgba(91, 120, 246, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border-color: rgba(91, 120, 246, 0.4);
+    box-shadow: 0 8px 25px rgba(91, 120, 246, 0.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .timeline-container {
+        padding-left: 25px;
+    }
+
+    .timeline-item {
+        padding-left: 5px;
+    }
+
+    .timeline-item::before {
+        left: -35px;
+    }
+
+    .timeline-item::after {
+        left: -39px;
+    }
+
+    .timeline-content {
+        padding: 20px;
+    }
+
+    .timeline-title {
+        font-size: 18px;
+    }
+}
+
+/* Keep your existing content styles */
+.timeline-date {
+    color: #5B78F6;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.timeline-title {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.timeline-company {
+    color: #E5E7EB;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.timeline-location {
+    color: #9CA3AF;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.timeline-duration {
+    display: inline-block;
+    background: rgba(91, 120, 246, 0.2);
+    color: #5B78F6;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Skills Section Styling */
+.skill-card {
+    background: linear-gradient(135deg, rgba(91, 120, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+    border: 1px solid rgba(91, 120, 246, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.skill-card:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, rgba(91, 120, 246, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border-color: rgba(91, 120, 246, 0.4);
+    box-shadow: 0 4px 15px rgba(91, 120, 246, 0.2);
+}
+
+.skill-card.secondary {
+    background: linear-gradient(135deg, rgba(156, 163, 175, 0.1) 0%, rgba(156, 163, 175, 0.05) 100%);
+    border-color: rgba(156, 163, 175, 0.2);
+}
+
+.skill-card.secondary:hover {
+    background: linear-gradient(135deg, rgba(156, 163, 175, 0.15) 0%, rgba(156, 163, 175, 0.1) 100%);
+    border-color: rgba(156, 163, 175, 0.4);
+    box-shadow: 0 4px 15px rgba(156, 163, 175, 0.2);
+}
+
+.skill-category {
+    color: #5B78F6;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.skill-card.secondary .skill-category {
+    color: #9CA3AF;
+}
+
+.skill-name {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0;
+    line-height: 1.3;
 }
 
 
@@ -2454,7 +2651,7 @@ p {
         z-index: 1;
         transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         border-radius: 30px;
-        background: #1c1c1c !important;
+        background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
     }
 
     /* Primary Card 2 - Exact Desktop Hover Style */
@@ -2468,7 +2665,7 @@ p {
         z-index: 1;
         transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         border-radius: 30px;
-        background: #1c1c1c !important;
+        background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
     }
 
     /* About Button - Exact Desktop Hover Style */
