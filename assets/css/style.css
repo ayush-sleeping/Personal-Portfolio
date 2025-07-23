@@ -1328,8 +1328,7 @@ h2 {
 .primary-card .social-card {
     width: 82px;
     height: 82px;
-    display: flex
-;
+    display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -1339,6 +1338,7 @@ h2 {
     color: #fff;
     transition: .3s;
     flex: none;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
 }
 
 @keyframes gradientBorder {
@@ -1481,29 +1481,18 @@ h2 {
 .primary-card .icon-boxes i {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 30px;
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
-    box-shadow:
-        rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
-        rgba(0, 0, 0, 0.2) 0px 4px 8px;
 }
 
 .primary-card .icon-boxes i:hover {
-    background: #ffffff;
-    color: #0F0F0F;
     transform: translateY(-4px);
-    box-shadow:
-        rgba(255, 255, 255, 0.2) 0px 1px 1px 0px inset,
-        rgba(0, 0, 0, 0.3) 0px 8px 16px;
 }
 
 /* Responsive adjustments */
@@ -2443,7 +2432,53 @@ p {
 /*--- --- --- Services Css starts from here --- --- --- */
 /* ===== ================================================= ================================================= ===== */
 /* ===== ================================================= ================================================= ===== */
+/* Service Cards Styling */
+.service-card {
+    padding: 30px !important;
+    position: relative;
+    overflow: hidden;
+}
 
+.service-icon-style {
+    font-size: 2.5rem;
+    color: #5B78F6;
+}
+
+.service-title {
+    color: #fff;
+}
+
+.feature-check-icon {
+    color: #5B78F6;
+    font-size: 14px;
+}
+
+.feature-title {
+    color: #E5E7EB;
+}
+
+.feature-description {
+    color: #9CA3AF;
+}
+
+.service-features {
+    /* Additional styling if needed */
+}
+
+.feature-item {
+    /* Additional styling if needed */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .service-card {
+        padding: 20px !important;
+    }
+
+    .service-icon-style {
+        font-size: 2rem;
+    }
+}
 
 
 
@@ -2547,6 +2582,86 @@ p {
    }
  }
 
+ /* FAQ Section Styling */
+.faq-item {
+    padding: 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: #5B78F6;
+}
+
+.faq-question {
+    padding: 20px 25px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.3s ease;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.faq-question:hover {
+    background: rgba(91, 120, 246, 0.1);
+}
+
+.faq-question-text {
+    color: #E5E7EB;
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.faq-icon {
+    margin-left: auto;
+    color: #5B78F6;
+    transition: transform 0.3s ease;
+    font-size: 14px;
+}
+
+.faq-question[aria-expanded="true"] .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.faq-answer-content {
+    padding: 20px 25px;
+    color: #9CA3AF;
+    line-height: 1.6;
+}
+
+.faq-answer-content p {
+    margin-bottom: 0;
+}
+
+.faq-answer-content strong {
+    color: #E5E7EB;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .faq-question {
+        padding: 15px 20px;
+    }
+
+    .faq-answer-content {
+        padding: 15px 20px;
+    }
+
+    .faq-question-text {
+        font-size: 15px;
+    }
+}
 
 
 /*--- --- --- Footer Css starts from here --- --- --- */
