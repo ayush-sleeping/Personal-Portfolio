@@ -20,7 +20,7 @@
 This is a personal portfolio website to showcase my background, skills, projects, and resume. It serves as my online identity and demonstrates my expertise as a FullStack Web Developer. Visitors can explore my work, view my professional resume, and contact me directly through the site.
 
 <div align="right">
-  <a href="https://ayush-sleeping.github.io/Personal-Portfolio/" target="_blank"><strong>↗️ Tap to above</strong></a>
+  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
 </div>
 
 <br>
@@ -34,7 +34,7 @@ This is a personal portfolio website to showcase my background, skills, projects
 - **Firebase** (for contact form and hosting)
 
 <div align="right">
-  <a href="https://ayush-sleeping.github.io/Personal-Portfolio/" target="_blank"><strong>↗️ Tap to above</strong></a>
+  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
 </div>
 
 <br>
@@ -70,7 +70,7 @@ Personal-Portfolio/
 - **assets/img/**: All images, icons, and graphics.
 
 <div align="right">
-  <a href="https://ayush-sleeping.github.io/Personal-Portfolio/" target="_blank"><strong>↗️ Tap to above</strong></a>
+  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
 </div>
 
 <br>
@@ -86,7 +86,7 @@ The project features:
 - **Animated scroll effects** for engaging user experience
 
 <div align="right">
-  <a href="https://ayush-sleeping.github.io/Personal-Portfolio/" target="_blank"><strong>↗️ Tap to above</strong></a>
+  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
 </div>
 
 <br>
@@ -103,7 +103,7 @@ The project features:
 | Accent Gray     | `#9CA3AF` | Subtext, muted elements      |
 
 <div align="right">
-  <a href="https://ayush-sleeping.github.io/Personal-Portfolio/" target="_blank"><strong>↗️ Tap to above</strong></a>
+  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
 </div>
 
 <br>
@@ -119,7 +119,7 @@ Working on this project helped me:
 - Structure a real-world project for scalability and maintainability
 
 <div align="right">
-  <a href="https://ayush-sleeping.github.io/Personal-Portfolio/" target="_blank"><strong>↗️ Tap to above</strong></a>
+  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
 </div>
 
 <br>
@@ -130,7 +130,7 @@ This project is for personal use and inspiration.
 **No external contributions are accepted.**
 
 <div align="right">
-  <a href="https://ayush-sleeping.github.io/Personal-Portfolio/" target="_blank"><strong>↗️ Tap to above</strong></a>
+  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
 </div>
 
 <br>
