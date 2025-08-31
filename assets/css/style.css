@@ -2432,6 +2432,7 @@ h2 {
   width: 850px;         /* Set your preferred width */
   max-width: 100%;      /* Prevents overflow on small screens */
   object-fit: cover;    /* Ensures the image fills the area without distortion */
+  object-position: center;
   border-radius: 12px;
   border: 1.5px solid #222;
   box-shadow: 0 2px 12px rgba(0,0,0,0.13);
