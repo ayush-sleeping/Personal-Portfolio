@@ -29,9 +29,10 @@ This is a personal portfolio website to showcase my background, skills, projects
 
 - **HTML5**
 - **CSS3**
-- **JavaScript**
+- **JavaScript** (vanilla ES6+)
 - **Bootstrap 5**
-- **Firebase** (for contact form and hosting)
+- **EmailJS** (contact form handling)
+- **GitHub Pages** (hosting)
 
 <div align="right">
   <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
@@ -51,6 +52,10 @@ Personal-Portfolio/
 ├── resume.html
 ├── services.html
 ├── README.md
+│
+├── documentation/
+│   ├── docx.md
+│   └── improvements-and-system-design.md
 │
 ├── assets/
 │   ├── css/
@@ -115,7 +120,7 @@ Working on this project helped me:
 - Master **CSS animations** and **glassmorphism** effects
 - Implement **Intersection Observer** for scroll-based animations
 - Optimize for **performance** and **mobile UX**
-- Integrate **Firebase** for contact form handling
+- Integrate **EmailJS** for contact form handling
 - Structure a real-world project for scalability and maintainability
 
 <div align="right">
