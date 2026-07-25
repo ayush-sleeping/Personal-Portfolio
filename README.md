@@ -6,7 +6,9 @@
 
 ## Table of Contents
 - [About the Project](#about-the-project)
+- [Pages](#pages)
 - [Tech Stack](#tech-stack)
+- [Features](#features)
 - [Folder Structure](#folder-structure)
 - [Design Inspiration & UI](#design-inspiration--ui)
 - [Color Palette](#color-palette)
@@ -17,7 +19,26 @@
 
 ## About the Project
 
-This is a personal portfolio website to showcase my background, skills, projects, and resume. It serves as my online identity and demonstrates my expertise as a FullStack Web Developer. Visitors can explore my work, view my professional resume, and contact me directly through the site.
+This is a personal portfolio website to showcase my background, skills, projects, and resume. It serves as my online identity and demonstrates my expertise as a FullStack Web Developer — currently working as a **Backend Developer at Leapswitch Networks**, with 2+ years of experience building scalable web applications and REST APIs using Laravel, PHP, and MySQL, and actively working with **Python, Django, and Next.js**.
+
+Visitors can explore my work, view my professional resume, browse the services I offer, and contact me directly through the site.
+
+<div align="right">
+  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
+</div>
+
+<br>
+
+## Pages
+
+| Page | Description |
+|------|-------------|
+| `index.html` | Home — hero intro, role marquee, quick stats, and navigation cards |
+| `about.html` | About — bio, experience timeline, education, skills, and certifications |
+| `resume.html` | Resume — condensed experience, education, and skills (print-friendly) |
+| `project.html` | Projects — showcase grid of selected work |
+| `services.html` | Services — full-stack, backend, frontend, and production offerings |
+| `contact.html` | Contact — EmailJS-powered form, contact details, and FAQ |
 
 <div align="right">
   <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
@@ -33,6 +54,21 @@ This is a personal portfolio website to showcase my background, skills, projects
 - **Bootstrap 5**
 - **EmailJS** (contact form handling)
 - **GitHub Pages** (hosting)
+
+<div align="right">
+  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
+</div>
+
+<br>
+
+## Features
+
+- **Glassmorphic dark UI** with gradient accents and layered shadows
+- **Fully responsive** — mobile-first, with a slide-in side navigation
+- **Animated preloader**, slide-reveal page transitions, and scroll-triggered animations
+- **Interactive cards** with a mouse-tracking spotlight effect and a looping role marquee
+- **EmailJS-powered contact form** with client-side validation
+- **SEO-optimized** — meta tags, Open Graph, Twitter cards, and JSON-LD structured data
 
 <div align="right">
   <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
