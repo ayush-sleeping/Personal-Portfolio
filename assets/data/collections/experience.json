@@ -1,0 +1,57 @@
+[
+  {
+    "id": "leapswitch",
+    "date_label": "Oct 2025 - Present",
+    "title": "Backend Developer",
+    "company": "Leapswitch Networks",
+    "location": "India",
+    "duration_label": "Present | Onsite",
+    "description": "Building and maintaining backend services and REST APIs, focused on scalable, performant server-side systems and database design.",
+    "details": "Backend::Laravel + PHP + Python + Django + MySQL | Frontend::JavaScript, React, Next.js, Bootstrap, HTML, CSS | Others::REST APIs, MVC, Git, AWS",
+    "order": "1"
+  },
+  {
+    "id": "skilllogic",
+    "date_label": "July 2025 - Oct 2025",
+    "title": "FullStack Web Application Developer",
+    "company": "SkillLogic Technologies",
+    "location": "India",
+    "duration_label": "3.5 Months | Remote",
+    "description": "Worked on various projects using Reactjs, Laravel and MySQL.",
+    "details": "Backend::Laravel + MySQL | Frontend::Reactjs, TypeScript, JavaScript, TailWind CSS, HTML, CSS, Bootstrap | Others::MVC, Git, AWS, API, Basic UI/UX",
+    "order": "2"
+  },
+  {
+    "id": "technicul",
+    "date_label": "Oct 2023 - Oct 2024",
+    "title": "Junior FullStack Web Developer",
+    "company": "Technicul Cloud LLP",
+    "location": "Mumbai, India",
+    "duration_label": "1 Year | Onsite",
+    "description": "Developed Laravel-based REST APIs for real-world applications. Worked with Laravel Framework, MySQL Database, JavaScript, Bootstrap, HTML, CSS across multiple projects focusing on performance and UI consistency.",
+    "details": "Backend::Laravel + MySQL | Frontend::JavaScript, HTML, CSS, Bootstrap | Others::MVC, Git, AWS, API, Basic UI/UX",
+    "order": "3"
+  },
+  {
+    "id": "anudip",
+    "date_label": "Jun 2023 - Sept 2024",
+    "title": "Trainee : Java Fullstack Development",
+    "company": "Anudip Foundation",
+    "location": "Mumbai, India",
+    "duration_label": "Paid Training Course | Hybrid",
+    "description": "Hands-on training in Spring Boot, Hibernate, Angular, and Git. Built practice apps using REST APIs and MVC design pattern for enterprise-level applications.",
+    "details": "Backend::Core Java, Spring Boot, MySQL, Hibernate | Frontend::Angular, HTML, CSS, JavaScript, Bootstrap | Others::Git, AWS - Practical hands-on experience through daily assignments",
+    "order": "4"
+  },
+  {
+    "id": "tns",
+    "date_label": "Aug 2022 - Sept 2022",
+    "title": "Trainee : Youth Employability Program",
+    "company": "TNS India Foundation",
+    "location": "Mumbai, India",
+    "duration_label": "Training Program | Onsite",
+    "description": "Completed training on soft skills, communication, and professional readiness.",
+    "details": "",
+    "order": "5"
+  }
+]

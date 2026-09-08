@@ -1,0 +1,24 @@
+[
+  {
+    "id": "bsc",
+    "date_label": "Jul 2020 - Jul 2023",
+    "title": "Bachelor of Science in Computer Science",
+    "company": "Shankar Narayan College of Arts & Commerce",
+    "location": "Bhayander, Maharashtra, India",
+    "duration_label": "3 Years | CGPA: 9.23/10",
+    "description": "Affiliated to the University of Mumbai. Completed Bachelor of Science in Computer Science with excellent academic performance.",
+    "details": "Relevant Courses::",
+    "order": "1"
+  },
+  {
+    "id": "hsc",
+    "date_label": "Jun 2016 - Jul 2020",
+    "title": "Higher Secondary School",
+    "company": "Divine Providence High School & Jr. College",
+    "location": "Mumbai, India",
+    "duration_label": "Maharashtra State Board | India",
+    "description": "Completed schooling with comprehensive education in Science & IT stream.",
+    "details": "Major Subjects::",
+    "order": "2"
+  }
+]

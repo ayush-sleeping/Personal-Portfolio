@@ -1,0 +1,8 @@
+id,group,group_label,category,name,order
+established-backend,established,Established / Working With,Backend,"Laravel, PHP",1
+established-database,established,Established / Working With,Database,MySQL,2
+established-frontend,established,Established / Working With,Frontend,"JavaScript, ReactJS, Bootstrap, HTML, CSS",3
+established-others,established,Established / Working With,Others,"REST APIs, Git, AWS, Core Java",4
+focusing-language,focusing,Currently Focusing On,Language,Python,5
+focusing-backend,focusing,Currently Focusing On,Backend,Django,6
+focusing-frontend,focusing,Currently Focusing On,Frontend,Next.js,7

@@ -1,0 +1,70 @@
+name: Refresh content from Google Sheet
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # every 6 hours
+  workflow_dispatch:        # manual "Run workflow" button
+
+# Only one refresh at a time; a queued run supersedes a pending one.
+concurrency:
+  group: refresh-content
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      SHEET_ID: ${{ secrets.SHEET_ID }}
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Until the sheet is wired up, skip quietly rather than failing the run
+      # every 6 hours. A manual run still reports loudly that it is not set up.
+      - name: Check secrets are present
+        id: check
+        run: |
+          if [ -z "$SHEET_ID" ] || [ -z "$GOOGLE_API_KEY" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::SHEET_ID / GOOGLE_API_KEY not set — skipping. See sheets/SETUP.md."
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              echo "::error::Set the SHEET_ID and GOOGLE_API_KEY repository secrets first."
+              exit 1
+            fi
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Fetch into a staging dir. assets/data is only overwritten once every
+      # tab has been fetched AND the whole set validates, so a mid-run failure
+      # leaves the last-good JSON in place.
+      # The tab list and their destinations come from scripts/content-map.mjs,
+      # so adding a tab means editing that file only.
+      - name: Fetch all tabs
+        if: steps.check.outputs.configured == 'true'
+        run: node scripts/fetch-sheet.mjs --staging-only
+
+      - name: Promote and validate
+        if: steps.check.outputs.configured == 'true'
+        run: node scripts/fetch-sheet.mjs --promote
+
+      - name: Commit if changed
+        if: steps.check.outputs.configured == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- assets/data; then
+            echo "No content changes."
+            exit 0
+          fi
+          git add assets/data
+          git commit -m "chore(content): refresh from sheet"
+          git push

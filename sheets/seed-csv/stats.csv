@@ -1,0 +1,4 @@
+id,value,value_style,label,order
+years,02+,,YEARS IN<br>FULLSTACK WEB DEVELOPMENT,1
+projects,25+,,PROJECTS<br>WORKED ON,2
+stack,Laravel +<br>Next.js +<br>Django,font-size: 18px !important;,TECH STACK USED,3

@@ -87,7 +87,7 @@
     <title>About | Ayush</title>
 </head>
 
-<body style="background-color: #0F0F0F !important;">
+<body style="background-color: #0F0F0F !important;" data-page="about">
 
     <!-- Preloader -->
     <div class="preloader">
@@ -135,7 +135,7 @@
         </div>
 
         <!-- Main Navigation -->
-        <ul class="nav-categories ul-base">
+        <ul class="nav-categories ul-base" data-render="nav-categories">
             <li><a href="index.html" target="_parent">
                     <span>Home</span>
                 </a></li>
@@ -157,7 +157,7 @@
         <div class="nav-separator"></div>
 
         <!-- Social Links -->
-        <div class="nav-social">
+        <div class="nav-social" data-render="socials">
             <a href="https://twitter.com/AyushBM1" target="_blank" class="social-link">
                 <span>Twitter</span>
             </a>
@@ -187,10 +187,10 @@
         <header class="header">
             <div class="logo">
                 <div class="icon rounded pt-1 pb-1">
-                    <span><a class="logo-text" style="text-decoration: none;" href="index.html">ayushSleeping</a></span>
+                    <span><a class="logo-text" style="text-decoration: none;" href="index.html"><span data-text="brand">ayushSleeping</span></a></span>
                 </div>
             </div>
-            <nav class="navbar">
+            <nav class="navbar" data-render="navbar">
                 <div id="nav-close"></div>
                 <a href="index.html" target="_parent">Home</a>
                 <a href="about.html">About</a>
@@ -219,9 +219,7 @@
                         <!-- Heading ::  -->
                         <div class="col-12">
                             <div class="text-center mb-4 mb-md-5">
-                                <h1 class="section-heading mb-3">
-                                    Get to Know Me Better
-                                </h1>
+                                <h1 class="section-heading mb-3"><span data-text="heading">Get to Know Me Better</span></h1>
                             </div>
                         </div>
                     </div>
@@ -294,156 +292,7 @@
                                         <h4 style="margin-bottom: 30px;">Experience </h4>
 
                                         <!-- Timeline Container -->
-                                        <div class="timeline-container">
-                                            <!-- Timeline Item 1 -->
-                                            <div class="timeline-item">
-                                                <div class="timeline-marker">
-                                                    <div class="timeline-dot"></div>
-                                                </div>
-                                                <div class="timeline-content">
-                                                    <div class="timeline-date">Oct 2025 - Present</div>
-                                                    <h3 class="timeline-title">Backend Developer</h3>
-                                                    <p class="timeline-company">Leapswitch Networks</p>
-                                                    <p class="timeline-location">India</p>
-                                                    <div class="timeline-duration">Present | Onsite</div>
-                                                    <p class="timeline-description"
-                                                        style="color: #9CA3AF; font-size: 14px; margin-top: 10px; margin-bottom: 10px;">
-                                                        Building and maintaining backend services and REST APIs, focused
-                                                        on scalable, performant server-side systems and database design.
-                                                    </p>
-                                                    <div class="timeline-tech-stack" style="margin-top: 10px;">
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 3px;">
-                                                            <strong>Backend:</strong> Laravel + PHP + Python + Django +
-                                                            MySQL
-                                                        </p>
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 3px;">
-                                                            <strong>Frontend:</strong> JavaScript, React, Next.js,
-                                                            Bootstrap, HTML, CSS
-                                                        </p>
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 0;">
-                                                            <strong>Others:</strong> REST APIs, MVC, Git, AWS
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Timeline Item 2 -->
-                                            <div class="timeline-item">
-                                                <div class="timeline-marker">
-                                                    <div class="timeline-dot"></div>
-                                                </div>
-                                                <div class="timeline-content">
-                                                    <div class="timeline-date">July 2025 - Oct 2025</div>
-                                                    <h3 class="timeline-title">FullStack Web Application Developer</h3>
-                                                    <p class="timeline-company">SkillLogic Technologies</p>
-                                                    <p class="timeline-location">India</p>
-                                                    <div class="timeline-duration">3.5 Months | Remote</div>
-                                                    <p class="timeline-description"
-                                                        style="color: #9CA3AF; font-size: 14px; margin-top: 10px; margin-bottom: 10px;">
-                                                        Worked on various projects using Reactjs, Laravel and MySQL.
-                                                    </p>
-                                                    <div class="timeline-tech-stack" style="margin-top: 10px;">
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 3px;">
-                                                            <strong>Backend:</strong> Laravel + MySQL
-                                                        </p>
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 3px;">
-                                                            <strong>Frontend:</strong> Reactjs, TypeScript, JavaScript,
-                                                            TailWind CSS, HTML, CSS,
-                                                            Bootstrap
-                                                        </p>
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 0;">
-                                                            <strong>Others:</strong> MVC, Git, AWS, API, Basic UI/UX
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Timeline Item 3 -->
-                                            <div class="timeline-item">
-                                                <div class="timeline-marker">
-                                                    <div class="timeline-dot"></div>
-                                                </div>
-                                                <div class="timeline-content">
-                                                    <div class="timeline-date">Oct 2023 - Oct 2024</div>
-                                                    <h3 class="timeline-title">Junior FullStack Web Developer</h3>
-                                                    <p class="timeline-company">Technicul Cloud LLP</p>
-                                                    <p class="timeline-location">Mumbai, India</p>
-                                                    <div class="timeline-duration">1 Year | Onsite</div>
-                                                    <p class="timeline-description"
-                                                        style="color: #9CA3AF; font-size: 14px; margin-top: 10px; margin-bottom: 10px;">
-                                                        Developed Laravel-based REST APIs for real-world applications.
-                                                        Worked with Laravel Framework, MySQL Database, JavaScript,
-                                                        Bootstrap,
-                                                        HTML, CSS
-                                                        across multiple projects focusing on performance and UI
-                                                        consistency.
-                                                    </p>
-                                                    <div class="timeline-tech-stack" style="margin-top: 10px;">
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 3px;">
-                                                            <strong>Backend:</strong> Laravel + MySQL
-                                                        </p>
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 3px;">
-                                                            <strong>Frontend:</strong> JavaScript, HTML, CSS, Bootstrap
-                                                        </p>
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 0;">
-                                                            <strong>Others:</strong> MVC, Git, AWS, API, Basic UI/UX
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Timeline Item 3 -->
-                                            <div class="timeline-item">
-                                                <div class="timeline-marker">
-                                                    <div class="timeline-dot"></div>
-                                                </div>
-                                                <div class="timeline-content">
-                                                    <div class="timeline-date">Jun 2023 - Sept 2024</div>
-                                                    <h3 class="timeline-title">Trainee : Java Fullstack Development</h3>
-                                                    <p class="timeline-company">Anudip Foundation</p>
-                                                    <p class="timeline-location">Mumbai, India</p>
-                                                    <div class="timeline-duration">Paid Training Course | Hybrid</div>
-                                                    <p class="timeline-description"
-                                                        style="color: #9CA3AF; font-size: 14px; margin-top: 10px; margin-bottom: 10px;">
-                                                        Hands-on training in Spring Boot, Hibernate, Angular, and Git.
-                                                        Built practice apps using REST APIs and MVC design pattern for
-                                                        enterprise-level applications.
-                                                    </p>
-                                                    <div class="timeline-tech-stack" style="margin-top: 10px;">
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 3px;">
-                                                            <strong>Backend:</strong> Core Java, Spring Boot, MySQL,
-                                                            Hibernate
-                                                        </p>
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 3px;">
-                                                            <strong>Frontend:</strong> Angular, HTML, CSS, JavaScript,
-                                                            Bootstrap
-                                                        </p>
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 0;">
-                                                            <strong>Others:</strong> Git, AWS - Practical hands-on
-                                                            experience through daily assignments
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Timeline Item 4 -->
-                                            <div class="timeline-item">
-                                                <div class="timeline-marker">
-                                                    <div class="timeline-dot"></div>
-                                                </div>
-                                                <div class="timeline-content">
-                                                    <div class="timeline-date">Aug 2022 - Sept 2022</div>
-                                                    <h3 class="timeline-title">Trainee : Youth Employability Program</h3>
-                                                    <p class="timeline-company">TNS India Foundation</p>
-                                                    <p class="timeline-location">Mumbai, India</p>
-                                                    <div class="timeline-duration">Training Program | Onsite</div>
-                                                    <p class="timeline-description"
-                                                        style="color: #9CA3AF; font-size: 14px; margin-top: 10px; margin-bottom: 0;">
-                                                        Completed training on soft skills, communication, and
-                                                        professional readiness.
-                                                    </p>
-                                                </div>
-                                            </div>
+                                        <div class="timeline-container" data-render="experience">
                                         </div>
                                     </div>
                                 </div>
@@ -457,76 +306,7 @@
                                         <h4 style="margin-bottom: 30px;">Education </h4>
 
                                         <!-- Timeline Container -->
-                                        <div class="timeline-container">
-                                            <!-- Timeline Item 1 -->
-                                            <div class="timeline-item">
-                                                <div class="timeline-marker">
-                                                    <div class="timeline-dot"></div>
-                                                </div>
-                                                <div class="timeline-content">
-                                                    <div class="timeline-date">Jul 2020 - Jul 2023</div>
-                                                    <h3 class="timeline-title">Bachelor of Science in Computer Science
-                                                    </h3>
-                                                    <p class="timeline-company">
-                                                        <a style="color: #E5E7EB !important; text-decoration: none;"
-                                                            href="https://sncollege.com/" target="_blank">
-                                                            Shankar Narayan College of Arts & Commerce
-                                                        </a>
-                                                    </p>
-                                                    <p class="timeline-location">Bhayander, Maharashtra, India</p>
-                                                    <div class="timeline-duration">3 Years | CGPA: 9.23/10</div>
-                                                    <p class="timeline-description"
-                                                        style="color: #9CA3AF; font-size: 14px; margin-top: 10px; margin-bottom: 10px;">
-                                                        Affiliated to the University of Mumbai. Completed Bachelor of
-                                                        Science in Computer Science with excellent academic performance.
-                                                    </p>
-                                                    <div class="timeline-tech-stack" style="margin-top: 10px;">
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 3px;">
-                                                            <strong>Relevant Courses:</strong>
-                                                        </p>
-                                                        <p style="color: #9CA3AF; font-size: 12px; margin-bottom: 3px;">
-                                                            • Data Structures • Operating System • Database Management
-                                                            Systems</p>
-                                                        <p style="color: #9CA3AF; font-size: 12px; margin-bottom: 3px;">
-                                                            • Fundamentals of Algorithm • Computer Networks • Software
-                                                            Engineering</p>
-                                                        <p style="color: #9CA3AF; font-size: 12px; margin-bottom: 0;">•
-                                                            Artificial Intelligence • Cloud Computing</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Timeline Item 2 -->
-                                            <div class="timeline-item">
-                                                <div class="timeline-marker">
-                                                    <div class="timeline-dot"></div>
-                                                </div>
-                                                <div class="timeline-content">
-                                                    <div class="timeline-date">Jun 2016 - Jul 2020</div>
-                                                    <h3 class="timeline-title">Higher Secondary School</h3>
-                                                    <p class="timeline-company">
-                                                        <a style="color: #E5E7EB !important; text-decoration: none;"
-                                                            href="https://www.rahuleducation.com/divinejne.html"
-                                                            target="_blank">
-                                                            Divine Providence High School & Jr. College
-                                                        </a>
-                                                    </p>
-                                                    <p class="timeline-location">Mumbai, India</p>
-                                                    <div class="timeline-duration">Maharashtra State Board | India</div>
-                                                    <p class="timeline-description"
-                                                        style="color: #9CA3AF; font-size: 14px; margin-top: 10px; margin-bottom: 10px;">
-                                                        Completed schooling with comprehensive education in Science & IT
-                                                        stream.
-                                                    </p>
-                                                    <div class="timeline-tech-stack" style="margin-top: 10px;">
-                                                        <p style="color: #E5E7EB; font-size: 13px; margin-bottom: 3px;">
-                                                            <strong>Major Subjects:</strong>
-                                                        </p>
-                                                        <p style="color: #9CA3AF; font-size: 12px; margin-bottom: 0;">
-                                                            Science, Mathematics & Information Technology</p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="timeline-container" data-render="education">
                                         </div>
                                     </div>
                                 </div>
@@ -562,146 +342,7 @@
                                             <!-- Certification Card --> <!-- Certification Slider -->
                                             <div id="certificationCarousel" class="carousel slide certification-slider"
                                                 data-bs-ride="carousel">
-                                                <div class="carousel-inner">
-                                                    <!-- Certificate 1 -->
-                                                    <div class="carousel-item active">
-                                                        <div class="certification-card">
-                                                            <img src="assets/img/certificate/Anudip Foundation JavaFullstack.png"
-                                                                alt="Anudip Java Fullstack Certificate"
-                                                                class="certification-img">
-                                                            <div class="certification-info mt-2">
-                                                                <a href="" target="_blank" class="certification-link">
-                                                                    <i class="fas fa-external-link-alt"></i> View
-                                                                    Certificate
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Certificate 2 -->
-                                                    <div class="carousel-item">
-                                                        <div class="certification-card">
-                                                            <img src="assets/img/certificate/TNSFoundation.jpg"
-                                                                alt="TNS Foundation Certificate"
-                                                                class="certification-img">
-                                                            <div class="certification-info mt-2">
-                                                                <a href="" target="_blank" class="certification-link">
-                                                                    <i class="fas fa-external-link-alt"></i> View
-                                                                    Certificate
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Certificate 3 -->
-                                                    <div class="carousel-item">
-                                                        <div class="certification-card">
-                                                            <img src="assets/img/certificate/collegeRank.png"
-                                                                alt="College Rank Certificate"
-                                                                class="certification-img">
-                                                            <div class="certification-info mt-2">
-                                                                <a href="" target="_blank" class="certification-link">
-                                                                    <i class="fas fa-external-link-alt"></i> View
-                                                                    Certificate
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Certificate 4 -->
-                                                    <div class="carousel-item">
-                                                        <div class="certification-card">
-                                                            <img src="assets/img/certificate/gwoc.png"
-                                                                alt="GirlScript of Code Certificate"
-                                                                class="certification-img">
-                                                            <div class="certification-info mt-2">
-                                                                <a href="" target="_blank" class="certification-link">
-                                                                    <i class="fas fa-external-link-alt"></i> View
-                                                                    Certificate
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Certificate 5 -->
-                                                    <div class="carousel-item">
-                                                        <div class="certification-card">
-                                                            <img src="assets/img/certificate/gwoc2.png"
-                                                                alt="GirlScript of Code Certificate"
-                                                                class="certification-img">
-                                                            <div class="certification-info mt-2">
-                                                                <a href="" target="_blank" class="certification-link">
-                                                                    <i class="fas fa-external-link-alt"></i> View
-                                                                    Certificate
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Certificate 6 -->
-                                                    <div class="carousel-item">
-                                                        <div class="certification-card">
-                                                            <img src="assets/img/certificate/jwoc.png"
-                                                                alt="JWOC Certificate" class="certification-img">
-                                                            <div class="certification-info mt-2">
-                                                                <a href="" target="_blank" class="certification-link">
-                                                                    <i class="fas fa-external-link-alt"></i> View
-                                                                    Certificate
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Certificate 7 -->
-                                                    <div class="carousel-item">
-                                                        <div class="certification-card">
-                                                            <img src="assets/img/certificate/crido_program.jpeg"
-                                                                alt="Crido Program Certificate"
-                                                                class="certification-img">
-                                                            <div class="certification-info mt-2">
-                                                                <a href="" target="_blank" class="certification-link">
-                                                                    <i class="fas fa-external-link-alt"></i> View
-                                                                    Certificate
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Certificate 8 -->
-                                                    <div class="carousel-item">
-                                                        <div class="certification-card">
-                                                            <img src="https://udemy-certificate.s3.amazonaws.com/image/UC-0382127f-523a-4c7f-b966-ba33426153be.jpg"
-                                                                alt="Udemy Certificate 1" class="certification-img">
-                                                            <div class="certification-info mt-2">
-                                                                <a href="https://udemy-certificate.s3.amazonaws.com/image/UC-0382127f-523a-4c7f-b966-ba33426153be.jpg"
-                                                                    target="_blank" class="certification-link">
-                                                                    <i class="fas fa-external-link-alt"></i> View
-                                                                    Certificate
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Certificate 9 -->
-                                                    <div class="carousel-item">
-                                                        <div class="certification-card">
-                                                            <img src="https://udemy-certificate.s3.amazonaws.com/image/UC-51b13cf3-54d4-476a-8922-6841ffb80420.jpg"
-                                                                alt="Udemy Certificate 2" class="certification-img">
-                                                            <div class="certification-info mt-2">
-                                                                <a href="https://udemy-certificate.s3.amazonaws.com/image/UC-51b13cf3-54d4-476a-8922-6841ffb80420.jpg"
-                                                                    target="_blank" class="certification-link">
-                                                                    <i class="fas fa-external-link-alt"></i> View
-                                                                    Certificate
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Certificate 10 -->
-                                                    <div class="carousel-item">
-                                                        <div class="certification-card">
-                                                            <img src="https://udemy-certificate.s3.amazonaws.com/image/UC-f44a31cf-9b88-41aa-b599-a625953ef12e.jpg"
-                                                                alt="Udemy Certificate 3" class="certification-img">
-                                                            <div class="certification-info mt-2">
-                                                                <a href="https://udemy-certificate.s3.amazonaws.com/image/UC-f44a31cf-9b88-41aa-b599-a625953ef12e.jpg"
-                                                                    target="_blank" class="certification-link">
-                                                                    <i class="fas fa-external-link-alt"></i> View
-                                                                    Certificate
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div class="carousel-inner" data-render="certifications">
                                                 </div>
                                                 <button class="carousel-control-prev" type="button"
                                                     data-bs-target="#certificationCarousel" data-bs-slide="prev">
@@ -738,7 +379,7 @@
                                 </div>
                                 <div class="home__data" style=" margin-top: 0px !important;">
                                     <h1 class="home__name d-flex justify-content-center mt-4">Ayush Mishra</h1>
-                                    <div class="home__socials  d-flex justify-content-center mt-4">
+                                    <div class="home__socials  d-flex justify-content-center mt-4" data-render="social-icons">
                                         <a href="mailto:ayushbm84@gmail.com" target="_blank" class="home__social-link">
                                             <i class="ri-mail-fill"></i>
                                         </a>
@@ -769,61 +410,7 @@
                                         <h4 style="margin-bottom: 30px;">Skills & Technologies</h4>
 
                                         <!-- Established Skills Section -->
-                                        <div class="skills-section mb-4">
-                                            <h5 style="margin-bottom: 20px;">Established / Working With</h5>
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-12 mb-3">
-                                                    <div class="skill-card">
-                                                        <p class="skill-category">Backend</p>
-                                                        <h6 class="skill-name">Laravel, PHP</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-12 mb-3">
-                                                    <div class="skill-card">
-                                                        <p class="skill-category">Database</p>
-                                                        <h6 class="skill-name">MySQL</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-12 mb-3">
-                                                    <div class="skill-card">
-                                                        <p class="skill-category">Frontend</p>
-                                                        <h6 class="skill-name">JavaScript, ReactJS, Bootstrap, HTML,
-                                                            CSS
-                                                        </h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-12 mb-3">
-                                                    <div class="skill-card">
-                                                        <p class="skill-category">Others</p>
-                                                        <h6 class="skill-name">REST APIs, Git, AWS, Core Java</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Currently Learning Section -->
-                                        <div class="skills-section">
-                                            <h5 style="color: #9CA3AF; margin-bottom: 20px;">Currently Focusing On</h5>
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-12 mb-3">
-                                                    <div class="skill-card secondary">
-                                                        <p class="skill-category">Language</p>
-                                                        <h6 class="skill-name">Python</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-12 mb-3">
-                                                    <div class="skill-card secondary">
-                                                        <p class="skill-category">Backend</p>
-                                                        <h6 class="skill-name">Django</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-12 mb-3">
-                                                    <div class="skill-card secondary">
-                                                        <p class="skill-category">Frontend</p>
-                                                        <h6 class="skill-name">Next.js</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div data-render="skills">
                                         </div>
                                     </div>
                                 </div>
@@ -974,7 +561,7 @@
         <footer>
             <div class="footer">
                 <!-- Skills Icons with Tooltips: -->
-                <div class="home__socials d-flex justify-content-center flex-wrap gap-3 pb-3">
+                <div class="home__socials d-flex justify-content-center flex-wrap gap-3 pb-3" data-render="footer-tech">
                     <div class="home__social-link" data-tooltip="Laravel Php Framework">
                         <i class="fab fa-laravel"></i>
                     </div>
@@ -1036,7 +623,7 @@
                     </ul>
                 </div>
                 <div class="row copyright">
-                    <p class="text-center mb-0">&copy; Copyright 2026 - <span class="name"> Ayush Mishra </span></p>
+                    <p class="text-center mb-0"><span data-text="copyright">&copy; Copyright 2026 - Ayush Mishra</span></p>
                 </div>
             </div>
         </footer>
@@ -1079,6 +666,8 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/preloader.js"></script>
     <script src="assets/js/scroll-animations.js"></script>
+    <script type="module" src="assets/js/render/site-render.js"></script>
+    <script type="module" src="assets/js/render/about-render.js"></script>
 
     <!-- Icons link  -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

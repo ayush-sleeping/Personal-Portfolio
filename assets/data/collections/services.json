@@ -1,0 +1,34 @@
+[
+  {
+    "id": "fullstack",
+    "title": "Full Stack Web Development",
+    "icon_class": "fas fa-code",
+    "summary": "",
+    "bullet_points": "Complete Laravel + JavaScript Solutions::End-to-end development from database design to user interface, creating seamless web applications. | Production Experience::2+ years building real-world applications with proper version control and deployment workflows.",
+    "order": "1"
+  },
+  {
+    "id": "backend",
+    "title": "Backend Development",
+    "icon_class": "fas fa-server",
+    "summary": "",
+    "bullet_points": "Laravel, Python & Django::MVC architecture, Eloquent ORM, and middleware for robust server-side applications — currently expanding backend work into Python & Django. | RESTful API Development::Creating scalable APIs with proper authentication, validation, and error handling.",
+    "order": "2"
+  },
+  {
+    "id": "frontend",
+    "title": "Frontend Development",
+    "icon_class": "fas fa-palette",
+    "summary": "",
+    "bullet_points": "Responsive Design::Mobile-first approach ensuring optimal user experience across all devices and screen sizes. | Interactive JavaScript & React::Dynamic user interfaces with React and modern ES6+ features — now building with Next.js.",
+    "order": "3"
+  },
+  {
+    "id": "production",
+    "title": "Production & Team Skills",
+    "icon_class": "fas fa-tools",
+    "summary": "",
+    "bullet_points": "Git Workflows & Collaboration::Experience with branching strategies, code reviews, and team-based development. | AWS Deployment & Debugging::Cloud hosting, server management, and real-time troubleshooting for production apps.",
+    "order": "4"
+  }
+]

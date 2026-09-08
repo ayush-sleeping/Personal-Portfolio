@@ -1,0 +1,32 @@
+[
+  {
+    "id": "home",
+    "label": "Home",
+    "href": "index.html",
+    "order": "1"
+  },
+  {
+    "id": "about",
+    "label": "About",
+    "href": "about.html",
+    "order": "2"
+  },
+  {
+    "id": "projects",
+    "label": "Projects",
+    "href": "project.html",
+    "order": "3"
+  },
+  {
+    "id": "services",
+    "label": "Services",
+    "href": "services.html",
+    "order": "4"
+  },
+  {
+    "id": "contact",
+    "label": "Contact",
+    "href": "contact.html",
+    "order": "5"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "name": "Ayush Mishra",
+  "brand": "ayushSleeping",
+  "role": "FullStack Developer",
+  "tagline": "FullStack Web Developer • Backend Specialist",
+  "intro": "I craft scalable web applications and APIs with Laravel and JavaScript, now building with Python, Django, and Next.js.",
+  "bio": "A Fullstack Web Developer based in India, currently working as a Backend Developer at Leapswitch Networks. I have 2+ years of professional experience building dynamic, scalable web applications and REST APIs with Laravel, PHP, and MySQL, along with modern frontend work in JavaScript and React. I'm continually expanding my stack — currently focused on the Python, Django + Next.js tech stack — and I enjoy learning, building, and collaborating on real-world projects.",
+  "email": "ayushbm84@gmail.com",
+  "location": "Mumbai, Maharashtra, India",
+  "hero_image": "assets/img/Home page Profile image.jpg",
+  "profile_image": "assets/img/about me.png",
+  "signature_image": "assets/img/ayush sign.png",
+  "cta_label": "Let's talk",
+  "copyright": "© Copyright 2026 - Ayush Mishra",
+  "info_rows": "Interest::Software Engineering and Fullstack Web Development | Skilled::Laravel + PHP + MySQL + JavaScript + React | Focusing On::Python + Django + Next.js | Experience::2+ YOE in Backend & Full Stack Web Development | Education::Bachelor of Science in Computer Science (2020 - 2023) | EMAIL::ayushbm84@gmail.com | ADDRESS::Mumbai, Maharashtra, India"
+}

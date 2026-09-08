@@ -3296,3 +3296,14 @@ p {
         transform: translateY(-50%);
     }
 } */
+
+/* Honeypot field on the contact form — must be reachable to bots parsing the
+   DOM but invisible and unfocusable for people. display:none is avoided
+   because some bots skip it. */
+.hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}

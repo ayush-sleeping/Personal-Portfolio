@@ -1,0 +1,44 @@
+[
+  {
+    "id": "faq1",
+    "question": "What technologies do you specialize in?",
+    "answer": "I specialize in full-stack web development with <strong>Laravel</strong> for backend, <strong>JavaScript/ReactJS</strong> for frontend, and <strong>MySQL</strong> for databases. I also have experience with Git, AWS, Bootstrap, and modern web development practices.",
+    "category": "general",
+    "order": "1"
+  },
+  {
+    "id": "faq2",
+    "question": "How long does a typical project take?",
+    "answer": "Project timelines vary based on complexity. A simple website takes <strong>1-2 weeks</strong>, while complex web applications can take <strong>4-8 weeks</strong>. I always provide detailed timelines during project planning and keep you updated throughout development.",
+    "category": "general",
+    "order": "2"
+  },
+  {
+    "id": "faq3",
+    "question": "Do you work on both frontend and backend?",
+    "answer": "Yes! I'm a <strong>full-stack developer</strong> with 2+ years of production experience. I can handle everything from database design and API development to responsive UI/UX implementation, giving you a complete solution from a single developer.",
+    "category": "general",
+    "order": "3"
+  },
+  {
+    "id": "faq4",
+    "question": "What's your development process like?",
+    "answer": "I follow a structured approach: <strong>1) Requirements gathering</strong>, <strong>2) Planning & design</strong>, <strong>3) Development with regular updates</strong>, <strong>4) Testing & debugging</strong>, and <strong>5) Deployment & support</strong>. I use Git for version control and provide regular progress updates.",
+    "category": "general",
+    "order": "4"
+  },
+  {
+    "id": "faq5",
+    "question": "Are you available for remote work?",
+    "answer": "Absolutely! I'm based in <strong>Mumbai, India</strong> and work with clients globally. I'm comfortable with remote collaboration using tools like Slack, Zoom, and project management platforms. I can adapt to different time zones for meetings and communication.",
+    "category": "general",
+    "order": "5"
+  },
+  {
+    "id": "faq6",
+    "question": "Do you provide ongoing support after project completion?",
+    "answer": "Yes, I provide <strong>post-deployment support</strong> including bug fixes, minor updates, and guidance on using your new application. I also offer ongoing maintenance packages for regular updates, security patches, and feature enhancements.",
+    "category": "general",
+    "order": "6"
+  }
+]

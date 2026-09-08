@@ -1,0 +1,11 @@
+id,title,issuer,issued_date,image_url,alt_text,credential_url,order
+anudip,Advanced Program on Java Full Stack Development using Angular,Anudip Foundation / Mettl,2024-01-30,assets/img/certificate/Anudip Foundation JavaFullstack.png,Anudip Java Fullstack Certificate,,1
+tns,Campus to Digital Careers Program (C2DC),TNS India Foundation / Accenture,2023-01-01,assets/img/certificate/TNSFoundation.jpg,TNS Foundation Certificate,,2
+college-rank,Late Pravin Rohidas Patil Award — 2nd Rank (S.Y.C.S.),Shankar Narayan College,2022-09-19,assets/img/certificate/collegeRank.png,College Rank Certificate,,3
+gwoc,GirlScript Winter of Contributing 2021 — Achievement,GirlScript Foundation,2021-11-30,assets/img/certificate/gwoc.png,GirlScript of Code Certificate,,4
+gwoc2,GirlScript Winter of Contributing 2021 — Participation,GirlScript Foundation,2021-11-30,assets/img/certificate/gwoc2.png,GirlScript of Code Certificate,,5
+jwoc,JGEC Winter of Code 2K22 — Mentee,JGEC,2022-03-09,assets/img/certificate/jwoc.png,JWOC Certificate,,6
+crio,Crio Winter of Doing 2021 — Web Developer Essentials,Crio.Do,2021-01-01,assets/img/certificate/crido_program.jpeg,Crido Program Certificate,,7
+udemy-1,Udemy Certificate 1,Udemy,,https://udemy-certificate.s3.amazonaws.com/image/UC-0382127f-523a-4c7f-b966-ba33426153be.jpg,Udemy Certificate 1,https://udemy-certificate.s3.amazonaws.com/image/UC-0382127f-523a-4c7f-b966-ba33426153be.jpg,8
+udemy-2,Udemy Certificate 2,Udemy,,https://udemy-certificate.s3.amazonaws.com/image/UC-51b13cf3-54d4-476a-8922-6841ffb80420.jpg,Udemy Certificate 2,https://udemy-certificate.s3.amazonaws.com/image/UC-51b13cf3-54d4-476a-8922-6841ffb80420.jpg,9
+udemy-3,Udemy Certificate 3,Udemy,,https://udemy-certificate.s3.amazonaws.com/image/UC-f44a31cf-9b88-41aa-b599-a625953ef12e.jpg,Udemy Certificate 3,https://udemy-certificate.s3.amazonaws.com/image/UC-f44a31cf-9b88-41aa-b599-a625953ef12e.jpg,10

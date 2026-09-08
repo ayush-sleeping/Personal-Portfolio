@@ -178,3 +178,20 @@ This project is for personal use and inspiration.
 
 > _Designed & developed by Ayush Mishra_
 > _Inspired by GridX Portfolio Template_
+
+## Updating content (Google Sheets CMS)
+
+Most page content — projects, experience, education, skills, certifications,
+services, FAQs — is no longer hardcoded in the HTML. It lives in a Google Sheet
+named `portfolio-cms` and reaches the site as JSON in `assets/data/`.
+
+**To change content:** edit the cell in the sheet, then either wait up to 6
+hours for the cron, or click **Actions → "Refresh content from Google Sheet" →
+Run workflow** for an immediate update. No code change, no deploy.
+
+The browser never calls Google. A GitHub Action reads the sheet, validates it,
+and commits plain JSON that ships on the Pages CDN — so page loads stay as fast
+as a static site, there is no API quota to hit, and no key is exposed.
+
+Setup instructions: [`sheets/SETUP.md`](sheets/SETUP.md).
+Design rationale: [`documentation/improvements-and-system-design.md`](documentation/improvements-and-system-design.md) §B9–B22.

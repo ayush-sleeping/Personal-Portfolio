@@ -1,0 +1,58 @@
+[
+  {
+    "id": "established-backend",
+    "group": "established",
+    "group_label": "Established / Working With",
+    "category": "Backend",
+    "name": "Laravel, PHP",
+    "order": "1"
+  },
+  {
+    "id": "established-database",
+    "group": "established",
+    "group_label": "Established / Working With",
+    "category": "Database",
+    "name": "MySQL",
+    "order": "2"
+  },
+  {
+    "id": "established-frontend",
+    "group": "established",
+    "group_label": "Established / Working With",
+    "category": "Frontend",
+    "name": "JavaScript, ReactJS, Bootstrap, HTML, CSS",
+    "order": "3"
+  },
+  {
+    "id": "established-others",
+    "group": "established",
+    "group_label": "Established / Working With",
+    "category": "Others",
+    "name": "REST APIs, Git, AWS, Core Java",
+    "order": "4"
+  },
+  {
+    "id": "focusing-language",
+    "group": "focusing",
+    "group_label": "Currently Focusing On",
+    "category": "Language",
+    "name": "Python",
+    "order": "5"
+  },
+  {
+    "id": "focusing-backend",
+    "group": "focusing",
+    "group_label": "Currently Focusing On",
+    "category": "Backend",
+    "name": "Django",
+    "order": "6"
+  },
+  {
+    "id": "focusing-frontend",
+    "group": "focusing",
+    "group_label": "Currently Focusing On",
+    "category": "Frontend",
+    "name": "Next.js",
+    "order": "7"
+  }
+]

@@ -87,7 +87,7 @@
     <title>Ayush | FullStack Web Developer | Software Developer Portfolio</title>
 </head>
 
-<body style="background-color: #0F0F0F !important;">
+<body style="background-color: #0F0F0F !important;" data-page="home">
 
     <!-- Preloader -->
     <div class="preloader">
@@ -135,7 +135,7 @@
         </div>
 
         <!-- Main Navigation -->
-        <ul class="nav-categories ul-base">
+        <ul class="nav-categories ul-base" data-render="nav-categories">
             <li><a href="index.html" target="_parent" class="active">
                     <span>Home</span>
                 </a></li>
@@ -157,7 +157,7 @@
         <div class="nav-separator"></div>
 
         <!-- Social Links -->
-        <div class="nav-social">
+        <div class="nav-social" data-render="socials">
             <a href="https://twitter.com/AyushBM1" target="_blank" class="social-link">
                 <span>Twitter</span>
             </a>
@@ -186,10 +186,10 @@
         <header class="header">
             <div class="logo">
                 <div class="icon rounded pt-1 pb-1">
-                    <span><a class="logo-text" style="text-decoration: none;" href="index.html">ayushSleeping</a></span>
+                    <span><a class="logo-text" style="text-decoration: none;" href="index.html"><span data-text="brand">ayushSleeping</span></a></span>
                 </div>
             </div>
-            <nav class="navbar">
+            <nav class="navbar" data-render="navbar">
                 <div id="nav-close"></div>
                 <a href="index.html" target="_parent">Home</a>
                 <a href="about.html">About</a>
@@ -257,7 +257,7 @@
                                     src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
                                     alt="BG" decoding="async">
                                 <div class="marquee-container">
-                                    <div class="marquee">
+                                    <div class="marquee" data-render="marquee">
                                         <span>
                                             <img decoding="async" src="" alt=""> &nbsp;
                                             <b></b>
@@ -466,8 +466,7 @@
                         <img class="bg-img"
                             src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png" alt="BG"
                             decoding="async">
-                        <div class="row">
-                            <!-- ------------ :: -->
+                        <div class="row" data-render="stats">
                             <div class="col-lg-4 col-12 mt-lg-0 mt-4">
                                 <div class="client-card">
                                     <h2>02+</h2>
@@ -542,7 +541,7 @@
         <footer>
             <div class="footer">
                 <!-- Skills Icons with Tooltips: -->
-                <div class="home__socials d-flex justify-content-center flex-wrap gap-3 pb-3">
+                <div class="home__socials d-flex justify-content-center flex-wrap gap-3 pb-3" data-render="footer-tech">
                     <div class="home__social-link" data-tooltip="Laravel Php Framework">
                         <i class="fab fa-laravel"></i>
                     </div>
@@ -592,7 +591,7 @@
                     </div>
                 </div>
                 <div class="footer-content text-center">
-                    <h4 class="mb-4 mt-4" style="color: #fff;">ayushSleeping</h4>
+                    <h4 class="mb-4 mt-4" style="color: #fff;" data-text="brand">ayushSleeping</h4>
                 </div>
                 <div class="row mb-0">
                     <ul>
@@ -604,7 +603,7 @@
                     </ul>
                 </div>
                 <div class="row copyright mt-0">
-                    <p class="text-center mb-0">&copy; Copyright 2026 - <span class="name"> Ayush Mishra </span></p>
+                    <p class="text-center mb-0"><span data-text="copyright">&copy; Copyright 2026 - Ayush Mishra</span></p>
                 </div>
             </div>
         </footer>
@@ -615,6 +614,8 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/preloader.js"></script>
     <script src="assets/js/scroll-animations.js"></script>
+    <script type="module" src="assets/js/render/site-render.js"></script>
+    <script type="module" src="assets/js/render/home-render.js"></script>
 
     <!-- Icons link  -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

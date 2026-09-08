@@ -1,0 +1,5 @@
+id,label,href,icon_class,show_in_nav,order
+twitter,Twitter,https://twitter.com/AyushBM1,ri-twitter-fill,TRUE,1
+linkedin,LinkedIn,https://www.linkedin.com/in/ayush-bm/,ri-linkedin-box-fill,TRUE,2
+github,GitHub,https://github.com/ayush-sleeping,ri-github-fill,TRUE,3
+email,Email,mailto:ayushbm84@gmail.com,ri-mail-fill,TRUE,4

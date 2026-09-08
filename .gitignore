@@ -1,0 +1,40 @@
+# Claude Code — local AI tooling, not part of the site
+CLAUDE.md
+.claude/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs & temp
+*.log
+npm-debug.log*
+.cache/
+tmp/
+
+# Sheet pipeline staging (scripts/fetch-sheet.mjs, refresh-content.yml)
+.staging/
+.staging.backup/
+
+# Environment / secrets
+# Only used by scripts/fetch-sheet.mjs for local runs. In CI these are
+# GitHub Actions secrets, not files. The site itself needs no env vars.
+.env
+.env.*
+!.env.example

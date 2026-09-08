@@ -1,0 +1,23 @@
+[
+  {
+    "id": "years",
+    "value": "02+",
+    "value_style": "",
+    "label": "YEARS IN<br>FULLSTACK WEB DEVELOPMENT",
+    "order": "1"
+  },
+  {
+    "id": "projects",
+    "value": "25+",
+    "value_style": "",
+    "label": "PROJECTS<br>WORKED ON",
+    "order": "2"
+  },
+  {
+    "id": "stack",
+    "value": "Laravel +<br>Next.js +<br>Django",
+    "value_style": "font-size: 18px !important;",
+    "label": "TECH STACK USED",
+    "order": "3"
+  }
+]

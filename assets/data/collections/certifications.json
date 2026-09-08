@@ -1,0 +1,102 @@
+[
+  {
+    "id": "anudip",
+    "title": "Advanced Program on Java Full Stack Development using Angular",
+    "issuer": "Anudip Foundation / Mettl",
+    "issued_date": "2024-01-30",
+    "image_url": "assets/img/certificate/Anudip Foundation JavaFullstack.png",
+    "alt_text": "Anudip Java Fullstack Certificate",
+    "credential_url": "",
+    "order": "1"
+  },
+  {
+    "id": "tns",
+    "title": "Campus to Digital Careers Program (C2DC)",
+    "issuer": "TNS India Foundation / Accenture",
+    "issued_date": "2023-01-01",
+    "image_url": "assets/img/certificate/TNSFoundation.jpg",
+    "alt_text": "TNS Foundation Certificate",
+    "credential_url": "",
+    "order": "2"
+  },
+  {
+    "id": "college-rank",
+    "title": "Late Pravin Rohidas Patil Award — 2nd Rank (S.Y.C.S.)",
+    "issuer": "Shankar Narayan College",
+    "issued_date": "2022-09-19",
+    "image_url": "assets/img/certificate/collegeRank.png",
+    "alt_text": "College Rank Certificate",
+    "credential_url": "",
+    "order": "3"
+  },
+  {
+    "id": "gwoc",
+    "title": "GirlScript Winter of Contributing 2021 — Achievement",
+    "issuer": "GirlScript Foundation",
+    "issued_date": "2021-11-30",
+    "image_url": "assets/img/certificate/gwoc.png",
+    "alt_text": "GirlScript of Code Certificate",
+    "credential_url": "",
+    "order": "4"
+  },
+  {
+    "id": "gwoc2",
+    "title": "GirlScript Winter of Contributing 2021 — Participation",
+    "issuer": "GirlScript Foundation",
+    "issued_date": "2021-11-30",
+    "image_url": "assets/img/certificate/gwoc2.png",
+    "alt_text": "GirlScript of Code Certificate",
+    "credential_url": "",
+    "order": "5"
+  },
+  {
+    "id": "jwoc",
+    "title": "JGEC Winter of Code 2K22 — Mentee",
+    "issuer": "JGEC",
+    "issued_date": "2022-03-09",
+    "image_url": "assets/img/certificate/jwoc.png",
+    "alt_text": "JWOC Certificate",
+    "credential_url": "",
+    "order": "6"
+  },
+  {
+    "id": "crio",
+    "title": "Crio Winter of Doing 2021 — Web Developer Essentials",
+    "issuer": "Crio.Do",
+    "issued_date": "2021-01-01",
+    "image_url": "assets/img/certificate/crido_program.jpeg",
+    "alt_text": "Crido Program Certificate",
+    "credential_url": "",
+    "order": "7"
+  },
+  {
+    "id": "udemy-1",
+    "title": "Udemy Certificate 1",
+    "issuer": "Udemy",
+    "issued_date": "",
+    "image_url": "https://udemy-certificate.s3.amazonaws.com/image/UC-0382127f-523a-4c7f-b966-ba33426153be.jpg",
+    "alt_text": "Udemy Certificate 1",
+    "credential_url": "https://udemy-certificate.s3.amazonaws.com/image/UC-0382127f-523a-4c7f-b966-ba33426153be.jpg",
+    "order": "8"
+  },
+  {
+    "id": "udemy-2",
+    "title": "Udemy Certificate 2",
+    "issuer": "Udemy",
+    "issued_date": "",
+    "image_url": "https://udemy-certificate.s3.amazonaws.com/image/UC-51b13cf3-54d4-476a-8922-6841ffb80420.jpg",
+    "alt_text": "Udemy Certificate 2",
+    "credential_url": "https://udemy-certificate.s3.amazonaws.com/image/UC-51b13cf3-54d4-476a-8922-6841ffb80420.jpg",
+    "order": "9"
+  },
+  {
+    "id": "udemy-3",
+    "title": "Udemy Certificate 3",
+    "issuer": "Udemy",
+    "issued_date": "",
+    "image_url": "https://udemy-certificate.s3.amazonaws.com/image/UC-f44a31cf-9b88-41aa-b599-a625953ef12e.jpg",
+    "alt_text": "Udemy Certificate 3",
+    "credential_url": "https://udemy-certificate.s3.amazonaws.com/image/UC-f44a31cf-9b88-41aa-b599-a625953ef12e.jpg",
+    "order": "10"
+  }
+]
