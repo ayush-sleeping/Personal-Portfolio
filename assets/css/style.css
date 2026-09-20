@@ -1161,6 +1161,13 @@ input {
 /* ===== ================================================= ================================================= ===== */
 /* ===== ================================================= ================================================= ===== */
 
+/* <picture> is a format-selection wrapper only. display:contents removes its
+   box so each img keeps the containing block its class rules assume
+   (.project-image height:100%, .home__img margin:0 auto). */
+picture {
+    display: contents;
+}
+
 .home__img,
 .home__data {
     z-index: 10;

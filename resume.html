@@ -46,6 +46,8 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://kit.fontawesome.com">
     <link rel="dns-prefetch" href="//wpriverthemes.com">
+    <link rel="preload" as="image" type="image/avif"
+        href="assets/img/about me.avif" fetchpriority="high">
 
     <!-- Additional Favicon Support -->
     <link rel="apple-touch-icon" href="assets/img/favicon-portfolio.svg">
@@ -172,7 +174,12 @@
                 <div class="col-lg-4 col-12">
                     <div class="primary-card" style="padding: 25px 25px 25px 25px !important;">
                         <div class="img-box" style="height: 55% !important;">
-                            <img src="assets/img/about me.png" class="home__img" alt="hero-img">
+                            <picture>
+                                <source type="image/avif" srcset="assets/img/about me.avif">
+                                <source type="image/webp" srcset="assets/img/about me.webp">
+                                <img src="assets/img/about me.png" class="home__img" alt="Ayush Mishra"
+                                    width="358" height="358" fetchpriority="high" decoding="async">
+                            </picture>
                         </div>
                         <div class="home__data" style=" margin-top: 0px !important;">
                             <h1 class="home__name d-flex justify-content-center mt-4">Ayush Mishra</h1>

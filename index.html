@@ -46,6 +46,8 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://kit.fontawesome.com">
     <link rel="dns-prefetch" href="//wpriverthemes.com">
+    <link rel="preload" as="image" type="image/avif"
+        href="assets/img/Home page Profile image.avif" fetchpriority="high">
 
     <!-- Additional Favicon Support -->
     <link rel="apple-touch-icon" href="assets/img/favicon-portfolio.svg">
@@ -223,8 +225,13 @@
                                 <!-- Profile image -->
                                 <div class="col-lg-6 col-12">
                                     <div class="img-box">
-                                        <img src="assets/img/Home page Profile image.jpg" class="home__img"
-                                            alt="hero-img">
+                                        <picture>
+                                            <source type="image/avif" srcset="assets/img/Home page Profile image.avif">
+                                            <source type="image/webp" srcset="assets/img/Home page Profile image.webp">
+                                            <img src="assets/img/Home page Profile image.jpg" class="home__img"
+                                                alt="Ayush Mishra" width="450" height="452"
+                                                fetchpriority="high" decoding="async">
+                                        </picture>
                                     </div>
                                 </div>
                                 <!-- Name and subject -->
@@ -327,7 +334,8 @@
                                                 src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
                                                 alt="BG" decoding="async">
                                             <img src="assets/img/ayush sign.png" class="proj-img mx-auto d-block"
-                                                alt="hero-img">
+                                                alt="Ayush Mishra signature" width="224" height="126"
+                                                loading="lazy" decoding="async">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="infos mt-4">
                                                     <h5 style="font-size: 14px !important;">MORE ABOUT ME</h5>
@@ -352,7 +360,8 @@
                                                 src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
                                                 alt="BG" decoding="async">
                                             <img src="assets/img/my works.png" class="proj-img mx-auto d-block"
-                                                alt="hero-img">
+                                                alt="My works" width="224" height="126"
+                                                loading="lazy" decoding="async">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="infos mt-4">
                                                     <h5 style="font-size: 14px !important;">SHOWCASE</h5>
@@ -379,7 +388,8 @@
                             <img class="bg-img"
                                 src="https://wpriverthemes.com/gridx/wp-content/themes/gridx/assets/images/bg1.png"
                                 alt="BG" decoding="async">
-                            <img src="assets/img/github3.png" class="proj-img mx-auto d-block mb-3" alt="hero-img">
+                            <img src="assets/img/github3.png" class="proj-img mx-auto d-block mb-3"
+                                alt="GitHub" width="224" height="126" loading="lazy" decoding="async">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="infos mt-2">
                                     <h5 style="font-size: 14px !important;">CODE SPEAKS LOUDER</h5>

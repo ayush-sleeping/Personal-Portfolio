@@ -177,6 +177,34 @@ export function esc(value) {
     .replace(/'/g, '&#39;');
 }
 
+/**
+ * Wrap an image in <picture> with AVIF and WebP sources.
+ *
+ * Only local assets/img rasters are wrapped: every one of those has .avif and
+ * .webp siblings committed next to it. That invariant matters — a <source> the
+ * browser accepts but cannot fetch is NOT retried against the <img> fallback,
+ * so a missing sibling is a broken image, not a slow one. Remote URLs (the
+ * Udemy certificate images) and anything else are returned as a plain <img>.
+ *
+ * @param {string} url   image_url straight from the sheet data
+ * @param {string} attrs pre-escaped attribute string for the <img>
+ */
+export function pictureHtml(url, attrs = '') {
+  const img = `<img src="${esc(url)}" ${attrs}>`;
+  if (!/^assets\/img\/.+\.(png|jpe?g)$/i.test(String(url ?? ''))) return img;
+  // encodeURI, not raw: srcset is a space-delimited list, so a filename
+  // like "2 .png" or "about me.png" would otherwise be parsed as a URL
+  // plus a bogus descriptor and the source would never match.
+  const base = esc(encodeURI(String(url).replace(/\.(png|jpe?g)$/i, '')));
+  return (
+    '<picture>' +
+    `<source type="image/avif" srcset="${base}.avif">` +
+    `<source type="image/webp" srcset="${base}.webp">` +
+    img +
+    '</picture>'
+  );
+}
+
 /** Clear every cached dataset (useful from the console while editing the sheet). */
 export function clearCache() {
   memCache.clear();

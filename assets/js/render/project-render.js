@@ -2,7 +2,7 @@
 // The DOM produced is identical to the markup it replaced, so style.css,
 // the spotlight effect and scroll-animations.js keep working untouched.
 
-import { load, byOrder, splitList, isTrue, esc } from '../data.js';
+import { load, byOrder, splitList, isTrue, esc, pictureHtml } from '../data.js';
 
 const GRID_SELECTOR = '[data-render="projects"]';
 
@@ -36,8 +36,7 @@ function card(p) {
   col.innerHTML = `
     <div class="project-showcase-card h-100">
       <div class="project-image-wrapper">
-        <img src="${esc(p.image_url)}" class="project-image" alt="${esc(p.title)}"
-             loading="lazy" decoding="async">
+        ${pictureHtml(p.image_url, `class="project-image" alt="${esc(p.title)}" loading="lazy" decoding="async"`)}
       </div>
       <div class="project-content">
         <h3 class="project-title">${esc(p.title)}</h3>

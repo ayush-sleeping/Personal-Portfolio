@@ -5,7 +5,7 @@
 // row shape and one builder. Skills are grouped cards; the project page reuses
 // the same skills block, so renderSkills() targets every matching container.
 
-import { load, byOrder, esc } from '../data.js';
+import { load, byOrder, esc, pictureHtml } from '../data.js';
 
 // "Backend::Laravel + PHP | Frontend::React"  ->  [{label, value}, ...]
 function pairs(cell) {
@@ -92,8 +92,7 @@ async function renderCertifications() {
       const href = cert.credential_url || '';
       item.innerHTML = `
         <div class="certification-card">
-          <img src="${esc(cert.image_url)}" alt="${esc(cert.alt_text || cert.title)}"
-               class="certification-img" loading="lazy" decoding="async">
+          ${pictureHtml(cert.image_url, `class="certification-img" alt="${esc(cert.alt_text || cert.title)}" loading="lazy" decoding="async"`)}
           <div class="certification-info mt-2">
             <a href="${esc(href)}"${href ? ' target="_blank" rel="noopener"' : ''} class="certification-link">
               <i class="fas fa-external-link-alt"></i> View Certificate
