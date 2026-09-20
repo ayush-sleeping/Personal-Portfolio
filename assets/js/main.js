@@ -103,6 +103,11 @@ spotlights.forEach((spotlight) => {
 
 // GSAP ("parallax section reveal
 document.addEventListener('DOMContentLoaded', function () {
+	// Q7 / WCAG 2.3.3: the scale and border-radius morph are cosmetic, so
+	// skip registering the ScrollTrigger work entirely under reduced motion.
+	// The CSS media query cannot cover this -- GSAP writes inline styles.
+	if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+
 	gsap.registerPlugin(ScrollTrigger);
 
 	gsap.from(".dx-fixed-background__media-wrapper", {

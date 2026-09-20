@@ -83,13 +83,19 @@ function renderSocials(items) {
     ordered.forEach((s) => {
       const a = document.createElement('a');
       a.href = s.href;
-      a.className = 'social-icon-link';
+      // home__social-link, not social-icon-link: the latter has no rules in
+      // style.css, so rendering replaced the styled static markup with
+      // unstyled icons the moment this ran.
+      a.className = 'home__social-link';
+      // title alone is an unreliable accessible name and never reaches
+      // keyboard users; these are icon-only links, so name them explicitly.
       a.title = s.label;
+      a.setAttribute('aria-label', s.label || '');
       if (s.href.startsWith('http')) {
         a.target = '_blank';
         a.rel = 'noopener';
       }
-      a.innerHTML = `<i class="${esc(s.icon_class)}"></i>`;
+      a.innerHTML = `<i class="${esc(s.icon_class)}" aria-hidden="true"></i>`;
       box.appendChild(a);
     });
   });
@@ -105,6 +111,12 @@ function renderFooterTech(items) {
       const el = document.createElement('div');
       el.className = 'home__social-link';
       el.dataset.tooltip = t.tooltip;
+      // The tooltip text lives in a CSS ::before, which assistive tech cannot
+      // see. Expose it as the element's own name and make it focusable so the
+      // tooltip is reachable without a pointer (Q10).
+      el.tabIndex = 0;
+      el.setAttribute('role', 'img');
+      el.setAttribute('aria-label', t.tooltip || '');
       // icon_html carries inline SVG for the logos Font Awesome lacks
       // (Django, Next.js). It is our own content, not visitor input.
       el.innerHTML = t.icon_class ? `<i class="${esc(t.icon_class)}"></i>` : (t.icon_html || '');

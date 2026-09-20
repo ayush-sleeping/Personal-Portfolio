@@ -9,6 +9,10 @@ class ScrollCardAnimations {
 
     init() {
         if (!this.isMobile) return;
+        // Q7 / WCAG 2.3.3: these are decorative scale+fade reveals, so a
+        // visitor who has asked for reduced motion gets the cards as they
+        // are rather than a muted version of the animation.
+        if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
 
         this.setupCenterDetection();
         this.addScrollListener();

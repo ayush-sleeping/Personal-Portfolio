@@ -1,4 +1,26 @@
 // ===== PRELOADER & SLIDE REVEAL ANIMATION =====
+//
+// Q18: this sequence used to hold .main-content hidden for ~1.9s after
+// window load (500ms settle + 600 + 800), on top of a 2.5s progress fill,
+// which put the whole preloader inside the LCP measurement. The phases are
+// kept -- they are the site's identity -- but the budget is now ~340ms to
+// content reveal. CSS durations in style.css were shortened to match; if
+// you change one, change the other or the classes will outlive their
+// transitions.
+const TIMING = {
+    progress: 700,   // cosmetic fill; the real trigger is window load
+    settle: 60,      // hold at 100% before the reveal starts
+    slideUp: 120,
+    slideAway: 160,
+    cleanup: 400,    // after this the elements are display:none
+};
+
+// Q7 / WCAG 2.3.3: if the visitor has asked for reduced motion, skip the
+// choreography and show the page. Checked once -- a mid-load change of the
+// OS setting is not worth the complexity.
+const PREFERS_REDUCED_MOTION =
+    window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+
 class LoaderAnimation {
     constructor() {
         this.preloader = document.querySelector('.preloader');
@@ -14,10 +36,13 @@ class LoaderAnimation {
     }
 
     init() {
-        // Start the loading animation
+        if (PREFERS_REDUCED_MOTION) {
+            this.revealImmediately();
+            return;
+        }
+
         this.startLoading();
 
-        // Check if page is fully loaded
         if (document.readyState === 'complete') {
             this.completeLoading();
         } else {
@@ -25,18 +50,23 @@ class LoaderAnimation {
         }
     }
 
+    // No transitions, no timers: the content is simply there.
+    revealImmediately() {
+        this.mainContent?.classList.add('fade-in');
+        if (this.preloader) this.preloader.style.display = 'none';
+        if (this.slidePanel) this.slidePanel.style.display = 'none';
+    }
+
     startLoading() {
-        // Simulate loading progress
         this.simulateProgress();
     }
 
     simulateProgress() {
-        const duration = 2500; // 2.5 seconds
         const startTime = Date.now();
 
         const updateProgress = () => {
             const elapsed = Date.now() - startTime;
-            const progress = Math.min((elapsed / duration) * 100, 95); // Stop at 95%
+            const progress = Math.min((elapsed / TIMING.progress) * 100, 95);
 
             this.updateProgressBar(progress);
 
@@ -49,7 +79,6 @@ class LoaderAnimation {
     }
 
     updateProgressBar(progress) {
-        // Smooth progress animation
         this.targetProgress = progress;
         this.animateProgressBar();
     }
@@ -58,8 +87,8 @@ class LoaderAnimation {
         const diff = this.targetProgress - this.currentProgress;
         this.currentProgress += diff * 0.1;
 
-        this.progressBar.style.width = `${this.currentProgress}%`;
-        this.percentage.textContent = `${Math.round(this.currentProgress)}%`;
+        if (this.progressBar) this.progressBar.style.width = `${this.currentProgress}%`;
+        if (this.percentage) this.percentage.textContent = `${Math.round(this.currentProgress)}%`;
 
         if (Math.abs(diff) > 0.1) {
             requestAnimationFrame(() => this.animateProgressBar());
@@ -67,39 +96,33 @@ class LoaderAnimation {
     }
 
     completeLoading() {
-        // Complete the progress to 100%
         this.updateProgressBar(100);
-
-        // Wait a moment, then start the reveal animation
-        setTimeout(() => {
-            this.startRevealAnimation();
-        }, 500);
+        setTimeout(() => this.startRevealAnimation(), TIMING.settle);
     }
 
     startRevealAnimation() {
-        // Phase 1: Fade out preloader
+        // Phase 1: fade out the preloader
         this.preloader.classList.add('fade-out');
 
-        // Phase 2: Show slide panel after preloader fades
+        // Phase 2: bring the slide panel up over it
         setTimeout(() => {
             this.slidePanel.classList.add('slide-up');
 
-            // Phase 3: Slide panel up and reveal content
+            // Phase 3: sweep the panel away and reveal the content
             setTimeout(() => {
                 this.slidePanel.classList.add('slide-away');
                 this.mainContent.classList.add('fade-in');
 
-                // Phase 4: Remove elements after animation
+                // Phase 4: take both out of the layer tree
                 setTimeout(() => {
                     this.preloader.style.display = 'none';
                     this.slidePanel.style.display = 'none';
-                }, 1200);
-            }, 800);
-        }, 600);
+                }, TIMING.cleanup);
+            }, TIMING.slideAway);
+        }, TIMING.slideUp);
     }
 }
 
-// Initialize the loader when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     new LoaderAnimation();
 });
