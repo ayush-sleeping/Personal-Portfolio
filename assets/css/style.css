@@ -1,5 +1,5 @@
 /*--- --- --- Google Fonts --- ---- --- */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&family=Roboto:wght@100..900&display=swap');
 
 
 /*--- --- --- Css Variables --- ---- --- */
@@ -1483,13 +1483,6 @@ h2 {
 
 .credentials-card:hover .about-btn {
     opacity: 1.0;
-}
-
-@font-face {
-    font-family: "Inter";
-    src: url("https://res.cloudinary.com/du6mfjbbd/raw/upload/v1696975586/wegxkv6mdriebvpvokwf.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
 }
 
 /******************************/
@@ -3379,5 +3372,132 @@ p {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+}
+
+/* ===== ================================================= ===== */
+/*  Print / save-as-PDF for resume.html (roadmap Q16, M13)        */
+/* ===== ================================================= ===== */
+
+@media print {
+
+    /* .main-content starts at opacity 0 and is revealed by preloader.js.
+       If the sheet is printed before that runs -- or from a browser that
+       blocked the script -- the page would come out blank. Force it. */
+    .main-content {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Chrome and Safari drop backgrounds and light text in print by
+       default, which would leave white-on-white. Go black-on-white
+       deliberately instead of relying on that. */
+    html,
+    body,
+    .main-content {
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    body * {
+        color: #000 !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+        background-image: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    /* Screen-only layout, navigation and decoration: none of it belongs on
+       paper.
+       Note the doubled-up selectors. bootstrap.min.css is linked AFTER
+       style.css on every page, and its display utilities carry !important
+       (.d-flex { display: flex !important }). At equal specificity the later
+       sheet wins, so anything here that also carries a Bootstrap display
+       utility needs one extra class to outrank it. */
+    body .preloader,
+    body .slide-reveal-panel,
+    body .navigation__menu,
+    body .header,
+    body .nav-footer,
+    body footer,
+    body .bg-img,
+    body .home__socials,
+    body .hamburger,
+    body [data-print-resume],
+    body .contact-card-btn {
+        display: none !important;
+    }
+
+    /* The screen portrait is sized for a hero slot and eats most of the
+       first sheet on paper. */
+    body .img-box {
+        height: auto !important;
+    }
+
+    body .home__img {
+        max-height: 110px !important;
+        width: auto !important;
+    }
+
+    /* The Bootstrap grid keeps the resume in a narrow column on paper and
+       wastes roughly a third of every page. Collapse it to full width. */
+    body .container,
+    body .container-fluid,
+    body .row,
+    body [class*="col-"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* Cards go borderless on paper. A border plus break-inside:avoid leaves
+       orphaned box edges when a card is taller than the space left on the
+       sheet; without it the content just flows. */
+    .primary-card,
+    .primary-card2,
+    .client-card {
+        background: #fff !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        padding: 0 0 8px !important;
+        margin-bottom: 8px !important;
+    }
+
+    h1, h2, h3, h4, h5 {
+        break-after: avoid;
+        page-break-after: avoid;
+        margin-top: 0.4em !important;
+        margin-bottom: 0.3em !important;
+    }
+
+    body .mt-4,
+    body .pt-4,
+    body .mb-4,
+    body .pb-4 {
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.4rem !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+
+    /* The resume links out to GitHub/LinkedIn; on paper the label alone is
+       useless, so print the target next to it. */
+    .home__data a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.85em;
+        word-break: break-all;
+    }
+
+    @page {
+        margin: 12mm;
     }
 }

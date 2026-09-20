@@ -221,8 +221,11 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="home__info d-flex justify-content-center pt-4">
+                        <div class="home__info d-flex justify-content-center pt-4 gap-3 flex-wrap">
                             <a href="contact.html" class="contact-card-btn">Contact Me</a>
+                            <button type="button" class="contact-card-btn" data-print-resume>
+                                <i class="fas fa-download" aria-hidden="true"></i> Download PDF
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -501,6 +504,12 @@
     </div>
 
     <!-- Linking main JavaScript  -->
+    <!-- Q16: no PDF is stored in the repo; the browser's own print-to-PDF
+         renders the @media print stylesheet, so the file is never stale. -->
+    <script>
+        document.querySelector('[data-print-resume]')
+            ?.addEventListener('click', () => window.print());
+    </script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/preloader.js"></script>
     <script src="assets/js/scroll-animations.js"></script>
