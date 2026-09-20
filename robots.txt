@@ -1,0 +1,63 @@
+# https://ayush-sleeping.github.io/Personal-Portfolio/
+#
+# This is a personal portfolio. The whole point is to be found and quoted,
+# by search engines and by AI assistants alike, so every crawler is allowed
+# explicitly rather than left to a default that changes without notice.
+#
+# Note on syntax: Allow/Disallow bind to the User-agent group above them,
+# and a crawler obeys only the most specific group that names it. Rules are
+# therefore repeated per group rather than assumed to be inherited.
+
+User-agent: *
+Allow: /
+# Build tooling and generated sources. The real content is in the HTML.
+Disallow: /scripts/
+Disallow: /sheets/
+
+# --- AI / LLM crawlers -------------------------------------------------
+# Allowed on purpose: this is exactly the content worth surfacing in an
+# answer. See llms.txt for a plain-text index written for these readers.
+# documentation/ is left open to them deliberately -- it explains how the
+# site is built, which is useful context.
+
+User-agent: GPTBot
+Allow: /
+Disallow: /scripts/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /scripts/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /scripts/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /scripts/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /scripts/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /scripts/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /scripts/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /scripts/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /scripts/
+
+User-agent: CCBot
+Allow: /
+Disallow: /scripts/
+
+Sitemap: https://ayush-sleeping.github.io/Personal-Portfolio/sitemap.xml

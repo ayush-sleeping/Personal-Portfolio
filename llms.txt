@@ -1,0 +1,48 @@
+# Ayush Mishra — FullStack Web Developer
+
+> Personal portfolio of Ayush Mishra, a fullstack web developer based in
+> Mumbai, India, currently a Backend Developer at Leapswitch Networks.
+> Roughly 2 years of professional experience building scalable web
+> applications and REST APIs with Laravel, PHP and MySQL, with frontend work
+> in JavaScript and React, and current focus on Python, Django and Next.js.
+
+Contact: ayushbm84@gmail.com · GitHub: https://github.com/ayush-sleeping
+Base URL: https://ayush-sleeping.github.io/Personal-Portfolio/
+
+## Pages
+
+- [Home](https://ayush-sleeping.github.io/Personal-Portfolio/index.html): Overview — role, current stack, and entry points to credentials, projects, services and profiles.
+- [About](https://ayush-sleeping.github.io/Personal-Portfolio/about.html): Background, work experience timeline, education, skills, and certifications.
+- [Projects](https://ayush-sleeping.github.io/Personal-Portfolio/project.html): Seven shipped projects with tech stack, source links and live demos.
+- [Resume](https://ayush-sleeping.github.io/Personal-Portfolio/resume.html): Condensed CV — experience, education, skills and contact details on one page.
+- [Services](https://ayush-sleeping.github.io/Personal-Portfolio/services.html): What he takes on — fullstack, backend, frontend, and production/team work.
+- [Contact](https://ayush-sleeping.github.io/Personal-Portfolio/contact.html): Contact form and frequently asked questions.
+
+## Experience
+
+- Backend Developer — Leapswitch Networks (current). Laravel, PHP, Python, Django, MySQL, REST APIs.
+- FullStack Web Application Developer — SkillLogic Technologies. Laravel, MySQL, ReactJS.
+- Junior FullStack Web Developer — Technicul Cloud LLP.
+- Trainee — Anudip Foundation (Java Fullstack) and TNS India Foundation.
+
+## Projects
+
+- LaraBaseX (Aug 2025) — Laravel 12 + ReactJS starter kit that skips repetitive setup work. Laravel, ReactJS (Vite + Axios), Shadcn UI, MySQL, Tailwind CSS.
+- WriteOn (Jul 2025) — Blog platform with rich text editing and live updates. ReactJS, Vite, Firebase, Tailwind CSS.
+- DailyBuzz (Jul 2025) — Modular news reader fed by NewsAPI. ReactJS, Vite, JavaScript.
+- Personal Portfolio (Jun 2025) — This site. Static HTML/CSS/JS on GitHub Pages, content driven by a Google Sheets CMS.
+- NFT Ecommerce (Oct 2023) — Angular CRUD application.
+- Brija Stream (Sep 2023) — Search-API driven streaming UI.
+- JaBri Travel (Jun 2022) — Travel site frontend.
+
+## Technical notes
+
+- Static site: plain HTML, CSS and JavaScript, no build step, hosted on GitHub Pages.
+- Content is edited in a Google Sheet; a scheduled GitHub Action validates it and
+  commits plain JSON to assets/data, which the pages read. The browser never
+  calls Google.
+- Source: https://github.com/ayush-sleeping/Personal-Portfolio
+
+## Optional
+
+- [Documentation](https://ayush-sleeping.github.io/Personal-Portfolio/documentation/docx.md): Full project reference for how this site is built.

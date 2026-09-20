@@ -31,6 +31,38 @@ function item(f, i) {
   return el;
 }
 
+// FAQPage structured data (Q11). Built from the same rows the accordion
+// renders, so it cannot drift from the sheet the way a hand-written block in
+// contact.html would. Trade-off: this is injected by JS, so it is only seen
+// by crawlers that execute scripts. Google does; simpler AI fetchers may not.
+function injectFaqSchema(rows) {
+  const previous = document.getElementById('faq-schema');
+  if (previous) previous.remove();
+  if (!rows.length) return;
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.id = 'faq-schema';
+  script.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: rows.map((f) => ({
+      '@type': 'Question',
+      name: String(f.question ?? '').trim(),
+      acceptedAnswer: {
+        '@type': 'Answer',
+        // Schema.org wants the answer as text; the sheet allows <strong>/<em>
+        // for the visible accordion, so strip those tags back out here.
+        text: String(f.answer ?? '')
+          .replace(/<\/?(strong|em|b|i)>/gi, '')
+          .replace(/<br\s*\/?>/gi, ' ')
+          .trim(),
+      },
+    })),
+  });
+  document.head.appendChild(script);
+}
+
 export async function renderFaqs() {
   const container = document.querySelector(CONTAINER);
   if (!container) return;
@@ -41,6 +73,7 @@ export async function renderFaqs() {
     rows.forEach((f, i) => frag.appendChild(item(f, i)));
     container.replaceChildren(frag);
     container.dataset.rendered = 'true';
+    injectFaqSchema(rows);
     // contactform.js binds the accordion on DOMContentLoaded; these items
     // arrive later, so tell it to bind again.
     document.dispatchEvent(new CustomEvent('content:rendered', { detail: { name: 'faqs' } }));

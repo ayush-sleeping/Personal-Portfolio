@@ -3182,6 +3182,18 @@ p {
     color: #727272;
 }
 
+.footer .copyright .footer-source a {
+    color: #727272;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer .copyright .footer-source a:hover,
+.footer .copyright .footer-source a:focus-visible {
+    color: #5b78f6;
+    text-decoration: underline;
+}
+
 .footer .copyright .name {
     font-size: 14px;
     color: #5b78f6;
