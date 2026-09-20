@@ -5,6 +5,18 @@
 /*--- --- --- Css Variables --- ---- --- */
 :root {
     /*--- --- ---Colors --- --- ---*/
+
+    /* M4 - brand palette in OKLCH. These two are the exact equivalents of the
+       hex values they replaced (verified round-trip), so nothing shifts on an
+       sRGB screen; on a P3 display they can resolve a little more saturated,
+       which is the reason for the format. Derived steps use color-mix in the
+       same space so lightness moves perceptually rather than numerically. */
+    --brand: oklch(61.70% 0.1905 270.20);            /* was #5B78F6 */
+    --brand-light: oklch(70.96% 0.1507 268.94);      /* was #7B9BFF */
+    --brand-hover: color-mix(in oklch, var(--brand) 85%, white);
+    --brand-dim: color-mix(in oklch, var(--brand) 60%, var(--background-color));
+    --brand-ring: color-mix(in oklch, var(--brand) 70%, transparent);
+
     --text-color: #a1a1a1;
     --text-W-color: #fff;
     --bright-text-color: #86C232;
@@ -184,7 +196,7 @@ input:focus:not(:focus-visible) {
     font-family: var(--mono-font);
     font-size: 2.5rem;
     font-weight: var(--bold);
-    color: #5B78F6;
+    color: var(--brand);
     opacity: 0;
     transform: translateY(50px) rotateX(90deg);
     animation: letterReveal 0.6s cubic-bezier(0.77, 0, 0.175, 1) forwards;
@@ -258,9 +270,9 @@ input:focus:not(:focus-visible) {
 .loader-progress {
     height: 100%;
     background: linear-gradient(90deg,
-            #5B78F6 0%,
-            #7B9BFF 50%,
-            #5B78F6 100%);
+            var(--brand) 0%,
+            var(--brand-light) 50%,
+            var(--brand) 100%);
     border-radius: 10px;
     width: 0%;
     position: relative;
@@ -301,9 +313,9 @@ input:focus:not(:focus-visible) {
     width: 100%;
     height: 100vh;
     background: linear-gradient(135deg,
-            #5B78F6 0%,
-            #7B9BFF 50%,
-            #5B78F6 100%);
+            var(--brand) 0%,
+            var(--brand-light) 50%,
+            var(--brand) 100%);
     z-index: 9998;
     transform: translateY(100%);
     transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);   /* the purple reveal sweep -- deliberately unhurried; it no longer gates LCP */
@@ -842,7 +854,7 @@ input:focus:not(:focus-visible) {
 .navigation__menu .nav-categories li a.active {
     color: #fff;
     background: rgba(91, 120, 246, 0.1);
-    border-right: 2px solid #5B78F6;
+    border-right: 2px solid var(--brand);
 }
 
 .navigation__menu .nav-categories li a.active::before {
@@ -852,7 +864,7 @@ input:focus:not(:focus-visible) {
     top: 0;
     height: 100%;
     width: 3px;
-    background: #5B78F6;
+    background: var(--brand);
 }
 
 /* Simple Separator */
@@ -1211,7 +1223,7 @@ picture {
 }
 
 .home__work {
-    color: #5B78F6 !important;
+    color: var(--brand) !important;
     font-family: var(--mono-font);
     font-weight: var(--bold);
 }
@@ -1398,7 +1410,7 @@ picture {
     color: var(--bg-color);
     border: none;
     box-shadow: var(--box-shadow-2);
-    background: #5B78F6 !important;
+    background: var(--brand) !important;
     cursor: pointer;
 }
 
@@ -1429,7 +1441,7 @@ h2 {
 }
 
 .last-infos span {
-    color: #5B78F6 !important;
+    color: var(--brand) !important;
 }
 
 .infos h3 {
@@ -1500,7 +1512,7 @@ h2 {
         rgba(50, 50, 93, 0.10) 0px 50px 100px -20px,
         rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
         rgb(91 120 246 / 5%) 0px 10px 40px 0px;
-    /* subtle #5B78F6 shadow */
+    /* subtle var(--brand) shadow */
     background: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
     border-radius: 30px;
 }
@@ -1532,7 +1544,7 @@ h2 {
         rgba(50, 50, 93, 0.10) 0px 50px 100px -20px,
         rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
         rgb(91 120 246 / 5%) 0px 10px 40px 0px;
-    /* subtle #5B78F6 shadow */
+    /* subtle var(--brand) shadow */
     border-radius: 30px;
     background: #1c1c1c !important;
 }
@@ -1561,7 +1573,7 @@ h2 {
         rgba(50, 50, 93, 0.10) 0px 50px 100px -20px,
         rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
         rgb(91 120 246 / 5%) 0px 10px 40px 0px;
-    /* subtle #5B78F6 shadow */
+    /* subtle var(--brand) shadow */
     border-radius: 30px;
     display: flex;
     align-items: center;
@@ -1625,7 +1637,7 @@ h2 {
 }
 
 .primary-card .social-card:hover i {
-    color: #5B78F6;
+    color: var(--brand);
     transform: scale(1.1) rotate(5deg);
     text-shadow:
         0 0 20px rgba(91, 120, 246, 0.5),
@@ -1838,7 +1850,7 @@ h2 {
 }
 
 .primary-card .client-card h2 {
-    color: #5B78F6;
+    color: var(--brand);
     font-size: 48px !important;
     font-weight: 700;
     margin-bottom: 15px;
@@ -1850,7 +1862,7 @@ h2 {
     text-shadow:
         0 0 30px rgba(91, 120, 246, 0.3),
         0 2px 10px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #5B78F6 0%, #7B9BFF 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1922,7 +1934,7 @@ h2 {
     transform: translateX(-50%);
     width: 30px;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #5B78F6, transparent);
+    background: linear-gradient(90deg, transparent, var(--brand), transparent);
     opacity: 0;
     transition: opacity 0.4s ease;
 }
@@ -2149,7 +2161,7 @@ h2 {
     left: -5px;
     height: 95%;
     width: 1px;
-    background: linear-gradient(180deg, #5B78F6 0%, #8B5CF6 100%);
+    background: linear-gradient(180deg, var(--brand) 0%, #8B5CF6 100%);
 }
 
 .timeline-item::after {
@@ -2159,7 +2171,7 @@ h2 {
     left: -10px;
     width: 10px;
     height: 10px;
-    border: 2px solid #5B78F6;
+    border: 2px solid var(--brand);
     background-color: #1c1c1c;
     border-radius: 50%;
     transition: all 0.3s ease;
@@ -2223,7 +2235,7 @@ h2 {
 
 /* Hover Effects - matching the reference example */
 .timeline-item:hover::after {
-    background-color: #5B78F6;
+    background-color: var(--brand);
     transform: scale(1.4);
 }
 
@@ -2264,7 +2276,7 @@ h2 {
 
 /* Keep your existing content styles */
 .timeline-date {
-    color: #5B78F6;
+    color: var(--brand);
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 8px;
@@ -2296,7 +2308,7 @@ h2 {
 .timeline-duration {
     display: inline-block;
     background: rgba(91, 120, 246, 0.2);
-    color: #5B78F6;
+    color: var(--brand);
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 12px;
@@ -2335,7 +2347,7 @@ h2 {
 }
 
 .skill-category {
-    color: #5B78F6;
+    color: var(--brand);
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
@@ -2384,7 +2396,7 @@ h2 {
 }
 
 .certification-badge {
-  background: #5B78F6;
+  background: var(--brand);
   color: #fff;
   font-size: 0.78em;
   font-weight: 600;
@@ -2397,7 +2409,7 @@ h2 {
 
 .certification-course,
 .certification-instructor {
-  color: #5B78F6;
+  color: var(--brand);
   font-weight: 600;
   font-size: 0.98em;
 }
@@ -2417,7 +2429,7 @@ h2 {
   background: #232a3b;
   border-radius: 6px;
   padding: 6px 16px;
-  color: #5B78F6;
+  color: var(--brand);
   font-weight: 600;
   font-size: 1em;
   text-decoration: none;
@@ -2426,7 +2438,7 @@ h2 {
 }
 
 .certification-link:hover {
-  background: #5B78F6;
+  background: var(--brand);
   color: #fff;
   text-decoration: none;
 }
@@ -2487,7 +2499,7 @@ h2 {
 
 /* For the highlighted text in the button */
 .why-hire-highlight {
-    color: #5B78F6;
+    color: var(--brand);
 }
 
 /* For the star link */
@@ -2511,7 +2523,7 @@ h2 {
 
 .custom-close-btn:focus:not(:focus-visible) {
     outline: none;
-    box-shadow: 0 0 0 2px #5B78F6;
+    box-shadow: 0 0 0 2px var(--brand);
 }
 
 .custom-close-btn::after {
@@ -2786,7 +2798,7 @@ p {
 }
 
 .live-btn {
-    background: #5B78F6;
+    background: var(--brand);
     color: #fff;
 }
 
@@ -2818,7 +2830,7 @@ p {
 }
 
 .project-type {
-    color: #5B78F6;
+    color: var(--brand);
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
@@ -2846,7 +2858,7 @@ p {
 
 .project-tags .tag {
     background: rgba(91, 120, 246, 0.1);
-    color: #5B78F6;
+    color: var(--brand);
     border: 1px solid rgba(91, 120, 246, 0.2);
     padding: 4px 10px;
     border-radius: 12px;
@@ -2905,7 +2917,7 @@ p {
 
 .service-icon-style {
     font-size: 2.5rem;
-    color: #5B78F6;
+    color: var(--brand);
 }
 
 .service-title {
@@ -2913,7 +2925,7 @@ p {
 }
 
 .feature-check-icon {
-    color: #5B78F6;
+    color: var(--brand);
     font-size: 14px;
 }
 
@@ -2957,7 +2969,7 @@ p {
 }
 
 .contact__form-title {
-    color: #5B78F6 !important;
+    color: var(--brand) !important;
     font-family: var(--mono-font);
 }
 
@@ -2968,7 +2980,7 @@ p {
 
 .contact ::placeholder,
 .contact__input {
-    color: #5B78F6 !important;
+    color: var(--brand) !important;
     font-family: var(--mono-font);
 }
 
@@ -3004,7 +3016,7 @@ p {
     position: absolute;
     left: 0;
     font-family: var(--mono-font);
-    color: #5B78F6 !important;
+    color: var(--brand) !important;
 }
 
 .color-light {
@@ -3058,7 +3070,7 @@ p {
 }
 
 .faq-item:hover {
-    border-color: #5B78F6;
+    border-color: var(--brand);
 }
 
 .faq-question {
@@ -3087,7 +3099,7 @@ p {
 
 .faq-icon {
     margin-left: auto;
-    color: #5B78F6;
+    color: var(--brand);
     transition: transform 0.3s ease;
     font-size: 14px;
 }
@@ -3190,13 +3202,13 @@ p {
 
 .footer .copyright .footer-source a:hover,
 .footer .copyright .footer-source a:focus-visible {
-    color: #5b78f6;
+    color: var(--brand);
     text-decoration: underline;
 }
 
 .footer .copyright .name {
     font-size: 14px;
-    color: #5b78f6;
+    color: var(--brand);
 }
 
 
@@ -3281,7 +3293,7 @@ p {
     /* Icon Boxes - Exact Desktop Hover Style (if you have this) */
     .primary-card .icon-boxes i.scroll-animated {
         transform: translateY(-3px) scale(1.1);
-        color: #5B78F6;
+        color: var(--brand);
         text-shadow: 0 0 15px rgba(91, 120, 246, 0.5);
     }
 
@@ -3293,7 +3305,7 @@ p {
         left: 0;
         width: var(--scroll-progress, 0%);
         height: 3px;
-        background: linear-gradient(90deg, #5B78F6 0%, #8B5CF6 100%);
+        background: linear-gradient(90deg, var(--brand) 0%, #8B5CF6 100%);
         z-index: 9999;
         transition: width 0.1s ease-out;
     }
@@ -3332,11 +3344,11 @@ p {
 /*  Accessibility and mobile performance (roadmap Q7, Q8, Q9)      */
 /* ===== ================================================= ===== */
 
-/* Q9 - WCAG 2.2 SC 2.4.13 Focus Appearance. #5B78F6 against the #0F0F0F
+/* Q9 - WCAG 2.2 SC 2.4.13 Focus Appearance. var(--brand) against the #0F0F0F
    page background clears the 3:1 contrast the criterion asks for, and the
    offset keeps the ring clear of the element's own border. */
 :focus-visible {
-    outline: 2px solid #5B78F6;
+    outline: 2px solid var(--brand);
     outline-offset: 2px;
 }
 
