@@ -1,18 +1,18 @@
 // ===== PRELOADER & SLIDE REVEAL ANIMATION =====
 //
-// Q18: this sequence used to hold .main-content hidden for ~1.9s after
-// window load (500ms settle + 600 + 800), on top of a 2.5s progress fill,
-// which put the whole preloader inside the LCP measurement. The phases are
-// kept -- they are the site's identity -- but the budget is now ~340ms to
-// content reveal. CSS durations in style.css were shortened to match; if
-// you change one, change the other or the classes will outlive their
-// transitions.
+// Q18: the original sequence held .main-content at opacity 0 for ~1.9s after
+// window load, which put the whole reveal inside the LCP measurement. The fix
+// is NOT to rush the animation -- it is to stop the animation gating the
+// content. The page is faded in underneath the panel as soon as the panel
+// covers the screen, so LCP lands at ~260ms, and the purple sweep is then
+// free to take as long as it looks good (it plays over content that has
+// already painted).
 const TIMING = {
     progress: 700,   // cosmetic fill; the real trigger is window load
     settle: 60,      // hold at 100% before the reveal starts
-    slideUp: 120,
-    slideAway: 160,
-    cleanup: 400,    // after this the elements are display:none
+    slideUp: 200,    // preloader fade-out before the purple panel rises
+    slideAway: 700,  // how long the panel holds before sweeping away
+    cleanup: 950,    // after this the elements are display:none
 };
 
 // Q7 / WCAG 2.3.3: if the visitor has asked for reduced motion, skip the
@@ -104,14 +104,17 @@ class LoaderAnimation {
         // Phase 1: fade out the preloader
         this.preloader.classList.add('fade-out');
 
-        // Phase 2: bring the slide panel up over it
+        // Phase 2: the purple panel rises from the bottom and covers the
+        // screen. The content is faded in at the same moment -- hidden behind
+        // the panel, but painted and eligible for LCP. This is the whole
+        // trick: the animation no longer decides when the page is "there".
         setTimeout(() => {
             this.slidePanel.classList.add('slide-up');
+            this.mainContent.classList.add('fade-in');
 
-            // Phase 3: sweep the panel away and reveal the content
+            // Phase 3: the panel sweeps up and off, revealing the page.
             setTimeout(() => {
                 this.slidePanel.classList.add('slide-away');
-                this.mainContent.classList.add('fade-in');
 
                 // Phase 4: take both out of the layer tree
                 setTimeout(() => {

@@ -1,57 +1,78 @@
 
+// Mobile-only "pulse as it passes the middle of the screen" effect. On a
+// phone there is no hover, so each card briefly borrows the desktop hover
+// styling as it crosses the viewport centre.
+//
+// M2: this used to run getBoundingClientRect() over every card on every
+// scroll frame. That is a layout read per element per frame, on the main
+// thread, on the device least able to afford it. An IntersectionObserver
+// whose root is collapsed to a zero-height line at the viewport centre
+// (rootMargin -50% top and bottom) gets the browser to report the same
+// crossings off the main thread. The only scroll handler left is the one
+// that feeds the progress bar, which needs a continuous value.
 class ScrollCardAnimations {
+    // Selectors whose elements pulse as they cross the centre line.
+    static TARGETS = ['.primary-card', '.primary-card2', '.home__social-link'];
+
     constructor() {
         this.animatedElements = new Map();
-        this.isMobile = window.innerWidth <= 768;
-        this.lastScrollTime = 0;
+        this.observer = null;
+        this.onScroll = null;
+        this.onRendered = null;
         this.init();
     }
 
+    get enabled() {
+        return window.innerWidth <= 768
+            // Q7 / WCAG 2.3.3: decorative, so respect the OS setting.
+            && !(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches);
+    }
+
     init() {
-        if (!this.isMobile) return;
-        // Q7 / WCAG 2.3.3: these are decorative scale+fade reveals, so a
-        // visitor who has asked for reduced motion gets the cards as they
-        // are rather than a muted version of the animation.
-        if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+        if (!this.enabled) return;
+        this.setupObserver();
+        this.observeTargets();
+        this.trackScrollProgress();
 
-        this.setupCenterDetection();
-        this.addScrollListener();
+        // Cards, skill icons and the footer tech row are built from the sheet
+        // after this script runs, so anything rendered later has to be picked
+        // up when the renderer announces itself.
+        this.onRendered = () => this.observeTargets();
+        document.addEventListener('content:rendered', this.onRendered);
     }
 
-    setupCenterDetection() {
-        this.viewportCenter = window.innerHeight / 2;
-        this.tolerance = 50;
-
-        // Get all animatable elements
-        this.elements = {
-            primaryCards: document.querySelectorAll('.primary-card'),
-            primaryCards2: document.querySelectorAll('.primary-card2'),
-            clientCards: document.querySelectorAll('.client-card'),
-            socialCards: document.querySelectorAll('.social-card'),
-            skillIcons: document.querySelectorAll('.home__social-link'),
-            aboutBtns: document.querySelectorAll('.about-btn'),
-            starIcons: document.querySelectorAll('.star-icon'),
-            iconBoxes: document.querySelectorAll('.icon-boxes i')
-        };
-
-        // console.log('Found elements to animate:', {
-        //     primaryCards: this.elements.primaryCards.length,
-        //     clientCards: this.elements.clientCards.length,
-        //     socialCards: this.elements.socialCards.length,
-        //     skillIcons: this.elements.skillIcons.length
-        // });
+    setupObserver() {
+        this.observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const el = entry.target;
+                    this.triggerElementAnimation(
+                        el,
+                        el.classList.contains('primary-card') ? 'primaryCard' : 'other'
+                    );
+                });
+            },
+            {
+                // Collapse the root to a line across the middle of the screen:
+                // an element "intersects" it exactly while it covers the centre.
+                rootMargin: '-50% 0px -50% 0px',
+                threshold: 0,
+            }
+        );
     }
 
-    isElementInCenter(element) {
-        const rect = element.getBoundingClientRect();
-        const elementCenter = rect.top + (rect.height / 2);
-        const distanceFromCenter = Math.abs(elementCenter - this.viewportCenter);
-        return distanceFromCenter <= this.tolerance;
+    // Safe to call repeatedly: observing an element twice is a no-op.
+    observeTargets() {
+        if (!this.observer) return;
+        document
+            .querySelectorAll(ScrollCardAnimations.TARGETS.join(', '))
+            .forEach((el) => this.observer.observe(el));
     }
 
     getElementId(element) {
         if (!element.dataset.animationId) {
-            element.dataset.animationId = `element-${Math.random().toString(36).substr(2, 9)}`;
+            element.dataset.animationId = `element-${Math.random().toString(36).slice(2, 11)}`;
         }
         return element.dataset.animationId;
     }
@@ -60,129 +81,73 @@ class ScrollCardAnimations {
         const elementId = this.getElementId(element);
         const now = Date.now();
 
+        // Scrolling back and forth over one card should not strobe it.
         const lastAnimated = this.animatedElements.get(elementId);
-        if (lastAnimated && (now - lastAnimated) < 2000) {
-            return;
-        }
+        if (lastAnimated && now - lastAnimated < 2000) return;
 
-        // console.log(`Animating ${type}:`, elementId);
+        const children = type === 'primaryCard' ? this.childTargets(element) : [];
 
-        // Apply the exact desktop hover class
         element.classList.add('scroll-animated');
-
-        // For client cards and social cards, also animate their children
-        if (type === 'primaryCard') {
-            const clientCards = element.querySelectorAll('.client-card');
-            const socialCards = element.querySelectorAll('.social-card');
-            const aboutBtn = element.querySelector('.about-btn');
-            const starIcon = element.querySelector('.star-icon');
-
-            clientCards.forEach(card => card.classList.add('scroll-animated'));
-            socialCards.forEach(card => card.classList.add('scroll-animated'));
-            if (aboutBtn) aboutBtn.classList.add('scroll-animated');
-            if (starIcon) starIcon.classList.add('scroll-animated');
-        }
+        children.forEach((c) => c.classList.add('scroll-animated'));
 
         this.animatedElements.set(elementId, now);
 
-        // Remove animation classes after animation completes
         setTimeout(() => {
             element.classList.remove('scroll-animated');
-
-            if (type === 'primaryCard') {
-                const clientCards = element.querySelectorAll('.client-card');
-                const socialCards = element.querySelectorAll('.social-card');
-                const aboutBtn = element.querySelector('.about-btn');
-                const starIcon = element.querySelector('.star-icon');
-
-                clientCards.forEach(card => card.classList.remove('scroll-animated'));
-                socialCards.forEach(card => card.classList.remove('scroll-animated'));
-                if (aboutBtn) aboutBtn.classList.remove('scroll-animated');
-                if (starIcon) starIcon.classList.remove('scroll-animated');
-            }
+            children.forEach((c) => c.classList.remove('scroll-animated'));
         }, 800);
-
-        // Haptic feedback
-        // if ('vibrate' in navigator) {
-        //     navigator.vibrate(30);
-        // }
     }
 
-    checkElementsInCenter() {
-        // Check primary cards
-        this.elements.primaryCards.forEach(card => {
-            if (this.isElementInCenter(card)) {
-                this.triggerElementAnimation(card, 'primaryCard');
-            }
-        });
-
-        // Check primary cards 2
-        this.elements.primaryCards2.forEach(card => {
-            if (this.isElementInCenter(card)) {
-                this.triggerElementAnimation(card, 'primaryCard2');
-            }
-        });
-
-        // Check individual skill icons
-        this.elements.skillIcons.forEach(icon => {
-            if (this.isElementInCenter(icon)) {
-                this.triggerElementAnimation(icon, 'skillIcon');
-            }
-        });
+    childTargets(element) {
+        return [
+            ...element.querySelectorAll('.client-card, .social-card'),
+            ...[element.querySelector('.about-btn'), element.querySelector('.star-icon')].filter(Boolean),
+        ];
     }
 
-    addScrollListener() {
+    // body::before draws a progress bar from this custom property, so it needs
+    // a real scroll position rather than a crossing event.
+    trackScrollProgress() {
         let ticking = false;
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    this.handleScroll();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }, { passive: true });
-
-        // Initial check
-        setTimeout(() => {
-            this.checkElementsInCenter();
-        }, 500);
+        this.onScroll = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const scrollable = document.body.scrollHeight - window.innerHeight;
+                const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+                document.documentElement.style.setProperty('--scroll-progress', `${pct}%`);
+                ticking = false;
+            });
+        };
+        window.addEventListener('scroll', this.onScroll, { passive: true });
     }
 
-    handleScroll() {
-        const now = Date.now();
-
-        if (now - this.lastScrollTime < 50) {
-            return;
-        }
-
-        this.lastScrollTime = now;
-        this.checkElementsInCenter();
-
-        // Update scroll progress
-        const scrollPercentage = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        document.documentElement.style.setProperty('--scroll-progress', `${scrollPercentage}%`);
+    destroy() {
+        this.observer?.disconnect();
+        this.observer = null;
+        if (this.onScroll) window.removeEventListener('scroll', this.onScroll);
+        if (this.onRendered) document.removeEventListener('content:rendered', this.onRendered);
+        this.onScroll = this.onRendered = null;
     }
 
-    // Debug method
-    debugAnimation(type, index = 0) {
-        const elements = this.elements[type];
-        if (elements && elements[index]) {
-            this.triggerElementAnimation(elements[index], type);
-        }
+    debugAnimation(selector, index = 0) {
+        const el = document.querySelectorAll(selector)[index];
+        if (el) this.triggerElementAnimation(el, 'primaryCard');
     }
 }
 
-// Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    const scrollAnimations = new ScrollCardAnimations();
-    window.scrollAnimations = scrollAnimations;
+    window.scrollAnimations = new ScrollCardAnimations();
 });
 
-// Reinitialize on resize
+// Crossing the mobile breakpoint tears the old instance down first. The
+// previous version constructed a new one on every resize event and left the
+// old scroll listener attached.
+let resizeTimer = null;
 window.addEventListener('resize', () => {
-    if (window.innerWidth <= 768) {
-        new ScrollCardAnimations();
-    }
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        window.scrollAnimations?.destroy();
+        window.scrollAnimations = new ScrollCardAnimations();
+    }, 200);
 });

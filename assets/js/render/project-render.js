@@ -53,6 +53,48 @@ function card(p) {
   return col;
 }
 
+// M9 - CreativeWork structured data for the project grid, built from the
+// same rows the cards render. Same trade-off as the FAQ block: it only
+// exists after JS runs, but it can never drift from the sheet.
+function injectProjectSchema(rows) {
+  const previous = document.getElementById('projects-schema');
+  if (previous) previous.remove();
+  if (!rows.length) return;
+
+  const abs = (u) =>
+    !u ? undefined : /^https?:/i.test(u) ? u : new URL(u, document.baseURI).href;
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.id = 'projects-schema';
+  script.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Projects by Ayush Mishra',
+    itemListElement: rows.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'CreativeWork',
+        name: String(p.title ?? '').trim(),
+        // summary carries authored <br> for the card; schema wants plain text
+        description: String(p.summary || p.description || '')
+          .replace(/<br\s*\/?>/gi, ' ')
+          .replace(/\s+/g, ' ')
+          .trim(),
+        image: abs(p.image_url),
+        url: p.live_url || p.github_url || undefined,
+        codeRepository: p.github_url || undefined,
+        genre: p.category || undefined,
+        dateCreated: p.year || undefined,
+        keywords: splitList(p.tech_stack).join(', ') || undefined,
+        author: { '@type': 'Person', name: 'Ayush Mishra' },
+      },
+    })),
+  });
+  document.head.appendChild(script);
+}
+
 export async function renderProjects() {
   const grid = document.querySelector(GRID_SELECTOR);
   if (!grid) return;
@@ -66,6 +108,7 @@ export async function renderProjects() {
 
     grid.replaceChildren(frag);
     grid.dataset.rendered = 'true';
+    injectProjectSchema(visible);
     document.dispatchEvent(new CustomEvent('content:rendered', { detail: { name: 'projects' } }));
   } catch (err) {
     // Leave whatever is already in the grid rather than blanking the page.
