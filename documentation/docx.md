@@ -8,6 +8,12 @@
 - **Author:** Ayush Mishra — FullStack Web Developer (Backend Developer at Leapswitch Networks)
 - **Location:** Mumbai, Maharashtra, India
 - **Email:** ayushbm84@gmail.com
+- **Last verified against the code:** 2026-09-21
+
+> **Architecture note.** Page content is no longer hardcoded in the HTML. It is
+> authored in a Google Sheet, committed to `assets/data/*.json` by a scheduled
+> GitHub Action, and rendered client-side. See §2.1 before trusting any markup
+> quoted in the page-by-page sections below — the DOM is built at runtime.
 
 <br>
 
@@ -65,7 +71,10 @@ The visual design language is **dark, glassmorphic, and modern** with cyan-blue 
 ### Core
 - **HTML5** — semantic markup, six pages.
 - **CSS3** — single stylesheet `assets/css/style.css` (~70KB, ~3,300 lines).
-- **JavaScript** (vanilla ES6+) — split into 4 module files.
+- **JavaScript** (vanilla ES6+) — 4 classic scripts plus an ES-module content
+  layer (`assets/js/data.js` and `assets/js/render/*.js`). The renderers are
+  `type="module"`, so the site must be served over HTTP; opening `index.html`
+  from the filesystem leaves every sheet-backed section empty.
 - **Bootstrap 5.0.2** — grid system, modal, carousel, collapse (FAQ accordion).
 
 ### CDN-loaded resources
@@ -80,6 +89,38 @@ The visual design language is **dark, glassmorphic, and modern** with cyan-blue 
 | Ionicons | 5.5.2 | `unpkg.com/ionicons@5.5.2/dist/ionicons/` |
 | EmailJS | 3.x | `cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js` |
 | Google Fonts | — | `fonts.googleapis.com` |
+
+### 2.1 Content pipeline (Google Sheets CMS)
+
+Added 2026-09. The browser never talks to Google.
+
+```
+Google Sheet  ──(scheduled GitHub Action, every 6h + manual)──▶  assets/data/*.json  ──▶  page
+                 fetch → validate → promote → commit                committed to the repo
+```
+
+| Piece | What it does |
+|---|---|
+| `scripts/content-map.mjs` | Single source of truth: sheet tab → file, shape, schema |
+| `scripts/fetch-sheet.mjs` | `--staging-only` then `--promote`; `assets/data` is only overwritten once every tab has been fetched **and** the whole set validates |
+| `scripts/validate-data.mjs` | Schema gate; `--dry-run` for local checks |
+| `scripts/json-to-csv.mjs` | Exports current JSON back to the seed CSVs |
+| `.github/workflows/refresh-content.yml` | The cron; skips quietly when `SHEET_ID` / `GOOGLE_API_KEY` secrets are absent |
+| `sheets/seed-csv/` | Seed data extracted from the original markup |
+| `sheets/apps-script/Code.gs` | Write path: logs contact submissions to the sheet |
+
+Data lives under `assets/data/` in three groups: `site/` (profile, navigation,
+socials, footer-tech), `pages/` (one file of copy per page) and `collections/`
+(projects, experience, education, skills, certifications, services, faqs,
+stats, blog-posts).
+
+Plain strings are filled in via `data-text` / `data-html` attributes, so a new
+editable string needs a sheet key and one attribute — not a renderer change.
+Repeating structures are built by the renderers in `assets/js/render/`.
+
+**Current state:** the read path runs on committed seed data. `APPS_SCRIPT_URL`
+and `SHARED_TOKEN` in `contactform.js` are still empty, so the sheet write path
+is inert and the contact form behaves exactly as it did before.
 
 ### Performance hints used in `<head>`
 - `preconnect` → `fonts.googleapis.com`, `fonts.gstatic.com`, `cdnjs.cloudflare.com`, `kit.fontawesome.com`
@@ -98,16 +139,45 @@ Personal-Portfolio/
 ├── contact.html                # Contact form + FAQ
 ├── resume.html                 # Plain resume
 ├── README.md
+├── robots.txt                  # Crawler policy; AI bots allowed explicitly
+├── llms.txt                    # Plain-markdown index for LLM crawlers
+├── sitemap.xml                 # Six URLs, referenced from robots.txt
+├── CLAUDE.md                   # Agent instructions -- GITIGNORED, local only
+├── .env.example                # SHEET_ID / GOOGLE_API_KEY for local fetches
+├── .github/workflows/
+│   └── refresh-content.yml     # Cron: sheet -> validate -> commit JSON
+├── scripts/                    # Content pipeline, Node ESM (see 2.1)
+│   ├── content-map.mjs         # Tab -> file/shape/schema: source of truth
+│   ├── fetch-sheet.mjs         # --staging-only / --promote
+│   ├── validate-data.mjs       # Schema gate (--dry-run)
+│   ├── sheet-to-json.mjs
+│   └── json-to-csv.mjs
+├── sheets/
+│   ├── SETUP.md                # How to wire the sheet up
+│   ├── seed-csv/               # 17 CSVs seeded from the original markup
+│   └── apps-script/            # Code.gs: contact-form write path
 ├── documentation/
-│   └── docx.md                 # This file
+│   ├── docx.md                 # This file
+│   └── improvements-and-system-design.md   # v2 roadmap (zero-budget rule)
 ├── assets/
 │   ├── css/
 │   │   └── style.css           # Full stylesheet
+│   ├── data/                   # GENERATED -- never hand-edit
+│   │   ├── site/               # profile, navigation, socials, footer-tech
+│   │   ├── pages/              # one file of copy per page
+│   │   └── collections/        # projects, experience, education, skills,
+│   │                           #   certifications, services, faqs, stats,
+│   │                           #   blog-posts
 │   ├── js/
 │   │   ├── main.js             # Header, hamburger, spotlight effect
 │   │   ├── preloader.js        # Animated loader + reveal
-│   │   ├── scroll-animations.js# Mobile scroll-triggered card animations
-│   │   └── contactform.js      # EmailJS form + FAQ accordion
+│   │   ├── scroll-animations.js# Mobile card pulses (IntersectionObserver)
+│   │   ├── contactform.js      # EmailJS form + FAQ accordion + sheet log
+│   │   ├── data.js             # ES module: fetch/cache/escape/pictureHtml
+│   │   └── render/             # ES modules: one renderer per area
+│   │       ├── site-render.js      project-render.js
+│   │       ├── home-render.js      about-render.js
+│   │       └── services-render.js  faq-render.js
 │   ├── img/
 │   │   ├── favicon-portfolio.svg
 │   │   ├── Home page Profile image.jpg
@@ -118,6 +188,7 @@ Personal-Portfolio/
 │   │   │   portfolio project.png, 1.2 User homepage.png,
 │   │   │   2 .png, jabritravelss.png       # project screenshots
 │   │   └── certificate/        # 9 certificate images (see §12)
+│   │   # every referenced raster also has .avif + .webp siblings
 │   └── video/
 │       └── batman.mp4          # "Why hire me" modal video
 ```
@@ -126,17 +197,20 @@ Personal-Portfolio/
 
 ## 4. Common SEO / Meta (All Pages)
 
-The following meta block is repeated on every page (with page-specific `<title>`):
+Shared tags are listed below. **Changed 2026-09:** `description`, `og:title`,
+`og:description`, `twitter:title`, `twitter:description`, `canonical`, `og:url`
+and `twitter:url` are now **per page**, not shared. Only the tags marked
+"same on every page" below are still common.
 
 | Tag | Value |
 |---|---|
-| `<meta name="description">` | "Ayush Mishra - FullStack Web Developer & Software Developer. Passionate developer building scalable web applications and REST APIs with Laravel, PHP, JavaScript, and React, now focused on Python, Django, and Next.js." |
+| `<meta name="description">` | Per page. Home: "Ayush Mishra, FullStack Web Developer in Mumbai. Scalable web apps and REST APIs in Laravel, PHP and MySQL, React on the frontend, now building with Python, Django and Next.js." |
 | `<meta name="keywords">` | "Ayush Mishra, FullStack Developer, Backend Developer, Web Developer, Software Developer, Laravel, PHP, JavaScript, ReactJS, Python, Django, Next.js, MySQL, Portfolio" |
 | `<meta name="author">` | Ayush Mishra |
 | `<meta name="robots">` | index, follow |
 | `<meta name="theme-color">` | `#5B78F6` |
 | `<meta name="msapplication-TileColor">` | `#5B78F6` |
-| `<link rel="canonical">` | https://ayush-sleeping.github.io/Personal-Portfolio/ |
+| `<link rel="canonical">` | Per page, self-referencing (e.g. `.../Personal-Portfolio/about.html`) |
 
 ### Open Graph
 - `og:type` = website
@@ -182,26 +256,28 @@ A `Person` schema is embedded on every page:
 
 ### Fonts loaded
 
-**1) Google Fonts — single import in `style.css` line 2:**
+**1) Google Fonts — single import at the top of `style.css`:**
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&family=Roboto:wght@100..900&display=swap');
 ```
 
-| Font | Weights | Used For |
+The `wght@a..b` range syntax returns **one variable font file per family**
+instead of the seven static weight files the site used to request. Same two
+typefaces; every weight in use sits inside the axis.
+
+| Font | Axis | Used For |
 |---|---|---|
-| **Roboto** (sans-serif) | 400, 500, 700 | Body text, paragraphs, general content |
-| **Roboto Mono** (monospace) | 400, 500, 600, 700 | Headings (h1–h4), nav links, labels, all "branded" titles |
+| **Roboto** (sans-serif) | wght 100–900 | Body text, paragraphs, general content |
+| **Roboto Mono** (monospace) | wght 100–700 | Headings (h1–h4), nav links, labels, all "branded" titles |
 
-**2) Custom @font-face — line 1474 of `style.css`:**
-```css
-@font-face {
-  font-family: "Inter";
-  src: url("https://res.cloudinary.com/du6mfjbbd/raw/upload/v1696975586/wegxkv6mdriebvpvokwf.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-```
-Used selectively (e.g. preloader letters, certain buttons / shimmer-text components).
+**2) ~~Custom @font-face for "Inter" from Cloudinary~~ — removed 2026-09.**
+
+Earlier revisions of this document said Inter was "used selectively (preloader
+letters, certain buttons)". That was not true of the code: no rule in
+`style.css` and no element in the markup ever set `font-family: Inter`, so the
+face was declared, never matched, and never downloaded. The declaration has
+been deleted, which also removed the last third-party font origin. There is now
+no `@font-face` in the stylesheet.
 
 ### CSS Typography Variables (inside `:root`)
 
@@ -252,10 +328,24 @@ Used selectively (e.g. preloader letters, certain buttons / shimmer-text compone
 
 ### Brand Palette (used throughout the design)
 
+As of 2026-09 the two blues are **tokens, not literals**. `#5B78F6` used to be
+written out in 45 places and `#7B9BFF` in 3; changing the brand colour now means
+editing one line.
+
+| Token | Value | Was | Usage |
+|---|---|---|---|
+| `--brand` | `oklch(61.70% 0.1905 270.20)` | `#5B78F6` | Buttons, accent text, theme color, gradient start, link highlights, FAQ chevrons |
+| `--brand-light` | `oklch(70.96% 0.1507 268.94)` | `#7B9BFF` | Gradient mid/end, hover glow shadows |
+| `--brand-hover` | `color-mix(in oklch, var(--brand) 85%, white)` | — | Derived hover step |
+| `--brand-dim` | `color-mix(in oklch, var(--brand) 60%, var(--background-color))` | — | Derived muted step |
+| `--brand-ring` | `color-mix(in oklch, var(--brand) 70%, transparent)` | — | Focus/glow rings |
+
+The OKLCH values are exact equivalents of the hex they replaced — a rendered
+swatch samples as `rgb(91, 120, 246)` and `rgb(123, 155, 255)`. On a P3 display
+they may resolve slightly more saturated.
+
 | Role | Hex | Usage |
 |---|---|---|
-| **Primary Blue** | `#5B78F6` | Buttons, accent text, theme color, gradient start, link highlights, FAQ chevrons |
-| **Light Blue** | `#7B9BFF` | Gradient mid/end, hover glow shadows |
 | **Deep Purple / Violet** | `#9333EA` / `#8B5CF6` | Timeline, secondary gradients |
 | **Green Accent** | `#86C232` | Highlight text (`--bright-text-color`) |
 
@@ -636,6 +726,9 @@ Uses semantic `<dl>/<dt>/<dd>` for the info display. Print-friendly.
 
 ## 11. JavaScript Modules
 
+Two layers. The four classic scripts below predate the CMS; `data.js` and
+`render/*.js` are ES modules added with it (§2.1) and are listed at the end.
+
 ### `assets/js/main.js`
 Core site behavior:
 - Sticky header — adds `.active` class to `.header` past a scroll threshold and applies backdrop blur.
@@ -649,24 +742,54 @@ Class **`LoaderAnimation`** with state:
 - DOM refs: `.preloader`, `.slide-reveal-panel`, `.main-content`, `.loader-progress`, `.loader-percentage`.
 - `currentProgress`, `targetProgress`, `animationId`.
 
+Skipped entirely under `prefers-reduced-motion: reduce` — the page is simply
+shown. All durations live in one `TIMING` object at the top of the file; the
+matching CSS transition durations are in `style.css` and the two must be changed
+together.
+
 Behavior:
-1. `startLoading()` / `simulateProgress()` — RAF-driven progress bar, ~2500ms to ~95% then waits for `window.load`.
+1. `simulateProgress()` — RAF-driven progress bar, ~700ms to ~95%, then waits for `window.load`.
 2. `updateProgressBar()` / `animateProgressBar()` — smooth ease toward target, updates DOM `width` and percentage.
-3. `completeLoading()` — jumps to 100%, waits 500ms, starts reveal.
+3. `completeLoading()` — jumps to 100%, holds 60ms, starts the reveal.
 4. `startRevealAnimation()` — 4 phases:
-   - +0ms: `.preloader.fade-out` (opacity 0, hidden).
-   - +600ms: `.slide-reveal-panel.slide-up`.
-   - +800ms: `.slide-reveal-panel.slide-away` (translateY -100%) + `.main-content.fade-in`.
-   - +1200ms: `display: none` cleanup.
+   - +0ms: `.preloader.fade-out`.
+   - +200ms: `.slide-reveal-panel.slide-up` **and** `.main-content.fade-in`.
+   - +900ms: `.slide-reveal-panel.slide-away` (translateY -100%).
+   - +1850ms: `display: none` cleanup.
+
+**Why the content fades in at phase 2 rather than phase 3.** The panel covers
+the screen at that moment, so the page is hidden behind it — but it is painted
+and eligible for Largest Contentful Paint. Previously `.main-content` sat at
+`opacity: 0` until the panel swept away, which meant the decorative animation
+*gated* the content and put ~1.9s of it inside the LCP measurement.
+
+Decoupling the two is the whole point: content is painted at ~260ms, and the
+purple sweep is then free to take 900ms because nothing is waiting on it. Do
+not "optimise" this by shortening the sweep — that was tried, it measurably
+degraded the design, and it fixes nothing the decoupling has not already fixed.
 
 ### `assets/js/scroll-animations.js`
-Class **`ScrollCardAnimations`** — **mobile only** (runs only when `window.innerWidth <= 768`). Detects elements at viewport center (±50px tolerance) and triggers an 800ms `.scroll-animated` class for that card and its children. 2000ms cooldown per element.
+Class **`ScrollCardAnimations`** — **mobile only** (`window.innerWidth <= 768`),
+and skipped entirely under `prefers-reduced-motion: reduce`.
 
-Watched selectors: `.primary-card`, `.primary-card2`, `.client-card`, `.social-card`, `.home__social-link`, `.about-btn`, `.star-icon`, `.icon-boxes i`.
+Rewritten 2026-09. It previously ran `getBoundingClientRect()` over every card
+on every scroll frame. It now uses an **IntersectionObserver** whose root is
+collapsed to a zero-height line at the viewport centre
+(`rootMargin: '-50% 0px -50% 0px'`), which reports the same crossings without
+per-frame layout reads.
 
-For `.primary-card`, animates nested children: `.client-card`, `.social-card`, `.about-btn`, `.star-icon`.
+Observed selectors: `.primary-card`, `.primary-card2`, `.home__social-link`.
+For `.primary-card` it also pulses nested `.client-card`, `.social-card`,
+`.about-btn`, `.star-icon`. 800ms class, 2000ms cooldown per element.
 
-Also writes a `--scroll-progress` custom property (0–100%) for any scroll-progress UI. Scroll handler is throttled (~50ms) and rAF-batched. Exposes the instance as `window.scrollAnimations` for debugging.
+Re-observes on the `content:rendered` event, because sheet-backed elements are
+created after this script runs — previously those were never animated at all.
+`destroy()` tears down observer and listeners; the resize handler uses it
+instead of leaking a new instance per event.
+
+The one remaining scroll listener writes `--scroll-progress` (0–100%), which
+`body::before` draws as a progress bar and which needs a continuous value.
+Exposed as `window.scrollAnimations` for debugging.
 
 ### `assets/js/contactform.js`
 Two responsibilities:
@@ -684,9 +807,47 @@ Two responsibilities:
 - Fallback: manual `display`/`show` class toggling + `aria-expanded`.
 - Chevron icon `.faq-icon` rotates 180° via CSS based on `aria-expanded="true"`.
 
+### `assets/js/data.js` *(ES module)*
+The content layer's shared code: `load()` / `loadAll()` fetch and cache the JSON
+(memory + `localStorage`), `byOrder`, `splitList`, `splitPairs`, `isTrue`,
+`esc()` for safe interpolation, `applyText()` for `data-text` / `data-html`, and
+`pictureHtml()` which wraps local images in `<picture>` with AVIF/WebP sources.
+`clearCache()` is available from the console while editing the sheet.
+
+### `assets/js/render/*.js` *(ES modules)*
+One renderer per area, each reading from `assets/data` and marking its container
+`data-rendered="true"` (or `"failed"`) so problems are visible in the DOM:
+
+| File | Renders |
+|---|---|
+| `site-render.js` | profile text, navigation, socials, footer tech row, per-page copy |
+| `home-render.js` | home bento content |
+| `project-render.js` | project grid + `CreativeWork`/`ItemList` JSON-LD |
+| `about-render.js` | experience, education, certifications carousel, skills |
+| `services-render.js` | service cards |
+| `faq-render.js` | contact FAQ accordion + `FAQPage` JSON-LD |
+
+Both JSON-LD blocks are built from the same rows their cards render, so they
+cannot drift from the sheet. The trade-off is that they only exist after JS
+runs — fine for Google, possibly invisible to simpler fetchers.
+
 ---
 
 ## 12. Assets Inventory
+
+> **File sizes in this section and in §17 are pre-2026-09 and are no longer
+> accurate.** Every referenced raster was resampled to 2× its CSS display size
+> and now ships alongside `.avif` and `.webp` siblings of the same basename,
+> which are what browsers actually download. `assets/img` went from 26 MB to
+> 15 MB on disk; the certificate payload on `/about` went from 14,766 KB to
+> **550 KB** and the project screenshots from 9,858 KB to **335 KB**. The
+> largest generated file is 180 KB.
+>
+> **Invariant:** every local `image_url` in `assets/data` must have `.avif` and
+> `.webp` siblings. A `<source>` the browser accepts but cannot fetch is *not*
+> retried against the `<img>` fallback, so a missing sibling is a broken image,
+> not a slow one. Remote URLs (the Udemy certificates) are passed through as a
+> plain `<img>` by `pictureHtml()`.
 
 ### `assets/img/`
 
@@ -762,9 +923,27 @@ The keys above are public client-side keys (intended to be visible in the browse
 - Google Fonts `display=swap`.
 - Decoded async images: `<img decoding="async">`.
 - `will-change: transform` and `backface-visibility: hidden` on animated cards.
-- `requestAnimationFrame` + 50ms throttle for scroll/animation loops.
-- 2000ms debounce per element for the mobile scroll-trigger animation.
+- `requestAnimationFrame` batching on the one remaining scroll handler.
+- 2000ms cooldown per element for the mobile scroll-trigger animation.
 - Single CSS file — no build step required.
+- **AVIF/WebP via `<picture>`** for every local raster (see §12).
+- **Variable fonts** — one file per family instead of seven static weights (§5).
+- **LCP hints**: `fetchpriority="high"` plus a *typed* AVIF `<link rel="preload">`
+  on the two images that are genuinely the LCP element (home portrait,
+  resume portrait). The `type="image/avif"` matters — browsers without AVIF skip
+  the preload instead of fetching a format they cannot use. `about.html` reuses
+  the same portrait but renders it below a full section, so there it is `lazy`.
+- `loading="lazy"` on every non-LCP image; explicit `width`/`height` on static
+  images to reserve space.
+- **The reveal animation no longer gates the content** — see `preloader.js` in
+  §11. Content paints at ~260ms instead of ~1.9s.
+- `backdrop-filter` drops from 10px to 4px under 768px and off entirely on
+  `.client-card`: it is the heaviest thing on a mobile GPU while scrolling.
+
+**Known drag, not yet addressed:** Bootstrap 5.0.2 is loaded unminified-ish from
+CDN for a small amount of grid/modal/collapse/carousel use, and every page
+hotlinks its decorative card backgrounds and star icons from
+`wpriverthemes.com` — a third-party theme site the deploy does not control.
 
 ---
 
@@ -775,14 +954,39 @@ The keys above are public client-side keys (intended to be visible in the browse
 - Headings ordered (h1 → h6).
 - Form fields use matching `id` / `name` and labels/placeholders.
 - `aria-expanded` on FAQ triggers; `aria-hidden` on collapsed content.
-- Sufficient color contrast (white on `#0F0F0F`, blue `#5B78F6` accent on dark).
+- Sufficient color contrast (white on `#0F0F0F`, `var(--brand)` accent on dark).
 - Touch targets sized for mobile (e.g. 82×82 social icons).
+- **Global `:focus-visible` ring** (2px `var(--brand)`, 2px offset) for WCAG 2.2
+  SC 2.4.13. The three former `outline: none` resets are narrowed to
+  `:focus:not(:focus-visible)` so pointer focus stays quiet and keyboard focus
+  does not.
+- **`prefers-reduced-motion: reduce`** honoured in CSS (blanket near-zero
+  durations) *and* in JS — the preloader, the mobile card pulses and the GSAP
+  ScrollTrigger morph each bail out, because GSAP writes inline styles a media
+  query cannot reach.
+- **Footer tech tooltips are keyboard-reachable**: the triggers carry
+  `tabindex="0"`, `role="img"` and `aria-label`, and the tooltip is mirrored onto
+  `:focus-visible`. Previously the text existed only as CSS `::before` content,
+  invisible to assistive tech.
+- Icon-only links carry `aria-label`; their `<i>` glyphs are `aria-hidden`.
 
 **SEO**
-- Per-page `<title>`.
-- Common description / keywords / robots / canonical.
-- Open Graph + Twitter cards w/ image.
-- JSON-LD `Person` schema on every page.
+- Per-page `<title>`, `<meta name="description">`, `og:`/`twitter:` title and
+  description — all six distinct.
+- **Self-referencing `rel="canonical"`.** Until 2026-09 every page pointed its
+  canonical at the homepage, which told search engines the other five were
+  duplicates and should not be indexed.
+- JSON-LD: `Person` on every page, `WebSite` on the home page,
+  `BreadcrumbList` on the other five, plus runtime `FAQPage` (contact) and
+  `CreativeWork`/`ItemList` (projects).
+  `WebSite` deliberately carries **no** `potentialAction`/`SearchAction`: there
+  is no search endpoint, and declaring one that 404s is a false claim.
+- `robots.txt` — allows the AI crawlers (GPTBot, ClaudeBot, PerplexityBot,
+  Google-Extended and friends) explicitly. Note that `Allow`/`Disallow` bind to
+  the `User-agent` group above them and are **not** inherited, so the
+  `/scripts/` exclusion is repeated per group.
+- `llms.txt` — plain-markdown index of pages, experience and projects.
+- `sitemap.xml` — six URLs, referenced from `robots.txt`.
 - Internal cross-linking through the side nav, header navbar and footer.
 
 ---
