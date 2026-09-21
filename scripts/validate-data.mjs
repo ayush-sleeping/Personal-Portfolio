@@ -103,6 +103,54 @@ for (const spec of CONTENT) {
   console.log(`  ok  ${file} — ${parsed.length} row(s)`);
 }
 
+// --------------------------------------------------------------------------
+// Image siblings.
+//
+// Local images are served through <picture> with .avif and .webp <source>
+// entries derived from the image_url in the sheet. A <source> the browser
+// accepts but cannot fetch is NOT retried against the <img> fallback, so a
+// local image_url without siblings is a BROKEN image, not merely a slow one.
+// That makes this an invariant worth failing the build over: pointing the
+// sheet at a newly uploaded .png is otherwise a silent breakage.
+//
+// Remote URLs are skipped -- pictureHtml() passes those through as a plain
+// <img> and never builds sources for them.
+const LOCAL_RASTER = /^assets\/img\/.+\.(png|jpe?g)$/i;
+
+for (const spec of CONTENT) {
+  const file = `${DATA_DIR}/${spec.file}`;
+  if (!existsSync(file)) continue;
+
+  let parsed;
+  try {
+    parsed = JSON.parse(readFileSync(file, 'utf8'));
+  } catch {
+    continue; // already reported above
+  }
+
+  const rows = Array.isArray(parsed) ? parsed : [parsed];
+  rows.forEach((item, i) => {
+    if (!item || typeof item !== 'object') return;
+    for (const [key, value] of Object.entries(item)) {
+      if (!/image|img|photo|thumbnail/i.test(key)) continue;
+      const url = String(value ?? '').trim();
+      if (!LOCAL_RASTER.test(url)) continue;
+
+      const base = url.replace(/\.(png|jpe?g)$/i, '');
+      for (const ext of ['avif', 'webp']) {
+        if (!existsSync(`${base}.${ext}`)) {
+          errors.push(
+            `${spec.file} row ${i + 1} "${key}": ${url} has no .${ext} sibling ` +
+            `(expected ${base}.${ext}). <picture> will not fall back -- the ` +
+            `image would render broken. Generate it, or point the sheet at an ` +
+            `image that has siblings.`
+          );
+        }
+      }
+    }
+  });
+}
+
 for (const w of warnings) console.warn(`warn  ${w}`);
 for (const e of errors) console.error(` ERR  ${e}`);
 

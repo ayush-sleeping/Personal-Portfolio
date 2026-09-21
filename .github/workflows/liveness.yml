@@ -1,0 +1,53 @@
+name: Liveness — published content
+
+# B21 phase 4, step 19. The refresh workflow proves the sheet can be read and
+# committed; this proves the result is actually being served. They fail for
+# different reasons: a broken Pages deploy, a bad path after a rename, or JSON
+# that is valid on disk but truncated in transit.
+
+on:
+  schedule:
+    - cron: '17 6 * * *'    # daily, off the hour to avoid the cron rush
+  workflow_dispatch:
+
+concurrency:
+  group: liveness
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch and parse the published JSON
+        run: |
+          set -uo pipefail
+          BASE="https://ayush-sleeping.github.io/Personal-Portfolio"
+          FILES="
+            assets/data/site/profile.json
+            assets/data/site/navigation.json
+            assets/data/collections/projects.json
+            assets/data/collections/faqs.json
+            assets/data/pages/home.json
+          "
+          fail=0
+          for f in $FILES; do
+            code=$(curl -sS -o /tmp/body -w '%{http_code}' --max-time 20 "$BASE/$f" || echo 000)
+            if [ "$code" != "200" ]; then
+              echo "::error::$f returned HTTP $code"
+              fail=1
+              continue
+            fi
+            # A 200 is not enough: Pages serves its 404 page with a 200 on some
+            # misconfigurations, and a truncated file still has a status line.
+            if ! jq empty /tmp/body 2>/dev/null; then
+              echo "::error::$f returned 200 but is not valid JSON"
+              head -c 200 /tmp/body
+              fail=1
+              continue
+            fi
+            echo "ok  $f ($(wc -c < /tmp/body) bytes)"
+          done
+          exit $fail
