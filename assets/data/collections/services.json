@@ -4,24 +4,40 @@
     "title": "Full Stack Web Development",
     "icon_class": "fas fa-code",
     "summary": "",
-    "bullet_points": "Complete Laravel + JavaScript Solutions::End-to-end development from database design to user interface, creating seamless web applications. | Production Experience::2+ years building real-world applications with proper version control and deployment workflows.",
+    "bullet_points": "End-to-End Web Applications::From database design to user interface: Laravel + React in production, Django + Next.js for new builds. | Production Experience::2+ years building real-world applications with proper version control and deployment workflows.",
     "order": "1"
+  },
+  {
+    "id": "current-focus",
+    "title": "Current Focus: Django + Next.js",
+    "icon_class": "fas fa-seedling",
+    "summary": "",
+    "bullet_points": "Python & Django::Building backends with Django's ORM, class-based views, and REST APIs, bringing the same discipline I use in Laravel. | Next.js::Server-side rendering, file-based routing, and faster first loads for React frontends.",
+    "order": "2"
   },
   {
     "id": "backend",
     "title": "Backend Development",
     "icon_class": "fas fa-server",
     "summary": "",
-    "bullet_points": "Laravel, Python & Django::MVC architecture, Eloquent ORM, and middleware for robust server-side applications — currently expanding backend work into Python & Django. | RESTful API Development::Creating scalable APIs with proper authentication, validation, and error handling.",
-    "order": "2"
+    "bullet_points": "Laravel & PHP::MVC architecture, Eloquent ORM, and middleware for robust server-side applications in production. | RESTful API Development::Creating scalable APIs with proper authentication, validation, and error handling.",
+    "order": "3"
   },
   {
     "id": "frontend",
     "title": "Frontend Development",
     "icon_class": "fas fa-palette",
     "summary": "",
-    "bullet_points": "Responsive Design::Mobile-first approach ensuring optimal user experience across all devices and screen sizes. | Interactive JavaScript & React::Dynamic user interfaces with React and modern ES6+ features — now building with Next.js.",
-    "order": "3"
+    "bullet_points": "Responsive Design::Mobile-first approach ensuring optimal user experience across all devices and screen sizes. | Interactive JavaScript & React::Dynamic user interfaces with React and modern ES6+ features.",
+    "order": "4"
+  },
+  {
+    "id": "system-design",
+    "title": "Backend System Design & AI-Assisted Development",
+    "icon_class": "fas fa-sitemap",
+    "summary": "",
+    "bullet_points": "System Design::Planning architecture, data models, and API contracts before writing code, so the system scales and stays maintainable. | AI-Assisted Development::Using Claude Code to speed up implementation, with every change reviewed, tested, and understood before it ships.",
+    "order": "5"
   },
   {
     "id": "production",
@@ -29,6 +45,6 @@
     "icon_class": "fas fa-tools",
     "summary": "",
     "bullet_points": "Git Workflows & Collaboration::Experience with branching strategies, code reviews, and team-based development. | AWS Deployment & Debugging::Cloud hosting, server management, and real-time troubleshooting for production apps.",
-    "order": "4"
+    "order": "6"
   }
 ]

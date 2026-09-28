@@ -1,4 +1,4 @@
-// Renders the four service cards on services.html from assets/data/services.json.
+// Renders the service cards on services.html from assets/data/collections/services.json.
 //
 // bullet_points holds the feature list in one cell:
 //   "Feature title::Feature description | Second title::Second description"
