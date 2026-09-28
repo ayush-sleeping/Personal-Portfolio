@@ -112,7 +112,7 @@ Google Sheet  ──(scheduled GitHub Action, every 6h + manual)──▶  asset
 Data lives under `assets/data/` in three groups: `site/` (profile, navigation,
 socials, footer-tech), `pages/` (one file of copy per page) and `collections/`
 (projects, experience, education, skills, certifications, services, faqs,
-stats, blog-posts).
+stats).
 
 Plain strings are filled in via `data-text` / `data-html` attributes, so a new
 editable string needs a sheet key and one attribute — not a renderer change.
@@ -166,8 +166,7 @@ Personal-Portfolio/
 │   │   ├── site/               # profile, navigation, socials, footer-tech
 │   │   ├── pages/              # one file of copy per page
 │   │   └── collections/        # projects, experience, education, skills,
-│   │                           #   certifications, services, faqs, stats,
-│   │                           #   blog-posts
+│   │                           #   certifications, services, faqs, stats
 │   ├── js/
 │   │   ├── main.js             # Header, hamburger, spotlight effect
 │   │   ├── preloader.js        # Animated loader + reveal
@@ -180,8 +179,8 @@ Personal-Portfolio/
 │   │       └── services-render.js  faq-render.js
 │   ├── img/
 │   │   ├── favicon-portfolio.svg
-│   │   ├── Home page Profile image.jpg
-│   │   ├── about me.png
+│   │   ├── user/IMG_9358.jpg   # current portrait (+ .avif/.webp), used site-wide
+│   │   ├── Home page Profile image.jpg, about me.png   # legacy portraits
 │   │   ├── ayush sign.png
 │   │   ├── github3.png, my works.png
 │   │   ├── larabasex.png, write_on.png, daily_buzz.png,
@@ -216,7 +215,7 @@ and `twitter:url` are now **per page**, not shared. Only the tags marked
 - `og:type` = website
 - `og:title` = "Ayush Mishra - FullStack Web Developer Portfolio"
 - `og:description` = "Passionate developer building scalable web applications and REST APIs with Laravel, PHP, JavaScript, and React, now focused on Python, Django, and Next.js."
-- `og:image` = `https://ayush-sleeping.github.io/Personal-Portfolio/assets/img/about me.png`
+- `og:image` = `https://ayush-sleeping.github.io/Personal-Portfolio/assets/img/user/IMG_9358.jpg`
 - `og:site_name` = "Ayush Mishra Portfolio"
 
 ### Twitter
@@ -542,7 +541,7 @@ All six pages share:
 4. **About / Hero Card Grid** (Bootstrap rows):
    - **Primary About card** (`col-lg-6`)
      - Background image (external URL).
-     - Profile image: `assets/img/Home page Profile image.jpg`
+     - Profile image: `assets/img/user/IMG_9358.jpg`
      - **Name:** "Ayush Mishra"
      - **Tagline:** "FullStack Web Developer • Backend Specialist"
      - **Intro:** "I craft scalable web applications and APIs with Laravel and JavaScript, now building with Python, Django, and Next.js."
@@ -617,7 +616,7 @@ All six pages share:
 7. **Skills & Technologies sidebar** (`col-lg-4` right):
    - **Established / Working With:** Laravel · PHP · MySQL · JavaScript · ReactJS · Bootstrap · HTML · CSS · REST APIs · Git · AWS · Core Java
    - **Currently Focusing On:** Python · Django · Next.js
-   - **Profile card** — image `about me.png`, name, social links (Mail/GitHub/LinkedIn/Twitter via Remixicon), "Contact Me" button.
+   - **Profile card** — image `user/IMG_9358.jpg`, name, social links (Mail/GitHub/LinkedIn/Twitter via Remixicon), "Contact Me" button.
    - Credentials, Projects, GitHub, Social Profiles, CTA cards (same pattern as home).
 
 8. **Footer** (common).
@@ -650,14 +649,16 @@ A **Skills & Technologies** block appears below the grid (same content as the ab
 
 **Heading:** "My Offerings"
 
-**Layout:** 2-column grid of 4 service cards.
+**Layout:** 2-column grid of 6 service cards. Keep the count even so no card sits alone on the last row.
 
 | # | Title | Icon | Features |
 |---|---|---|---|
-| 1 | Full Stack Web Development | `fa-code` | Complete Laravel + JavaScript Solutions • Production Experience (2+ yrs) |
-| 2 | Backend Development | `fa-server` | Laravel, Python & Django (MVC, Eloquent, middleware; expanding into Python & Django) • RESTful API Development |
-| 3 | Frontend Development | `fa-palette` | Responsive Design (mobile-first) • Interactive JavaScript & React (ES6+, now building with Next.js) |
-| 4 | Production & Team Skills | `fa-tools` | Git Workflows & Collaboration • AWS Deployment & Debugging |
+| 1 | Full Stack Web Development | `fa-code` | End-to-End Web Applications (Laravel + React in production, Django + Next.js for new builds) • Production Experience (2+ yrs) |
+| 2 | Current Focus: Django + Next.js | `fa-seedling` | Python & Django (ORM, class-based views, REST APIs) • Next.js (SSR, file-based routing) |
+| 3 | Backend Development | `fa-server` | Laravel & PHP (MVC, Eloquent, middleware) • RESTful API Development |
+| 4 | Frontend Development | `fa-palette` | Responsive Design (mobile-first) • Interactive JavaScript & React (ES6+) |
+| 5 | Backend System Design & AI-Assisted Development | `fa-sitemap` | System Design (architecture, data models, API contracts) • AI-Assisted Development (Claude Code, every change reviewed and tested) |
+| 6 | Production & Team Skills | `fa-tools` | Git Workflows & Collaboration • AWS Deployment & Debugging |
 
 All icons in primary blue `#5B78F6`. Each feature row has a `fa-check-circle` icon.
 
@@ -703,7 +704,7 @@ All icons in primary blue `#5B78F6`. Each feature row has a `fa-check-circle` ic
 
 **Layout:** Sidebar (`col-lg-4`) + main content (`col-lg-8`).
 
-**Sidebar:** profile image `about me.png`, name, Email/GitHub/LinkedIn/Twitter (Remixicon), "Contact Me" CTA.
+**Sidebar:** profile image `user/IMG_9358.jpg`, name, Email/GitHub/LinkedIn/Twitter (Remixicon), "Contact Me" CTA.
 
 **Main content:**
 - **About** — same bio + quick info list as about.html.
@@ -852,8 +853,9 @@ runs — fine for Google, possibly invisible to simpler fetchers.
 ### `assets/img/`
 
 **Profile / brand**
-- `Home page Profile image.jpg` (~187KB) — home hero portrait.
-- `about me.png` (~208KB) — about/resume profile image, also OG/Twitter share image.
+- `user/IMG_9358.jpg` (~70KB, 509×679, with .avif/.webp siblings) — the portrait on home, about and resume, and the OG/Twitter share image on every page.
+- `user/IMG_9357.jpg` — alternate shot from the same set; not referenced.
+- `Home page Profile image.jpg`, `about me.png` — previous home / about+resume portraits; no longer referenced.
 - `ayush sign.png` (~11KB) — signature graphic for Credentials card.
 - `Ayush pic.jpeg`, `Ayush resume pic.jpeg` — earlier portrait images.
 
@@ -1006,11 +1008,14 @@ This section is the result of opening every file in `assets/img/` and `assets/im
 
 ### 17.1 Profile / brand imagery
 
+#### `user/IMG_9358.jpg` (~70 KB · 509×679 portrait)
+The **current portrait, used everywhere**: the Primary About card on `index.html`, the profile card on `about.html` and `resume.html`, and the OG / Twitter share image. A casual selfie looking up and off to the right — tousled hair, clear-frame glasses, white wired earphones, black t-shirt, office ceiling and glass partitions behind. The frames are square, and `object-fit: cover` crops it to the face.
+
 #### `Home page Profile image.jpg` (~187 KB · roughly square)
-The hero portrait used inside the **Primary About card** on `index.html`. Ayush is photographed at a podium speaking into a microphone. He wears a white shirt with a blue lanyard / ID card. Behind him is a banner with the words **"Shankar Narayan College of Arts &"**, **"& Self Finance Courses"**, and a large red title **"Research"** / **"Development"** — clearly a college research-and-development event banner. The wall is light purple, with a window covered by a sheer blue/white curtain. Vibe: confident, in-public, presenter mode. Crops nicely into a rounded card.
+*Legacy — replaced by `user/IMG_9358.jpg`.* Formerly the hero portrait inside the **Primary About card** on `index.html`. Ayush is photographed at a podium speaking into a microphone. He wears a white shirt with a blue lanyard / ID card. Behind him is a banner with the words **"Shankar Narayan College of Arts &"**, **"& Self Finance Courses"**, and a large red title **"Research"** / **"Development"** — clearly a college research-and-development event banner. The wall is light purple, with a window covered by a sheer blue/white curtain. Vibe: confident, in-public, presenter mode. Crops nicely into a rounded card.
 
 #### `about me.png` (~208 KB · 1:1 circular crop)
-The image used as the **profile avatar on `about.html` and `resume.html`**, **and as the OG / Twitter share image** for the whole site. A side-profile shot of Ayush leaning against a textured grey concrete pillar / wall. White shirt, yellow lanyard reading "AYUSH BM" partially visible on chest. Soft daylight. Calm, contemplative posture — different mood from the home-page hero (presenter vs. portrait).
+*Legacy — replaced by `user/IMG_9358.jpg`.* Formerly the **profile avatar on `about.html` and `resume.html`** and the OG / Twitter share image. A side-profile shot of Ayush leaning against a textured grey concrete pillar / wall. White shirt, yellow lanyard reading "AYUSH BM" partially visible on chest. Soft daylight. Calm, contemplative posture — different mood from the home-page hero (presenter vs. portrait).
 
 #### `ayush sign.png` (~11 KB · transparent PNG)
 A hand-drawn cursive **signature reading "Aymishra"** in a thin silver-grey ink on transparent background. This is what shows inside the **"MORE ABOUT ME / Credentials"** card on the home page (and reused on `about.html`).
@@ -1019,7 +1024,7 @@ A hand-drawn cursive **signature reading "Aymishra"** in a thin silver-grey ink 
 A formal **passport / ID-style portrait** — younger Ayush against a near-white background, dark V-neck top, neutral expression. Higher contrast than the current site portraits. Likely a legacy asset; not currently referenced from any HTML page.
 
 #### `Ayush resume pic.jpeg` (~27 KB · vertical crop)
-Tall portrait crop of the same college-podium event as `Home page Profile image.jpg` but in a **vertical/portrait aspect ratio**, well-suited to a resume sidebar. Legacy asset; no longer referenced (the current resume page uses `about me.png`).
+Tall portrait crop of the same college-podium event as `Home page Profile image.jpg` but in a **vertical/portrait aspect ratio**, well-suited to a resume sidebar. Legacy asset; no longer referenced (the current resume page uses `user/IMG_9358.jpg`).
 
 #### `A1.jpg` (~137 KB · landscape)
 **Lifestyle / aesthetic photograph** — Ayush stands on a rocky shoreline with his back to the camera, wearing a dark t-shirt and shorts, looking out at the sea. Red-brown rocks foreground, calm grey-blue ocean, distant cliffs and trees on the left, soft overcast sky. Looks like coastal Maharashtra/Goa. Not currently referenced; appears to be a saved hero/decorative candidate.
