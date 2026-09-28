@@ -23,7 +23,7 @@ Create a Google Sheet named **`portfolio-cms`**. It needs one tab per CSV in
 
 **Collections** (repeating lists)
 `projects` · `experience` · `education` · `skills` · `certifications`
-`services` · `faqs` · `stats` · `blog_posts`
+`services` · `faqs` · `stats`
 
 Plus `contact_submissions`, which the form creates by itself.
 
@@ -37,8 +37,7 @@ There are two tab shapes, and the CSV already matches the right one:
 - **Row tabs** (everything else) have a header row and one record per row.
 
 Column names must match exactly; the pipeline matches by header name, not
-position. `blog_posts` has no seed CSV — create it with just a header row:
-`id, slug, title, excerpt, cover_image, published_date, tags, content_md, status`
+position.
 
 Then **Share → Anyone with the link → Viewer.**
 
@@ -116,7 +115,7 @@ assets/data/
 ├── site/          profile, navigation, socials, footer-tech   (shared)
 ├── pages/         home, about, projects, services, contact, resume  (page copy)
 └── collections/   projects, experience, education, skills,
-                   certifications, services, faqs, stats, blog-posts
+                   certifications, services, faqs, stats
 ```
 
 ## How the text on a page is filled in

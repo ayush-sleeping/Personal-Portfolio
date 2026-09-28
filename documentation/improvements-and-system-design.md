@@ -40,7 +40,7 @@ If you ever see a paid option mentioned later (e.g. SheetDB, Sheety, Plausible, 
 9. [The senior's idea, and the right shape of it](#b9-the-seniors-idea-and-the-right-shape-of-it)
 10. [Pattern comparison — four read approaches](#b10-pattern-comparison--four-read-approaches)
 11. [Recommended architecture](#b11-recommended-architecture)
-12. [Sheet schema (10 tabs)](#b12-sheet-schema-10-tabs)
+12. [Sheet schema (9 tabs)](#b12-sheet-schema-9-tabs)
 13. [Frontend data layer (vanilla JS)](#b13-frontend-data-layer-vanilla-js)
 14. [Build-time fetch (GitHub Actions)](#b14-build-time-fetch-github-actions)
 15. [Write path — Apps Script `doPost` for the contact form](#b15-write-path--apps-script-dopost-for-the-contact-form)
@@ -78,7 +78,7 @@ The portfolio is **already above average for 2026** on several axes:
 The three weakest axes (highest-ROI to fix):
 
 1. **Performance / image hygiene** — certificate PNGs at 1.86–5.58 MB, no `fetchpriority` on the LCP hero image, render-blocking Cloudinary font, the 1.2-second preloader artificially inflating LCP. With the March 2026 core update, performance weight in Google ranking went up; only ~47% of sites pass CWV "good" today [9].
-2. **Content depth** — no case studies and no blog. Every 2026 portfolio guide names this as the #1 differentiator: *"Your portfolio's job is to make someone remember you in 30 seconds"* [3][31][32][33][34].
+2. **Content depth** — no case studies. Every 2026 portfolio guide names this as the #1 differentiator: *"Your portfolio's job is to make someone remember you in 30 seconds"* [3][31][32][33][34].
 3. **Accessibility hardening** — WCAG 2.2 added Focus Appearance, Target Size, Focus Not Obscured success criteria — current pure-CSS hover tooltips and missing focus-visible styles fail these [10][14][15][43][44].
 
 ## A3. The 2026 lens — what's "in" and "out"
@@ -153,19 +153,20 @@ After Q1–Q18, expect: **Lighthouse Performance 70 → 92+, LCP 3.5s → 1.7s, 
 
 | # | Feature | Why |
 |---|---|---|
-| B1 | **`/blog` or `/writing` section.** Even 3 posts ("How I built LaraBaseX", "Migrating from Bootstrap to native CSS in 2026", "Adding `llms.txt` to a static site") move the portfolio quality from "developer" → "developer who communicates." Implementation options: (a) hand-write static HTML files; (b) introduce **Astro 6** (Cloudflare-acquired Jan 2026; 60% of Astro sites pass CWV vs 38% for Gatsby/WP) keeping the current visuals and gaining MDX-style content collections. | Single highest-leverage addition per all 2026 portfolio guides [3][31][32][42]. |
 | B2 | **An AI-related project — fully free path.** Build a "Resume Q&A" feature that runs **entirely in the browser** with no API calls. Two free options: (a) **Web-LLM / `@mlc-ai/web-llm`** runs a small quantized model (Llama 3.2 1B, ~600 MB) directly via WebGPU — first load is heavy but $0/request. (b) Even simpler: **client-side keyword + cosine similarity** over your resume text using `compromise.js` or a 5 KB hand-rolled BM25 — feels AI-ish, costs nothing, ships in <50 KB. **Skip cloud LLM APIs** (Claude / Gemini / OpenAI) — they all charge per token. | "AI-related projects on your portfolio is basically a requirement now" [3][30]. |
-| B3 | Migrate to **Astro 6** (or stay plain static + add a tiny build step). Astro Islands give you `client:visible` interactivity, built-in image optimization (AVIF/WebP), View Transitions, content collections for the blog, automatic sitemap. Keep all current CSS untouched. | Better default performance + zero hydration cost; aligns with where 2026 static-site portfolios are going [42]. |
+| B3 | Migrate to **Astro 6** (or stay plain static + add a tiny build step). Astro Islands give you `client:visible` interactivity, built-in image optimization (AVIF/WebP), View Transitions, automatic sitemap. Keep all current CSS untouched. | Better default performance + zero hydration cost; aligns with where 2026 static-site portfolios are going [42]. |
 | B4 | A **Three.js Easter egg** — interactive 3D version of the "ayushSleeping" logo on the 404 page, or a particle system in the preloader. | Memorability differentiator; signals frontend depth; "anti AI-generated sameness" angle [35]. |
 | B5 | A **terminal-style alternate route** (`/terminal` or `?theme=terminal`). Same content, command-line UX (`whoami`, `projects`, `experience`, `contact`, `cat resume.txt`). | High personality, recognized portfolio genre [38]. |
 | B6 | **`[SKIP — paid]`** ~~Custom domain on Cloudflare Pages / Vercel.~~ Domains cost ₹800–1500/yr. **Free alternative if you want edge functions:** keep GitHub Pages **OR** point your repo at **Cloudflare Pages** (free, generous free tier, gives you `*.pages.dev` + free Cloudflare Workers for serverless contact-form / cache proxy at $0). No custom domain needed. | Cloudflare Pages free tier > GitHub Pages on flexibility (edge functions, analytics, Turnstile) — and still ₹0/month. |
 | B7 | **Google Sheets-as-CMS integration** — see Part B below. Lets all the dynamic data (projects, certs, FAQs, experience) be edited in a sheet with no code change. | The senior's idea, fully designed in §9–§22. |
 
+> **B1 (blog / writing section) is dropped, permanently.** This is the portfolio of a backend engineer, not a publication. Depth comes from case studies (M7), not posts. Do not reintroduce a blog, a `blog_posts` sheet tab, or blog content collections.
+
 ## A7. Tools & libraries worth knowing
 
 | Tool | What | Use here? |
 |---|---|---|
-| **Astro 6** | Static-first meta-framework; Islands; built-in image optim; content collections; MDX; View Transitions; sitemap generator. Cloudflare-acquired Jan 2026. | Strong fit for B1/B3 [42]. |
+| **Astro 6** | Static-first meta-framework; Islands; built-in image optim; content collections; MDX; View Transitions; sitemap generator. Cloudflare-acquired Jan 2026. | Strong fit for B3 [42]. |
 | **Motion (motion.dev)** | Successor to Framer Motion; DOM + React + Vue; built on WAAPI + Scroll Timeline; free for commercial. | Could replace GSAP if you keep JS-driven motion at all [36][37]. |
 | **`scheduler.yield()`** | Native browser API for breaking long tasks. Chrome 129+, Firefox 134+. | Critical if you ever add interactive filters/search [6]. |
 | **OKLCH.com** | Color picker for OKLCH. | Build the new palette [24]. |
@@ -190,7 +191,7 @@ Week 7    ........................... M4 (OKLCH refactor), M5 (dark/light toggle
 Week 8–9  ........................... M7 (case studies for LaraBaseX, WriteOn, DailyBuzz)
 Week 10   ........................... M1 (drop GSAP), M2 (IntersectionObserver), M14 (View Transitions)
 Week 11–12 (Big features) ............ B7 (Google Sheets integration — see Part B)
-Week 13+  ........................... B1 (blog) → B2 (AI project, browser-only / web-llm — free) → B6 ONLY if you switch to Cloudflare Pages free tier (skip the paid custom domain)
+Week 13+  ........................... B2 (AI project, browser-only / web-llm — free) → B6 ONLY if you switch to Cloudflare Pages free tier (skip the paid custom domain)
 ```
 
 ---
@@ -248,7 +249,7 @@ Cited insight from ConroyP [4]: a non-cached Sheets request is ~500–1000 ms; a
 ┌──────────────────────┐  edits  ┌──────────────────────────┐
 │  Ayush (any browser) ├────────▶│  Google Sheet            │
 └──────────────────────┘         │  "portfolio-cms"         │
-                                 │  (10 tabs)               │
+                                 │  (9 tabs)                │
                                  └─────────┬────────────────┘
                                            │ REST (Sheets API v4, key in GH Secret)
                                            │
@@ -293,7 +294,7 @@ Cited insight from ConroyP [4]: a non-cached Sheets request is ~500–1000 ms; a
 
 EmailJS stays in parallel: Apps Script logs to the sheet (your "CRM"), EmailJS still emails your inbox in real-time. Defense in depth.
 
-## B12. Sheet schema (10 tabs)
+## B12. Sheet schema (9 tabs)
 
 One spreadsheet, named **`portfolio-cms`**, shared "Anyone with the link → Viewer". Headers go in row 1 of each tab — exact column names below.
 
@@ -306,7 +307,6 @@ One spreadsheet, named **`portfolio-cms`**, shared "Anyone with the link → Vie
 | `certifications` | About-page carousel (currently 9 + 3 Udemy externals) | `id, title, issuer, issued_date, image_url, credential_url, order` |
 | `services` | Services page (4 cards) | `id, title, icon_class, summary, bullet_points, order` |
 | `faqs` | Contact-page accordion (6 items) | `id, question, answer, order, category` |
-| `blog_posts` | Future blog | `id, slug, title, excerpt, cover_image, published_date, tags, content_md, status (draft\|published)` |
 | `contact_submissions` | Append-only via `doPost` | `Date, Name, Email, Subject, Message, UserAgent, Page, Token` |
 | `site_meta` | Stats counters (e.g. "23+ projects", "1+ year") | `key, value, last_updated` |
 
@@ -439,7 +439,7 @@ jobs:
       - name: Fetch all tabs
         run: |
           mkdir -p assets/data
-          for tab in projects experience education skills certifications services faqs blog_posts site_meta; do
+          for tab in projects experience education skills certifications services faqs site_meta; do
             curl -fsSL \
               "https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${tab}?valueRenderOption=UNFORMATTED_VALUE&dateTimeRenderOption=FORMATTED_STRING&key=${KEY}" \
               | node scripts/sheet-to-json.mjs > assets/data/${tab}.json
@@ -697,7 +697,7 @@ If the site ever blows past these limits (>5k visitors/day with live-fetch, or `
 ## B21. Migration plan — phased rollout
 
 **Phase 0 — Prep (one evening)**
-1. Create the spreadsheet `portfolio-cms`; add the 10 tabs with the schema in §B12; share "Anyone with link → Viewer".
+1. Create the spreadsheet `portfolio-cms`; add the 9 tabs with the schema in §B12; share "Anyone with link → Viewer".
 2. Hand-populate by copy-pasting the existing static content out of `index.html`, `about.html`, `project.html`, `services.html`, `contact.html`. The 7 project cards, 9 certificates, 6 FAQs, 4 services, 4 experience entries, 2 education entries — all map 1:1.
 3. In GCP Console → New Project → Enable **Sheets API** → Generate API key → Restrict to Sheets API only.
 4. Add `SHEET_ID` and `GOOGLE_API_KEY` to GitHub repo Secrets.
@@ -752,7 +752,6 @@ Personal-Portfolio/
 │   │   ├── certifications.json
 │   │   ├── services.json
 │   │   ├── faqs.json
-│   │   ├── blog_posts.json
 │   │   └── site_meta.json
 │   ├── js/
 │   │   ├── data.js                     # NEW — fetch + cache + SWR

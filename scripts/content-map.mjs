@@ -57,10 +57,6 @@ export const CONTENT = [
     required: ['id', 'question', 'answer', 'order'], optional: ['category'] },
   { tab: 'stats',             file: 'collections/stats.json',          kind: 'rows',
     required: ['id', 'value', 'label', 'order'], optional: ['value_style'] },
-  { tab: 'blog_posts',        file: 'collections/blog-posts.json',     kind: 'rows',
-    required: ['id', 'slug', 'title', 'status'],
-    optional: ['excerpt', 'cover_image', 'published_date', 'tags', 'content_md'],
-    allowEmpty: true },
 ];
 
 export const DATA_DIR = 'assets/data';
