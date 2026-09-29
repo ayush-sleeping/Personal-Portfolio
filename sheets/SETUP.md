@@ -186,4 +186,4 @@ The browser never talks to Google. A GitHub Action reads the sheet on a cron,
 validates it, and commits plain JSON that ships on the Pages CDN — so reads cost
 zero latency, have no quota ceiling, and leak no API key. Writes go the other
 way, through an Apps Script web app. Full rationale in
-[`../documentation/improvements-and-system-design.md`](../documentation/improvements-and-system-design.md) §B9–B22.
+[`../documentation/version2.md`](../documentation/version2.md) §B9–B22.

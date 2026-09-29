@@ -91,7 +91,8 @@ Personal-Portfolio/
 │
 ├── documentation/
 │   ├── docx.md
-│   └── improvements-and-system-design.md
+│   ├── version2.md
+│   └── version3.md
 │
 ├── assets/
 │   ├── css/
@@ -194,4 +195,4 @@ and commits plain JSON that ships on the Pages CDN — so page loads stay as fas
 as a static site, there is no API quota to hit, and no key is exposed.
 
 Setup instructions: [`sheets/SETUP.md`](sheets/SETUP.md).
-Design rationale: [`documentation/improvements-and-system-design.md`](documentation/improvements-and-system-design.md) §B9–B22.
+Design rationale: [`documentation/version2.md`](documentation/version2.md) §B9–B22.

@@ -158,7 +158,8 @@ Personal-Portfolio/
 │   └── apps-script/            # Code.gs: contact-form write path
 ├── documentation/
 │   ├── docx.md                 # This file
-│   └── improvements-and-system-design.md   # v2 roadmap (zero-budget rule)
+│   ├── version2.md             # v2 roadmap + closing status (zero-budget rule)
+│   └── version3.md             # v3 plan: Next.js project setup
 ├── assets/
 │   ├── css/
 │   │   └── style.css           # Full stylesheet

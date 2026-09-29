@@ -5,7 +5,74 @@
 > 1. **What more we should do** to bring the current portfolio in line with 2026 frontend / developer-portfolio best practice (researched from 30+ blogs and articles).
 > 2. **A full R&D + system design** for the senior's idea: integrating Google Sheets as a backing data store so the static frontend becomes *partially dynamic* without a real backend.
 >
-> Last updated: 2026-05-01 · For: Ayush Mishra (`ayush-sleeping/Personal-Portfolio`).
+> Written: 2026-05-01 · Closed: 2026-09-29 · For: Ayush Mishra (`ayush-sleeping/Personal-Portfolio`).
+
+---
+
+## ✅ Version 2 status — closed 2026-09-29
+
+**Version 2 is closed.** The plain-HTML site it produced is what is live today. Everything still open below
+is either carried forward or dropped. [`version3.md`](version3.md) sets up the Next.js project; the portfolio
+work itself, including these leftovers, is then planned in that project's `task.md`. The rest of this document is the original v2
+plan, kept unchanged as the record of what was intended and why.
+
+### What v2 aimed for
+
+1. **Bring the existing multi-page HTML portfolio up to 2026 standard**: faster images and fonts, WCAG 2.2
+   accessibility, structured data and crawler files, a printable resume (Part A).
+2. **Make the content editable without touching code** by driving it from a Google Sheet, synced to JSON by
+   GitHub Actions (Part B).
+3. **Spend nothing.** Every item had to fit the zero-budget rule.
+
+### Completed
+
+Checked against the code on 2026-09-29, not just against commit messages.
+
+| Area | Items | Notes |
+|---|---|---|
+| Quick wins | **Q1–Q18, all 18** | AVIF/WebP images with `<picture>`, LCP hints, lazy-loading, width/height, variable fonts, reduced motion, lighter mobile blur, `:focus-visible`, keyboard-accessible tooltips, `FAQPage` / `BreadcrumbList` / `WebSite` schema, `robots.txt` with AI-crawler rules, `llms.txt`, "view source" footer link, printable resume, shorter preloader (the purple slide-reveal was kept on purpose). Q6's Inter `@font-face` was deleted as dead code rather than tuned. |
+| Medium upgrades | **M2, M4, M8, M9, M13** | IntersectionObserver reveals, OKLCH palette, Cloudinary font removed, full structured-data pass (incl. `CreativeWork`), print resume (same work as Q16). |
+| Medium upgrades (partial) | **M6, half** | Honeypot field on the contact form. The free Cloudflare Turnstile CAPTCHA is not added. |
+| Google Sheets CMS | **B7 / B21 code: Phases 1, 3, 4** | Fetch → validate → promote pipeline (`scripts/`), all page content rendered from `assets/data/*.json`, hardcoded HTML removed, `docx.md` + README updated, image-sibling CI guard, daily liveness ping, `--dry-run` validation. |
+| Content (outside the plan) | — | New portrait on every page (`assets/img/user/IMG_9358.jpg`), six service cards incl. Current Focus and System Design. |
+
+### Not completed
+
+| Item | What it was | Where it goes |
+|---|---|---|
+| **B21 Phase 0** | Create the sheet, add the `SHEET_ID` / `GOOGLE_API_KEY` secrets | ⚠️ **Unverified.** The refresh bot has never committed, so it is probably not set up. Needs Ayush. Carried to `task.md`. |
+| **B21 Phase 2** | Deploy the Apps Script so contact submissions are logged to the sheet | Code is in `sheets/apps-script/`; `APPS_SCRIPT_URL` is still empty. Needs Ayush. Carried to `task.md`. |
+| M1 | Replace GSAP with CSS `animation-timeline` | `task.md` backlog. The Next.js port keeps GSAP as-is first, for visual parity. |
+| M3 | Container queries on cards | `task.md` backlog (after parity) |
+| M5 | Dark/light mode toggle | `task.md` backlog (after parity) |
+| M6 (rest) | Cloudflare Turnstile (free) | `task.md` backlog, needs a free Cloudflare sign-up |
+| M7 | Case studies for LaraBaseX, WriteOn, DailyBuzz | `task.md` decision: the site becomes one page, so the format is open |
+| M10 | Drop / slim Bootstrap 5.0.2 | `task.md` backlog: kept as-is during the port for parity, replaced after |
+| M11 | Cloudflare Web Analytics (free) | `task.md` backlog, needs a free Cloudflare sign-up |
+| M12 | GitHub activity widget | `task.md` backlog |
+| M14 | View Transitions between pages | **Superseded.** The Next.js site will be a single page, so there are no page-to-page transitions. |
+| B2 | Browser-only AI project | `task.md` backlog, undecided |
+| B3 | Migrate to Astro | **Superseded** by the decision to use Next.js (v3) |
+| B4, B5 | 3D easter egg, terminal-style page | Undecided. Recommended to drop: they don't fit a serious backend-engineer portfolio. |
+
+### Dropped
+
+| Item | Why |
+|---|---|
+| **B1 — Blog** | **Dropped permanently.** This is a portfolio, not a publication. The `blog_posts` tab and JSON were removed from the pipeline. |
+| **B6 — Custom domain** | Paid. Out of scope under the zero-budget rule. |
+
+### Found at close, not in the original plan
+
+- **53 hotlinked images** from `wpriverthemes.com` (GridX theme demo): `bg1.png`, `icon.svg`, `icon2.png`,
+  `star1.svg`. If that site changes, every card background and star icon breaks. Also confirm the licence.
+- **Page titles lack the surname** ("About | Ayush"), which hurts name searches.
+- **Not verified in Google Search Console**, so indexing is unknown and the sitemap was never submitted.
+- **Content is rendered by JavaScript**, so crawlers that don't run JS (most AI search bots) see empty sections.
+- **Site lives at `/Personal-Portfolio/`.** Renaming the repo to `ayush-sleeping.github.io` would give the
+  root URL for free.
+
+All five are carried into `task.md` planning; the crawler one is solved by Next.js build-time rendering.
 
 ---
 
@@ -25,6 +92,9 @@ If you ever see a paid option mentioned later (e.g. SheetDB, Sheety, Plausible, 
 ---
 
 ## Table of Contents
+
+**Version 2 status**
+- [Version 2 status — closed 2026-09-29](#-version-2-status--closed-2026-09-29)
 
 **Part A — Improvement Roadmap (2026 best practice)**
 1. [How this research was done](#a1-how-this-research-was-done)
@@ -775,7 +845,7 @@ Personal-Portfolio/
 ├── robots.txt                          # NEW (Q14)
 └── documentation/
     ├── docx.md
-    └── improvements-and-system-design.md   ← this file
+    └── version2.md   ← this file
 ```
 
 After migration, **content edits = open the sheet, change a cell, wait ≤6 h** (or one click on the Action's "Run workflow" button). No code change, no deploy, no PR.
