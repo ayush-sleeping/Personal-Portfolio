@@ -38,3 +38,7 @@ tmp/
 .env
 .env.*
 !.env.example
+
+# v2 HTML site, kept locally as a UI/UX reference (see documentation/version3.md §5.1).
+# Recreate with: mkdir version2 && git archive v2-html-final | tar -x -C version2
+version2/

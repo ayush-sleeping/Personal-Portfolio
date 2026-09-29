@@ -115,7 +115,11 @@ for (const spec of CONTENT) {
 //
 // Remote URLs are skipped -- pictureHtml() passes those through as a plain
 // <img> and never builds sources for them.
+//
+// image_url values are URLs ("assets/img/..."). Next.js serves them from
+// public/, so that is where the files live on disk.
 const LOCAL_RASTER = /^assets\/img\/.+\.(png|jpe?g)$/i;
+const PUBLIC_DIR = 'public';
 
 for (const spec of CONTENT) {
   const file = `${DATA_DIR}/${spec.file}`;
@@ -138,10 +142,10 @@ for (const spec of CONTENT) {
 
       const base = url.replace(/\.(png|jpe?g)$/i, '');
       for (const ext of ['avif', 'webp']) {
-        if (!existsSync(`${base}.${ext}`)) {
+        if (!existsSync(`${PUBLIC_DIR}/${base}.${ext}`)) {
           errors.push(
             `${spec.file} row ${i + 1} "${key}": ${url} has no .${ext} sibling ` +
-            `(expected ${base}.${ext}). <picture> will not fall back -- the ` +
+            `(expected ${PUBLIC_DIR}/${base}.${ext}). <picture> will not fall back -- the ` +
             `image would render broken. Generate it, or point the sheet at an ` +
             `image that has siblings.`
           );
