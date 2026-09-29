@@ -1,0 +1,63 @@
+name: CI (v3 Next.js)
+
+# Checks the Next.js project on every push to the v3 branch and on pull requests.
+# It never deploys: the live site is still v2 on main. Deployment is planned in task.md
+# together with the cutover.
+
+on:
+  push:
+    branches: [v3-nextjs]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Formatting
+        run: npm run format:check
+
+      - name: Validate content data
+        run: npm run validate-data
+
+      - name: Build (static export)
+        run: npm run build
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Smoke test
+        run: npm test
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
