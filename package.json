@@ -1,0 +1,38 @@
+{
+  "name": "personal-portfolio",
+  "version": "3.0.0",
+  "description": "Portfolio of Ayush Mishra — Next.js static export (v3)",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "prebuild": "npm run validate-data",
+    "build": "next build",
+    "preview": "node scripts/serve.mjs --dir out --base /Personal-Portfolio --port 3000",
+    "v2": "node scripts/serve.mjs --dir version2 --port 4000",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "validate-data": "node scripts/validate-data.mjs",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "next": "16.3.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.6",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.9",
+    "typescript": "^5"
+  }
+}

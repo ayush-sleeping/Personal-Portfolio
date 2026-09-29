@@ -42,3 +42,17 @@ tmp/
 # v2 HTML site, kept locally as a UI/UX reference (see documentation/version3.md §5.1).
 # Recreate with: mkdir version2 && git archive v2-html-final | tar -x -C version2
 version2/
+
+# Next.js (v3)
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+.vercel
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/

@@ -1,0 +1,18 @@
+# The v2 HTML site: read-only reference, never reformatted.
+version2/
+# Generated or third-party.
+.next/
+out/
+node_modules/
+package-lock.json
+test-results/
+playwright-report/
+# Owned by the sheet pipeline; formatting it would churn every refresh.
+assets/data/
+# Served byte for byte as in v2.
+public/
+# Docs and the untouched v2 scripts/pipeline keep their own style.
+*.md
+scripts/
+sheets/
+.github/
