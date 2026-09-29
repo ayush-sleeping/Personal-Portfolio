@@ -1,198 +1,143 @@
-# Personal Portfolio
+# Personal Portfolio — Next.js (v3)
 
-[**➥ Live Demo**](https://ayush-sleeping.github.io/Personal-Portfolio/)
+[**➥ Live site**](https://ayush-sleeping.github.io/Personal-Portfolio/) ·
+Portfolio of **Ayush Mishra**, Backend Developer (Laravel, PHP, MySQL; Python, Django, Next.js).
+
+> **You are on the `v3-nextjs` branch.** This is the new Next.js version, under construction.
+> **The live site is still the v2 plain-HTML version**, served from `main`. Nothing on this branch is deployed.
 
 <br>
 
 ## Table of Contents
-- [About the Project](#about-the-project)
-- [Pages](#pages)
-- [Tech Stack](#tech-stack)
-- [Features](#features)
-- [Folder Structure](#folder-structure)
-- [Design Inspiration & UI](#design-inspiration--ui)
-- [Color Palette](#color-palette)
-- [What I Learned](#what-i-learned)
-- [License](#license)
+
+- [Status](#status)
+- [Requirements](#requirements)
+- [Getting started](#getting-started)
+- [Commands](#commands)
+- [The `version2/` reference copy](#the-version2-reference-copy)
+- [How content works](#how-content-works)
+- [Folder structure](#folder-structure)
+- [Docs](#docs)
 
 <br>
 
-## About the Project
+## Status
 
-This is a personal portfolio website to showcase my background, skills, projects, and resume. It serves as my online identity and demonstrates my expertise as a FullStack Web Developer — currently working as a **Backend Developer at Leapswitch Networks**, with 2+ years of experience building scalable web applications and REST APIs using Laravel, PHP, and MySQL, and actively working with **Python, Django, and Next.js**.
-
-Visitors can explore my work, view my professional resume, browse the services I offer, and contact me directly through the site.
-
-<div align="right">
-  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
-</div>
+| Version | What | Where |
+|---|---|---|
+| **v2** | Plain HTML/CSS/JS site, content from a Google Sheet | **Live**, on `main` · reference copy in `version2/` |
+| **v3** | Next.js project foundation: config, shared shell, data layer, tooling, CI | This branch · plan: [`documentation/version3.md`](documentation/version3.md) |
+| next | The one-page portfolio, with the same UI/UX as v2, built on the v3 foundation | Planned in `task.md` after v3 |
 
 <br>
 
-## Pages
+## Requirements
 
-| Page | Description |
-|------|-------------|
-| `index.html` | Home — hero intro, role marquee, quick stats, and navigation cards |
-| `about.html` | About — bio, experience timeline, education, skills, and certifications |
-| `resume.html` | Resume — condensed experience, education, and skills (print-friendly) |
-| `project.html` | Projects — showcase grid of selected work |
-| `services.html` | Services — full-stack, backend, frontend, and production offerings |
-| `contact.html` | Contact — EmailJS-powered form, contact details, and FAQ |
+- **Node.js 22** (see `.nvmrc`; Next.js 16 needs ≥ 20.9)
+- **npm** (comes with Node)
+- Git, with access to the `v2-html-final` tag (only needed to recreate `version2/`)
 
-<div align="right">
-  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
-</div>
+Everything used is free. Zero-budget rule: see [`documentation/version2.md`](documentation/version2.md).
 
 <br>
 
-## Tech Stack
+## Getting started
 
-- **HTML5**
-- **CSS3**
-- **JavaScript** (vanilla ES6+)
-- **Bootstrap 5**
-- **EmailJS** (contact form handling)
-- **GitHub Pages** (hosting)
+```bash
+git clone git@github.com:ayush-sleeping/Personal-Portfolio.git
+cd Personal-Portfolio
+git switch v3-nextjs
 
-<div align="right">
-  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
-</div>
-
-<br>
-
-## Features
-
-- **Glassmorphic dark UI** with gradient accents and layered shadows
-- **Fully responsive** — mobile-first, with a slide-in side navigation
-- **Animated preloader**, slide-reveal page transitions, and scroll-triggered animations
-- **Interactive cards** with a mouse-tracking spotlight effect and a looping role marquee
-- **EmailJS-powered contact form** with client-side validation
-- **SEO-optimized** — meta tags, Open Graph, Twitter cards, and JSON-LD structured data
-
-<div align="right">
-  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
-</div>
-
-<br>
-
-## Folder Structure
-
-```
-Personal-Portfolio/
-│
-├── about.html
-├── contact.html
-├── index.html
-├── project.html
-├── resume.html
-├── services.html
-├── README.md
-│
-├── documentation/
-│   ├── docx.md
-│   ├── version2.md
-│   └── version3.md
-│
-├── assets/
-│   ├── css/
-│   │   └── style.css
-│   ├── img/
-│   │   └── [all images and icons]
-│   └── js/
-│       ├── contactform.js
-│       ├── main.js
-│       ├── preloader.js
-│       └── scroll-animations.js
+npm install          # install dependencies
+npm run dev          # http://localhost:3000/Personal-Portfolio
 ```
 
-- **HTML files**: Each main section/page of the portfolio.
-- **assets/css/style.css**: All custom styles and responsive design.
-- **assets/js/**: JavaScript for interactivity, animations, and form handling.
-- **assets/img/**: All images, icons, and graphics.
+To also get the v2 reference copy (optional, local only):
 
-<div align="right">
-  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
-</div>
+```bash
+mkdir version2 && git archive v2-html-final | tar -x -C version2
+npm run v2           # http://localhost:4000
+```
 
 <br>
 
-## Design Inspiration & UI
+## Commands
 
-The primary card design and overall layout are inspired by the [GridX Portfolio Template](https://wpriverthemes.com/gridx/).
-I focused on a clean, modern, and classic look with glassmorphism effects, subtle gradients, and smooth animations.
-The project features:
-- **Primary card system** for sections and projects
-- **Responsive design** for all devices
-- **Minimal, elegant navigation**
-- **Animated scroll effects** for engaging user experience
+| Command | What it does |
+|---|---|
+| `npm run dev` | Dev server with hot reload |
+| `npm run build` | Validates the content JSON, then builds the static site into `out/` |
+| `npm run preview` | Serves `out/` at `http://localhost:3000/Personal-Portfolio/`, like GitHub Pages will |
+| `npm run v2` | Serves the `version2/` reference copy at `http://localhost:4000` |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | TypeScript, no output |
+| `npm run format` / `format:check` | Prettier: fix / check |
+| `npm run validate-data` | Checks `assets/data/*.json` against the sheet schema and image siblings |
+| `npm test` | Playwright smoke test against the built site (run `npm run build` first) |
 
-<div align="right">
-  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
-</div>
-
-<br>
-
-## Color Palette
-
-| Color Name      | Hex       | Usage                        |
-|-----------------|-----------|------------------------------|
-| Primary Blue    | `#5B78F6` | Buttons, highlights, links   |
-| Deep Purple     | `#9333EA` | Gradients, accents           |
-| Dark Background | `#0F0F0F` | Main background              |
-| Card BG         | `#1a1a1a` | Card backgrounds             |
-| Light Gray      | `#BCBCBC` | Text, icons                  |
-| Accent Gray     | `#9CA3AF` | Subtext, muted elements      |
-
-<div align="right">
-  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
-</div>
+CI (`.github/workflows/ci.yml`) runs lint, typecheck, validate-data, build and test on every push to this
+branch. It does not deploy.
 
 <br>
 
-## What I Learned
+## The `version2/` reference copy
 
-Working on this project helped me:
-- Deepen my understanding of **responsive web design**
-- Master **CSS animations** and **glassmorphism** effects
-- Implement **Intersection Observer** for scroll-based animations
-- Optimize for **performance** and **mobile UX**
-- Integrate **EmailJS** for contact form handling
-- Structure a real-world project for scalability and maintainability
+`version2/` is the **complete v2 HTML site, exactly as it was at the `v2-html-final` tag**. It's there so the
+old UI/UX can be opened locally at any time, to compare against while building v3.
 
-<div align="right">
-  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
-</div>
+- **Local only.** It's gitignored and never committed, on any branch.
+- **Read-only.** Don't edit it. It's a reference, not source code.
+- **Frozen.** Its content is a snapshot and doesn't update when the sheet changes.
+- **Lost it, or on a new machine?** Recreate it with the command in [Getting started](#getting-started).
 
 <br>
 
-## License
+## How content works
 
-This project is for personal use and inspiration.
-**No external contributions are accepted.**
+Content is edited in a Google Sheet, not in code:
 
-<div align="right">
-  <a href="#personal-portfolio"><strong>↗️ Tap to top</strong></a>
-</div>
+```text
+Google Sheet ──(GitHub Action, every 6 h)──▶ assets/data/*.json ──(next build)──▶ static HTML
+```
+
+1. Edit the sheet (`portfolio-cms`).
+2. The **Refresh content** workflow (on `main`) fetches it, validates it and commits `assets/data/*.json`.
+3. `next build` reads that JSON **at build time** and writes the content into the HTML. The browser never
+   calls Google, and crawlers see all content without running JavaScript.
+
+Sheet setup: [`sheets/SETUP.md`](sheets/SETUP.md). How the build uses the data:
+[`documentation/architecture.md`](documentation/architecture.md).
+
+<br>
+
+## Folder structure
+
+```text
+├── app/                    Next.js App Router: layout.tsx (shared shell), page.tsx, not-found.tsx
+├── components/             sections/, layout/, cards/, client/ (built after v3; see each folder's README)
+├── lib/                    data.ts (build-time JSON reads), types.ts (one type per sheet tab), site.ts
+├── public/                 served as-is: assets/{img,css,video}, robots.txt, llms.txt, sitemap.xml
+├── assets/data/            content JSON, written by the sheet pipeline (never hand-edit)
+├── scripts/                sheet pipeline, validator, local static server
+├── sheets/                 sheet setup guide, seed CSVs, Apps Script
+├── tests/                  Playwright smoke test
+├── documentation/          docx.md (v2 reference), version2.md, version3.md, architecture.md
+├── .github/workflows/      ci.yml, refresh-content.yml, liveness.yml
+└── version2/               gitignored: the v2 site, local reference only
+```
+
+<br>
+
+## Docs
+
+| Doc | For |
+|---|---|
+| [`documentation/architecture.md`](documentation/architecture.md) | How this Next.js project works |
+| [`documentation/version3.md`](documentation/version3.md) | The v3 plan and its progress |
+| [`documentation/version2.md`](documentation/version2.md) | The v2 roadmap and its closing status |
+| [`documentation/docx.md`](documentation/docx.md) | Full reference of the v2 HTML site |
+| [`sheets/SETUP.md`](sheets/SETUP.md) | Setting up the Google Sheet |
 
 <br>
 
 > _Designed & developed by Ayush Mishra_
-> _Inspired by GridX Portfolio Template_
-
-## Updating content (Google Sheets CMS)
-
-Most page content — projects, experience, education, skills, certifications,
-services, FAQs — is no longer hardcoded in the HTML. It lives in a Google Sheet
-named `portfolio-cms` and reaches the site as JSON in `assets/data/`.
-
-**To change content:** edit the cell in the sheet, then either wait up to 6
-hours for the cron, or click **Actions → "Refresh content from Google Sheet" →
-Run workflow** for an immediate update. No code change, no deploy.
-
-The browser never calls Google. A GitHub Action reads the sheet, validates it,
-and commits plain JSON that ships on the Pages CDN — so page loads stay as fast
-as a static site, there is no API quota to hit, and no key is exposed.
-
-Setup instructions: [`sheets/SETUP.md`](sheets/SETUP.md).
-Design rationale: [`documentation/version2.md`](documentation/version2.md) §B9–B22.
