@@ -37,14 +37,18 @@ How the Next.js version of the portfolio is put together. For the plan and progr
 
 | File | Key settings |
 |---|---|
-| `next.config.ts` | `output: 'export'`, `images.unoptimized: true`, `basePath` from `NEXT_PUBLIC_BASE_PATH` (default `/Personal-Portfolio`), `trailingSlash: true` |
+| `next.config.ts` | `output: 'export'`, `images.unoptimized: true`, `trailingSlash: true`, and `basePath` from `NEXT_PUBLIC_BASE_PATH`. Default: `/Personal-Portfolio` for build, preview and CI; empty for `npm run dev`. |
 | `tsconfig.json` | `strict`, `@/*` → project root, excludes `version2/` |
 | `eslint.config.mjs` | Next.js core-web-vitals + TypeScript rules, Prettier-compatible, ignores `version2/`, `out/`, `.next/` |
 | `.nvmrc`, `package.json` `engines` | Node 22 (≥ 20.9) |
 
-**`basePath`** is the URL prefix the site lives under. It's `/Personal-Portfolio` on GitHub Pages today. If
-the repo is ever renamed to `ayush-sleeping.github.io`, set `NEXT_PUBLIC_BASE_PATH=""` and nothing else
-changes. Code never hardcodes the prefix: it uses `asset()` from `lib/site.ts`.
+**`basePath`** is the URL prefix the site lives under. It's `/Personal-Portfolio` on GitHub Pages today,
+so `build`, `preview` and the tests use it. `npm run dev` uses none, so `http://localhost:3000/` opens the
+site directly. Because the build still runs under the prefix, a path that forgets `asset()` works in dev
+but fails in preview and CI, which is where it gets caught.
+
+If the repo is ever renamed to `ayush-sleeping.github.io`, build with `NEXT_PUBLIC_BASE_PATH=""` and
+nothing else changes. Code never hardcodes the prefix: it uses `asset()` from `lib/site.ts`.
 
 ## 3. The shared shell: `app/layout.tsx`
 

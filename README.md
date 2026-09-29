@@ -50,7 +50,7 @@ git switch v3-nextjs
 
 npm install                          # install dependencies
 npx playwright install chromium      # once per machine, for npm test
-npm run dev                          # http://localhost:3000/Personal-Portfolio
+npm run dev                          # http://localhost:3000
 ```
 
 To also get the v2 reference copy (optional, local only):
@@ -66,7 +66,7 @@ npm run v2           # http://localhost:4000
 
 | Command | What it does |
 |---|---|
-| `npm run dev` | Dev server with hot reload |
+| `npm run dev` | Dev server with hot reload, at `http://localhost:3000/` (no `/Personal-Portfolio` prefix in dev) |
 | `npm run build` | Validates the content JSON, then builds the static site into `out/` |
 | `npm run preview` | Serves `out/` at `http://localhost:3000/Personal-Portfolio/`, like GitHub Pages will |
 | `npm run v2` | Serves the `version2/` reference copy at `http://localhost:4000` |
