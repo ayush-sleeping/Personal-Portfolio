@@ -1,7 +1,8 @@
 # Portfolio v3 — Next.js Project Setup: Plan
 
-> **Status: 🔄 IN PROGRESS — approved by Ayush on 2026-09-29.** Decisions D1–D4 taken as recommended (§4).
-> Ayush asked for all phases to run back to back without a stop between them; progress is tracked in §9.
+> **Status: ✅ DONE — 2026-09-29.** Approved by Ayush the same day; decisions D1–D4 taken as recommended
+> (§4). All phases ran back to back at Ayush's request. What was built, and where it differs from the plan: §13.
+> **Next step:** add `task.md` and plan the one-page portfolio (§2).
 >
 > Written: 2026-09-29 · Follows: [`version2.md`](version2.md) (closed) · Repo: `ayush-sleeping/Personal-Portfolio`
 
@@ -21,6 +22,7 @@
 10. [Definition of done for v3](#10-definition-of-done-for-v3)
 11. [Risks](#11-risks)
 12. [Carried forward to `task.md`](#12-carried-forward-to-taskmd)
+13. [What was built](#13-what-was-built)
 
 ---
 
@@ -152,7 +154,7 @@ All free. Versions checked on npm on 2026-09-29.
 | Piece | Choice | Why |
 |---|---|---|
 | Framework | **Next.js 16.3.x**, App Router, `output: 'export'` | Static export = plain files, so it can stay on free GitHub Pages. No server needed. |
-| UI runtime | React 19.3 (ships with Next 16) | — |
+| UI runtime | React 19.2.8 (the version `create-next-app` 16.3.6 pins) | — |
 | Language | TypeScript, strict (if D1 = TS) | Typed sheet data |
 | Node | 22 LTS locally (you have 22.16) and in CI. Next 16 needs ≥ 20.9. | Pinned with `.nvmrc` and `engines` |
 | Package manager | npm | Already installed |
@@ -279,13 +281,13 @@ you say go. Estimates are in working days.
 
 | Phase | What | Exit criteria | Est. | Status |
 |---|---|---|---|---|
-| **P0 — Approve** | You approve this plan and answer D1–D4. Fix the `gh` login (needs you: remove the stale `GH_TOKEN` / `GITHUB_TOKEN` exports, then `gh auth login` as `ayush-sleeping`). | Plan status = approved; `gh auth status` shows `ayush-sleeping` | — | ✅ approved; `gh` login still pending (Ayush) |
+| **P0 — Approve** | You approve this plan and answer D1–D4. Fix the `gh` login (needs you: remove the stale `GH_TOKEN` / `GITHUB_TOKEN` exports, then `gh auth login` as `ayush-sleeping`). | Plan status = approved; `gh auth status` shows `ayush-sleeping` | — | ✅ approved (`gh` login still pending, see §13) |
 | **P1 — Branch** | Tag `v2-html-final` on `main`. Create `v3-nextjs` from `main`, push it. | Branch and tag on GitHub; `main` unchanged; live site unchanged | 0.1 | ✅ `d5f6306`, tag `v2-html-final` |
 | **P2 — `version2/` snapshot & clean root** | Create `version2/` from the tag and ignore it (§5.1). Check it runs locally with a server and looks the same as the live site. Then clean the root: remove the old pages and `assets/js/`, move `assets/img|css|video` and `robots.txt` / `llms.txt` / `sitemap.xml` into `public/`, and point the validator's image check at `public/`. | `version2/` opens at `localhost:4000` and matches the live site; `git status` doesn't list it; `validate-data` passes; `main` unchanged | 0.25 | ✅ |
 | **P3 — Docs first** | Write `README.md`, `CLAUDE.md`, `documentation/architecture.md` describing the target setup. | Docs committed on the branch (`CLAUDE.md` saved locally) | 0.3 | ✅ |
-| **P4 — Install & configure** | Install Next.js 16.3 + React 19.3 + TypeScript. `create-next-app` won't install into a non-empty folder (the root still has `assets/data/`, `scripts/`, docs …), so it's generated in a scratch folder and the needed files copied in. Set up `next.config.ts`, `tsconfig`, ESLint, Prettier, `.nvmrc`, scripts, `.gitignore`. | `npm run dev` starts; `npm run build` produces `out/`; lint and typecheck pass | 0.3 | ✅ |
+| **P4 — Install & configure** | Install Next.js 16.3 + React 19.2 + TypeScript. `create-next-app` won't install into a non-empty folder (the root still has `assets/data/`, `scripts/`, docs …), so it's generated in a scratch folder and the needed files copied in. Set up `next.config.ts`, `tsconfig`, ESLint, Prettier, `.nvmrc`, scripts, `.gitignore`. | `npm run dev` starts; `npm run build` produces `out/`; lint and typecheck pass | 0.3 | ✅ |
 | **P5 — Core** | Folder structure (7.2), shared shell (7.3), assets check (7.4), data layer + types (7.5), placeholder page (7.6). | The built page shows real data styled by the real CSS, at the right `basePath`; bad JSON fails the build | 0.5 | ✅ |
-| **P6 — Tooling, CI & close** | Playwright + smoke test (7.7). `ci.yml`. Update the docs to match what was built. Mark v3 done. | CI green on GitHub for `v3-nextjs`; docs match the code; `version3.md` = done | 0.3 | ⬜ |
+| **P6 — Tooling, CI & close** | Playwright + smoke test (7.7). `ci.yml`. Update the docs to match what was built. Mark v3 done. | CI green on GitHub for `v3-nextjs`; docs match the code; `version3.md` = done | 0.3 | ✅ |
 
 **Total: about 1.75 working days.** Then the next step is `task.md` (§2).
 
@@ -293,18 +295,18 @@ you say go. Estimates are in working days.
 
 v3 is done when all of these are true:
 
-- [ ] `v2-html-final` tag and `v3-nextjs` branch exist on GitHub.
-- [ ] `main` and the live site are unchanged.
-- [ ] `version2/` holds the full v2 site, opens with `npm run v2`, and is never tracked by git on any branch.
-- [ ] The branch root has no old HTML pages or `assets/js/`; images, CSS and video are under `public/assets/`.
-- [ ] `npm install && npm run build` works from a fresh clone, on Node 22.
-- [ ] `npm run dev`, `preview`, `lint`, `typecheck`, `validate-data` and `test` all work.
-- [ ] The placeholder page shows real sheet data, styled by the real `style.css`, with assets loading at the
+- [x] `v2-html-final` tag and `v3-nextjs` branch exist on GitHub.
+- [x] `main` and the live site are unchanged.
+- [x] `version2/` holds the full v2 site, opens with `npm run v2`, and is never tracked by git on any branch.
+- [x] The branch root has no old HTML pages or `assets/js/`; images, CSS and video are under `public/assets/`.
+- [x] `npm install && npm run build` works from a fresh clone, on Node 22.
+- [x] `npm run dev`, `preview`, `lint`, `typecheck`, `validate-data` and `test` all work.
+- [x] The placeholder page shows real sheet data, styled by the real `style.css`, with assets loading at the
       `basePath`.
-- [ ] Broken JSON makes the build fail with a clear message.
-- [ ] `ci.yml` is green on GitHub.
-- [ ] `README.md`, `CLAUDE.md` and `architecture.md` describe exactly what exists.
-- [ ] Every commit authored by Ayush, with no co-author trailer.
+- [x] Broken JSON makes the build fail with a clear message.
+- [x] `ci.yml` is green on GitHub.
+- [x] `README.md`, `CLAUDE.md` and `architecture.md` describe exactly what exists.
+- [x] Every commit authored by Ayush, with no co-author trailer.
 
 ## 11. Risks
 
@@ -357,6 +359,45 @@ UI/UX** as today.
 - **Cutover and rollback:** create a `v2-html` branch from `main` before merging. Rollback = switch the
   Pages source back to that branch, about 2 minutes.
 
+**Found during v3:** v2's pages link `/site.webmanifest`, which was never in the repo (404 on the live
+site). Add a real manifest or drop the link during the port.
+
 **v2 leftovers for the backlog:** dark/light toggle (M5), container queries (M3), GSAP → CSS (M1), replacing
 Bootstrap (M10), Cloudflare Turnstile (M6) and Web Analytics (M11), GitHub widget (M12). Also Apps Script
 deploy and confirming the sheet secrets (B21 Phases 0 and 2).
+
+## 13. What was built
+
+All on `v3-nextjs`. Every commit is authored by Ayush Mishra `<ayushbm84@gmail.com>`, with no co-author trailer.
+
+| Phase | Commit | Result |
+|---|---|---|
+| P1 | `d5f6306` (on `main`) + tag `v2-html-final` | The v2-close and v3-plan docs were committed to `main` first, so the tag includes them. Then the branch was created from that commit. |
+| P2 | `75cc785` | `version2/` = the 151 tracked files at the tag, checked file for file; ignored in `.gitignore` and `.git/info/exclude`. Old pages and `assets/js/` removed from the root; `assets/{img,css,video}` and the crawler files moved to `public/`; the validator checks images under `public/`. Checked with screenshots: `version2/` served locally matches the live site. |
+| P3 | `60e97c4` | `README.md` and `documentation/architecture.md`. `CLAUDE.md` updated locally (both branches, rules, `@AGENTS.md`). |
+| P4 | `8978069` | Next.js 16.3.6, React 19.2.8, TypeScript strict, ESLint + Prettier, static export config, npm scripts, `.nvmrc`. |
+| P5 | `39dfe79` | Shared shell with v2's stylesheet order, `lib/{site,types,data}.ts`, placeholder page, 404, `scripts/serve.mjs`, component folder READMEs. |
+| P6 | `3882b17` + this docs commit | Playwright (9 tests: 3 checks × 3 widths, all passing) and `ci.yml`. Docs updated to match. |
+
+**Verified:**
+
+- `npm run build` writes `out/` with all `_next/` URLs under `/Personal-Portfolio/`.
+- The stylesheets come out in v2's order.
+- The sheet content is in the HTML itself, and the smoke test confirms it with JavaScript off.
+- Invalid JSON and a missing required column each fail the build, with a clear message.
+- `preview` and `v2` serve correctly, including the 404 page and file names with spaces.
+
+**Differences from the plan:**
+
+- **React 19.2.8, not 19.3.** `create-next-app` 16.3.6 pins 19.2.8; the plan had guessed 19.3.
+- **`AGENTS.md` committed.** `create-next-app` generates it, and `next dev` rewrites it. While it exists,
+  Next.js leaves the local `CLAUDE.md` alone. Found by reading `next/dist/server/lib/generate-agent-files.js`.
+- **`server-only` added** as a dependency, so `lib/data.ts` can't be imported into client code by mistake.
+- **`"type": "module"`** in `package.json`, so the existing `.mjs` scripts and the new configs share one
+  module system.
+- **Prettier ignores** the docs, `scripts/`, `sheets/`, `.github/`, `public/` and `assets/data/`, so the
+  untouched v2 pipeline and the byte-for-byte CSS never get reformatted.
+
+**Still open (needs Ayush):** the `gh` CLI login. The stale `GH_TOKEN` / `GITHUB_TOKEN` exports need
+removing, then `gh auth login` as `ayush-sleeping`. Pushes work over SSH meanwhile, and CI was checked
+through GitHub's public API.

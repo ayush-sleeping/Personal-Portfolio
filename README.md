@@ -48,8 +48,9 @@ git clone git@github.com:ayush-sleeping/Personal-Portfolio.git
 cd Personal-Portfolio
 git switch v3-nextjs
 
-npm install          # install dependencies
-npm run dev          # http://localhost:3000/Personal-Portfolio
+npm install                          # install dependencies
+npx playwright install chromium      # once per machine, for npm test
+npm run dev                          # http://localhost:3000/Personal-Portfolio
 ```
 
 To also get the v2 reference copy (optional, local only):
@@ -133,6 +134,7 @@ Sheet setup: [`sheets/SETUP.md`](sheets/SETUP.md). How the build uses the data:
 | Doc | For |
 |---|---|
 | [`documentation/architecture.md`](documentation/architecture.md) | How this Next.js project works |
+| [`AGENTS.md`](AGENTS.md) | Next.js 16 notes for AI coding agents (kept current by `next dev`) |
 | [`documentation/version3.md`](documentation/version3.md) | The v3 plan and its progress |
 | [`documentation/version2.md`](documentation/version2.md) | The v2 roadmap and its closing status |
 | [`documentation/docx.md`](documentation/docx.md) | Full reference of the v2 HTML site |
