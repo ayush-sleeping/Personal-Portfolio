@@ -32,7 +32,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    // Ionicons' loader adds class="hydrated" to <html> before React hydrates; that one attribute
+    // is expected to differ from the server HTML.
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -68,17 +70,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        {/* Ionicons, as at the end of v2's <body>. */}
-        <Script
+        {/* Ionicons, as at the end of v2's <body>. Plain tags, not next/script: next/script
+            preloads both files without crossorigin, so the module preload goes unused (a console
+            warning) and module browsers also download the nomodule build, which v2 never did.
+            Neither blocks parsing: module scripts are deferred, and module browsers skip nomodule. */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts -- deferred: type="module" */}
+        <script
           type="module"
           src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          noModule
-          src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-          strategy="afterInteractive"
-        />
+        ></script>
+        {/* eslint-disable-next-line @next/next/no-sync-scripts -- never runs in module browsers */}
+        <script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
       </body>
     </html>
   );
