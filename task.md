@@ -1,6 +1,6 @@
 # task.md — The one-page portfolio
 
-> **Status: 🚧 IN PROGRESS.** Started 2026-10-07. Follows [`documentation/version3.md`](documentation/version3.md)
+> **Status: 🚧 IN PROGRESS.** Started 2026-10-07. **Paused after Phase 7 on 2026-10-07 (Ayush); resume with Phase 8.** Follows [`documentation/version3.md`](documentation/version3.md)
 > (v3 foundation, done). Branch: `v3-nextjs`. `main` is not touched until the cutover (Phase 10), and that
 > phase needs Ayush.
 
