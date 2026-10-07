@@ -9,7 +9,19 @@ export const SITE = {
   /** Public URL of the site root, with a trailing slash. */
   url: `https://ayush-sleeping.github.io${basePath}/`,
   themeColor: "#5B78F6",
+  /** Linked from the footer's "View source on GitHub". */
+  repoUrl: "https://github.com/ayush-sleeping/Personal-Portfolio",
 } as const;
+
+/**
+ * The one-page sections, top to bottom (task.md T2). Each id is also its nav anchor and matches
+ * the `id` column of the navigation sheet tab.
+ */
+export const SECTION_IDS = ["home", "about", "projects", "services", "contact"] as const;
+export type SectionId = (typeof SECTION_IDS)[number];
+
+/** In-page anchor for a section (task.md T4: nav links are anchors, not .html pages). */
+export const sectionHref = (id: string) => `#${id}`;
 
 /**
  * URL for a file in public/, prefixed with basePath.
