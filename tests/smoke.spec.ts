@@ -139,6 +139,15 @@ test("the projects section renders every shown project, without a second skills 
   await expect(page.locator(".skills-section").first()).toBeAttached();
 });
 
+test("the services section renders every service, without the home link cards", async ({
+  page,
+}) => {
+  await page.goto("./");
+  const section = page.locator("#services");
+  await expect(section.locator(".service-card")).toHaveCount(count("services"));
+  await expect(section.locator(".proj-img, .inner-profile-icons, .last-infos h2")).toHaveCount(0);
+});
+
 test("content is in the HTML without JavaScript", async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();

@@ -11,6 +11,7 @@ import WhyHire from "@/components/client/WhyHire";
 import WhyHireModal from "@/components/layout/WhyHireModal";
 import AboutSection from "@/components/sections/AboutSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
+import ServicesSection from "@/components/sections/ServicesSection";
 import HomeSection from "@/components/sections/HomeSection";
 import { getFooterTech, getNavigation, getPageCopy, getProfile, getSocials } from "@/lib/data";
 
@@ -43,8 +44,8 @@ export default function Home() {
           <HomeSection />
           <AboutSection />
           <ProjectsSection />
-          {/* Filled in Phases 5–6. */}
-          <section id="services"></section>
+          <ServicesSection />
+          {/* Filled in Phase 6. */}
           <section id="contact"></section>
         </main>
 
