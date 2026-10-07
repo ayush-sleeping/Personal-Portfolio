@@ -42,7 +42,7 @@ export const CONTENT = [
     optional: ['location', 'duration_label', 'description', 'details'] },
   { tab: 'education',         file: 'collections/education.json',      kind: 'rows',
     required: ['id', 'date_label', 'title', 'company', 'order'],
-    optional: ['location', 'duration_label', 'description', 'details'] },
+    optional: ['location', 'duration_label', 'description', 'details', 'institution_url'] },
   { tab: 'skills',            file: 'collections/skills.json',         kind: 'rows',
     required: ['id', 'name', 'category', 'group', 'order'],
     optional: ['group_label', 'level', 'icon_class'],

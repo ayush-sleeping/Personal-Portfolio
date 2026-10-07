@@ -6,6 +6,12 @@ right now with no Google account involved.**
 
 This guide connects the sheet so that editing a cell updates the site.
 
+> **Seed CSVs are ahead of `assets/data/` (2026-10-07).** `sheets/seed-csv/` now holds content v2 had
+> hardcoded in the HTML (task.md T12): new `page_*` and `site_profile` keys, `education.institution_url`,
+> the filled-in `education.details` cells, and the fixed Anudip `experience.details`. It reaches the JSON only
+> through the sheet: create the sheet from these CSVs, then fetch. **Don't run `json-to-csv.mjs` before that
+> first fetch**: it regenerates the CSVs from the JSON and would wipe these additions.
+
 ---
 
 ## What you need to do (once)

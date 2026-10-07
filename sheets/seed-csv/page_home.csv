@@ -13,3 +13,8 @@ services_title,Services Offering
 profiles_label,STAY WITH ME
 profiles_title,Profiles
 cta_title,Let's Work Together.
+cta_title_accent,Together.
+projects_image,assets/img/my works.png
+projects_image_alt,My works
+github_image,assets/img/github3.png
+github_image_alt,GitHub

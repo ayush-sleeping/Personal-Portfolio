@@ -10,3 +10,11 @@ faq_heading,Frequently Asked Questions
 name_placeholder,Your name
 email_placeholder,Your e-mail
 message_placeholder,type the message here ...
+faq_intro_lead,Got questions?
+faq_intro,Here are answers to some common inquiries about my work and services.
+email_label,Email :
+location_label,Location :
+status_initial,Message
+msg_missing,Please fill in all fields.
+msg_sent,Message successfully sent ✔
+msg_error,Oops! Something went wrong. Please try again.

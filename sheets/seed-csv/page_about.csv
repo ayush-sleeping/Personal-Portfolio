@@ -5,4 +5,13 @@ experience_heading,Experience
 education_heading,Education
 certifications_heading,Certifications
 skills_heading,Skills & Technologies
-video_modal_title,Why should we hire you?
+video_modal_title,Why should you hire me?
+why_hire_highlight,hire me
+video_modal_subtitle,A quick answer in 10 seconds
+video_url,assets/video/batman.mp4
+certifications_intro,"A collection of certificates from various training programs, competitions, and courses that showcase my commitment to continuous learning and professional development."
+carousel_prev_label,Previous
+carousel_next_label,Next
+certificate_link_label,View Certificate
+modal_close_label,Close
+video_fallback,Your browser does not support the video tag.
