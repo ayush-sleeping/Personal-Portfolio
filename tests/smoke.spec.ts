@@ -148,6 +148,43 @@ test("the services section renders every service, without the home link cards", 
   await expect(section.locator(".proj-img, .inner-profile-icons, .last-infos h2")).toHaveCount(0);
 });
 
+test("the FAQ accordion opens one answer at a time", async ({ page }) => {
+  await page.goto("./");
+  await expect(page.locator(".preloader")).toBeHidden();
+  const questions = page.locator("#contact .faq-question");
+  await expect(questions).toHaveCount(count("faqs"));
+
+  await questions.nth(0).click();
+  await expect(page.locator("#faq1")).toHaveClass(/\bshow\b/);
+  await questions.nth(1).click();
+  await expect(page.locator("#faq2")).toHaveClass(/\bshow\b/);
+  await expect(page.locator("#faq1")).not.toHaveClass(/\bshow\b/);
+});
+
+test("the contact form validates, then sends through EmailJS", async ({ page }) => {
+  // Never send a real email from a test: answer EmailJS's API locally.
+  let sends = 0;
+  await page.route(/api\.emailjs\.com/, (route) => {
+    sends++;
+    return route.fulfill({ status: 200, body: "OK" });
+  });
+  await page.goto("./");
+  await expect(page.locator(".preloader")).toBeHidden();
+  const status = page.locator("#contact-message");
+
+  await page.locator("#contact .contact__button").click();
+  await expect(status).toHaveClass(/\bcolor-dark\b/);
+  expect(sends).toBe(0);
+
+  await page.fill("#contact-name", "Smoke Test");
+  await page.fill("#contact-email", "smoke@example.com");
+  await page.fill("#message", "Hello from the smoke test.");
+  await page.locator("#contact .contact__button").click();
+  await expect(status).toHaveClass(/\bcolor-light\b/);
+  expect(sends).toBe(1);
+  await expect(page.locator("#contact-name")).toHaveValue("");
+});
+
 test("content is in the HTML without JavaScript", async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
