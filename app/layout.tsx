@@ -56,6 +56,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        {/* v3-only CSS, last so it can correct for the one-page structure. See its header. */}
+        <link rel="stylesheet" href={asset("assets/css/v3.css")} />
       </head>
       <body style={{ backgroundColor: "#0F0F0F" }}>
         {children}

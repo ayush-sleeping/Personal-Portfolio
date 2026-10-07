@@ -1,0 +1,18 @@
+/*
+ * v3.css: the only home for CSS that v3 needs and v2 didn't.
+ *
+ * Loaded last, after style.css, Bootstrap, Remixicon and Font Awesome. style.css stays unchanged
+ * (the v2 look), so keep this file minimal: every rule here says why it exists, and the
+ * parity rule (task.md §5) still applies.
+ */
+
+/*
+ * The one-page site wraps each former page in <section id="home|about|projects|services|contact">.
+ * v2 had no <section> elements, so style.css's `section` rules (margin-bottom: 48px; and
+ * padding: 3rem 2rem below 1200px) never applied in v2. Reset them for these sections only,
+ * so each one lays out exactly as its v2 page did.
+ */
+main > section {
+    margin: 0;
+    padding: 0;
+}
