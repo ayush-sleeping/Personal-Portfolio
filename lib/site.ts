@@ -50,6 +50,23 @@ export function important(style: Record<string, string>): CSSProperties {
   );
 }
 
+/**
+ * Sheet text as HTML with only simple inline tags let through (<strong>, <em>, <b>, <i>, <br>),
+ * as v2's faq-render.js did: escape everything, then restore just those tags.
+ */
+export function inlineHtml(value: string): string {
+  const escaped = value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+  return escaped.replace(
+    /&lt;(\/?)(strong|em|b|i|br)\s*\/?&gt;/gi,
+    (_, slash: string, tag: string) => `<${slash}${tag.toLowerCase()}>`,
+  );
+}
+
 /** A CSS declaration string from the sheet ("font-size: 18px !important;") as a style object. */
 export function parseInlineStyle(css: string | undefined): CSSProperties | undefined {
   const entries = (css ?? "")
