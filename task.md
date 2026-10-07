@@ -29,7 +29,7 @@ Reference for every phase: `version2/*.html` and `version2/assets/js/*`. Open it
 | T8 | The 4 images hotlinked from `wpriverthemes.com`: keep hotlinked for parity now. Self-hosting waits on Ayush confirming the GridX licence (Phase 8). |
 | T9 | Repo rename to `ayush-sleeping.github.io`: decided at cutover (Phase 10), by Ayush. |
 | T10 | Values v2 hardcoded in the HTML and the sheet doesn't have (Home card images, Services/Profiles icon classes) stay as constants in the component, with a comment. Moving them into the sheet is a later option for Ayush. |
-| T12 | **Content v2 hardcoded in the HTML goes into the Google Sheet first** (Ayush, 2026-10-07): job company/location and stack lines, the Anudip entry, the college, course codes, schooling, the certifications intro, the whyHire text, and the like. Until it's in the sheet, the spot renders nothing and carries `TODO(sheet)`. Pure UI labels (button text, carousel controls) may be T10 constants. Phase 2's T10 image/icon constants stay. |
+| T12 | **Content v2 hardcoded in the HTML goes into the Google Sheet first** (Ayush, 2026-10-07): job company/location and stack lines, the Anudip entry, the college, course codes, schooling, the certifications intro, the whyHire text, and the like. Until it's in the sheet, the spot renders nothing and carries `TODO(sheet)`. Ayush's follow-up rulings: the sheet wins every conflict with `resume.html`; the per-job resume summaries are dropped (About shows each job's `description`); both "why hire" texts read **"Why should you hire me?"**; UI labels and the Home card images go in the sheet too, so T10 now covers only the icon classes. The new keys and columns are in `sheets/seed-csv/` (`d96f665`) and reach `assets/data/` after Ayush creates the sheet and the first fetch runs. That unblocks 3b. |
 | T11 | v3-only CSS goes in one file, `public/assets/css/v3.css`, loaded after the four v2 stylesheets: a reset for the section wrappers (v2 had no `<section>` elements, so `style.css`'s `section` rule never applied there) and the Phase 3 print styles. `style.css` stays unchanged. |
 
 ## 3. Team workflow
@@ -217,7 +217,7 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 | 1 Shell | ✅ done | `a02ea85` `d86d912` `112a2e6` | ✅ pass, 1 miss | F1.1 preloader bar stops short of 100% · F1.2 ionicons preload warning |
 | 2 Home | ✅ done | `0c0b3f7` `ef343c2` `1517c1f` `a020b58` | ✅ pass, 1 miss | F2.1 Font Awesome kit loads after the FA 6 stylesheet, so icons render as FA 5 |
 | 3a About (sheet data only) | 🚧 started | | | |
-| 3b Resume merge + sheet-less facts | ⏸ waits on Ayush adding them to the sheet (T12) | | | |
+| 3b Resume merge + sheet-less facts | ⏸ seed CSVs ready (`d96f665`); waits on Ayush creating the sheet + first fetch (T12) | | | |
 | 4 Projects | | | | |
 | 5 Services | | | | |
 | 6 Contact + FAQ | | | | |
