@@ -304,7 +304,7 @@ export default function HomeSection() {
             <LinkCard
               href={sectionHref("contact")}
               style={important({ padding: "50px 25px" })}
-              media={<img decoding="async" src={GRIDX.ctaStar} alt="star" className="star-icon" />}
+              media={<img decoding="async" src={GRIDX.ctaStar} alt="" className="star-icon" />}
               heading={
                 <div className="last-infos">
                   <CtaTitle text={copy.cta_title} />

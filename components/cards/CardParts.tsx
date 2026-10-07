@@ -1,17 +1,18 @@
 // Small pieces every v2 bento card repeats: the textured background, the arrow button image,
-// the label + title heading, and sheet text that carries <br> line breaks.
+// the label + title heading, and sheet text that carries <br> line breaks. The decorative images
+// have alt="" (v2: "BG" / "star", which screen readers read out; task.md T12).
 import { Fragment, type CSSProperties } from "react";
 
 import { GRIDX, important } from "@/lib/site";
 
 /** The textured card background (`.primary-card .bg-img`). */
 export function CardBg() {
-  return <img className="bg-img" src={GRIDX.cardBg} alt="BG" decoding="async" />;
+  return <img className="bg-img" src={GRIDX.cardBg} alt="" decoding="async" />;
 }
 
 /** The circled arrow inside `.about-btn`. */
 export function ArrowIcon() {
-  return <img decoding="async" src={GRIDX.arrow} alt="star" />;
+  return <img decoding="async" src={GRIDX.arrow} alt="" />;
 }
 
 /** Small uppercase label over a card title, at v2's inline 14px / 20px sizes. */
