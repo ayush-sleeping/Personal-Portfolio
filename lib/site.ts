@@ -69,6 +69,11 @@ export function asset(path: string): string {
   return encodeURI(`${basePath}/${path.replace(/^\/+/, "")}`);
 }
 
+/** A sheet URL cell: remote URLs pass through, public/ paths get basePath via asset(). */
+export function assetOrUrl(path: string): string {
+  return /^https?:\/\//i.test(path) ? path : asset(path);
+}
+
 /** Absolute URL for a public file, for OG images, canonical links and JSON-LD. */
 export function absoluteAsset(path: string): string {
   return `${SITE.origin}${asset(path)}`;
