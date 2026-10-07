@@ -48,6 +48,12 @@ export default function Preloader({ brand }: Readonly<{ brand: string }>) {
     // bar's feel depends on that; kept as-is rather than "fixed".
     let currentProgress = 0;
     let targetProgress = 0;
+    // v2's page loaded slower than the 700ms simulated fill, so its bar always finished first.
+    // v3 loads faster, and the fill kept pulling the target back under 95 after load, so the
+    // loader faded out at ~40%. Now load stops the fill, and the reveal waits for both load and
+    // the bar showing 100%.
+    let loaded = false;
+    let revealScheduled = false;
 
     const animateProgressBar = () => {
       const diff = targetProgress - currentProgress;
@@ -55,6 +61,10 @@ export default function Preloader({ brand }: Readonly<{ brand: string }>) {
       if (progressRef.current) progressRef.current.style.width = `${currentProgress}%`;
       if (percentageRef.current) {
         percentageRef.current.textContent = `${Math.round(currentProgress)}%`;
+      }
+      if (loaded && !revealScheduled && Math.round(currentProgress) >= 100) {
+        revealScheduled = true;
+        later(startRevealAnimation, TIMING.settle);
       }
       if (Math.abs(diff) > 0.1) frame(animateProgressBar);
     };
@@ -66,6 +76,7 @@ export default function Preloader({ brand }: Readonly<{ brand: string }>) {
 
     const startTime = Date.now();
     const simulateProgress = () => {
+      if (loaded) return;
       const progress = Math.min(((Date.now() - startTime) / TIMING.progress) * 100, 95);
       updateProgressBar(progress);
       if (progress < 95) frame(simulateProgress);
@@ -94,9 +105,11 @@ export default function Preloader({ brand }: Readonly<{ brand: string }>) {
       }, TIMING.slideUp);
     };
 
+    // On window load: fill to 100%. animateProgressBar starts the reveal once the bar reads 100%,
+    // after TIMING.settle, as in v2.
     const completeLoading = () => {
+      loaded = true;
       updateProgressBar(100);
-      later(startRevealAnimation, TIMING.settle);
     };
 
     if (document.readyState === "complete") {
