@@ -79,6 +79,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         ></script>
         {/* eslint-disable-next-line @next/next/no-sync-scripts -- never runs in module browsers */}
         <script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        {/* Bootstrap's JS, for the certifications carousel and the why-hire modal (task.md T5).
+            v2 loaded it at the end of <body>; defer runs it at the same point. */}
+        <script
+          defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"
+        ></script>
       </body>
     </html>
   );
