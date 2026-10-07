@@ -10,6 +10,7 @@ import StickyHeader from "@/components/client/StickyHeader";
 import WhyHire from "@/components/client/WhyHire";
 import WhyHireModal from "@/components/layout/WhyHireModal";
 import AboutSection from "@/components/sections/AboutSection";
+import ProjectsSection from "@/components/sections/ProjectsSection";
 import HomeSection from "@/components/sections/HomeSection";
 import { getFooterTech, getNavigation, getPageCopy, getProfile, getSocials } from "@/lib/data";
 
@@ -41,8 +42,8 @@ export default function Home() {
         <main>
           <HomeSection />
           <AboutSection />
-          {/* Filled in Phases 4–6. */}
-          <section id="projects"></section>
+          <ProjectsSection />
+          {/* Filled in Phases 5–6. */}
           <section id="services"></section>
           <section id="contact"></section>
         </main>

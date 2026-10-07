@@ -127,6 +127,18 @@ test("the why-hire card opens the video modal, and closing it pauses the video",
     .toBe(true);
 });
 
+test("the projects section renders every shown project, without a second skills block", async ({
+  page,
+}) => {
+  await page.goto("./");
+  const projects = readJson<{ featured?: string }[]>("assets/data/collections/projects.json");
+  const shown = projects.filter((p) => !p.featured || p.featured.trim().toUpperCase() === "TRUE");
+
+  await expect(page.locator("#projects .project-showcase-card")).toHaveCount(shown.length);
+  await expect(page.locator("#projects .skill-card")).toHaveCount(0);
+  await expect(page.locator(".skills-section").first()).toBeAttached();
+});
+
 test("content is in the HTML without JavaScript", async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
