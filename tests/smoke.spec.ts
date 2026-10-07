@@ -13,6 +13,7 @@ const profile = readJson<{ brand: string; copyright: string; name: string }>(
 const nav = readJson<{ id: string; label: string }[]>("assets/data/site/navigation.json");
 const home = readJson<{ marquee_items: string }>("assets/data/pages/home.json");
 const stats = readJson<unknown[]>("assets/data/collections/stats.json");
+const count = (name: string) => readJson<unknown[]>(`assets/data/collections/${name}.json`).length;
 
 const SECTION_IDS = ["home", "about", "projects", "services", "contact"];
 
@@ -89,6 +90,41 @@ test("the home bento renders the sheet content and links within the page", async
   for (const id of ["about", "projects", "services", "contact"]) {
     await expect(section.locator(`a[href="#${id}"]`).first()).toBeAttached();
   }
+});
+
+test("the about section renders every sheet entry once, without the home link cards", async ({
+  page,
+}) => {
+  await page.goto("./");
+  const section = page.locator("#about");
+
+  await expect(section.locator(".timeline-item")).toHaveCount(
+    count("experience") + count("education"),
+  );
+  await expect(section.locator(".carousel-item")).toHaveCount(count("certifications"));
+  await expect(section.locator(".skill-card")).toHaveCount(count("skills"));
+  await expect(section.locator(".home__name")).toHaveText(profile.name);
+
+  // T3: the link cards appear once on the page, in Home.
+  await expect(section.locator(".proj-img, .inner-profile-icons, .last-infos h2")).toHaveCount(0);
+  await expect(page.locator(".proj-img")).toHaveCount(3);
+});
+
+test("the why-hire card opens the video modal, and closing it pauses the video", async ({
+  page,
+}) => {
+  await page.goto("./");
+  await expect(page.locator(".preloader")).toBeHidden();
+
+  await page.locator("#whyHireCard").click();
+  const modal = page.locator("#whyHireModal");
+  await expect(modal).toBeVisible();
+  await modal.locator(".btn-close").click();
+  await expect(modal).toBeHidden();
+  // Bootstrap fires hidden.bs.modal (which pauses the video) after the backdrop fades out.
+  await expect
+    .poll(() => page.locator("#whyHireVideo").evaluate((v: HTMLVideoElement) => v.paused))
+    .toBe(true);
 });
 
 test("content is in the HTML without JavaScript", async ({ browser }) => {

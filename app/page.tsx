@@ -7,8 +7,11 @@ import NavigationMenu from "@/components/layout/NavigationMenu";
 import MobileMenu from "@/components/client/MobileMenu";
 import Preloader from "@/components/client/Preloader";
 import StickyHeader from "@/components/client/StickyHeader";
+import WhyHire from "@/components/client/WhyHire";
+import WhyHireModal from "@/components/layout/WhyHireModal";
+import AboutSection from "@/components/sections/AboutSection";
 import HomeSection from "@/components/sections/HomeSection";
-import { getFooterTech, getNavigation, getProfile, getSocials } from "@/lib/data";
+import { getFooterTech, getNavigation, getPageCopy, getProfile, getSocials } from "@/lib/data";
 
 export default function Home() {
   const profile = getProfile();
@@ -37,8 +40,8 @@ export default function Home() {
 
         <main>
           <HomeSection />
-          {/* Filled in Phases 3–6. */}
-          <section id="about"></section>
+          <AboutSection />
+          {/* Filled in Phases 4–6. */}
           <section id="projects"></section>
           <section id="services"></section>
           <section id="contact"></section>
@@ -52,8 +55,12 @@ export default function Home() {
         />
       </div>
 
+      {/* Outside .main-content, as in v2: its transform would trap a fixed-position modal. */}
+      <WhyHireModal copy={getPageCopy("about")} />
+
       <MobileMenu />
       <StickyHeader />
+      <WhyHire />
     </>
   );
 }
