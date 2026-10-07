@@ -132,6 +132,7 @@ export default function HomeSection() {
                   <div className="col-lg-6 col-12 mt-4">
                     <LinkCard
                       href={sectionHref("about")}
+                      label={copy.credentials_title}
                       style={important({ padding: "50px 25px" })}
                       media={
                         <img
@@ -156,6 +157,7 @@ export default function HomeSection() {
                   <div className="col-lg-6 col-12 mt-4">
                     <LinkCard
                       href={sectionHref("projects")}
+                      label={copy.projects_title}
                       style={important({ padding: "50px 25px" })}
                       media={
                         <img
@@ -221,6 +223,7 @@ export default function HomeSection() {
           <div className="col-lg-6 col-12">
             <LinkCard
               href={sectionHref("services")}
+              label={copy.services_title}
               style={important({ padding: "35px 25px" })}
               media={
                 <div className="icon-boxes">
@@ -272,7 +275,11 @@ export default function HomeSection() {
                   title={copy.profiles_title}
                   labelStyle={important({ zIndex: "999" })}
                 />
-                <a href={sectionHref("contact")} className="about-btn">
+                <a
+                  href={sectionHref("contact")}
+                  className="about-btn"
+                  aria-label={copy.profiles_title}
+                >
                   <ArrowIcon />
                 </a>
               </div>
@@ -303,6 +310,7 @@ export default function HomeSection() {
           <div className="col-lg-6 col-12">
             <LinkCard
               href={sectionHref("contact")}
+              label={copy.cta_title}
               style={important({ padding: "50px 25px" })}
               media={<img decoding="async" src={GRIDX.ctaStar} alt="" className="star-icon" />}
               heading={

@@ -145,7 +145,11 @@ export default function AboutSection() {
                         highlight={copy.why_hire_highlight}
                       />
                     </button>
-                    <a href={sectionHref("about")} className="about-btn why-hire-star-link">
+                    <a
+                      href={sectionHref("about")}
+                      className="about-btn why-hire-star-link"
+                      aria-label={copy.video_modal_title}
+                    >
                       <ArrowIcon />
                     </a>
                   </div>
@@ -167,7 +171,11 @@ export default function AboutSection() {
                         <CertificationCarousel certifications={getCertifications()} copy={copy} />
                       </div>
                       {/* v2: href="#", the top of the About page. */}
-                      <a href={sectionHref("about")} className="about-btn">
+                      <a
+                        href={sectionHref("about")}
+                        className="about-btn"
+                        aria-label={copy.certifications_heading}
+                      >
                         <ArrowIcon />
                       </a>
                     </div>

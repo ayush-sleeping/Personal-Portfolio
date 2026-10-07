@@ -13,6 +13,9 @@ import { ArrowIcon, CardBg } from "./CardParts";
 
 interface LinkCardProps {
   href: string;
+  /** The card's sheet title: the accessible name of the media and arrow links, which have no
+   * text of their own. */
+  label: string;
   /** Inline style on `.primary-card` (v2 sets the padding per card). */
   style: CSSProperties;
   /** Shown under the background, inside the first link copy. */
@@ -21,7 +24,7 @@ interface LinkCardProps {
   heading: ReactNode;
 }
 
-export default function LinkCard({ href, style, media, heading }: Readonly<LinkCardProps>) {
+export default function LinkCard({ href, label, style, media, heading }: Readonly<LinkCardProps>) {
   const linkProps = {
     href,
     className: "text-decoration-none text-reset",
@@ -29,13 +32,13 @@ export default function LinkCard({ href, style, media, heading }: Readonly<LinkC
   };
   return (
     <div className="primary-card credentials-card" style={style}>
-      <a {...linkProps}>
+      <a {...linkProps} aria-label={label}>
         <CardBg />
         {media}
       </a>
       <div className="d-flex align-items-center justify-content-between">
         <a {...linkProps}>{heading}</a>
-        <a href={href} className="about-btn">
+        <a href={href} className="about-btn" aria-label={label}>
           <ArrowIcon />
         </a>
       </div>
