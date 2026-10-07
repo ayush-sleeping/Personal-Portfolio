@@ -28,6 +28,8 @@ Reference for every phase: `version2/*.html` and `version2/assets/js/*`. Open it
 | T7 | Case studies: later, as expandable panels in Projects (backlog). |
 | T8 | The 4 images hotlinked from `wpriverthemes.com`: keep hotlinked for parity now. Self-hosting waits on Ayush confirming the GridX licence (Phase 8). |
 | T9 | Repo rename to `ayush-sleeping.github.io`: decided at cutover (Phase 10), by Ayush. |
+| T10 | Values v2 hardcoded in the HTML and the sheet doesn't have (Home card images, Services/Profiles icon classes) stay as constants in the component, with a comment. Moving them into the sheet is a later option for Ayush. |
+| T11 | v3-only CSS goes in one file, `public/assets/css/v3.css`, loaded after the four v2 stylesheets: a reset for the section wrappers (v2 had no `<section>` elements, so `style.css`'s `section` rule never applied there) and the Phase 3 print styles. `style.css` stays unchanged. |
 
 ## 3. Team workflow
 
@@ -229,3 +231,6 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
   now closes the slide-out menu, since it scrolls instead of loading a page. The hamburger gets `aria-label` /
   `aria-expanded`. Home stays `.active` in the nav until Phase 7. With JavaScript off, `.main-content` stays at
   opacity 0, as in v2, until Phase 7 fixes it.
+- Phase 2: v2's Home bento nests `<a>` inside `<a>`, which the browser's parser splits apart. v3 renders the
+  DOM the browser actually builds (same elements, same clickable areas), without the empty zero-height `<a>`
+  the parser leaves before those cards.
