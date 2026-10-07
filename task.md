@@ -220,8 +220,8 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 | 3b Resume merge + sheet-less facts | ⏸ seed CSVs ready (`d96f665`); waits on Ayush creating the sheet + first fetch (T12) | | | |
 | 4 Projects | ✅ done | `e4dc5bd` | ⏳ testing | |
 | 5 Services | ✅ done | `94dfcb3` | ⏳ testing | |
-| 6 Contact + FAQ | 🚧 started | | | |
-| 7 Behaviour | | | | |
+| 6 Contact + FAQ | ✅ done | `ac0474d` `bf8331e` `8f18ea3` | ⏳ testing | |
+| 7 Behaviour | 🚧 started | | | |
 | 8 SEO | | | | |
 | 9 Parity | | | | |
 | 10 Cutover | ⏸ needs Ayush | | | |
@@ -238,3 +238,6 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
   the parser leaves before those cards.
 - Phase 3a: decorative card images are `alt=""` (v2: "BG" / "star"). Certificates with no `credential_url` show
   "View Certificate" without an `href` (v2's `href=""` reloaded the page).
+- Phase 4–5: the Skills block and the link-card rows v2 repeated on Projects and Services are shown once (T3).
+- Phase 6: v2's Apps Script logging (`logToSheet`) is not ported; its URL was empty, so it never ran (B21). The
+  status line gets `aria-live`. "Let's work together." uses the sheet's straight apostrophe.
