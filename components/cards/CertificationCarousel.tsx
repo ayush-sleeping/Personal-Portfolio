@@ -29,7 +29,10 @@ export default function CertificationCarousel({
                     src={picture.src}
                     className="certification-img"
                     alt={cert.alt_text || cert.title}
-                    loading="lazy"
+                    // The first slide sets the slider's height. Lazy, it loaded only after a
+                    // nav jump past it and pushed every later section ~550px down, so links
+                    // landed in About. The hidden slides stay lazy.
+                    loading={i === 0 ? undefined : "lazy"}
                     decoding="async"
                   />
                 </picture>
