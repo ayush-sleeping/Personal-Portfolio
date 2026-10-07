@@ -16,3 +16,21 @@ main > section {
     margin: 0;
     padding: 0;
 }
+
+/*
+ * Without JavaScript the page must still show (task.md Phase 7). style.css starts .main-content
+ * at opacity 0 and the preloader script reveals it, so in v2 a visitor without JS saw a blank
+ * page under a stuck preloader. `scripting: none` only matches when scripts can't run, so the
+ * preloader's look and timing with JS on are untouched.
+ */
+@media (scripting: none) {
+    .main-content {
+        opacity: 1;
+        transform: none;
+    }
+
+    .preloader,
+    .slide-reveal-panel {
+        display: none;
+    }
+}
