@@ -8,6 +8,13 @@ const eslintConfig = defineConfig([
   ...nextTs,
   // Formatting is Prettier's job; turn off the ESLint rules that fight it.
   prettier,
+  {
+    rules: {
+      // next/image can't optimise a static export (images.unoptimized), and parity with v2 needs
+      // its plain <img>/<picture> markup. Local images already ship AVIF + WebP siblings.
+      "@next/next/no-img-element": "off",
+    },
+  },
   globalIgnores([
     ".next/**",
     "out/**",
