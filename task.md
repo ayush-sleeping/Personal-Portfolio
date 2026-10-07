@@ -211,8 +211,8 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 
 | Phase | Developer | Commit(s) | Tester | Fix-ups |
 |---|---|---|---|---|
-| 1 Shell | 🚧 started | | | |
-| 2 Home | | | | |
+| 1 Shell | ✅ done | `a02ea85` `d86d912` `112a2e6` | ⏳ testing | |
+| 2 Home | 🚧 started | | | |
 | 3 About + Resume | | | | |
 | 4 Projects | | | | |
 | 5 Services | | | | |
@@ -221,3 +221,11 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 | 8 SEO | | | | |
 | 9 Parity | | | | |
 | 10 Cutover | ⏸ needs Ayush | | | |
+
+**Intentional differences from v2, recorded as they come up** (the tester does not report these):
+
+- Phase 1: v2's GSAP block (no page loads GSAP, and its targets don't exist, so it only threw errors),
+  Spotlight (no `[data-spotlight]` element) and the dead `.navbar.active` handling are not ported. A menu link
+  now closes the slide-out menu, since it scrolls instead of loading a page. The hamburger gets `aria-label` /
+  `aria-expanded`. Home stays `.active` in the nav until Phase 7. With JavaScript off, `.main-content` stays at
+  opacity 0, as in v2, until Phase 7 fixes it.
