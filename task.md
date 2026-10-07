@@ -63,7 +63,7 @@ other command that changes the main tree's files or HEAD.
 ```bash
 git worktree add --detach ../Personal-Portfolio-test <sha>   # first time
 cd ../Personal-Portfolio-test && git checkout --detach <sha>  # each later phase
-ln -sfn ../Personal-Portfolio/node_modules node_modules       # once; reuse the main install
+npm ci                                                        # own install: Turbopack rejects a node_modules symlink outside the project root
 npm run build && npm test                                     # serves out/ at :3000/Personal-Portfolio/
 ```
 
@@ -213,7 +213,7 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 
 | Phase | Developer | Commit(s) | Tester | Fix-ups |
 |---|---|---|---|---|
-| 1 Shell | ✅ done | `a02ea85` `d86d912` `112a2e6` | ⏳ testing | |
+| 1 Shell | ✅ done | `a02ea85` `d86d912` `112a2e6` | ✅ pass, 1 miss | F1.1 preloader bar stops short of 100% · F1.2 ionicons preload warning |
 | 2 Home | 🚧 started | | | |
 | 3 About + Resume | | | | |
 | 4 Projects | | | | |
