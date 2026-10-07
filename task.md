@@ -219,8 +219,8 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 | 3a About (sheet data only) | ✅ done | `e2057d1` `2772906` `06dbdb3` `827830d` | ⏳ testing | arrow-link aria-labels from card titles (`a5fc921`, to retest) |
 | 3b Resume merge + sheet-less facts | ⏸ seed CSVs ready (`d96f665`); waits on Ayush creating the sheet + first fetch (T12) | | | |
 | 4 Projects | ✅ done | `e4dc5bd` | ⏳ testing | |
-| 5 Services | 🚧 started | | | |
-| 6 Contact + FAQ | | | | |
+| 5 Services | ✅ done | `94dfcb3` | ⏳ testing | |
+| 6 Contact + FAQ | 🚧 started | | | |
 | 7 Behaviour | | | | |
 | 8 SEO | | | | |
 | 9 Parity | | | | |
