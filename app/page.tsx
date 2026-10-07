@@ -6,6 +6,8 @@ import Header from "@/components/layout/Header";
 import NavigationMenu from "@/components/layout/NavigationMenu";
 import MobileMenu from "@/components/client/MobileMenu";
 import Preloader from "@/components/client/Preloader";
+import ActiveSection from "@/components/client/ActiveSection";
+import ScrollCardAnimations from "@/components/client/ScrollCardAnimations";
 import StickyHeader from "@/components/client/StickyHeader";
 import WhyHire from "@/components/client/WhyHire";
 import WhyHireModal from "@/components/layout/WhyHireModal";
@@ -22,7 +24,7 @@ export default function Home() {
   // v2's menu footer reads "© 2026 Ayush Mishra"; the year comes from the sheet's copyright line.
   const year = profile.copyright?.match(/\d{4}/)?.[0];
   const menuCopyright = `© ${year ? `${year} ` : ""}${profile.name}`;
-  // Until the scroll highlighter (Phase 7), Home is marked active, as on v2's index.html.
+  // The initial state, as on v2's index.html; ActiveSection then follows the scroll.
   const activeId = "home";
 
   return (
@@ -63,6 +65,8 @@ export default function Home() {
       <MobileMenu />
       <StickyHeader />
       <WhyHire />
+      <ScrollCardAnimations />
+      <ActiveSection />
     </>
   );
 }
