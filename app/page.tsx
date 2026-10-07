@@ -1,13 +1,14 @@
 // The one-page portfolio (task.md). The v2 shell — preloader, slide-out menu, header, footer —
-// around the five sections in T2 order. Sections are filled phase by phase.
+// around the five sections in T2 order (ids from SECTION_IDS in lib/site.ts). Sections are
+// filled phase by phase.
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import NavigationMenu from "@/components/layout/NavigationMenu";
 import MobileMenu from "@/components/client/MobileMenu";
 import Preloader from "@/components/client/Preloader";
 import StickyHeader from "@/components/client/StickyHeader";
+import HomeSection from "@/components/sections/HomeSection";
 import { getFooterTech, getNavigation, getProfile, getSocials } from "@/lib/data";
-import { SECTION_IDS } from "@/lib/site";
 
 export default function Home() {
   const profile = getProfile();
@@ -35,9 +36,12 @@ export default function Home() {
         <Header brand={profile.brand} ctaLabel={profile.cta_label} nav={nav} activeId={activeId} />
 
         <main>
-          {SECTION_IDS.map((id) => (
-            <section key={id} id={id}></section>
-          ))}
+          <HomeSection />
+          {/* Filled in Phases 3–6. */}
+          <section id="about"></section>
+          <section id="projects"></section>
+          <section id="services"></section>
+          <section id="contact"></section>
         </main>
 
         <Footer

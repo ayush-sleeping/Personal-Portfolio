@@ -7,8 +7,12 @@ import { expect, test } from "@playwright/test";
 
 const readJson = <T>(file: string) => JSON.parse(readFileSync(file, "utf8")) as T;
 
-const profile = readJson<{ brand: string; copyright: string }>("assets/data/site/profile.json");
+const profile = readJson<{ brand: string; copyright: string; name: string }>(
+  "assets/data/site/profile.json",
+);
 const nav = readJson<{ id: string; label: string }[]>("assets/data/site/navigation.json");
+const home = readJson<{ marquee_items: string }>("assets/data/pages/home.json");
+const stats = readJson<unknown[]>("assets/data/collections/stats.json");
 
 const SECTION_IDS = ["home", "about", "projects", "services", "contact"];
 
@@ -69,11 +73,30 @@ test("the hamburger opens and closes the menu, and a menu link closes it", async
   await expect(page).toHaveURL(/#contact$/);
 });
 
+test("the home bento renders the sheet content and links within the page", async ({ page }) => {
+  await page.goto("./");
+  const section = page.locator("#home");
+
+  await expect(section.locator(".infos h2").first()).toHaveText(profile.name);
+  await expect(section.locator(".client-card")).toHaveCount(stats.length);
+  // One empty leading item, then the list twice (what the marquee keyframe is tuned against).
+  const items = home.marquee_items.split(",").filter((s) => s.trim());
+  await expect(section.locator(".marquee > span")).toHaveCount(1 + 2 * items.length);
+
+  // Cards link to sections, not to v2's .html pages, and no link is nested in another.
+  await expect(section.locator('a[href$=".html"]')).toHaveCount(0);
+  await expect(section.locator("a a")).toHaveCount(0);
+  for (const id of ["about", "projects", "services", "contact"]) {
+    await expect(section.locator(`a[href="#${id}"]`).first()).toBeAttached();
+  }
+});
+
 test("content is in the HTML without JavaScript", async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("./");
   await expect(page.locator(".header .logo-text")).toHaveText(profile.brand);
+  await expect(page.locator("#home .infos h2").first()).toHaveText(profile.name);
   await context.close();
 });
 
