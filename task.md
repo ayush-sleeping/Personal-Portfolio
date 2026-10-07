@@ -216,9 +216,9 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 |---|---|---|---|---|
 | 1 Shell | ✅ done | `a02ea85` `d86d912` `112a2e6` | ✅ pass, 1 miss | F1.1 preloader bar stops short of 100% (`9e82b78` ✅) · F1.2 ionicons preload warning (`7f1fc9b` ✅) |
 | 2 Home | ✅ done | `0c0b3f7` `ef343c2` `1517c1f` `a020b58` | ✅ pass, 1 miss | F2.1 Font Awesome kit loads after the FA 6 stylesheet, so icons render as FA 5 (`0e6b9e8` ✅) |
-| 3a About (sheet data only) | 🚧 started | | | |
+| 3a About (sheet data only) | ✅ done | `e2057d1` `2772906` `06dbdb3` `827830d` | ⏳ testing | arrow-link aria-labels from card titles (pending) |
 | 3b Resume merge + sheet-less facts | ⏸ seed CSVs ready (`d96f665`); waits on Ayush creating the sheet + first fetch (T12) | | | |
-| 4 Projects | | | | |
+| 4 Projects | 🚧 started | | | |
 | 5 Services | | | | |
 | 6 Contact + FAQ | | | | |
 | 7 Behaviour | | | | |
@@ -236,3 +236,5 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 - Phase 2: v2's Home bento nests `<a>` inside `<a>`, which the browser's parser splits apart. v3 renders the
   DOM the browser actually builds (same elements, same clickable areas), without the empty zero-height `<a>`
   the parser leaves before those cards.
+- Phase 3a: decorative card images are `alt=""` (v2: "BG" / "star"). Certificates with no `credential_url` show
+  "View Certificate" without an `href` (v2's `href=""` reloaded the page).
