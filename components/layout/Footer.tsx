@@ -31,7 +31,7 @@ export default function Footer({ brand, copyright, nav, tech }: Readonly<FooterP
             // sheet content, not visitor input.
             return t.icon_class ? (
               <div key={t.id} {...props}>
-                <i className={t.icon_class}></i>
+                <i className={t.icon_class} aria-hidden="true"></i>
               </div>
             ) : (
               <div key={t.id} {...props} dangerouslySetInnerHTML={{ __html: t.icon_html ?? "" }} />

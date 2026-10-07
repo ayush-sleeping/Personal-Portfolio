@@ -6,7 +6,6 @@
 //
 // Page-specific SEO (final title, OG tags, JSON-LD) is planned in task.md with the portfolio.
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 
 import { SITE, asset } from "@/lib/site";
 
@@ -47,6 +46,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"
         />
+        {/* Font Awesome kit, where v2 had it: a blocking script after Bootstrap, so the FA 5
+            styles it injects land before the FA 6 link below and FA 6 wins. Run any later (as
+            next/script does) and FA 5 wins: different glyphs. */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts -- must run during head parsing */}
+        <script src="https://kit.fontawesome.com/4bff2ef1c5.js" crossOrigin="anonymous"></script>
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
@@ -64,12 +68,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body style={{ backgroundColor: "#0F0F0F" }}>
         {children}
 
-        {/* Social icons kit (v2 loaded it in <head>). */}
-        <Script
-          src="https://kit.fontawesome.com/4bff2ef1c5.js"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
         {/* Ionicons, as at the end of v2's <body>. Plain tags, not next/script: next/script
             preloads both files without crossorigin, so the module preload goes unused (a console
             warning) and module browsers also download the nomodule build, which v2 never did.

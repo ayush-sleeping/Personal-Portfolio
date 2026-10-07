@@ -225,7 +225,7 @@ export default function HomeSection() {
               media={
                 <div className="icon-boxes">
                   {SERVICES_CARD_ICONS.map((icon) => (
-                    <i key={icon} className={icon}></i>
+                    <i key={icon} className={icon} aria-hidden="true"></i>
                   ))}
                 </div>
               }
@@ -258,7 +258,7 @@ export default function HomeSection() {
                         style={{ textDecoration: "none" }}
                       >
                         <div className="social-card">
-                          <i className={PROFILE_CARD_ICONS[s.id]}></i>
+                          <i className={PROFILE_CARD_ICONS[s.id]} aria-hidden="true"></i>
                         </div>
                       </a>
                     </div>
