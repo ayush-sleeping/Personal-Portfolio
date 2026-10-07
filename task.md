@@ -214,8 +214,8 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 
 | Phase | Developer | Commit(s) | Tester | Fix-ups |
 |---|---|---|---|---|
-| 1 Shell | ✅ done | `a02ea85` `d86d912` `112a2e6` | ✅ pass, 1 miss | F1.1 preloader bar stops short of 100% · F1.2 ionicons preload warning |
-| 2 Home | ✅ done | `0c0b3f7` `ef343c2` `1517c1f` `a020b58` | ✅ pass, 1 miss | F2.1 Font Awesome kit loads after the FA 6 stylesheet, so icons render as FA 5 |
+| 1 Shell | ✅ done | `a02ea85` `d86d912` `112a2e6` | ✅ pass, 1 miss | F1.1 preloader bar stops short of 100% (`9e82b78` ✅) · F1.2 ionicons preload warning (`7f1fc9b` ✅) |
+| 2 Home | ✅ done | `0c0b3f7` `ef343c2` `1517c1f` `a020b58` | ✅ pass, 1 miss | F2.1 Font Awesome kit loads after the FA 6 stylesheet, so icons render as FA 5 (`0e6b9e8` ✅) |
 | 3a About (sheet data only) | 🚧 started | | | |
 | 3b Resume merge + sheet-less facts | ⏸ seed CSVs ready (`d96f665`); waits on Ayush creating the sheet + first fetch (T12) | | | |
 | 4 Projects | | | | |
