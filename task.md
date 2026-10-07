@@ -221,7 +221,7 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 | 4 Projects | ✅ done | `e4dc5bd` | ⏳ testing | |
 | 5 Services | ✅ done | `94dfcb3` | ⏳ testing | |
 | 6 Contact + FAQ | ✅ done | `ac0474d` `bf8331e` `8f18ea3` | ⏳ testing | |
-| 7 Behaviour | 🚧 started | | | |
+| 7 Behaviour | ✅ done | `3bece56` `52b98c9` `794efd0` `3aea948` `53a04cc` | ⏳ testing | `aba5f6f` fix(3a): first certificate image loaded late and pushed later sections down |
 | 8 SEO | | | | |
 | 9 Parity | | | | |
 | 10 Cutover | ⏸ needs Ayush | | | |
