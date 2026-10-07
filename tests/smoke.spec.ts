@@ -185,10 +185,32 @@ test("the contact form validates, then sends through EmailJS", async ({ page }) 
   await expect(page.locator("#contact-name")).toHaveValue("");
 });
 
-test("content is in the HTML without JavaScript", async ({ browser }) => {
+test("the nav marks the section in view, in the navbar and the menu", async ({ page }) => {
+  await page.goto("./");
+  await expect(page.locator(".preloader")).toBeHidden();
+  for (const id of ["projects", "contact", "home"]) {
+    await page.locator(`#${id}`).evaluate((el) => el.scrollIntoView({ behavior: "instant" }));
+    await expect(page.locator(".header .navbar a.active")).toHaveAttribute("href", `#${id}`);
+    await expect(page.locator(".nav-categories a.active")).toHaveAttribute("href", `#${id}`);
+  }
+});
+
+test("the web app manifest is linked and served under basePath", async ({ page }) => {
+  await page.goto("./");
+  const href = await page.locator('link[rel="manifest"]').getAttribute("href");
+  expect(href).toBeTruthy();
+  const response = await page.request.get(href!);
+  expect(response.status()).toBe(200);
+  expect((await response.json()).short_name).toBe(profile.brand);
+});
+
+test("content is in the HTML, and visible, without JavaScript", async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("./");
+  // v3.css's `scripting: none` rule: no stuck preloader, no invisible page.
+  await expect(page.locator(".preloader")).toBeHidden();
+  await expect(page.locator(".main-content")).toHaveCSS("opacity", "1");
   await expect(page.locator(".header .logo-text")).toHaveText(profile.brand);
   await expect(page.locator("#home .infos h2").first()).toHaveText(profile.name);
   await context.close();
