@@ -1,15 +1,18 @@
-// Smoke test for the v3 core: the built site loads under basePath, shows content from the sheet
-// data, has the shell stylesheet applied, loads public assets, and throws no page errors.
+// Smoke test for the one-page site: the built site loads under basePath, renders the v2 shell
+// from the sheet data, has the shell stylesheet applied, loads public assets, and throws no page
+// errors.
 import { readFileSync } from "node:fs";
 
 import { expect, test } from "@playwright/test";
 
-const profile = JSON.parse(readFileSync("assets/data/site/profile.json", "utf8")) as {
-  name: string;
-  tagline: string;
-};
+const readJson = <T>(file: string) => JSON.parse(readFileSync(file, "utf8")) as T;
 
-test("home page renders sheet content with the v2 stylesheet", async ({ page }) => {
+const profile = readJson<{ brand: string; copyright: string }>("assets/data/site/profile.json");
+const nav = readJson<{ id: string; label: string }[]>("assets/data/site/navigation.json");
+
+const SECTION_IDS = ["home", "about", "projects", "services", "contact"];
+
+test("the shell renders sheet content with the v2 stylesheet", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (err) => errors.push(err.message));
 
@@ -17,26 +20,60 @@ test("home page renders sheet content with the v2 stylesheet", async ({ page }) 
   expect(response?.status()).toBe(200);
 
   // Content comes from assets/data at build time.
-  await expect(page.getByRole("heading", { level: 1, name: profile.name })).toBeVisible();
-  await expect(page.getByText(profile.tagline)).toBeVisible();
+  await expect(page.locator(".header .logo-text")).toHaveText(profile.brand);
+  await expect(page.locator("footer")).toContainText(profile.copyright);
+
+  // Every section exists, in order, and every header nav link points at one of them.
+  const ids = await page.locator("main > section").evaluateAll((els) => els.map((el) => el.id));
+  expect(ids).toEqual(SECTION_IDS);
+  for (const item of nav) {
+    await expect(page.locator(`.header .navbar a[href="#${item.id}"]`)).toHaveText(item.label);
+  }
 
   // style.css is applied: its --background-color token is #0F0F0F.
   const background = await page.evaluate(() => getComputedStyle(document.body).backgroundColor);
   expect(background).toBe("rgb(15, 15, 15)");
 
-  // A public asset under basePath actually loaded (the portrait, via <picture>).
-  const portrait = page.getByRole("img", { name: profile.name });
-  await expect(portrait).toBeVisible();
-  expect(await portrait.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+  // The preloader hands over: the content fades in and the preloader leaves the layer tree.
+  await expect(page.locator(".main-content")).toHaveClass(/\bfade-in\b/);
+  await expect(page.locator(".preloader")).toBeHidden();
+
+  // A public asset under basePath resolves (the favicon the <head> links).
+  const icon = await page.locator('link[rel="icon"]').first().getAttribute("href");
+  expect(icon).toBeTruthy();
+  const iconResponse = await page.request.get(icon!);
+  expect(iconResponse.status()).toBe(200);
 
   expect(errors, "uncaught page errors").toEqual([]);
+});
+
+test("the hamburger opens and closes the menu, and a menu link closes it", async ({ page }) => {
+  await page.goto("./");
+  await expect(page.locator(".preloader")).toBeHidden();
+
+  const hamburger = page.locator(".hamburger");
+  const menu = page.locator(".navigation__menu");
+  test.skip(
+    !(await hamburger.isVisible()),
+    "style.css shows the hamburger at 768px and below only",
+  );
+
+  await hamburger.click();
+  await expect(menu).toHaveClass(/\bopen\b/);
+  await hamburger.click();
+  await expect(menu).not.toHaveClass(/\bopen\b/);
+
+  await hamburger.click();
+  await menu.locator('a[href="#contact"]').click();
+  await expect(menu).not.toHaveClass(/\bopen\b/);
+  await expect(page).toHaveURL(/#contact$/);
 });
 
 test("content is in the HTML without JavaScript", async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false });
   const page = await context.newPage();
   await page.goto("./");
-  await expect(page.getByRole("heading", { level: 1, name: profile.name })).toBeVisible();
+  await expect(page.locator(".header .logo-text")).toHaveText(profile.brand);
   await context.close();
 });
 
