@@ -229,8 +229,7 @@ export default function AboutSection() {
                     </div>
                   </div>
                   <div className="home__info d-flex justify-content-center pt-4">
-                    {/* TODO(sheet): page_about.contact_button_label (proposed key; v2: "Contact
-                        Me"). Not in the T12 key list yet. */}
+                    {/* TODO(sheet): page_about.contact_button_label; the seed CSV fills it until then. */}
                     <a href={sectionHref("contact")} className="contact-card-btn">
                       {copy.contact_button_label}
                     </a>

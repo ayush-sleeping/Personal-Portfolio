@@ -61,7 +61,56 @@ export const getSocials = () => sorted(read<Social[]>("site/socials.json"));
 export const getFooterTech = () => sorted(read<FooterTech[]>("site/footer-tech.json"));
 
 // ------------------------------------------------------------------ page copy
-export const getPageCopy = (page: PageId) => read<PageCopy>(`pages/${page}.json`);
+export const getPageCopy = (page: PageId): PageCopy => ({
+  ...seedCopy(page),
+  ...read<PageCopy>(`pages/${page}.json`),
+});
+
+/**
+ * Keys the sheet doesn't have yet (task.md T12), from the seed CSV prepared for it, so labels such
+ * as "Contact Me" don't render empty in the meantime. The sheet's JSON wins once the key exists.
+ */
+function seedCopy(page: PageId): PageCopy {
+  const file = path.join(process.cwd(), "sheets", "seed-csv", `page_${page}.csv`);
+  let text: string;
+  try {
+    text = readFileSync(file, "utf8");
+  } catch {
+    return {};
+  }
+  const [, ...rows] = parseCsv(text);
+  return Object.fromEntries(rows.filter((r) => r[0]?.trim()).map((r) => [r[0].trim(), r[1] ?? ""]));
+}
+
+/** Minimal RFC 4180 CSV: quoted fields, doubled quotes, commas and newlines inside quotes. */
+function parseCsv(text: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let field = "";
+  let quoted = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (quoted) {
+      if (c === '"' && text[i + 1] === '"') {
+        field += '"';
+        i++;
+      } else if (c === '"') quoted = false;
+      else field += c;
+    } else if (c === '"') quoted = true;
+    else if (c === ",") {
+      row.push(field);
+      field = "";
+    } else if (c === "\n" || c === "\r") {
+      if (c === "\r" && text[i + 1] === "\n") i++;
+      row.push(field);
+      rows.push(row);
+      row = [];
+      field = "";
+    } else field += c;
+  }
+  if (field || row.length) rows.push([...row, field]);
+  return rows;
+}
 
 // ----------------------------------------------------------------- collections
 export const getProjects = () => sorted(read<Project[]>("collections/projects.json"));
