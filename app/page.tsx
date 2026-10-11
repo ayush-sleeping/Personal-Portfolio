@@ -4,6 +4,7 @@
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import NavigationMenu from "@/components/layout/NavigationMenu";
+import StructuredData from "@/components/layout/StructuredData";
 import MobileMenu from "@/components/client/MobileMenu";
 import Preloader from "@/components/client/Preloader";
 import ActiveSection from "@/components/client/ActiveSection";
@@ -29,6 +30,7 @@ export default function Home() {
 
   return (
     <>
+      <StructuredData />
       <Preloader brand={profile.brand} />
 
       <NavigationMenu
