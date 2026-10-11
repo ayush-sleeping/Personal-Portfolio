@@ -75,15 +75,43 @@ export const getPageCopy = (page: PageId): PageCopy => ({
  * key exists.
  */
 function seedKeys(tab: string): Record<string, string> {
+  return Object.fromEntries(seedRows(tab).map((r) => [r.key, r.value ?? ""]));
+}
+
+/**
+ * The same fallback for a collection tab (task.md 3b): a row's blank cells, and columns the sheet
+ * doesn't have yet (education's institution_url), come from the seed row with the same id. A cell
+ * of empty `Label::` pairs ("Relevant Courses::") counts as blank. The sheet's value wins otherwise.
+ */
+function withSeedCells<T extends { id: string }>(rows: T[], tab: string): T[] {
+  const seed = new Map(seedRows(tab).map((r) => [r.id, r]));
+  const blank = (v: unknown) =>
+    typeof v !== "string" || v.replace(/[^|]*?::/g, "").replace(/[|\s]/g, "") === "";
+  return rows.map((row) => {
+    const extra = seed.get(row.id);
+    if (!extra) return row;
+    const filled: Record<string, unknown> = { ...row };
+    for (const [col, value] of Object.entries(extra)) {
+      if (value && blank(filled[col])) filled[col] = value;
+    }
+    return filled as T;
+  });
+}
+
+/** A seed CSV as objects keyed by its header row. Empty when the file doesn't exist. */
+function seedRows(tab: string): Record<string, string>[] {
   const file = path.join(process.cwd(), "sheets", "seed-csv", `${tab}.csv`);
   let text: string;
   try {
     text = readFileSync(file, "utf8");
   } catch {
-    return {};
+    return [];
   }
-  const [, ...rows] = parseCsv(text);
-  return Object.fromEntries(rows.filter((r) => r[0]?.trim()).map((r) => [r[0].trim(), r[1] ?? ""]));
+  const [header = [], ...rows] = parseCsv(text);
+  const cols = header.map((h) => h.trim());
+  return rows
+    .filter((r) => r[0]?.trim())
+    .map((r) => Object.fromEntries(cols.map((c, i) => [c, (r[i] ?? "").trim()])));
 }
 
 /** Minimal RFC 4180 CSV: quoted fields, doubled quotes, commas and newlines inside quotes. */
@@ -118,8 +146,10 @@ function parseCsv(text: string): string[][] {
 
 // ----------------------------------------------------------------- collections
 export const getProjects = () => sorted(read<Project[]>("collections/projects.json"));
-export const getExperience = () => sorted(read<TimelineEntry[]>("collections/experience.json"));
-export const getEducation = () => sorted(read<TimelineEntry[]>("collections/education.json"));
+export const getExperience = () =>
+  sorted(withSeedCells(read<TimelineEntry[]>("collections/experience.json"), "experience"));
+export const getEducation = () =>
+  sorted(withSeedCells(read<TimelineEntry[]>("collections/education.json"), "education"));
 export const getSkills = () => sorted(read<Skill[]>("collections/skills.json"));
 export const getCertifications = () =>
   sorted(read<Certification[]>("collections/certifications.json"));

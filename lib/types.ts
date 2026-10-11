@@ -74,6 +74,8 @@ export interface TimelineEntry {
   duration_label?: string;
   description?: string;
   details?: string;
+  /** Education only: the school's website, linked from its name. */
+  institution_url?: string;
 }
 
 export interface Skill {
