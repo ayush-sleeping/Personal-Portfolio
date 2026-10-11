@@ -117,6 +117,15 @@ building the portfolio (planned in `task.md`).
 - `next/image` optimisation is off (`images.unoptimized`). It needs a server, and the siblings already cover
   modern formats.
 
+- `public/assets/img/decor/` holds the card decorations (texture, circled arrow, two stars), referenced
+  through `DECOR` in `lib/site.ts`. They're the site's own drawings; nothing is hotlinked.
+
+**Generated files.** The crawler files are code, not files in `public/`, so they follow the sheet data and
+`SITE.url`: `app/sitemap.ts` (one URL), `app/robots.ts`, `app/llms.txt/route.ts`, and the five
+`app/<v2 page>.html/route.ts` redirect pages built by `lib/redirect.ts`. Each is `force-static`, so the
+export writes a plain file to `out/`. The head metadata is in `app/layout.tsx`, and the JSON-LD in
+`components/layout/StructuredData.tsx`.
+
 ## 7. Local servers: `scripts/serve.mjs`
 
 A dependency-free static server:

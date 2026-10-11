@@ -1,6 +1,6 @@
 # task.md — The one-page portfolio
 
-> **Status: 🚧 IN PROGRESS.** Started 2026-10-07. **Paused after Phase 7 on 2026-10-07 (Ayush); resume with Phase 8.** Follows [`documentation/version3.md`](documentation/version3.md)
+> **Status: 🚧 IN PROGRESS.** Started 2026-10-07. **Resumed 2026-10-11: Phase 8 done; next, re-check Phases 3a–7, then Phase 9.** Follows [`documentation/version3.md`](documentation/version3.md)
 > (v3 foundation, done). Branch: `v3-nextjs`. `main` is not touched until the cutover (Phase 10), and that
 > phase needs Ayush.
 
@@ -221,7 +221,7 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 | 5 Services | ✅ done | `94dfcb3` | ⏳ testing | |
 | 6 Contact + FAQ | ✅ done | `ac0474d` `bf8331e` `8f18ea3` | ⏳ testing | |
 | 7 Behaviour | ✅ done | `3bece56` `52b98c9` `794efd0` `3aea948` `53a04cc` | ⏳ testing | `aba5f6f` fix(3a): first certificate image loaded late and pushed later sections down |
-| 8 SEO | | | | |
+| 8 SEO | ✅ done | `88b35a8` `336ae8a` `67a7e5c` `c3c7b1a` | ✅ `npm test` 62/62 (no tester session; checked by the developer) | |
 | 9 Parity | | | | |
 | 10 Cutover | ⏸ needs Ayush | | | |
 
@@ -239,5 +239,6 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
   "View Certificate" without an `href` (v2's `href=""` reloaded the page).
 - Phase 4–5: the Skills block and the link-card rows v2 repeated on Projects and Services are shown once (T3).
 - T8: the card texture, circled arrow and two stars are our own drawings, close to v2's but not pixel-identical.
+- Phase 8: the page title is "Ayush Mishra | FullStack Developer Portfolio" (v2: "Ayush | FullStack Web Developer | …"), and v2's six pages share one set of tags. The old `.html` URLs are redirect pages marked `noindex`.
 - Phase 6: v2's Apps Script logging (`logToSheet`) is not ported; its URL was empty, so it never ran (B21). The
   status line gets `aria-live`. "Let's work together." uses the sheet's straight apostrophe.
