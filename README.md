@@ -50,7 +50,7 @@ git switch v3-nextjs
 
 npm install                          # install dependencies
 npx playwright install chromium      # once per machine, for npm test
-npm run dev                          # http://localhost:3000
+npm run dev                          # http://localhost:7300
 ```
 
 To also get the v2 reference copy (optional, local only):
@@ -60,15 +60,30 @@ mkdir version2 && git archive v2-html-final | tar -x -C version2
 npm run v2           # http://localhost:4000
 ```
 
+### With Docker (optional)
+
+Nothing to install but Docker. `compose.yaml` has two services:
+
+```bash
+docker compose up dev        # live-reloading dev server  -> http://localhost:7300/
+docker compose up preview    # the built site             -> http://localhost:7301/Personal-Portfolio/
+docker compose up -d         # both, in the background; stop with: docker compose down
+docker compose build preview # rebuild the preview after changes (dev picks them up live)
+```
+
+`dev` bind-mounts the repo, so edits reload as with `npm run dev`. `preview` builds the static export
+inside the image (running the content validation first) and serves it the way GitHub Pages will. Docker is
+for local use only; deploys still come from CI. Ports bind to `127.0.0.1` only.
+
 <br>
 
 ## Commands
 
 | Command | What it does |
 |---|---|
-| `npm run dev` | Dev server with hot reload, at `http://localhost:3000/` (no `/Personal-Portfolio` prefix in dev) |
+| `npm run dev` | Dev server with hot reload, at `http://localhost:7300/` (no `/Personal-Portfolio` prefix in dev) |
 | `npm run build` | Validates the content JSON, then builds the static site into `out/` |
-| `npm run preview` | Serves `out/` at `http://localhost:3000/Personal-Portfolio/`, like GitHub Pages will |
+| `npm run preview` | Serves `out/` at `http://localhost:7301/Personal-Portfolio/`, like GitHub Pages will |
 | `npm run v2` | Serves the `version2/` reference copy at `http://localhost:4000` |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript, no output |

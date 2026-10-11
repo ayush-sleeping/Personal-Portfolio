@@ -43,7 +43,7 @@ How the Next.js version of the portfolio is put together. For the plan and progr
 | `.nvmrc`, `package.json` `engines` | Node 22 (≥ 20.9) |
 
 **`basePath`** is the URL prefix the site lives under. It's `/Personal-Portfolio` on GitHub Pages today,
-so `build`, `preview` and the tests use it. `npm run dev` uses none, so `http://localhost:3000/` opens the
+so `build`, `preview` and the tests use it. `npm run dev` uses none, so `http://localhost:7300/` opens the
 site directly. Because the build still runs under the prefix, a path that forgets `asset()` works in dev
 but fails in preview and CI, which is where it gets caught.
 
@@ -132,8 +132,12 @@ A dependency-free static server:
 
 | Script | Serves | At |
 |---|---|---|
-| `npm run preview` | `out/` | `http://localhost:3000/Personal-Portfolio/` (mounted under `basePath`, like GitHub Pages) |
+| `npm run preview` | `out/` | `http://localhost:7301/Personal-Portfolio/` (mounted under `basePath`, like GitHub Pages) |
 | `npm run v2` | `version2/` | `http://localhost:4000/` |
+
+The same two servers also run in Docker (`Dockerfile`, `compose.yaml`): `docker compose up dev` (7300, repo
+bind-mounted, live reload) and `docker compose up preview` (7301, the export built inside the image and served
+by `serve.mjs`). Playwright starts its own server on 7310, so neither is ever reused by a test run.
 
 ## 8. The `version2/` reference
 

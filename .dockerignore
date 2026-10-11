@@ -1,0 +1,22 @@
+# Kept out of the Docker build context: installed or generated files (rebuilt inside the image),
+# the local-only v2 reference copy, and personal or editor files.
+.git
+node_modules
+.next
+out
+version2
+test-results
+playwright-report
+blob-report
+playwright/.cache
+*.tsbuildinfo
+next-env.d.ts
+.env
+.env.*
+*.log
+.DS_Store
+**/.DS_Store
+.vscode
+.idea
+.claude
+CLAUDE.md

@@ -1,0 +1,27 @@
+# Local Docker setup (see Dockerfile and README, "Docker").
+#
+#   docker compose up dev        live-reloading dev server  -> http://localhost:7300/
+#   docker compose up preview    the built site             -> http://localhost:7301/Personal-Portfolio/
+#
+# Ports are bound to 127.0.0.1 only, so nothing is exposed to the network.
+name: personal-portfolio
+
+services:
+  dev:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "127.0.0.1:7300:7300"
+    volumes:
+      - .:/app
+      # Keep the container's own node_modules and build cache, not the host's (macOS) copies.
+      - /app/node_modules
+      - /app/.next
+
+  preview:
+    build:
+      context: .
+      target: preview
+    ports:
+      - "127.0.0.1:7301:7301"
