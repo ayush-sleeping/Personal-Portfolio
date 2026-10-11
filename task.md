@@ -1,6 +1,6 @@
 # task.md — The one-page portfolio
 
-> **Status: 🚧 IN PROGRESS.** Started 2026-10-07. **Resumed 2026-10-11: Phase 8 done; next, re-check Phases 3a–7, then Phase 9.** Follows [`documentation/version3.md`](documentation/version3.md)
+> **Status: 🚧 IN PROGRESS.** Started 2026-10-07. **Resumed 2026-10-11: Phases 8 and 9 done, 3a–7 re-checked. Next: 3b (now mostly unblocked, see §6), then Phase 10 with Ayush.** Follows [`documentation/version3.md`](documentation/version3.md)
 > (v3 foundation, done). Branch: `v3-nextjs`. `main` is not touched until the cutover (Phase 10), and that
 > phase needs Ayush.
 
@@ -27,7 +27,7 @@ Reference for every phase: `version2/*.html` and `version2/assets/js/*`. Open it
 | T6 | 3D easter egg and terminal page: dropped. |
 | T7 | Case studies: later, as expandable panels in Projects (backlog). |
 | T8 | The 4 decorative images v2 hotlinked (card texture, circled arrow, CTA star, marquee star): replaced on 2026-10-11 (Ayush) with our own originals in `public/assets/img/decor/`, served locally. |
-| T9 | Repo rename to `ayush-sleeping.github.io`: decided at cutover (Phase 10), by Ayush. |
+| T9 | Repo rename to `ayush-sleeping.github.io`: **approved by Ayush on 2026-10-11**, done at cutover (Phase 10) together with deploying v3, not before. The site moves to `https://ayush-sleeping.github.io/`; build with `NEXT_PUBLIC_BASE_PATH=""`. Old `/Personal-Portfolio/` links need a plan (they 404 after the rename). The profile README repo `ayush-sleeping/ayush-sleeping` is unrelated and untouched. |
 | T10 | Values v2 hardcoded in the HTML and the sheet doesn't have (Home card images, Services/Profiles icon classes) stay as constants in the component, with a comment. Moving them into the sheet is a later option for Ayush. |
 | T12 | **Content v2 hardcoded in the HTML goes into the Google Sheet first** (Ayush, 2026-10-07): job company/location and stack lines, the Anudip entry, the college, course codes, schooling, the certifications intro, the whyHire text, and the like. Until it's in the sheet, the spot renders nothing and carries `TODO(sheet)`. Ayush's follow-up rulings: the sheet wins every conflict with `resume.html`; the per-job resume summaries are dropped (About shows each job's `description`); both "why hire" texts read **"Why should you hire me?"**; UI labels and the Home card images go in the sheet too, so T10 now covers only the icon classes. The new keys and columns are in `sheets/seed-csv/` (`d96f665`) and reach `assets/data/` after Ayush creates the sheet and the first fetch runs. That unblocks 3b. Until then (Ayush, 2026-10-11: use the JSON only), `getPageCopy()` fills page keys the JSON lacks from `sheets/seed-csv/page_*.csv`, so UI labels such as "Contact Me", "Live Demo" and the form messages don't render empty; the JSON wins once the sheet has the key. |
 | T11 | v3-only CSS goes in one file, `public/assets/css/v3.css`, loaded after the four v2 stylesheets: a reset for the section wrappers (v2 had no `<section>` elements, so `style.css`'s `section` rule never applied there) and the Phase 3 print styles. `style.css` stays unchanged. |
@@ -215,14 +215,14 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 |---|---|---|---|---|
 | 1 Shell | ✅ done | `a02ea85` `d86d912` `112a2e6` | ✅ pass, 1 miss | F1.1 preloader bar stops short of 100% (`9e82b78` ✅) · F1.2 ionicons preload warning (`7f1fc9b` ✅) |
 | 2 Home | ✅ done | `0c0b3f7` `ef343c2` `1517c1f` `a020b58` | ✅ pass, 1 miss | F2.1 Font Awesome kit loads after the FA 6 stylesheet, so icons render as FA 5 (`0e6b9e8` ✅) |
-| 3a About (sheet data only) | ✅ done | `e2057d1` `2772906` `06dbdb3` `827830d` | ⏳ testing | arrow-link aria-labels from card titles (`a5fc921`, to retest) |
-| 3b Resume merge + sheet-less facts | ⏸ seed CSVs ready (`d96f665`); waits on Ayush creating the sheet + first fetch (T12) | | | |
-| 4 Projects | ✅ done | `e4dc5bd` | ⏳ testing | |
-| 5 Services | ✅ done | `94dfcb3` | ⏳ testing | |
-| 6 Contact + FAQ | ✅ done | `ac0474d` `bf8331e` `8f18ea3` | ⏳ testing | |
-| 7 Behaviour | ✅ done | `3bece56` `52b98c9` `794efd0` `3aea948` `53a04cc` | ⏳ testing | `aba5f6f` fix(3a): first certificate image loaded late and pushed later sections down |
+| 3a About (sheet data only) | ✅ done | `e2057d1` `2772906` `06dbdb3` `827830d` | ✅ re-checked 2026-10-11 (parity suite + smoke tests, no console errors or 404s at 390/768/1440) | arrow-link aria-labels from card titles (`a5fc921`, to retest) |
+| 3b Resume merge + sheet-less facts | ⏸ seed CSVs ready (`d96f665`). **Mostly unblocked (2026-10-11):** the JSON already has job company/location and the Anudip entry, and missing page keys come from the seed CSV. Still to build: the resume facts merge and the "Download PDF" print layout (printing the page today prints every section) | | | |
+| 4 Projects | ✅ done | `e4dc5bd` | ✅ re-checked 2026-10-11 (parity suite + smoke tests, no console errors or 404s at 390/768/1440) | |
+| 5 Services | ✅ done | `94dfcb3` | ✅ re-checked 2026-10-11 (parity suite + smoke tests, no console errors or 404s at 390/768/1440) | |
+| 6 Contact + FAQ | ✅ done | `ac0474d` `bf8331e` `8f18ea3` | ✅ re-checked 2026-10-11 (parity suite + smoke tests, no console errors or 404s at 390/768/1440) | |
+| 7 Behaviour | ✅ done | `3bece56` `52b98c9` `794efd0` `3aea948` `53a04cc` | ✅ re-checked 2026-10-11 (parity suite + smoke tests, no console errors or 404s at 390/768/1440) | `aba5f6f` fix(3a): first certificate image loaded late and pushed later sections down |
 | 8 SEO | ✅ done | `88b35a8` `336ae8a` `67a7e5c` `c3c7b1a` | ✅ `npm test` 62/62 (no tester session; checked by the developer) | |
-| 9 Parity | | | | |
+| 9 Parity | ✅ done | see `git log -- tests/parity.spec.ts` | ✅ 15/15 (5 sections × 3 widths); a one-word change in the build fails it | none needed: every block matches v2 except the three listed in the test |
 | 10 Cutover | ⏸ needs Ayush | | | |
 
 **Intentional differences from v2, recorded as they come up** (the tester does not report these):
