@@ -6,7 +6,9 @@ import { existsSync } from "node:fs";
 
 import { defineConfig, devices } from "@playwright/test";
 
-const PORT = 3000;
+// Its own port, so a running `npm run preview` (7301) or another project's server on 3000 is never
+// reused by mistake.
+const PORT = 7310;
 const V2_PORT = 4000;
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/Personal-Portfolio";
 

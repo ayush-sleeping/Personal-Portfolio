@@ -65,13 +65,14 @@ other command that changes the main tree's files or HEAD.
 git worktree add --detach ../Personal-Portfolio-test <sha>   # first time
 cd ../Personal-Portfolio-test && git checkout --detach <sha>  # each later phase
 npm ci                                                        # own install: Turbopack rejects a node_modules symlink outside the project root
-npm run build && npm test                                     # serves out/ at :3000/Personal-Portfolio/
+npm run build && npm test                                     # serves out/ at :7310/Personal-Portfolio/
 ```
 
 v2 for comparison runs from the main tree: `npm run v2` → http://localhost:4000 (read-only).
 
-**Ports:** `3001` is the dev server for Ayush (live reloading, no base path). `3000` is the tester's
-`preview` / Playwright. `4000` is v2. Nobody else starts a server on these ports.
+**Ports** (moved off 3000 on 2026-10-11: another project's Docker container holds it): `7300` is the dev
+server (live reloading, no base path), `7301` is `npm run preview` (the built site under `/Personal-Portfolio/`),
+`7310` is Playwright's own server, `4000` is v2. The Docker services use the same 7300 / 7301.
 
 ## 4. Ground rules (from CLAUDE.md, restated)
 

@@ -3,7 +3,7 @@ import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
 export default function config(phase: string): NextConfig {
   // The URL prefix the site is served under. GitHub Pages serves this repo at /Personal-Portfolio,
-  // so build, preview and CI use that. `npm run dev` uses no prefix, so http://localhost:3000/
+  // so build, preview and CI use that. `npm run dev` uses no prefix, so http://localhost:7300/
   // opens the site directly. If the repo is ever renamed to ayush-sleeping.github.io, build with
   // NEXT_PUBLIC_BASE_PATH="". lib/site.ts reads the same variable, so public/ asset URLs stay in
   // step in every mode.

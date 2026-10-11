@@ -1,6 +1,6 @@
 // Dependency-free static file server for local previews.
 //
-//   node scripts/serve.mjs --dir out --base /Personal-Portfolio --port 3000   (npm run preview)
+//   node scripts/serve.mjs --dir out --base /Personal-Portfolio --port 7301   (npm run preview)
 //   node scripts/serve.mjs --dir version2 --port 4000                         (npm run v2)
 //
 // --base mounts the folder under a URL prefix, the way GitHub Pages serves this repo, so the
@@ -18,7 +18,7 @@ const args = Object.fromEntries(
 
 const root = resolve(args.dir ?? 'out');
 const base = (args.base ?? '').replace(/\/+$/, '');
-const port = Number(args.port ?? 3000);
+const port = Number(args.port ?? 7301);
 
 if (!existsSync(root)) {
   const hint = args.dir === 'version2'
