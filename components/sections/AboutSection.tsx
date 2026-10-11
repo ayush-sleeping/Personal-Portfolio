@@ -1,13 +1,16 @@
 // About: v2's about.html, from the sheet (profile, pages/about, experience, education,
 // certifications, skills, socials). The link cards v2 repeated down the right column
 // (Credentials, Projects, GitHub, Profiles, CTA) are left out: they show once, in Home (T3).
-// The Resume merge is Phase 3b.
+// v2's resume.html is merged in (T1, task.md 3b): its facts are the same sheet rows, plus the school
+// links, and its "Download PDF" button prints this section as the resume. `data-resume` marks the
+// blocks that go on paper and their order there (v3.css); the rest are left off.
 import { Fragment } from "react";
 
 import { ArrowIcon, Breaks, CardBg } from "@/components/cards/CardParts";
 import CertificationCarousel from "@/components/cards/CertificationCarousel";
 import SkillsBlock from "@/components/cards/SkillsBlock";
 import TimelineItem from "@/components/cards/TimelineItem";
+import PrintResumeButton from "@/components/client/PrintResumeButton";
 import {
   getCertifications,
   getEducation,
@@ -39,9 +42,10 @@ function WhyHireLabel({ text, highlight }: Readonly<{ text: string; highlight?: 
 function TimelineCard({
   heading,
   entries,
-}: Readonly<{ heading: string; entries: TimelineEntry[] }>) {
+  resume,
+}: Readonly<{ heading: string; entries: TimelineEntry[]; resume: string }>) {
   return (
-    <div className="col-lg-12 col-12 mt-4">
+    <div className="col-lg-12 col-12 mt-4" data-resume={resume}>
       <div className="primary-card credentials-card about-exp" style={padded}>
         <div className="d-flex align-items-start justify-content-between">
           <div className="infos w-100">
@@ -61,6 +65,7 @@ function TimelineCard({
 export default function AboutSection() {
   const profile = getProfile();
   const copy = getPageCopy("about");
+  const resumeCopy = getPageCopy("resume");
   const portrait = pictureSources(profile.profile_image);
 
   return (
@@ -70,7 +75,7 @@ export default function AboutSection() {
         style={important({ paddingTop: "10px", paddingBottom: "10px" })}
       >
         <div className="row g-4 mt-3">
-          <div className="col-lg-12 col-12">
+          <div className="col-lg-12 col-12" data-resume="skip">
             <div className="row">
               <div className="col-12">
                 <div className="text-center mb-4 mb-md-5">
@@ -85,7 +90,7 @@ export default function AboutSection() {
           <div className="col-lg-8 col-12">
             <div className="row">
               {/* Bio. */}
-              <div className="col-lg-12 col-12">
+              <div className="col-lg-12 col-12" data-resume="bio">
                 <div className="primary-card credentials-card" style={padded}>
                   <CardBg />
                   <img decoding="async" src={DECOR.ctaStar} alt="" className="star-icon" />
@@ -102,7 +107,7 @@ export default function AboutSection() {
               </div>
 
               {/* Info rows. */}
-              <div className="col-lg-12 col-12 mt-4">
+              <div className="col-lg-12 col-12 mt-4" data-resume="info">
                 <div className="primary-card credentials-card" style={padded}>
                   <CardBg />
                   <div className="d-flex align-items-center justify-content-between">
@@ -122,11 +127,19 @@ export default function AboutSection() {
                 </div>
               </div>
 
-              <TimelineCard heading={copy.experience_heading} entries={getExperience()} />
-              <TimelineCard heading={copy.education_heading} entries={getEducation()} />
+              <TimelineCard
+                heading={copy.experience_heading}
+                entries={getExperience()}
+                resume="experience"
+              />
+              <TimelineCard
+                heading={copy.education_heading}
+                entries={getEducation()}
+                resume="education"
+              />
 
               {/* Why hire: the whole card opens the video modal (components/client/WhyHire). */}
-              <div className="col-lg-12 col-12 mt-4">
+              <div className="col-lg-12 col-12 mt-4" data-resume="skip">
                 <div
                   className="primary-card credentials-card about-exp why-hire-card"
                   id="whyHireCard"
@@ -158,7 +171,7 @@ export default function AboutSection() {
 
               {/* Certifications. v2 gave this card id="whyHireCard" too (a duplicate id that
                   getElementById never reached); dropped. */}
-              <div className="col-lg-12 col-12 mt-4">
+              <div className="col-lg-12 col-12 mt-4" data-resume="skip">
                 <div className="primary-card credentials-card about-exp">
                   <div className="d-flex align-items-start justify-content-between">
                     <div className="infos w-100">
@@ -188,7 +201,7 @@ export default function AboutSection() {
           <div className="col-lg-4 col-12">
             <div className="row">
               {/* Profile card. */}
-              <div className="col-lg-12 col-12">
+              <div className="col-lg-12 col-12" data-resume="name">
                 <div className="primary-card" style={important({ padding: "25px 25px 25px 25px" })}>
                   <div className="img-box" style={important({ height: "55%" })}>
                     <picture>
@@ -228,17 +241,20 @@ export default function AboutSection() {
                       })}
                     </div>
                   </div>
-                  <div className="home__info d-flex justify-content-center pt-4">
+                  {/* v2 resume.html's button row: Contact Me and Download PDF. */}
+                  <div className="home__info d-flex justify-content-center pt-4 gap-3 flex-wrap">
                     {/* TODO(sheet): page_about.contact_button_label; the seed CSV fills it until then. */}
                     <a href={sectionHref("contact")} className="contact-card-btn">
                       {copy.contact_button_label}
                     </a>
+                    {/* TODO(sheet): page_resume.download_label; the seed CSV fills it until then. */}
+                    <PrintResumeButton label={resumeCopy.download_label} />
                   </div>
                 </div>
               </div>
 
               {/* Skills & Technologies (the only copy on the page; v2 repeated it in Projects). */}
-              <div className="col-lg-12 col-12 mt-4">
+              <div className="col-lg-12 col-12 mt-4" data-resume="skills">
                 <div className="primary-card credentials-card about-exp" style={padded}>
                   <div className="d-flex align-items-start justify-content-between">
                     <div className="infos w-100">
