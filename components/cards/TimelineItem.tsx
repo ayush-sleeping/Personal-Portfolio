@@ -1,4 +1,5 @@
-// One experience or education entry, as v2's about-render.js built it (timelineItem()).
+// One experience or education entry, as v2's about-render.js built it (timelineItem()), plus the
+// school link from v2's resume.html (task.md 3b).
 import { splitPairs } from "@/lib/data";
 import type { TimelineEntry } from "@/lib/types";
 
@@ -12,7 +13,21 @@ export default function TimelineItem({ entry }: Readonly<{ entry: TimelineEntry 
       <div className="timeline-content">
         <div className="timeline-date">{entry.date_label}</div>
         <h3 className="timeline-title">{entry.title}</h3>
-        <p className="timeline-company">{entry.company}</p>
+        <p className="timeline-company">
+          {entry.institution_url ? (
+            // The resume linked each school (v2 resume.html); the link keeps the text's look.
+            <a
+              href={entry.institution_url}
+              target="_blank"
+              rel="noopener"
+              style={{ color: "inherit", textDecoration: "none" }}
+            >
+              {entry.company}
+            </a>
+          ) : (
+            entry.company
+          )}
+        </p>
         <p className="timeline-location">{entry.location}</p>
         <div className="timeline-duration">{entry.duration_label}</div>
         {entry.description && (
