@@ -4,18 +4,45 @@
 // rather than imported into the bundle. Both matter for keeping the v2 look; see
 // documentation/architecture.md §3 before changing anything here.
 //
-// Page-specific SEO (final title, OG tags, JSON-LD) is planned in task.md with the portfolio.
+// SEO: one title, one description and one set of OG / Twitter tags for the one-page site, all from
+// the sheet's profile (task.md Phase 8). The structured data is rendered by the page.
 import type { Metadata, Viewport } from "next";
 
-import { SITE, asset } from "@/lib/site";
+import { getProfile, getSocials } from "@/lib/data";
+import { SITE, absoluteAsset, asset } from "@/lib/site";
+
+const profile = getProfile();
+const title = `${profile.name} | ${profile.role} Portfolio`;
+const description = profile.meta_description;
+const shareImage = { url: absoluteAsset(profile.hero_image), alt: profile.name };
+const twitterHandle = getSocials()
+  .find((s) => s.id === "twitter")
+  ?.href.match(/(?:twitter|x)\.com\/([^/?#]+)/)?.[1];
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: "Ayush Mishra | Backend Developer Portfolio",
-  description:
-    "Ayush Mishra, FullStack Web Developer in Mumbai. Scalable web apps and REST APIs in Laravel, PHP and MySQL, React on the frontend, now building with Python, Django and Next.js.",
-  authors: [{ name: SITE.name }],
+  title,
+  description,
+  keywords: profile.meta_keywords?.split(",").map((k) => k.trim()).filter(Boolean),
+  authors: [{ name: SITE.name, url: SITE.url }],
+  alternates: { canonical: SITE.url },
   robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    url: SITE.url,
+    title: profile.og_title || title,
+    description,
+    siteName: profile.og_site_name || SITE.name,
+    locale: "en_US",
+    images: [shareImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: profile.og_title || title,
+    description,
+    images: [shareImage],
+    creator: twitterHandle && `@${twitterHandle}`,
+  },
   icons: {
     icon: { url: asset("assets/img/favicon-portfolio.svg"), type: "image/svg+xml" },
     apple: asset("assets/img/favicon-portfolio.svg"),

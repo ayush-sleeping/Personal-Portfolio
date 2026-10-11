@@ -55,23 +55,27 @@ function sorted<T extends { order: string }>(rows: T[]): T[] {
 }
 
 // ------------------------------------------------------------------ site-wide
-export const getProfile = () => read<Profile>("site/profile.json");
+export const getProfile = (): Profile => ({
+  ...seedKeys("site_profile"),
+  ...read<Profile>("site/profile.json"),
+});
 export const getNavigation = () => sorted(read<NavItem[]>("site/navigation.json"));
 export const getSocials = () => sorted(read<Social[]>("site/socials.json"));
 export const getFooterTech = () => sorted(read<FooterTech[]>("site/footer-tech.json"));
 
 // ------------------------------------------------------------------ page copy
 export const getPageCopy = (page: PageId): PageCopy => ({
-  ...seedCopy(page),
+  ...seedKeys(`page_${page}`),
   ...read<PageCopy>(`pages/${page}.json`),
 });
 
 /**
- * Keys the sheet doesn't have yet (task.md T12), from the seed CSV prepared for it, so labels such
- * as "Contact Me" don't render empty in the meantime. The sheet's JSON wins once the key exists.
+ * Keys the sheet doesn't have yet (task.md T12), from the seed CSV prepared for a key/value tab, so
+ * labels such as "Contact Me" don't render empty in the meantime. The sheet's JSON wins once the
+ * key exists.
  */
-function seedCopy(page: PageId): PageCopy {
-  const file = path.join(process.cwd(), "sheets", "seed-csv", `page_${page}.csv`);
+function seedKeys(tab: string): Record<string, string> {
+  const file = path.join(process.cwd(), "sheets", "seed-csv", `${tab}.csv`);
   let text: string;
   try {
     text = readFileSync(file, "utf8");
