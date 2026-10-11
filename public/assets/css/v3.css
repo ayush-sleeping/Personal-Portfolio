@@ -34,3 +34,72 @@ main > section {
         display: none;
     }
 }
+
+/*
+ * Print = the resume (task.md T1, 3b). v2 printed resume.html; on the one-page site the About
+ * section is the resume, so it's the only section that prints. style.css's print rules (v2's,
+ * unchanged) still do the black-on-white, full-width, compact styling. These only pick and order
+ * the blocks: About's two columns are flattened so its cards come out in v2's resume order (name,
+ * bio, info, experience, education, skills), and blocks marked data-resume="skip" (the heading,
+ * why-hire, certifications) stay off paper. The id selectors outrank style.css's print rules.
+ */
+@media print {
+    main > section:not(#about) {
+        display: none !important;
+    }
+
+    #about > .container > .row > .col-lg-8,
+    #about > .container > .row > .col-lg-4,
+    #about > .container > .row > .col-lg-8 > .row,
+    #about > .container > .row > .col-lg-4 > .row {
+        display: contents !important;
+    }
+
+    #about [data-resume="skip"],
+    #about .star-icon,
+    #about .about-btn {
+        display: none !important;
+    }
+
+    #about [data-resume="name"] { order: 1; }
+    #about [data-resume="bio"] { order: 2; }
+    #about [data-resume="info"] { order: 3; }
+    #about [data-resume="experience"] { order: 4; }
+    #about [data-resume="education"] { order: 5; }
+    #about [data-resume="skills"] { order: 6; }
+
+    /* Compact, like resume.html's plain lists: About's timeline (dots, line, padded panels) and
+       its skill cards cost a whole extra sheet on paper. */
+    #about .timeline-container,
+    #about .timeline-item,
+    #about .timeline-content {
+        padding: 0 !important;
+        margin: 0 0 6px !important;
+    }
+
+    #about .timeline-item {
+        margin-bottom: 14px !important;
+    }
+
+    #about .timeline-item::before,
+    #about .timeline-item::after,
+    #about .timeline-content::before,
+    #about .timeline-content::after {
+        display: none !important;
+    }
+
+    #about .skill-card {
+        border: 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
+    }
+
+    #about .skill-name {
+        border-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    #about .skills-section [class*="col-"] {
+        margin-bottom: 4px !important;
+    }
+}
