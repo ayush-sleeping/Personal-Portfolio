@@ -44,7 +44,10 @@ const SECTIONS = [
 const KNOWN: Record<string, string> = {
   "about:1":
     "Bio: v2 hardcoded a paragraph break the sheet's bio doesn't have yet (T12, TODO(sheet)).",
+  "about:4":
+    "Education: carries resume.html's facts too, the course list and subjects (T1, task.md 3b).",
   "about:5": 'Why-hire card: the sheet text "Why should we hire you?" (v2 HTML: "… you ?", T12).',
+  "about:7": 'Profile card: resume.html\'s "Download PDF" button next to "Contact Me" (T1, 3b).',
   "contact:1": 'Form card: the sheet\'s straight apostrophe in "Let\'s work together." (Phase 6).',
 };
 
