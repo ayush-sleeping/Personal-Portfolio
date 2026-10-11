@@ -64,8 +64,8 @@ Checked against the code on 2026-09-29, not just against commit messages.
 
 ### Found at close, not in the original plan
 
-- **53 hotlinked images** from `wpriverthemes.com` (GridX theme demo): `bg1.png`, `icon.svg`, `icon2.png`,
-  `star1.svg`. If that site changes, every card background and star icon breaks. Also confirm the licence.
+- **53 hotlinked images** from a third-party theme demo site: `bg1.png`, `icon.svg`, `icon2.png`,
+  `star1.svg`. If that site changes, every card background and star icon breaks.
 - **Page titles lack the surname** ("About | Ayush"), which hurts name searches.
 - **Not verified in Google Search Console**, so indexing is unknown and the sitemap was never submitted.
 - **Content is rendered by JavaScript**, so crawlers that don't run JS (most AI search bots) see empty sections.

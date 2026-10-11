@@ -26,7 +26,7 @@ Reference for every phase: `version2/*.html` and `version2/assets/js/*`. Open it
 | T5 | Bootstrap JS keeps loading from the CDN as in v2, only if a section still needs it (accordion/collapse). Replaced later (backlog). |
 | T6 | 3D easter egg and terminal page: dropped. |
 | T7 | Case studies: later, as expandable panels in Projects (backlog). |
-| T8 | The 4 images hotlinked from `wpriverthemes.com`: keep hotlinked for parity now. Self-hosting waits on Ayush confirming the GridX licence (Phase 8). |
+| T8 | The 4 decorative images v2 hotlinked (card texture, circled arrow, CTA star, marquee star): replaced on 2026-10-11 (Ayush) with our own originals in `public/assets/img/decor/`, served locally. |
 | T9 | Repo rename to `ayush-sleeping.github.io`: decided at cutover (Phase 10), by Ayush. |
 | T10 | Values v2 hardcoded in the HTML and the sheet doesn't have (Home card images, Services/Profiles icon classes) stay as constants in the component, with a comment. Moving them into the sheet is a later option for Ayush. |
 | T12 | **Content v2 hardcoded in the HTML goes into the Google Sheet first** (Ayush, 2026-10-07): job company/location and stack lines, the Anudip entry, the college, course codes, schooling, the certifications intro, the whyHire text, and the like. Until it's in the sheet, the spot renders nothing and carries `TODO(sheet)`. Ayush's follow-up rulings: the sheet wins every conflict with `resume.html`; the per-job resume summaries are dropped (About shows each job's `description`); both "why hire" texts read **"Why should you hire me?"**; UI labels and the Home card images go in the sheet too, so T10 now covers only the icon classes. The new keys and columns are in `sheets/seed-csv/` (`d96f665`) and reach `assets/data/` after Ayush creates the sheet and the first fetch runs. That unblocks 3b. |
@@ -181,7 +181,6 @@ off all content is still visible; no 404s in the network log.
 - Single-URL `sitemap.xml`, updated `llms.txt`, `robots.txt`.
 - Redirect stubs for `about.html`, `project.html`, `services.html`, `contact.html`, `resume.html` → the
   matching `#section`, since GitHub Pages has no server redirects.
-- Self-hosted images: only after Ayush confirms the GridX licence (T8).
 
 **Tester checks:** JSON-LD validates; every old `.html` URL lands on the right section under
 `/Personal-Portfolio/`; the sitemap lists one URL.
@@ -239,5 +238,6 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 - Phase 3a: decorative card images are `alt=""` (v2: "BG" / "star"). Certificates with no `credential_url` show
   "View Certificate" without an `href` (v2's `href=""` reloaded the page).
 - Phase 4–5: the Skills block and the link-card rows v2 repeated on Projects and Services are shown once (T3).
+- T8: the card texture, circled arrow and two stars are our own drawings, close to v2's but not pixel-identical.
 - Phase 6: v2's Apps Script logging (`logToSheet`) is not ported; its URL was empty, so it never ran (B21). The
   status line gets `aria-live`. "Let's work together." uses the sheet's straight apostrophe.

@@ -338,7 +338,7 @@ UI/UX** as today.
 - Site URL: rename the repo to `ayush-sleeping.github.io` at cutover (free; the name was available on 2026-09-29).
 - Case studies: later, as expandable panels in Projects.
 - 3D easter egg and terminal page: drop.
-- The 4 images hotlinked from `wpriverthemes.com`: self-host, after confirming the GridX licence.
+- The 4 decorative card images v2 hotlinked: replaced with our own in `public/assets/img/decor/` (2026-10-11).
 
 **Technical notes found so far:**
 

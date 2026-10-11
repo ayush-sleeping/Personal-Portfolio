@@ -6,7 +6,7 @@ import { preload } from "react-dom";
 import { Breaks, CardBg, CardHeading, ArrowIcon } from "@/components/cards/CardParts";
 import LinkCard from "@/components/cards/LinkCard";
 import { getPageCopy, getProfile, getSocials, getStats, splitList } from "@/lib/data";
-import { GRIDX, asset, important, parseInlineStyle, pictureSources, sectionHref } from "@/lib/site";
+import { DECOR, asset, important, parseInlineStyle, pictureSources, sectionHref } from "@/lib/site";
 
 // Hardcoded in v2's index.html and not in the sheet (kept as v2 had them).
 const PROJECTS_CARD_IMAGE = { src: "assets/img/my works.png", alt: "My works" };
@@ -41,7 +41,7 @@ function CtaTitle({ text }: Readonly<{ text: string }>) {
 function MarqueeItem({ text, star = true }: Readonly<{ text: string; star?: boolean }>) {
   return (
     <span>
-      <img decoding="async" src={star ? GRIDX.marqueeStar : undefined} alt="" />
+      <img decoding="async" src={star ? DECOR.marqueeStar : undefined} alt="" />
       {"   "}
       <b>{text}</b>{" "}
     </span>
@@ -312,7 +312,7 @@ export default function HomeSection() {
               href={sectionHref("contact")}
               label={copy.cta_title}
               style={important({ padding: "50px 25px" })}
-              media={<img decoding="async" src={GRIDX.ctaStar} alt="" className="star-icon" />}
+              media={<img decoding="async" src={DECOR.ctaStar} alt="" className="star-icon" />}
               heading={
                 <div className="last-infos">
                   <CtaTitle text={copy.cta_title} />

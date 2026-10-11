@@ -19,7 +19,7 @@ import {
   splitPairs,
 } from "@/lib/data";
 import type { TimelineEntry } from "@/lib/types";
-import { GRIDX, important, pictureSources, sectionHref } from "@/lib/site";
+import { DECOR, important, pictureSources, sectionHref } from "@/lib/site";
 
 const padded = important({ padding: "25px 25px" });
 
@@ -88,7 +88,7 @@ export default function AboutSection() {
               <div className="col-lg-12 col-12">
                 <div className="primary-card credentials-card" style={padded}>
                   <CardBg />
-                  <img decoding="async" src={GRIDX.ctaStar} alt="" className="star-icon" />
+                  <img decoding="async" src={DECOR.ctaStar} alt="" className="star-icon" />
                   <div className="d-flex align-items-center justify-content-between pt-2">
                     <div className="last-infos mt-4">
                       {/* TODO(sheet): site_profile.bio paragraph break. v2 had <br><br> between its
@@ -134,7 +134,7 @@ export default function AboutSection() {
                   <div className="d-flex align-items-start justify-content-between">
                     <img
                       className="bg-img why-hire-bg-img"
-                      src={GRIDX.cardBg}
+                      src={DECOR.cardBg}
                       alt=""
                       decoding="async"
                     />

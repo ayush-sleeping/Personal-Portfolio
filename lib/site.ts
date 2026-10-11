@@ -24,16 +24,12 @@ export type SectionId = (typeof SECTION_IDS)[number];
 /** In-page anchor for a section (task.md T4: nav links are anchors, not .html pages). */
 export const sectionHref = (id: string) => `#${id}`;
 
-/**
- * Card decorations v2 hotlinks from the GridX theme. Kept hotlinked for parity (task.md T8);
- * self-hosting waits on the licence check.
- */
-const GRIDX_BASE = "https://wpriverthemes.com/gridx/wp-content";
-export const GRIDX = {
-  cardBg: `${GRIDX_BASE}/themes/gridx/assets/images/bg1.png`,
-  arrow: `${GRIDX_BASE}/themes/gridx/assets/images/icon.svg`,
-  ctaStar: `${GRIDX_BASE}/themes/gridx/assets/images/icon2.png`,
-  marqueeStar: `${GRIDX_BASE}/uploads/2023/04/star1.svg`,
+/** Card decorations: the textured background, the circled arrow and the two stars. */
+export const DECOR = {
+  cardBg: asset("assets/img/decor/card-texture.png"),
+  arrow: asset("assets/img/decor/arrow.svg"),
+  ctaStar: asset("assets/img/decor/hanging-star.svg"),
+  marqueeStar: asset("assets/img/decor/marquee-star.svg"),
 } as const;
 
 /**

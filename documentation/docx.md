@@ -56,7 +56,7 @@
 
 A static, single-author portfolio site that showcases Ayush Mishra's profile, skills, work experience, projects, services and contact details. It is designed as a personal brand identity site — visitors can read the bio, browse projects, view a resume, see services offered, and reach out via a contact form (EmailJS).
 
-The visual design language is **dark, glassmorphic, and modern** with cyan-blue and violet accent colors. The primary card layout was inspired by the [GridX Portfolio Template](https://wpriverthemes.com/gridx/).
+The visual design language is **dark, glassmorphic, and modern** with cyan-blue and violet accent colors.
 
 **Key qualities:**
 - Six static pages, all sharing one stylesheet and a common navigation/footer.
@@ -124,7 +124,7 @@ is inert and the contact form behaves exactly as it did before.
 
 ### Performance hints used in `<head>`
 - `preconnect` → `fonts.googleapis.com`, `fonts.gstatic.com`, `cdnjs.cloudflare.com`, `kit.fontawesome.com`
-- `dns-prefetch` → `wpriverthemes.com`
+- `dns-prefetch` → the third-party host of the card decorations
 
 ---
 
@@ -945,8 +945,8 @@ The keys above are public client-side keys (intended to be visible in the browse
 
 **Known drag, not yet addressed:** Bootstrap 5.0.2 is loaded unminified-ish from
 CDN for a small amount of grid/modal/collapse/carousel use, and every page
-hotlinks its decorative card backgrounds and star icons from
-`wpriverthemes.com` — a third-party theme site the deploy does not control.
+hotlinks its decorative card backgrounds and star icons from a third-party
+site the deploy does not control.
 
 ---
 
@@ -1046,7 +1046,7 @@ Tall portrait crop of the same college-podium event as `Home page Profile image.
 - Profile photo on the left = the same `Home page Profile image.jpg` (square frame).
 
 This screenshot tells us:
-1. The site has been **re-themed**. The earlier identity was *dark + green-monospace, hacker-ish*; the current identity is *dark + blue-glassmorphic, modern* (GridX-inspired) with `#5B78F6` as the new accent.
+1. The site has been **re-themed**. The earlier identity was *dark + green-monospace, hacker-ish*; the current identity is *dark + blue-glassmorphic, modern* with `#5B78F6` as the new accent.
 2. The earlier copy tagged Ayush as "MERN-stack / Fresher". The current copy tags him as "FullStack Web Developer • Backend Specialist" with "2+ years of experience" (now a Backend Developer at Leapswitch Networks) — confirming a real career step between the two iterations.
 3. The green `--bright-text-color: #86C232` variable still in `:root` is a leftover of that earlier theme.
 
@@ -1214,7 +1214,7 @@ Putting all the visuals together, the portfolio's image direction has three clea
 2. **Calm / craftsman** — the side-profile portrait (`about me.png`) is reflective and clean; appropriate for the OG share image.
 3. **Modern product UI** — every project screenshot is a real product surface (admin dashboard, blog, news app, NFT store, streaming platform, travel site) with consistent dark / light theme choices that map back to current frontend trends.
 
-Combined with the dark-blue glassmorphic UI and the Roboto Mono headings, the message is consistent: *modern, dark, product-minded, technical fullstack developer*. The earlier green-monospace-MERN identity (visible only in `portfolioss.jpeg`) has been intentionally retired in favour of the current GridX-inspired blue glassmorphic theme.
+Combined with the dark-blue glassmorphic UI and the Roboto Mono headings, the message is consistent: *modern, dark, product-minded, technical fullstack developer*. The earlier green-monospace-MERN identity (visible only in `portfolioss.jpeg`) has been intentionally retired in favour of the current blue glassmorphic theme.
 
 ---
 
