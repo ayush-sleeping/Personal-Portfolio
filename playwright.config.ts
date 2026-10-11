@@ -2,9 +2,12 @@
 // Pages will serve it. Run `npm run build` first; `npm test` then starts the preview server itself.
 //
 // Three viewports match the widths the v2 → v3 UI comparison will use (planned in task.md).
+import { existsSync } from "node:fs";
+
 import { defineConfig, devices } from "@playwright/test";
 
 const PORT = 3000;
+const V2_PORT = 4000;
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/Personal-Portfolio";
 
 export default defineConfig({
@@ -28,9 +31,22 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } },
     },
   ],
-  webServer: {
-    command: `node scripts/serve.mjs --dir out --base ${BASE_PATH} --port ${PORT}`,
-    url: `http://localhost:${PORT}${BASE_PATH}/`,
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: [
+    {
+      command: `node scripts/serve.mjs --dir out --base ${BASE_PATH} --port ${PORT}`,
+      url: `http://localhost:${PORT}${BASE_PATH}/`,
+      reuseExistingServer: !process.env.CI,
+    },
+    // v2 for the parity suite (tests/parity.spec.ts). version2/ is a gitignored local copy, so CI
+    // has no v2 server and the suite skips itself there.
+    ...(existsSync("version2")
+      ? [
+          {
+            command: `node scripts/serve.mjs --dir version2 --port ${V2_PORT}`,
+            url: `http://localhost:${V2_PORT}/`,
+            reuseExistingServer: !process.env.CI,
+          },
+        ]
+      : []),
+  ],
 });
