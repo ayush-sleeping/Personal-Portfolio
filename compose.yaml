@@ -3,6 +3,9 @@
 #   docker compose up dev        live-reloading dev server  -> http://localhost:7300/
 #   docker compose up preview    the built site             -> http://localhost:7301/Personal-Portfolio/
 #
+# A root build of the preview (as after the T9 rename), served at http://localhost:7301/:
+#   NEXT_PUBLIC_BASE_PATH= docker compose up --build preview
+#
 # Ports are bound to 127.0.0.1 only, so nothing is exposed to the network.
 name: personal-portfolio
 
@@ -23,5 +26,8 @@ services:
     build:
       context: .
       target: preview
+      args:
+        # Unset -> /Personal-Portfolio; set but empty -> "" (the root). Same rule as npm run preview.
+        NEXT_PUBLIC_BASE_PATH: ${NEXT_PUBLIC_BASE_PATH-/Personal-Portfolio}
     ports:
       - "127.0.0.1:7301:7301"
