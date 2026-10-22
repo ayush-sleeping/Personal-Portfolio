@@ -21,7 +21,8 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # The parity suite alone takes ~4.5 min locally; more on a 2-core runner.
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -50,7 +51,15 @@ jobs:
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
-      - name: Smoke test
+      # The parity suite compares each section with v2. version2/ is gitignored, so recreate it
+      # from the tag the way the README does; without it the suite fails here rather than skipping.
+      - name: Check out v2 for the parity suite
+        run: |
+          git fetch --depth=1 origin tag v2-html-final
+          mkdir version2
+          git archive v2-html-final | tar -x -C version2
+
+      - name: Smoke, resume, SEO and parity tests
         run: npm test
 
       - name: Upload Playwright report
@@ -84,6 +93,17 @@ jobs:
 
       - name: Build (static export, served at /)
         run: npm run build
+
+      # The root-only tests skip on a default build, so if NEXT_PUBLIC_BASE_PATH="" were ever
+      # dropped this job would build /Personal-Portfolio and stay green. The 404 page's
+      # old-link forwarder (app/not-found.tsx) only exists in a root build: require it.
+      - name: Check this is a root build
+        run: |
+          if ! grep -q 'var prefix = "/Personal-Portfolio"' out/404.html; then
+            echo "::error::out/404.html has no old-link forwarder: this is not a root build (NEXT_PUBLIC_BASE_PATH=\"\")."
+            exit 1
+          fi
+          echo "ok: root build, 404.html forwards /Personal-Portfolio/ links"
 
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium

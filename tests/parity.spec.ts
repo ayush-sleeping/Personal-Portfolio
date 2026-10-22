@@ -3,14 +3,27 @@
 // pixel. The differences we chose (task.md T1–T12 and the intentional-differences list) are named in
 // KNOWN below; anything else that differs fails.
 //
-// version2/ is a gitignored local copy, so this suite skips itself where it doesn't exist (CI).
+// version2/ is a gitignored local copy of the v2-html-final tag. Locally the suite skips itself when
+// it's missing. CI recreates it from the tag (ci.yml), and there a missing version2/ fails the suite
+// instead of skipping, so parity can't silently stop being checked.
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 
 import { expect, test, type Page, type TestInfo } from "@playwright/test";
 
 const V2 = "http://localhost:4000/";
 
-test.skip(!existsSync("version2"), "version2/ is not checked out (local reference only)");
+const HAS_V2 = existsSync("version2");
+
+test.skip(!HAS_V2 && !process.env.CI, "version2/ is not checked out (local reference only)");
+
+test.beforeAll(() => {
+  if (!HAS_V2) {
+    throw new Error(
+      "version2/ is missing in CI: the parity suite needs it. ci.yml recreates it from the " +
+        "v2-html-final tag before `npm test`.",
+    );
+  }
+});
 
 /** Share of pixels allowed to differ: anti-aliasing noise, nothing a person would notice. */
 const MAX_DIFF_RATIO = 0.002;
