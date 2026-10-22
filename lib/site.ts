@@ -1,8 +1,15 @@
 // Site-wide constants and URL helpers. Safe to import from server and client components.
 import type { CSSProperties } from "react";
 
+/**
+ * The prefix GitHub Pages serves the site under while the repo is named Personal-Portfolio. After
+ * the rename to ayush-sleeping.github.io (task.md T9) the site is at the root, and the 404 page
+ * forwards old links that still carry this prefix (app/not-found.tsx).
+ */
+export const LEGACY_BASE_PATH = "/Personal-Portfolio";
+
 /** URL prefix the site is served under. Set once in next.config.ts. */
-export const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "/Personal-Portfolio";
+export const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? LEGACY_BASE_PATH;
 
 export const SITE = {
   name: "Ayush Mishra",
