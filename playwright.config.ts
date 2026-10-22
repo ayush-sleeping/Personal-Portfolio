@@ -10,6 +10,8 @@ import { defineConfig, devices } from "@playwright/test";
 // reused by mistake.
 const PORT = 7310;
 const V2_PORT = 4000;
+// The same variable the build reads: "/Personal-Portfolio" by default, "" for a root build
+// (after the rename to ayush-sleeping.github.io, task.md T9).
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/Personal-Portfolio";
 
 export default defineConfig({
@@ -35,7 +37,8 @@ export default defineConfig({
   ],
   webServer: [
     {
-      command: `node scripts/serve.mjs --dir out --base ${BASE_PATH} --port ${PORT}`,
+      // Quoted, so a root build (NEXT_PUBLIC_BASE_PATH="") is served at /.
+      command: `node scripts/serve.mjs --dir out --base "${BASE_PATH}" --port ${PORT}`,
       url: `http://localhost:${PORT}${BASE_PATH}/`,
       reuseExistingServer: !process.env.CI,
     },

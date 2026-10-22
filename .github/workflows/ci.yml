@@ -61,3 +61,41 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 7
+
+  # The same site built for the root, as it will be served after the rename to
+  # ayush-sleeping.github.io (task.md T9): NEXT_PUBLIC_BASE_PATH="" for the build, the preview
+  # server and the tests. The smoke suite here also checks that old /Personal-Portfolio/ links are
+  # forwarded by the 404 page.
+  root-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NEXT_PUBLIC_BASE_PATH: ""
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build (static export, served at /)
+        run: npm run build
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Smoke test at /
+        run: npx playwright test tests/smoke.spec.ts
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-root
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

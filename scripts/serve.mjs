@@ -1,20 +1,27 @@
 // Dependency-free static file server for local previews.
 //
 //   node scripts/serve.mjs --dir out --base /Personal-Portfolio --port 7301   (npm run preview)
+//   node scripts/serve.mjs --dir out --base "" --port 7301                    (a root build)
 //   node scripts/serve.mjs --dir version2 --port 4000                         (npm run v2)
 //
 // --base mounts the folder under a URL prefix, the way GitHub Pages serves this repo, so the
-// built site's basePath URLs resolve locally exactly as they will in production.
+// built site's basePath URLs resolve locally exactly as they will in production. An empty base
+// ("" or --base=) serves at the root, as after the rename to ayush-sleeping.github.io.
 import { createServer } from 'node:http';
 import { createReadStream, existsSync, statSync } from 'node:fs';
 import { extname, join, normalize, resolve } from 'node:path';
 
-const args = Object.fromEntries(
-  process.argv.slice(2).reduce((pairs, arg, i, all) => {
-    if (arg.startsWith('--')) pairs.push([arg.slice(2), all[i + 1]]);
-    return pairs;
-  }, [])
-);
+// --name value, --name=value, or a bare --name (empty). A value is never the next flag, so an
+// empty base (`--base "" --port 7301`) can't swallow `--port`.
+const args = {};
+const argv = process.argv.slice(2);
+for (let i = 0; i < argv.length; i++) {
+  const flag = /^--([^=]+)(?:=(.*))?$/.exec(argv[i]);
+  if (!flag) continue;
+  if (flag[2] !== undefined) args[flag[1]] = flag[2];
+  else if (i + 1 < argv.length && !argv[i + 1].startsWith('--')) args[flag[1]] = argv[++i];
+  else args[flag[1]] = '';
+}
 
 const root = resolve(args.dir ?? 'out');
 const base = (args.base ?? '').replace(/\/+$/, '');

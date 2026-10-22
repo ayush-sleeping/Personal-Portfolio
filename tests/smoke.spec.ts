@@ -17,6 +17,10 @@ const count = (name: string) => readJson<unknown[]>(`assets/data/collections/${n
 
 const SECTION_IDS = ["home", "about", "projects", "services", "contact"];
 
+// The prefix the build was made with: "/Personal-Portfolio" by default, "" for a root build
+// (after the rename to ayush-sleeping.github.io, task.md T9). Same default as the build.
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/Personal-Portfolio";
+
 test("the shell renders sheet content with the v2 stylesheet", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (err) => errors.push(err.message));
@@ -220,4 +224,47 @@ test("unknown URLs get the 404 page", async ({ page }) => {
   const response = await page.goto("./this-page-does-not-exist/");
   expect(response?.status()).toBe(404);
   await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
+  // It stays there: the 404 page forwards nothing in this build.
+  await expect(page).toHaveURL(/\/this-page-does-not-exist\/$/);
+});
+
+// Root build only: old /Personal-Portfolio/ links reach the 404 page, which forwards them to the
+// same path at the root, keeping the query and hash (app/not-found.tsx). The .html stubs then
+// take old page URLs to their section.
+test.describe("old /Personal-Portfolio/ links after the rename", () => {
+  test.skip(BASE_PATH !== "", 'only a root build (NEXT_PUBLIC_BASE_PATH="") forwards old links');
+
+  const cases: [from: string, to: RegExp][] = [
+    ["/Personal-Portfolio/", /^\/$/],
+    ["/Personal-Portfolio", /^\/$/],
+    ["/Personal-Portfolio/#contact", /^\/#contact$/],
+    ["/Personal-Portfolio/about.html", /^\/#about$/],
+    ["/Personal-Portfolio/project.html", /^\/#projects$/],
+    ["/Personal-Portfolio/services.html", /^\/#services$/],
+    ["/Personal-Portfolio/contact.html", /^\/#contact$/],
+    ["/Personal-Portfolio/resume.html", /^\/#about$/],
+    ["/Personal-Portfolio/nope?a=1#b", /^\/nope\?a=1#b$/],
+  ];
+  for (const [from, to] of cases) {
+    test(`${from} lands on ${to.source.replace(/\\/g, "")}`, async ({ page }) => {
+      await page.goto(from);
+      await expect
+        .poll(() => new URL(page.url()).href.replace(new URL(page.url()).origin, ""))
+        .toMatch(to);
+    });
+  }
+
+  test("an unknown path that only shares the prefix's letters stays on the 404", async ({
+    page,
+  }) => {
+    await page.goto("/Personal-PortfolioX/");
+    await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
+    await expect(page).toHaveURL(/\/Personal-PortfolioX\/$/);
+  });
+
+  test("an unknown old path is forwarded once, then stays on the 404", async ({ page }) => {
+    await page.goto("/Personal-Portfolio/nope");
+    await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();
+    await expect(page).toHaveURL(/\/nope$/);
+  });
 });
