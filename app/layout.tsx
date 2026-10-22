@@ -23,7 +23,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title,
   description,
-  keywords: profile.meta_keywords?.split(",").map((k) => k.trim()).filter(Boolean),
+  keywords: profile.meta_keywords
+    ?.split(",")
+    .map((k) => k.trim())
+    .filter(Boolean),
   authors: [{ name: SITE.name, url: SITE.url }],
   alternates: { canonical: SITE.url },
   robots: { index: true, follow: true },

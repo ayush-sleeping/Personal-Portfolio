@@ -48,7 +48,7 @@ const KNOWN: Record<string, string> = {
     "Education: carries resume.html's facts too, the course list and subjects (T1, task.md 3b).",
   "about:5": 'Why-hire card: the sheet text "Why should we hire you?" (v2 HTML: "… you ?", T12).',
   "about:7": 'Profile card: resume.html\'s "Download PDF" button next to "Contact Me" (T1, 3b).',
-  "contact:1": 'Form card: the sheet\'s straight apostrophe in "Let\'s work together." (Phase 6).',
+  "contact:1": "Form card: the sheet's straight apostrophe in \"Let's work together.\" (Phase 6).",
 };
 
 /** Top-level content blocks of a v2 page or v3 section, in DOM order (same rule on both). */
@@ -180,7 +180,8 @@ async function compare(page: Page, a: Buffer, b: Buffer) {
           let count = 0;
           for (let y = y0; y < y1 && count < best.count; y++)
             for (let x = x0; x < x1; x++) if (differs(x, y, dx, dy)) count++;
-          if (count < best.count) best = { dx, dy, count, area: Math.max(1, (x1 - x0) * (y1 - y0)) };
+          if (count < best.count)
+            best = { dx, dy, count, area: Math.max(1, (x1 - x0) * (y1 - y0)) };
         }
       }
 
@@ -194,17 +195,21 @@ async function compare(page: Page, a: Buffer, b: Buffer) {
           const o = (y * w + x) * 4;
           const j = (y * ib.width + x) * 4;
           const hit = x >= x0 && x < x1 && y >= y0 && y < y1 && differs(x, y, best.dx, best.dy);
-          diff.data.set(hit ? [255, 0, 60, 255] : [pb[j] / 3, pb[j + 1] / 3, pb[j + 2] / 3, 255], o);
+          diff.data.set(
+            hit ? [255, 0, 60, 255] : [pb[j] / 3, pb[j + 1] / 3, pb[j + 2] / 3, 255],
+            o,
+          );
         }
       }
       octx.putImageData(diff, 0, 0);
-      const bytes = new Uint8Array(await (await out.convertToBlob({ type: "image/png" })).arrayBuffer());
+      const bytes = new Uint8Array(
+        await (await out.convertToBlob({ type: "image/png" })).arrayBuffer(),
+      );
       let bin = "";
       for (const byte of bytes) bin += String.fromCharCode(byte);
       return {
         ratio: best.count / best.area,
-        sizeOk:
-          Math.abs(ia.width - ib.width) <= slack && Math.abs(ia.height - ib.height) <= slack,
+        sizeOk: Math.abs(ia.width - ib.width) <= slack && Math.abs(ia.height - ib.height) <= slack,
         sizes: `${ia.width}x${ia.height} vs ${ib.width}x${ib.height}`,
         diff: btoa(bin),
       };
@@ -246,7 +251,10 @@ for (const section of SECTIONS) {
       const pass = result.sizeOk && result.ratio <= MAX_DIFF_RATIO;
       const summary = `${key} ${result.sizes}, ${(result.ratio * 100).toFixed(2)}% differs`;
       if (KNOWN[key]) {
-        info.annotations.push({ type: "known difference", description: `${summary}: ${KNOWN[key]}` });
+        info.annotations.push({
+          type: "known difference",
+          description: `${summary}: ${KNOWN[key]}`,
+        });
         continue;
       }
       if (!pass) await attach(info, key, a, b, result.diff);

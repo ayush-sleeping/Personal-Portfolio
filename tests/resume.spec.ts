@@ -39,7 +39,10 @@ test("print shows only the resume, in resume order", async ({ page }) => {
     .locator("#about [data-resume]:not([data-resume='skip'])")
     .evaluateAll((els) =>
       els
-        .map((el) => ({ name: el.getAttribute("data-resume"), top: el.getBoundingClientRect().top }))
+        .map((el) => ({
+          name: el.getAttribute("data-resume"),
+          top: el.getBoundingClientRect().top,
+        }))
         .sort((a, b) => a.top - b.top)
         .map((e) => e.name),
     );
