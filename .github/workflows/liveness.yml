@@ -12,6 +12,12 @@ on:
   schedule:
     - cron: '17 6 * * *'    # daily, off the hour to avoid the cron rush
   workflow_dispatch:
+    inputs:
+      base:
+        description: Site URL to check instead of this repo's Pages URL (e.g. a preview).
+        type: string
+        required: false
+        default: ""
 
 concurrency:
   group: liveness
@@ -21,9 +27,11 @@ permissions:
   contents: read
 
 env:
-  # The live site. Becomes https://ayush-sleeping.github.io after the repo is renamed to
-  # ayush-sleeping.github.io (task.md T9, 10C).
-  BASE: https://ayush-sleeping.github.io/Personal-Portfolio
+  # The site to check. Empty = this repo's own Pages URL, worked out in the step below:
+  # https://<owner>.github.io/<repo> for a project site (now: /Personal-Portfolio), the bare
+  # https://<owner>.github.io once the repo is named <owner>.github.io (task.md T9). So, like
+  # deploy.yml, it needs no edit at the rename. A manual run can point it anywhere.
+  BASE: ${{ inputs.base }}
 
 jobs:
   ping:
@@ -33,6 +41,18 @@ jobs:
         run: |
           set -uo pipefail
           fail=0
+
+          if [ -z "$BASE" ]; then
+            owner=$(printf %s "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')
+            repo="${GITHUB_REPOSITORY#*/}"
+            if [ "$(printf %s "$repo" | tr '[:upper:]' '[:lower:]')" = "$owner.github.io" ]; then
+              BASE="https://$owner.github.io"
+            else
+              BASE="https://$owner.github.io/$repo"
+            fi
+          fi
+          BASE="${BASE%/}"
+          echo "Checking $BASE"
 
           # fetch <path> <file>: follows redirects, fails on anything but a 200.
           fetch() {
