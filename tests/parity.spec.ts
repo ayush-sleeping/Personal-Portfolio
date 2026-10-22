@@ -10,7 +10,8 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 
 import { expect, test, type Page, type TestInfo } from "@playwright/test";
 
-const V2 = "http://localhost:4000/";
+// The v2 server playwright.config.ts starts (V2_PORT, default 4000).
+const V2 = `http://localhost:${process.env.V2_PORT ?? 4000}/`;
 
 const HAS_V2 = existsSync("version2");
 

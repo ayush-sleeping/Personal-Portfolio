@@ -6,10 +6,11 @@ import { existsSync } from "node:fs";
 
 import { defineConfig, devices } from "@playwright/test";
 
-// Its own port, so a running `npm run preview` (7301) or another project's server on 3000 is never
-// reused by mistake.
-const PORT = 7310;
-const V2_PORT = 4000;
+// Its own ports, so a running `npm run preview` (7301) is never reused by mistake. Locally servers
+// are reused when already up, so two people (or sessions) testing different builds at once must
+// each pick their own: PW_PORT for this build, V2_PORT for v2 (tests/parity.spec.ts reads it too).
+const PORT = Number(process.env.PW_PORT ?? 7310);
+const V2_PORT = Number(process.env.V2_PORT ?? 4000);
 // The same variable the build reads: "/Personal-Portfolio" by default, "" for a root build
 // (after the rename to ayush-sleeping.github.io, task.md T9).
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/Personal-Portfolio";

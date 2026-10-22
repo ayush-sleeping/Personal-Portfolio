@@ -137,7 +137,9 @@ A dependency-free static server:
 
 The same two servers also run in Docker (`Dockerfile`, `compose.yaml`): `docker compose up dev` (7300, repo
 bind-mounted, live reload) and `docker compose up preview` (7301, the export built inside the image and served
-by `serve.mjs`). Playwright starts its own server on 7310, so neither is ever reused by a test run.
+by `serve.mjs`). Playwright starts its own servers, `out/` on 7310 and v2 on 4000, so `preview` is never
+reused by a test run. Locally a server already on those ports *is* reused, so two test runs on one machine (say,
+two worktrees) must each pick free ports: `PW_PORT=7321 V2_PORT=4010 npm test`.
 
 ## 8. The `version2/` reference
 

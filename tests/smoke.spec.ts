@@ -3,7 +3,7 @@
 // errors.
 import { readFileSync } from "node:fs";
 
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 const readJson = <T>(file: string) => JSON.parse(readFileSync(file, "utf8")) as T;
 
@@ -20,6 +20,16 @@ const SECTION_IDS = ["home", "about", "projects", "services", "contact"];
 // The prefix the build was made with: "/Personal-Portfolio" by default, "" for a root build
 // (after the rename to ayush-sleeping.github.io, task.md T9). Same default as the build.
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/Personal-Portfolio";
+
+/**
+ * Waits until the page is hydrated and interactive. The preloader's effect adds .fade-in to
+ * .main-content (immediately under reduced motion), and React runs it in the same commit as the
+ * form's and the FAQ's handlers. Unlike the preloader fading out, this doesn't depend on the reveal
+ * animation's timing.
+ */
+async function whenHydrated(page: Page) {
+  await expect(page.locator(".main-content")).toHaveClass(/\bfade-in\b/);
+}
 
 test("the shell renders sheet content with the v2 stylesheet", async ({ page }) => {
   const errors: string[] = [];
@@ -152,41 +162,51 @@ test("the services section renders every service, without the home link cards", 
   await expect(section.locator(".proj-img, .inner-profile-icons, .last-infos h2")).toHaveCount(0);
 });
 
-test("the FAQ accordion opens one answer at a time", async ({ page }) => {
-  await page.goto("./");
-  await expect(page.locator(".preloader")).toBeHidden();
-  const questions = page.locator("#contact .faq-question");
-  await expect(questions).toHaveCount(count("faqs"));
+// The FAQ and the contact form are clicked after Playwright scrolls them into view. Two things on
+// the page can move them mid-click, and under CPU contention (other suites running) that made these
+// two tests flaky, ~2 runs in 30: style.css's smooth scrolling, and at 768px and below the scroll
+// pulse, which changes a card's padding. A visitor never hits this; it's click timing in the test.
+// Reduced motion turns both off (style.css's reduced-motion block, ScrollCardAnimations' check),
+// and the tests wait for hydration itself rather than the preloader's fade.
+test.describe("form and FAQ interactions", () => {
+  test.use({ reducedMotion: "reduce" });
 
-  await questions.nth(0).click();
-  await expect(page.locator("#faq1")).toHaveClass(/\bshow\b/);
-  await questions.nth(1).click();
-  await expect(page.locator("#faq2")).toHaveClass(/\bshow\b/);
-  await expect(page.locator("#faq1")).not.toHaveClass(/\bshow\b/);
-});
+  test("the FAQ accordion opens one answer at a time", async ({ page }) => {
+    await page.goto("./");
+    await whenHydrated(page);
+    const questions = page.locator("#contact .faq-question");
+    await expect(questions).toHaveCount(count("faqs"));
 
-test("the contact form validates, then sends through EmailJS", async ({ page }) => {
-  // Never send a real email from a test: answer EmailJS's API locally.
-  let sends = 0;
-  await page.route(/api\.emailjs\.com/, (route) => {
-    sends++;
-    return route.fulfill({ status: 200, body: "OK" });
+    await questions.nth(0).click();
+    await expect(page.locator("#faq1")).toHaveClass(/\bshow\b/);
+    await questions.nth(1).click();
+    await expect(page.locator("#faq2")).toHaveClass(/\bshow\b/);
+    await expect(page.locator("#faq1")).not.toHaveClass(/\bshow\b/);
   });
-  await page.goto("./");
-  await expect(page.locator(".preloader")).toBeHidden();
-  const status = page.locator("#contact-message");
 
-  await page.locator("#contact .contact__button").click();
-  await expect(status).toHaveClass(/\bcolor-dark\b/);
-  expect(sends).toBe(0);
+  test("the contact form validates, then sends through EmailJS", async ({ page }) => {
+    // Never send a real email from a test: answer EmailJS's API locally.
+    let sends = 0;
+    await page.route(/api\.emailjs\.com/, (route) => {
+      sends++;
+      return route.fulfill({ status: 200, body: "OK" });
+    });
+    await page.goto("./");
+    await whenHydrated(page);
+    const status = page.locator("#contact-message");
 
-  await page.fill("#contact-name", "Smoke Test");
-  await page.fill("#contact-email", "smoke@example.com");
-  await page.fill("#message", "Hello from the smoke test.");
-  await page.locator("#contact .contact__button").click();
-  await expect(status).toHaveClass(/\bcolor-light\b/);
-  expect(sends).toBe(1);
-  await expect(page.locator("#contact-name")).toHaveValue("");
+    await page.locator("#contact .contact__button").click();
+    await expect(status).toHaveClass(/\bcolor-dark\b/);
+    expect(sends).toBe(0);
+
+    await page.fill("#contact-name", "Smoke Test");
+    await page.fill("#contact-email", "smoke@example.com");
+    await page.fill("#message", "Hello from the smoke test.");
+    await page.locator("#contact .contact__button").click();
+    await expect(status).toHaveClass(/\bcolor-light\b/);
+    expect(sends).toBe(1);
+    await expect(page.locator("#contact-name")).toHaveValue("");
+  });
 });
 
 test("the nav marks the section in view, in the navbar and the menu", async ({ page }) => {
