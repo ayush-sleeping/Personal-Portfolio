@@ -1,0 +1,78 @@
+name: Deploy to GitHub Pages
+
+# Builds the Next.js static export and publishes out/ to GitHub Pages (task.md Phase 10).
+#
+# Runs on every push to main, by hand, and when another workflow calls it. refresh-content.yml
+# calls it after a content commit, because a push made with GITHUB_TOKEN triggers no workflow.
+#
+# The URL prefix comes from actions/configure-pages: its base_path output is "/Personal-Portfolio"
+# while the repo has that name, and "" once it's renamed to ayush-sleeping.github.io (task.md T9).
+# next.config.ts and lib/site.ts read the same NEXT_PUBLIC_BASE_PATH, so this file needs no
+# change at the rename.
+#
+# Needs the repo's Pages source set to "GitHub Actions" (task.md 10C).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      ref:
+        description: Commit to build. The caller's own commit when empty.
+        type: string
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time. A queued one waits rather than cancelling one in flight, so a
+# half-uploaded site is never left behind.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # A caller passes the commit it just pushed; its own github.sha is the commit before it.
+          ref: ${{ inputs.ref || github.sha }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - run: npm ci
+
+      - name: Build (static export)
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
