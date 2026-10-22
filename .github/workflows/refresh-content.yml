@@ -1,5 +1,9 @@
 name: Refresh content from Google Sheet
 
+# Pulls the sheet into assets/data/ and commits any change as github-actions[bot] (the deliberate
+# bot identity, see CLAUDE.md). A push made with GITHUB_TOKEN triggers no other workflow, so when
+# something was committed the deploy job below calls deploy.yml directly to publish it.
+
 on:
   schedule:
     - cron: '0 */6 * * *'   # every 6 hours
@@ -16,6 +20,9 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    outputs:
+      # The content commit's sha, or empty when nothing changed.
+      sha: ${{ steps.commit.outputs.sha }}
     env:
       SHEET_ID: ${{ secrets.SHEET_ID }}
       GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
@@ -24,7 +31,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: .nvmrc
 
       # Until the sheet is wired up, skip quietly rather than failing the run
       # every 6 hours. A manual run still reports loudly that it is not set up.
@@ -56,6 +63,7 @@ jobs:
         run: node scripts/fetch-sheet.mjs --promote
 
       - name: Commit if changed
+        id: commit
         if: steps.check.outputs.configured == 'true'
         run: |
           set -euo pipefail
@@ -68,3 +76,19 @@ jobs:
           git add assets/data
           git commit -m "chore(content): refresh from sheet"
           git push
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  # Publish the new content. Only after a commit, and building exactly that commit. A called
+  # workflow can't get more permissions than its caller job grants, hence this job's own block.
+  # No concurrency group here: deploy.yml's "pages" group already serialises deploys, and the same
+  # group on the caller would deadlock with it.
+  deploy:
+    needs: refresh
+    if: needs.refresh.outputs.sha != ''
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy.yml
+    with:
+      ref: ${{ needs.refresh.outputs.sha }}
