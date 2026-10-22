@@ -1,12 +1,13 @@
 name: CI (v3 Next.js)
 
-# Checks the Next.js project on every push to the v3 branch and on pull requests.
-# It never deploys: the live site is still v2 on main. Deployment is planned in task.md
-# together with the cutover.
+# Checks the Next.js project: lint, types, formatting, content data, the static build and the
+# smoke tests, plus the same build served at the root (as after the T9 rename). Runs on pushes to
+# main (the live site's branch after the cutover) and to v3-nextjs, and on pull requests.
+# It never deploys; deploy.yml publishes main.
 
 on:
   push:
-    branches: [v3-nextjs]
+    branches: [main, v3-nextjs]
   pull_request:
   workflow_dispatch:
 
