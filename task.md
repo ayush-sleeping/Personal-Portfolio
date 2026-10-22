@@ -1,6 +1,6 @@
 # task.md — The one-page portfolio
 
-> **Status: 🚧 IN PROGRESS.** Started 2026-10-07. **Resumed 2026-10-11: Phases 3b, 8 and 9 done, 3a–7 re-checked. Everything before the cutover is built; next is Phase 10, with Ayush.** Follows [`documentation/version3.md`](documentation/version3.md)
+> **Status: 🚧 IN PROGRESS.** Started 2026-10-07. **Resumed 2026-10-11: Phases 3b, 8 and 9 done, 3a–7 re-checked. Everything before the cutover is built. 2026-10-22: Phase 10 planned as 10A–10F; 10A and 10B running, 10C waits for Ayush.** Follows [`documentation/version3.md`](documentation/version3.md)
 > (v3 foundation, done). Branch: `v3-nextjs`. `main` is not touched until the cutover (Phase 10), and that
 > phase needs Ayush.
 
@@ -38,9 +38,11 @@ Three Claude sessions work in parallel:
 
 | Role | Session | Owns |
 |---|---|---|
-| Manager | `personal-portfolio-a6` | `task.md`, assigning work, relaying test findings, reporting to Ayush |
-| Developer | `personal-portfolio-42` | All source changes on `v3-nextjs`, in the main working tree |
-| Tester / monitor | `personal-portfolio-4f` | Verifying each finished phase, in its own git worktree. Never edits the main tree |
+| Manager | `personal-portfolio-9c` | `task.md`, assigning work, relaying test findings, reporting to Ayush |
+| Developer | `personal-portfolio-9b` | All source changes on `v3-nextjs`, in the main working tree |
+| Tester / monitor | `personal-portfolio-77` | Verifying each finished phase, in its own git worktree. Never edits the main tree |
+
+(Sessions changed on 2026-10-22. Earlier phases ran with `a6` / `42` / `4f`.)
 
 **The loop:**
 
@@ -194,15 +196,51 @@ off all content is still visible; no 404s in the network log.
 
 **Tester checks:** the parity suite passes; the diffs that remain are all on the intentional list.
 
-### Phase 10 — Deploy and cutover (needs Ayush)
+### Phase 10 — Deploy and cutover (planned 2026-10-22)
 
-Not started without Ayush's go-ahead.
+Split into 10A–10F. 10A and 10B change nothing live and run now, in parallel. 10C needs Ayush's go-ahead.
+Facts this plan rests on (checked 2026-10-22): `main` (`d5f6306`) is an ancestor of `v3-nextjs`, so the merge
+is a fast-forward. Pages builds from branch `main` (legacy). `ayush-sleeping/ayush-sleeping.github.io`
+doesn't exist yet, so the T9 rename is free. The repo has no Actions secrets yet. Other repos (DailyBuzz,
+WriteOn …) keep their own `/<repo>/` Pages paths after the rename.
 
-- `deploy.yml` (build → upload `out/` → deploy Pages). `refresh-content.yml` calls it directly, because
-  pushes made with `GITHUB_TOKEN` don't trigger other workflows. `liveness.yml` checks page content.
-- Create the `v2-html` branch from `main`, merge, switch the Pages source to GitHub Actions. Rollback =
-  switch the source back to `v2-html` (about 2 minutes).
-- After cutover: verify in Google Search Console.
+**10A — Pre-flight (tester).** In the tester worktree at `761600d`: `npm ci`, `npm run build`, `npm test`
+(smoke, resume and parity at 390/768/1440). Parity was last proven before 3b, so this is the re-check.
+Report pass, or numbered misses.
+
+**10B — Deploy setup (developer; nothing goes live).** One commit per item, each checked by the tester:
+
+1. `deploy.yml`: on push to `main`, manual run, and `workflow_call`. Node from `.nvmrc`, `npm ci`, build,
+   upload `out/`, deploy Pages. `NEXT_PUBLIC_BASE_PATH` comes from `actions/configure-pages`' `base_path`
+   output, so the same file builds `/Personal-Portfolio` before the T9 rename and `""` after it.
+2. Old links after the rename: `app/not-found.tsx` (the exported `404.html`) sends any
+   `/Personal-Portfolio/<rest>` URL to `/<rest>`, keeping the hash, so old bookmarks and the old `.html`
+   redirect stubs still land on the right section. It does nothing when `basePath` isn't `""`.
+3. A root build check: build with `NEXT_PUBLIC_BASE_PATH=""` and run the smoke tests at `/`, locally and in
+   `ci.yml` (`preview` and `playwright.config.ts` take the base from the same variable).
+4. `refresh-content.yml`: Node 20 → `.nvmrc`; after a content commit, call `deploy.yml` (pushes made with
+   `GITHUB_TOKEN` trigger nothing). Bot identity unchanged.
+5. `liveness.yml`: v3 doesn't publish `assets/data/`, so check the page itself: the site root and one old
+   `.html` stub return 200 and contain known text (the name, each section id). Base URL from one variable.
+6. `ci.yml`: also run on pushes to `main`; drop the "live site is still v2" comment.
+7. Untrack the five committed `.DS_Store` files (`.gitignore` already lists it).
+
+**10C — Cutover (Ayush's go-ahead; one sitting, ~15 min).** Create `v2-html` from `main` and push it.
+Rename the repo to `ayush-sleeping.github.io` (T9) and update the local remote. Fast-forward `main` to
+`v3-nextjs`, push. Switch Pages to "GitHub Actions" and watch the first deploy. Tester checks the live site:
+5 sections × 3 widths, old `/Personal-Portfolio/` and `.html` URLs land on the right section, no 404s or
+console errors, contact form sends, Download PDF prints. Rollback: Pages source back to branch `v2-html`
+(v2 runs at the root, as `npm run v2` shows); renaming back restores the old path.
+
+**10D — After launch.** Ayush: Search Console (new root property, submit `sitemap.xml`). Team: liveness green
+for 3 days; `SITE.repoUrl`, README, `architecture.md`, `CLAUDE.md` and this file updated to "v3 live on
+`main`".
+
+**10E — Content pipeline (needs Ayush).** Sheet + `SHEET_ID` / `GOOGLE_API_KEY` secrets (`sheets/SETUP.md`),
+Apps Script deploy (B21 Phases 0 and 2). Then: one manual refresh, confirm the bot commit triggers a deploy.
+
+**10F — Backlog**, below, one item per round after 10D. Needs Ayush first: may `style.css` change now that
+parity is proven (M3, M5, M10 need it)? The preloader stays either way.
 
 ### Backlog (after parity, not in this plan)
 
@@ -224,7 +262,10 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 | 7 Behaviour | ✅ done | `3bece56` `52b98c9` `794efd0` `3aea948` `53a04cc` | ✅ re-checked 2026-10-11 (parity suite + smoke tests, no console errors or 404s at 390/768/1440) | `aba5f6f` fix(3a): first certificate image loaded late and pushed later sections down |
 | 8 SEO | ✅ done | `88b35a8` `336ae8a` `67a7e5c` `c3c7b1a` | ✅ `npm test` 62/62 (no tester session; checked by the developer) | |
 | 9 Parity | ✅ done | see `git log -- tests/parity.spec.ts` | ✅ 15/15 (5 sections × 3 widths); a one-word change in the build fails it | none needed: every block matches v2 except the three listed in the test |
-| 10 Cutover | ⏸ needs Ayush | | | |
+| 10A Pre-flight | — | `761600d` | 🔄 started 2026-10-22 | |
+| 10B Deploy setup | 🔄 started 2026-10-22 | | | |
+| 10C Cutover | ⏸ needs Ayush | | | |
+| 10D–10F | ⏸ after 10C | | | |
 
 **Intentional differences from v2, recorded as they come up** (the tester does not report these):
 
