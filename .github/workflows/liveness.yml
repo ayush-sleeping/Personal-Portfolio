@@ -1,9 +1,12 @@
-name: Liveness — published content
+name: Liveness — published site
 
-# B21 phase 4, step 19. The refresh workflow proves the sheet can be read and
-# committed; this proves the result is actually being served. They fail for
-# different reasons: a broken Pages deploy, a bad path after a rename, or JSON
-# that is valid on disk but truncated in transit.
+# Proves the live site is actually being served, daily. deploy.yml proves a build can be published;
+# this catches what happens after: a broken Pages deploy, a wrong path after a rename, or a page
+# that is served but empty.
+#
+# v3 is a static export with the sheet content written into the HTML; it no longer publishes
+# assets/data/. So this checks the page itself: the site root has the name and every section,
+# and one of v2's old .html pages still answers (its redirect stub).
 
 on:
   schedule:
@@ -17,37 +20,57 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  # The live site. Becomes https://ayush-sleeping.github.io after the repo is renamed to
+  # ayush-sleeping.github.io (task.md T9, 10C).
+  BASE: https://ayush-sleeping.github.io/Personal-Portfolio
+
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch and parse the published JSON
+      - name: Check the site root and an old page
         run: |
           set -uo pipefail
-          BASE="https://ayush-sleeping.github.io/Personal-Portfolio"
-          FILES="
-            assets/data/site/profile.json
-            assets/data/site/navigation.json
-            assets/data/collections/projects.json
-            assets/data/collections/faqs.json
-            assets/data/pages/home.json
-          "
           fail=0
-          for f in $FILES; do
-            code=$(curl -sS -o /tmp/body -w '%{http_code}' --max-time 20 "$BASE/$f" || echo 000)
+
+          # fetch <path> <file>: follows redirects, fails on anything but a 200.
+          fetch() {
+            local code
+            # curl prints 000 itself when it can't connect; `|| true` keeps that single 000.
+            code=$(curl -sS -L -o "$2" -w '%{http_code}' --max-time 20 "$BASE/$1") || true
             if [ "$code" != "200" ]; then
-              echo "::error::$f returned HTTP $code"
-              fail=1
-              continue
+              echo "::error::$BASE/$1 returned HTTP $code"
+              return 1
             fi
-            # A 200 is not enough: Pages serves its 404 page with a 200 on some
-            # misconfigurations, and a truncated file still has a status line.
-            if ! jq empty /tmp/body 2>/dev/null; then
-              echo "::error::$f returned 200 but is not valid JSON"
-              head -c 200 /tmp/body
+            echo "ok  $BASE/$1 ($(wc -c < "$2") bytes)"
+          }
+
+          # A 200 is not enough: Pages can serve an empty or wrong page with a 200, so check the
+          # content the static export writes into the HTML.
+          if fetch "" /tmp/root.html; then
+            if ! grep -q 'Ayush Mishra' /tmp/root.html; then
+              echo "::error::the site root has no \"Ayush Mishra\""
               fail=1
-              continue
             fi
-            echo "ok  $f ($(wc -c < /tmp/body) bytes)"
-          done
+            for id in home about projects services contact; do
+              if ! grep -q "id=\"$id\"" /tmp/root.html; then
+                echo "::error::the site root has no section id=\"$id\""
+                fail=1
+              fi
+            done
+          else
+            fail=1
+          fi
+
+          # v2's about.html is now a redirect stub to the About section.
+          if fetch about.html /tmp/about.html; then
+            if ! grep -q '#about' /tmp/about.html; then
+              echo "::error::about.html doesn't point at #about"
+              fail=1
+            fi
+          else
+            fail=1
+          fi
+
           exit $fail
