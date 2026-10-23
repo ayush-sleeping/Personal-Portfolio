@@ -3,7 +3,7 @@
 > **Status: 🚧 IN PROGRESS.** Started 2026-10-07. **2026-10-22/23: Phase 10 done through 10C; v3 is live at
 > https://ayush-sleeping.github.io/ from `main`. 2026-10-24: Phase 11 (the v4 redesign, §5) started on branch
 > `v4-redesign`.** Follows [`documentation/version3.md`](documentation/version3.md) (v3 foundation, done).
-> `main` is live; only Phase 11F touches it again.
+> `main` is live. 2026-10-24: Phase 11 (v4) built and cut over; `v3-final` tags the previous live commit.
 >
 > **Phase 11 overrides §1, §2 T1–T5 and §4 wherever they say "same as v2".** The design in
 > `documentation/design/v4.dc.html` is the single source of truth for the UI from now on.
@@ -393,8 +393,8 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 | 11B Shell | ✅ 2026-10-24 (manager built it: no helper sessions, Ayush deferred testing) | in the port commit | ⏸ 11E | |
 | 11C Sections | ✅ 2026-10-24, all 11 items | in the port commit | ⏸ 11E | |
 | 11D Behaviour | ✅ 2026-10-24, all 5 items | in the port commit | ⏸ 11E | |
-| 11E Quality | ⏸ Ayush: test at the end (2026-10-24) | | | |
-| 11F Cutover | ⏸ | | | |
+| 11E Quality | ✅ 2026-10-24: v4 smoke + resume suites, parity retired; `npm test` 63/63 | `69adcd7` | | |
+| 11F Cutover | 🔄 2026-10-24: `v3-final` tag on the old `main` (`266aa49`); `main` = `v3-nextjs` = `69adcd7`; CI run 40011587923 | | | |
 
 **Intentional differences from v2, recorded as they come up** (the tester does not report these):
 
