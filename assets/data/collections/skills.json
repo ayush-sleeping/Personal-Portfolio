@@ -32,12 +32,20 @@
     "order": "4"
   },
   {
+    "id": "established-ai-tools",
+    "group": "established",
+    "group_label": "Established / Working With",
+    "category": "AI tools",
+    "name": "Claude Code, ChatGPT, GitHub Copilot",
+    "order": "5"
+  },
+  {
     "id": "focusing-language",
     "group": "focusing",
     "group_label": "Currently Focusing On",
     "category": "Language",
     "name": "Python",
-    "order": "5"
+    "order": "6"
   },
   {
     "id": "focusing-backend",
@@ -45,7 +53,7 @@
     "group_label": "Currently Focusing On",
     "category": "Backend",
     "name": "Django",
-    "order": "6"
+    "order": "7"
   },
   {
     "id": "focusing-frontend",
@@ -53,6 +61,6 @@
     "group_label": "Currently Focusing On",
     "category": "Frontend",
     "name": "Next.js",
-    "order": "7"
+    "order": "8"
   }
 ]
