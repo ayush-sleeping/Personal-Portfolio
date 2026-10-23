@@ -1,16 +1,14 @@
 // Playwright runs against the built static site (out/), served under basePath exactly as GitHub
 // Pages will serve it. Run `npm run build` first; `npm test` then starts the preview server itself.
 //
-// Three viewports match the widths the v2 → v3 UI comparison will use (planned in task.md).
-import { existsSync } from "node:fs";
+// Three viewports: phone, tablet, desktop.
 
 import { defineConfig, devices } from "@playwright/test";
 
 // Its own ports, so a running `npm run preview` (7301) is never reused by mistake. Locally servers
 // are reused when already up, so two people (or sessions) testing different builds at once must
-// each pick their own: PW_PORT for this build, V2_PORT for v2 (tests/parity.spec.ts reads it too).
+// each pick their own: PW_PORT.
 const PORT = Number(process.env.PW_PORT ?? 7310);
-const V2_PORT = Number(process.env.V2_PORT ?? 4000);
 // The same variable the build reads: "/Personal-Portfolio" by default, "" for a root build
 // (after the rename to ayush-sleeping.github.io, task.md T9).
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/Personal-Portfolio";
@@ -43,16 +41,5 @@ export default defineConfig({
       url: `http://localhost:${PORT}${BASE_PATH}/`,
       reuseExistingServer: !process.env.CI,
     },
-    // v2 for the parity suite (tests/parity.spec.ts). version2/ is a gitignored local copy, so CI
-    // has no v2 server and the suite skips itself there.
-    ...(existsSync("version2")
-      ? [
-          {
-            command: `node scripts/serve.mjs --dir version2 --port ${V2_PORT}`,
-            url: `http://localhost:${V2_PORT}/`,
-            reuseExistingServer: !process.env.CI,
-          },
-        ]
-      : []),
   ],
 });

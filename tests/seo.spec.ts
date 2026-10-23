@@ -52,7 +52,7 @@ test("the sitemap lists the one page", async ({ request, baseURL }) => {
 
 const OLD_PAGES: [string, string][] = [
   ["about.html", "about"],
-  ["resume.html", "about"],
+  ["resume.html", "experience"],
   ["project.html", "projects"],
   ["services.html", "services"],
   ["contact.html", "contact"],

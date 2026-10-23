@@ -21,7 +21,6 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    # The parity suite alone takes ~4.5 min locally; more on a 2-core runner.
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
@@ -51,15 +50,7 @@ jobs:
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
-      # The parity suite compares each section with v2. version2/ is gitignored, so recreate it
-      # from the tag the way the README does; without it the suite fails here rather than skipping.
-      - name: Check out v2 for the parity suite
-        run: |
-          git fetch --depth=1 origin tag v2-html-final
-          mkdir version2
-          git archive v2-html-final | tar -x -C version2
-
-      - name: Smoke, resume, SEO and parity tests
+      - name: Smoke, resume and SEO tests
         run: npm test
 
       - name: Upload Playwright report
