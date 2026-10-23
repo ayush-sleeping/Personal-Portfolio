@@ -22,6 +22,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // The v2 HTML site, kept locally as a read-only reference.
     "version2/**",
+    // The v4 design export (Claude Design's own runtime syntax), kept as reference.
+    "documentation/design/**",
     "test-results/**",
     "playwright-report/**",
   ]),

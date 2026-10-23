@@ -7,10 +7,16 @@ export const dynamic = "force-static";
 
 const SECTION_NOTES: Record<(typeof SECTION_IDS)[number], string> = {
   home: "Overview: role, current stack, and links to credentials, projects, services and profiles.",
-  about: "Background, work experience, education, skills, certifications and the resume.",
+  about:
+    "Background and a quick-facts grid (interest, stack, focus, experience, education, email, address).",
+  experience: "Work history: professional roles, then training programs during college.",
+  education: "Degree and schooling, with relevant courses.",
+  certifications: "Certificates from training programs, competitions and courses.",
+  skills: "Established stack and the current learning focus.",
   projects: "Shipped projects with tech stack, source links and live demos.",
   services: "What he takes on: fullstack, backend, frontend, and production/team work.",
-  contact: "Contact form and frequently asked questions.",
+  contact: "Contact details and the contact form.",
+  faq: "Frequently asked questions about his work and services.",
 };
 
 const plain = (value: string) =>

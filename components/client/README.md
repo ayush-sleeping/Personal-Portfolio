@@ -1,6 +1,7 @@
 # components/client/
 
-`'use client'` components that add **behaviour only** to server-rendered markup: Preloader
-(the purple slide-reveal, kept as-is), Spotlight, GSAP scroll effect, scroll reveals, marquee,
-mobile menu, active section, contact form. Each wraps the matching v2 script in `useEffect` with
-cleanup. Never import `lib/data.ts` here. Reference scripts: `version2/assets/js/`.
+`'use client'` components for the v4 design's behaviour (task.md Phase 11), each a port of the
+matching part of `documentation/design/v4-logic.js`: Shell (sidebar, drawer, top bar, active
+section, search palette, progress bar, back-to-top, toast), Motion (typing, reveals, counters,
+scramble, spotlight, copy-link), CertScroller (scroller + lightbox), FaqAccordion, ContactForm
+(EmailJS). Never import `lib/data.ts` here; data arrives as props.

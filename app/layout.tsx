@@ -68,7 +68,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-        <link rel="preconnect" href="https://kit.fontawesome.com" />
 
         {/* v2 order. Bootstrap after style.css wins ties the v2 look depends on. */}
         <link rel="stylesheet" href={asset("assets/css/style.css")} />
@@ -76,11 +75,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"
         />
-        {/* Font Awesome kit, where v2 had it: a blocking script after Bootstrap, so the FA 5
-            styles it injects land before the FA 6 link below and FA 6 wins. Run any later (as
-            next/script does) and FA 5 wins: different glyphs. */}
-        {/* eslint-disable-next-line @next/next/no-sync-scripts -- must run during head parsing */}
-        <script src="https://kit.fontawesome.com/4bff2ef1c5.js" crossOrigin="anonymous"></script>
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
@@ -92,26 +86,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        {/* v3-only CSS, last so it can correct for the one-page structure. See its header. */}
+        {/* v3-only CSS (section reset, no-JS reveal), then the v4 design's stylesheet, last. */}
         <link rel="stylesheet" href={asset("assets/css/v3.css")} />
+        <link rel="stylesheet" href={asset("assets/css/v4.css")} />
       </head>
       <body style={{ backgroundColor: "#0F0F0F" }}>
         {children}
 
-        {/* Ionicons, as at the end of v2's <body>. Plain tags, not next/script: next/script
-            preloads both files without crossorigin, so the module preload goes unused (a console
-            warning) and module browsers also download the nomodule build, which v2 never did.
-            Neither blocks parsing: module scripts are deferred, and module browsers skip nomodule. */}
-        {/* eslint-disable-next-line @next/next/no-sync-scripts -- deferred: type="module" */}
-        <script
-          type="module"
-          src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-        ></script>
-        {/* eslint-disable-next-line @next/next/no-sync-scripts -- never runs in module browsers */}
-        <script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        {/* Bootstrap's JS, for the certifications carousel, the why-hire modal and the FAQ
-            accordion (task.md T5).
-            v2 loaded it at the end of <body>; defer runs it at the same point. */}
+        {/* Bootstrap's JS, as the v4 design loads it (its CSS is still in use). */}
         <script
           defer
           src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"

@@ -1,5 +1,5 @@
 # components/sections/
 
-One server component per portfolio section (Home, About, Projects, Services, Contact),
-stacked in order on the single page. Keep v2's markup and classes: `style.css` targets them.
-Built after v3 (planned in `task.md`). Reference: `version2/*.html`.
+One server component per section of the v4 design (task.md Phase 11), in page order: Home, About,
+Experience, Education, Certifications, Skills, Projects, Services, Contact, FAQ, Help. Markup follows
+`documentation/design/v4-template.html`; styles are the `.v4-*` classes in `public/assets/css/v4.css`.

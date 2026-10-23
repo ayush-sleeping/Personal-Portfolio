@@ -1,14 +1,13 @@
 "use client";
 
-// The contact form, ported from v2's contactform.js: every field required ("fill in all fields"
-// message), a honeypot that silently drops bot submissions, then EmailJS's sendForm with v2's
-// IDs, a success message that clears after 5 seconds, and an error message on failure.
+// The contact form in the v4 design's card, with v2's behaviour kept (contactform.js): every
+// field required ("fill in all fields"), a honeypot that silently drops bot submissions, then
+// EmailJS's sendForm with v2's IDs, a success message that clears after 5 seconds, and an error
+// message on failure.
 //
 // Not ported: v2's Apps Script logging (logToSheet). Its URL and token were empty, so it never
 // ran; wiring it up needs the Apps Script deploy (task.md backlog, B21).
 import { useEffect, useRef, useState, type FormEvent } from "react";
-
-import { important } from "@/lib/site";
 
 // EmailJS identifiers, exactly as v2 used them. They are public by design: EmailJS sends from
 // the browser, and the public key only works from the allowed origins set in EmailJS.
@@ -85,64 +84,71 @@ export default function ContactForm({ copy }: Readonly<{ copy: ContactFormCopy }
   const accentAt = copy.formHeadingAccent ? copy.formHeading.indexOf(copy.formHeadingAccent) : -1;
 
   return (
-    <div className="contact__form">
-      <p className="contact__form-title" style={{ fontSize: 44, ...important({ color: "#fff" }) }}>
+    <div className="v4-panel v4-form-card">
+      <p className="v4-form-title">
         {accentAt < 0 ? (
           copy.formHeading
         ) : (
           <>
             {copy.formHeading.slice(0, accentAt)}
-            <span style={important({ color: "#5B78F6" })}>{copy.formHeadingAccent}</span>
+            <span className="v4-accent">{copy.formHeadingAccent}</span>
             {copy.formHeading.slice(accentAt + (copy.formHeadingAccent?.length ?? 0))}
           </>
         )}
       </p>
-      <form id="contact-form" ref={formRef} onSubmit={onSubmit}>
-        <div className="contact__input-div">
-          <input
-            type="text"
-            name="name"
-            placeholder={copy.namePlaceholder}
-            className="contact__input"
-            id="contact-name"
-          />
+      <form id="contact-form" ref={formRef} onSubmit={onSubmit} className="v4-form">
+        <div className="v4-form-grid">
+          <label className="v4-field">
+            <span className="v4-field-label">Name</span>
+            <input
+              data-input=""
+              type="text"
+              name="name"
+              id="contact-name"
+              placeholder={copy.namePlaceholder}
+              className="v4-input"
+            />
+          </label>
+          <label className="v4-field">
+            <span className="v4-field-label">Email</span>
+            <input
+              data-input=""
+              type="email"
+              name="email"
+              id="contact-email"
+              placeholder={copy.emailPlaceholder}
+              className="v4-input"
+            />
+          </label>
         </div>
-        <div className="contact__input-div">
-          <input
-            type="email"
-            name="email"
-            placeholder={copy.emailPlaceholder}
-            className="contact__input"
-            id="contact-email"
-          />
-        </div>
-        <div className="contact__input-div">
+        <label className="v4-field">
+          <span className="v4-field-label">Message</span>
           <textarea
+            data-input=""
             name="message"
-            placeholder={copy.messagePlaceholder}
-            className="contact__input textarea"
             id="message"
-            cols={30}
-            rows={10}
+            placeholder={copy.messagePlaceholder}
+            rows={6}
+            className="v4-input v4-textarea"
           ></textarea>
-        </div>
-        <p
-          className={`contact__message text-sm${status.tone ? ` ${status.tone}` : ""}`}
-          id="contact-message"
-          aria-live="polite"
-        >
-          {status.text}
-        </p>
-        {/* Honeypot: hidden from people, filled in by bots. aria-hidden + tabindex keep it out
-            of the accessibility tree. */}
-        <div className="hp-field" aria-hidden="true">
+        </label>
+        {/* Honeypot: hidden from people, filled in by bots. */}
+        <div className="v4-hp" aria-hidden="true">
           <label htmlFor="contact-honey">{HONEYPOT_LABEL}</label>
           <input type="text" id="contact-honey" name="honey" tabIndex={-1} autoComplete="off" />
         </div>
-
-        <button type="submit" className="button contact__button">
-          {copy.submitLabel}
-        </button>
+        <div className="v4-form-foot">
+          <span
+            id="contact-message"
+            aria-live="polite"
+            className={`v4-status${status.tone ? ` ${status.tone}` : ""}`}
+          >
+            {status.text}
+          </span>
+          <button type="submit" className="v4-btn v4-submit">
+            {copy.submitLabel} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
       </form>
     </div>
   );

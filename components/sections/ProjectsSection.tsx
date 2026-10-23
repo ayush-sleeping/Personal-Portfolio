@@ -1,46 +1,61 @@
-// Projects: v2's project.html grid, from the sheet (pages/projects, projects). The Skills &
-// Technologies block v2 repeated under the grid shows once on the page, in About (task.md
-// Phase 4). The CreativeWork JSON-LD v2 injected from project-render.js is Phase 8 (SEO).
-import ProjectCard from "@/components/cards/ProjectCard";
-import { getPageCopy, getProjects, isTrue } from "@/lib/data";
-import { important } from "@/lib/site";
+// Projects (design: #projects): the grid of articles, each with id="project-<slug>" for the
+// sidebar and the palette.
+import { getPageCopy, getProjects, splitList } from "@/lib/data";
+import { imageSrc, projectAnchor } from "@/lib/site";
 
 export default function ProjectsSection() {
   const copy = getPageCopy("projects");
-  // As in v2: a blank `featured` cell counts as shown.
-  const projects = getProjects().filter((p) => !p.featured || isTrue(p.featured));
-
   return (
-    <section id="projects">
-      <div
-        className="container max-w-7xl pb-12 mb-12"
-        style={important({ paddingTop: "10px", paddingBottom: "10px" })}
-      >
-        <div className="row g-4 mt-3">
-          <div className="col-lg-12 col-12">
-            <div className="row">
-              <div className="col-12">
-                <div className="text-center mb-4 mb-md-5">
-                  <h1 className="section-heading mb-3">
-                    <span>{copy.heading}</span>
-                  </h1>
-                </div>
-              </div>
+    <section id="projects" data-screen-label="Projects">
+      <div data-doc="" className="v4-doc">
+        <div className="v4-sec">
+          <div data-sec-head="" className="v4-sec-head">
+            <div>
+              <h2 data-h2="" className="v4-sec-title">
+                {copy.heading}
+              </h2>
             </div>
           </div>
-
-          <div className="col-lg-12 col-12">
-            {/* TODO(sheet): page_projects.source_label, demo_label (v2: "Source", "Live Demo") */}
-            <div className="row">
-              {projects.map((p) => (
-                <ProjectCard
-                  key={p.id}
-                  project={p}
-                  sourceLabel={copy.source_label}
-                  demoLabel={copy.demo_label}
-                />
-              ))}
-            </div>
+          <div className="v4-grid-320">
+            {getProjects().map((p) => (
+              <article id={projectAnchor(p.title)} className="v4-proj" key={p.id}>
+                <div className="v4-proj-img">
+                  <img src={imageSrc(p.image_url)} alt={p.title} loading="lazy" />
+                </div>
+                <div className="v4-proj-text">
+                  <div className="v4-proj-head">
+                    <h3 className="v4-proj-title">{p.title}</h3>
+                    {p.year && <span className="v4-proj-year">{p.year}</span>}
+                  </div>
+                  {p.category && <span className="v4-proj-cat">{p.category}</span>}
+                </div>
+                <p className="v4-proj-desc">
+                  {p.summary
+                    .replace(/<br\s*\/?>/gi, " ")
+                    .replace(/\s+/g, " ")
+                    .trim()}
+                </p>
+                <div className="v4-chip-list">
+                  {splitList(p.tech_stack, ",").map((t) => (
+                    <span className="v4-chip" key={t}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <div className="v4-proj-links">
+                  {p.github_url && (
+                    <a href={p.github_url} target="_blank" rel="noopener" className="v4-link">
+                      <i className="fab fa-github" aria-hidden="true"></i>Source
+                    </a>
+                  )}
+                  {p.live_url && (
+                    <a href={p.live_url} target="_blank" rel="noopener" className="v4-link">
+                      Live demo<i className="fa-solid fa-arrow-right v4-ext" aria-hidden="true"></i>
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </div>

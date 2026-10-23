@@ -18,14 +18,34 @@ export const SITE = {
   url: `https://ayush-sleeping.github.io${basePath}/`,
   themeColor: "#5B78F6",
   /** Linked from the footer's "View source on GitHub". */
-  repoUrl: "https://github.com/ayush-sleeping/Personal-Portfolio",
+  repoUrl: "https://github.com/ayush-sleeping/ayush-sleeping.github.io",
 } as const;
 
 /**
- * The one-page sections, top to bottom (task.md T2). Each id is also its nav anchor and matches
- * the `id` column of the navigation sheet tab.
+ * The one-page sections, top to bottom (task.md Phase 11, the v4 design). Each id is its anchor;
+ * the five that match the navigation sheet tab (home, about, projects, services, contact) are the
+ * header-level ones, the others are About's sub-pages in the sidebar.
  */
-export const SECTION_IDS = ["home", "about", "projects", "services", "contact"] as const;
+export const SECTION_IDS = [
+  "home",
+  "about",
+  "experience",
+  "education",
+  "certifications",
+  "skills",
+  "projects",
+  "services",
+  "contact",
+  "faq",
+] as const;
+
+/** A project's in-page id, as the design's slug(): "project-" + title in kebab-case. */
+export const projectAnchor = (title: string) =>
+  "project-" +
+  title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 export type SectionId = (typeof SECTION_IDS)[number];
 
 /** In-page anchor for a section (task.md T4: nav links are anchors, not .html pages). */
@@ -112,3 +132,9 @@ export function pictureSources(path: string): { avif?: string; webp?: string; sr
   const base = path.replace(raster, "");
   return { avif: asset(`${base}.avif`), webp: asset(`${base}.webp`), src: asset(path) };
 }
+
+/** The .webp of a local raster image (the v4 design loads .webp everywhere), else the file itself. */
+export const imageSrc = (path: string): string => {
+  const sources = pictureSources(path);
+  return sources.webp ?? sources.src;
+};

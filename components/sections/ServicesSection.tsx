@@ -1,37 +1,39 @@
-// Services: v2's services.html, from the sheet (pages/services, services). The row of link
-// cards v2 put under the grid (Profiles, CTA, Credentials) shows once, in Home (T3).
-import ServiceCard from "@/components/cards/ServiceCard";
-import { getPageCopy, getServices } from "@/lib/data";
-import { important } from "@/lib/site";
+// Services (design: #services): one card per sheet row with its check-list from bullet_points.
+import { getPageCopy, getServices, splitPairs } from "@/lib/data";
 
 export default function ServicesSection() {
   const copy = getPageCopy("services");
-
   return (
-    <section id="services">
-      <div
-        className="container max-w-7xl pb-12 mb-12"
-        style={important({ paddingTop: "10px", paddingBottom: "10px" })}
-      >
-        <div className="row g-4 mt-3">
-          <div className="col-lg-12 col-12">
-            <div className="row">
-              <div className="col-12">
-                <div className="text-center mb-4 mb-md-5">
-                  <h1 className="section-heading mb-3">
-                    <span>{copy.heading}</span>
-                  </h1>
-                </div>
-              </div>
+    <section id="services" data-screen-label="Services">
+      <div data-doc="" className="v4-doc">
+        <div className="v4-sec">
+          <div data-sec-head="" className="v4-sec-head">
+            <div>
+              <h2 data-h2="" className="v4-sec-title">
+                {copy.heading}
+              </h2>
             </div>
           </div>
-
-          <div className="col-12">
-            <div className="row g-4">
-              {getServices().map((s) => (
-                <ServiceCard key={s.id} service={s} />
-              ))}
-            </div>
+          <div className="v4-grid-cards">
+            {getServices().map((s) => (
+              <div className="v4-panel v4-panel-18" key={s.id}>
+                <span className="v4-icon-box">
+                  <i className={s.icon_class ?? "fas fa-code"} aria-hidden="true"></i>
+                </span>
+                <h3 className="v4-panel-title">{s.title}</h3>
+                <div className="v4-features">
+                  {splitPairs(s.bullet_points).map((f) => (
+                    <div className="v4-feature" key={f.label}>
+                      <i className="fas fa-check" aria-hidden="true"></i>
+                      <div>
+                        <p className="v4-feature-label">{f.label}</p>
+                        <p className="v4-feature-text">{f.value}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

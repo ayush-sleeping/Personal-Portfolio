@@ -1,74 +1,117 @@
-// The one-page portfolio (task.md). The v2 shell — preloader, slide-out menu, header, footer —
-// around the five sections in T2 order (ids from SECTION_IDS in lib/site.ts). Sections are
-// filled phase by phase.
+// The one-page portfolio in the v4 design (task.md Phase 11): the Shell (sidebar, top bar,
+// palette, progress, back-to-top, toast) around the ten sections, the Help band and the footer.
+// Section ids: SECTION_IDS in lib/site.ts.
 import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
-import NavigationMenu from "@/components/layout/NavigationMenu";
 import StructuredData from "@/components/layout/StructuredData";
-import MobileMenu from "@/components/client/MobileMenu";
-import Preloader from "@/components/client/Preloader";
-import ActiveSection from "@/components/client/ActiveSection";
-import ScrollCardAnimations from "@/components/client/ScrollCardAnimations";
-import StickyHeader from "@/components/client/StickyHeader";
-import WhyHire from "@/components/client/WhyHire";
-import WhyHireModal from "@/components/layout/WhyHireModal";
+import Motion from "@/components/client/Motion";
+import PrintLinks from "@/components/client/PrintLinks";
+import Shell, { type SideItem } from "@/components/client/Shell";
 import AboutSection from "@/components/sections/AboutSection";
+import CertificationsSection from "@/components/sections/CertificationsSection";
+import ContactSection from "@/components/sections/ContactSection";
+import EducationSection from "@/components/sections/EducationSection";
+import ExperienceSection from "@/components/sections/ExperienceSection";
+import FaqSection from "@/components/sections/FaqSection";
+import HelpSection from "@/components/sections/HelpSection";
+import HomeSection from "@/components/sections/HomeSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import ServicesSection from "@/components/sections/ServicesSection";
-import ContactSection from "@/components/sections/ContactSection";
-import HomeSection from "@/components/sections/HomeSection";
-import { getFooterTech, getNavigation, getPageCopy, getProfile, getSocials } from "@/lib/data";
+import SkillsSection from "@/components/sections/SkillsSection";
+import { getFooterTech, getNavigation, getProfile, getProjects, getSocials } from "@/lib/data";
+import { imageSrc, projectAnchor } from "@/lib/site";
+
+// The sidebar's labels are the design's (T10); the sections themselves come from the sheet.
+const PALETTE_SECTIONS = [
+  ["home", "Overview"],
+  ["about", "About me"],
+  ["experience", "Experience"],
+  ["education", "Education"],
+  ["certifications", "Certifications"],
+  ["skills", "Skills & Technologies"],
+  ["projects", "Projects"],
+  ["services", "Services"],
+  ["contact", "Contact"],
+  ["faq", "FAQ"],
+].map(([id, label]) => ({ id, label }));
 
 export default function Home() {
   const profile = getProfile();
   const nav = getNavigation();
-  // v2's menu footer reads "© 2026 Ayush Mishra"; the year comes from the sheet's copyright line.
-  const year = profile.copyright?.match(/\d{4}/)?.[0];
-  const menuCopyright = `© ${year ? `${year} ` : ""}${profile.name}`;
-  // The initial state, as on v2's index.html; ActiveSection then follows the scroll.
-  const activeId = "home";
+  const socials = getSocials();
+  const projects = getProjects();
+  const projectLinks = projects.map((p) => ({ id: projectAnchor(p.title), label: p.title }));
+
+  const sideList: SideItem[] = [
+    { id: "about", label: "About me" },
+    {
+      id: "career",
+      href: "experience",
+      label: "Career",
+      children: PALETTE_SECTIONS.filter((s) =>
+        ["experience", "education", "certifications", "skills"].includes(s.id),
+      ),
+    },
+    { id: "projects", label: "Projects", children: projectLinks },
+    { id: "services", label: "Services" },
+    { id: "contact", label: "Contact" },
+    { id: "faq", label: "FAQ" },
+  ];
+  // Every id the sidebar can highlight, in page order (the design's SPY()).
+  const spyIds = [
+    "home",
+    ...sideList.flatMap((i) =>
+      i.children
+        ? i.id === "projects"
+          ? ["projects", ...i.children.map((c) => c.id)]
+          : i.children.map((c) => c.id)
+        : [i.id],
+    ),
+  ];
 
   return (
     <>
       <StructuredData />
-      <Preloader brand={profile.brand} />
-
-      <NavigationMenu
+      <Shell
         brand={profile.brand}
-        role={profile.role}
-        copyright={menuCopyright}
-        nav={nav}
-        socials={getSocials()}
-        activeId={activeId}
-      />
-
-      <div className="main-content">
-        <Header brand={profile.brand} ctaLabel={profile.cta_label} nav={nav} activeId={activeId} />
-
+        avatar={imageSrc(profile.profile_image)}
+        ctaLabel={profile.cta_label}
+        email={profile.email}
+        nav={nav.map((n) => ({ id: n.id, label: n.label }))}
+        sideList={sideList}
+        spyIds={spyIds}
+        paletteSections={PALETTE_SECTIONS}
+        projects={projects.map((p) => ({
+          title: p.title,
+          anchor: projectAnchor(p.title),
+          category: p.category ?? "",
+        }))}
+        socials={socials.map((s) => ({ label: s.label, href: s.href, icon_class: s.icon_class }))}
+      >
         <main>
           <HomeSection />
           <AboutSection />
+          <ExperienceSection />
+          <EducationSection />
+          <CertificationsSection />
+          <SkillsSection />
           <ProjectsSection />
           <ServicesSection />
           <ContactSection />
+          <FaqSection />
+          <HelpSection />
         </main>
-
         <Footer
           brand={profile.brand}
+          tagline={profile.tagline}
           copyright={profile.copyright}
           nav={nav}
+          projects={projects}
+          socials={socials}
           tech={getFooterTech()}
         />
-      </div>
-
-      {/* Outside .main-content, as in v2: its transform would trap a fixed-position modal. */}
-      <WhyHireModal copy={getPageCopy("about")} />
-
-      <MobileMenu />
-      <StickyHeader />
-      <WhyHire />
-      <ScrollCardAnimations />
-      <ActiveSection />
+      </Shell>
+      <Motion />
+      <PrintLinks />
     </>
   );
 }

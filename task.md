@@ -389,11 +389,11 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 | 10C Cutover | ✅ done 2026-10-23 (manager) | `main` = `266aa49`; runs 39730817342 / 39731432704 | ✅ live checks pass (old URLs, sitemap, robots, DailyBuzz) | |
 | 10D After launch | 🔄 open: `SITE.repoUrl`, README, docs; Search Console (Ayush) | | | |
 | 10E Content pipeline | ⏸ needs Ayush (sheet secrets, Apps Script) | | | |
-| 11A Prep | ✅ manager part 2026-10-24; developer items 2–3 🔄 | | | |
-| 11B Shell | ⏸ | | | |
-| 11C Sections | ⏸ | | | |
-| 11D Behaviour | ⏸ | | | |
-| 11E Quality | ⏸ | | | |
+| 11A Prep | ✅ 2026-10-24 (manager) | `fa8f7dc` + the port commit | | |
+| 11B Shell | ✅ 2026-10-24 (manager built it: no helper sessions, Ayush deferred testing) | in the port commit | ⏸ 11E | |
+| 11C Sections | ✅ 2026-10-24, all 11 items | in the port commit | ⏸ 11E | |
+| 11D Behaviour | ✅ 2026-10-24, all 5 items | in the port commit | ⏸ 11E | |
+| 11E Quality | ⏸ Ayush: test at the end (2026-10-24) | | | |
 | 11F Cutover | ⏸ | | | |
 
 **Intentional differences from v2, recorded as they come up** (the tester does not report these):

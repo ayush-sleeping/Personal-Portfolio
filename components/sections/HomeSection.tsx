@@ -1,324 +1,221 @@
-// Home: v2's index.html bento grid, in v2's order. Copy comes from the sheet (profile, home page
-// copy, stats, socials); card links are in-page anchors (task.md T4). This is the only place the
-// Credentials / Projects / GitHub / Profiles / CTA link cards appear (T3).
-import { preload } from "react-dom";
-
-import { Breaks, CardBg, CardHeading, ArrowIcon } from "@/components/cards/CardParts";
-import LinkCard from "@/components/cards/LinkCard";
+// Home (design: #home "Overview"): breadcrumb, name, the typed terminal line, intro, three
+// buttons, then the 12-column bento. Content from profile, pages/home and stats; the card images
+// and icon classes are the design's (T10).
 import { getPageCopy, getProfile, getSocials, getStats, splitList } from "@/lib/data";
-import { DECOR, asset, important, parseInlineStyle, pictureSources, sectionHref } from "@/lib/site";
+import { DECOR, asset, imageSrc } from "@/lib/site";
 
-// Hardcoded in v2's index.html and not in the sheet (kept as v2 had them).
-const PROJECTS_CARD_IMAGE = { src: "assets/img/my works.png", alt: "My works" };
-const GITHUB_CARD_IMAGE = { src: "assets/img/github3.png", alt: "GitHub" };
-const SERVICES_CARD_ICONS = [
-  "fas fa-code",
-  "fab fa-dev",
-  "fas fa-code-branch",
-  "fa-solid fa-terminal",
-];
-const PROFILE_CARD_ICONS: Record<string, string> = {
+const SERVICE_ICONS = ["fas fa-code", "fab fa-dev", "fas fa-code-branch", "fa-solid fa-terminal"];
+const PROFILE_ICONS: Record<string, string> = {
   twitter: "fa-brands fa-twitter",
   linkedin: "fa-brands fa-linkedin-in",
 };
+// The Home cards' pictures (the sheet has no column for them; T10).
+// These two are .png only (no .webp sibling), so they are used as-is.
+const CARD_IMAGES = { works: "assets/img/my works.png", github: "assets/img/github3.png" };
 
-/** "Let's Work Together." -> Let's<br>Work <span>Together.</span>, as v2 laid it out. */
-function CtaTitle({ text }: Readonly<{ text: string }>) {
-  const words = text.trim().split(/\s+/);
-  if (words.length < 2) return <h2>{text}</h2>;
-  const middle = words.slice(1, -1).join(" ");
-  return (
-    <h2>
-      {words[0]}
-      <br />
-      {middle && `${middle} `}
-      <span>{words.at(-1)}</span>
-    </h2>
-  );
-}
-
-/** One marquee item, with v2's whitespace: the spans are inline, so the spaces show. */
-function MarqueeItem({ text, star = true }: Readonly<{ text: string; star?: boolean }>) {
-  return (
-    <span>
-      <img decoding="async" src={star ? DECOR.marqueeStar : undefined} alt="" />
-      {"   "}
-      <b>{text}</b>{" "}
-    </span>
-  );
-}
+const Texture = () => <img src={DECOR.cardBg} alt="" className="v4-card-bg" />;
+const Foot = ({ label, title }: { label: string; title: string }) => (
+  <div className="v4-card-foot">
+    <div>
+      <p className="v4-label">{label}</p>
+      <h2 className="v4-card-title">{title}</h2>
+    </div>
+  </div>
+);
 
 export default function HomeSection() {
   const profile = getProfile();
-  const copy = getPageCopy("home");
+  const home = getPageCopy("home");
   const stats = getStats();
   const socials = getSocials();
-  const portrait = pictureSources(profile.hero_image);
-  const marquee = splitList(copy.marquee_items, ",");
-  const profileLinks = socials.filter((s) => s.id in PROFILE_CARD_ICONS);
-
-  // v2 preloaded the portrait (the LCP image) from <head>.
-  if (portrait.avif) {
-    preload(portrait.avif, { as: "image", type: "image/avif", fetchPriority: "high" });
-  }
-
-  const cardLink = { className: "text-decoration-none text-reset", style: { display: "block" } };
+  const github = socials.find((s) => s.id === "github")?.href ?? home.github_url;
+  const marquee = splitList(home.marquee_items, ",");
+  const plain = (s: string) =>
+    s
+      .replace(/<br\s*\/?>/gi, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  const chips = (s: string) =>
+    s
+      .replace(/<br\s*\/?>/gi, " ")
+      .split(/\s*\+\s*/)
+      .map((c) => c.trim())
+      .filter(Boolean);
 
   return (
-    <section id="home">
-      <div
-        className="container max-w-7xl pb-12 mb-12"
-        style={important({ paddingTop: "10px", paddingBottom: "10px" })}
-      >
-        <div className="row g-4 mt-3">
-          {/* Intro: photo, tagline, name, intro. */}
-          <div className="col-lg-6 col-12">
-            <a href={sectionHref("about")} {...cardLink}>
-              <div className="primary-card" style={{ cursor: "pointer" }}>
-                <CardBg />
-                <div className="row">
-                  <div className="col-lg-6 col-12">
-                    <div className="img-box">
-                      <picture>
-                        {portrait.avif && <source type="image/avif" srcSet={portrait.avif} />}
-                        {portrait.webp && <source type="image/webp" srcSet={portrait.webp} />}
-                        <img
-                          src={portrait.src}
-                          className="home__img"
-                          alt={profile.name}
-                          width={509}
-                          height={679}
-                          fetchPriority="high"
-                          decoding="async"
-                        />
-                      </picture>
-                    </div>
-                  </div>
-                  <div className="col-lg-6 col-12">
-                    <div className="infos mt-4">
-                      <h5>{profile.tagline}</h5>
-                      <h2>{profile.name}</h2>
-                      <p className="mt-3">{profile.intro}</p>
-                      <div className="about-btn">
-                        <ArrowIcon />
-                      </div>
-                    </div>
+    <section id="home" data-screen-label="Overview">
+      <div className="v4-home-wrap">
+        <header className="v4-hero">
+          <div className="v4-crumb">
+            <span>Getting started</span>
+            <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            <b>Overview</b>
+          </div>
+          <h1 className="v4-h1">{profile.name}</h1>
+          <p data-term="" className="v4-term">
+            <span className="v4-term-prompt">~ $</span>
+            <span data-type="">{profile.tagline}</span>
+            <span data-caret="" className="v4-caret"></span>
+          </p>
+          <p className="v4-intro">{profile.intro}</p>
+          <div className="v4-actions">
+            <a href="#contact" className="v4-btn">
+              {profile.cta_label} <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="#about" data-print="" className="v4-btn-ghost">
+              <i className="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Download resume
+            </a>
+            <a href={github} target="_blank" rel="noopener" className="v4-btn-ghost">
+              <i className="fab fa-github" aria-hidden="true"></i> GitHub
+            </a>
+          </div>
+        </header>
+
+        <div data-bento-wrap="">
+          <div className="v4-bento">
+            <a
+              href="#about"
+              data-card=""
+              data-span="4"
+              data-photo=""
+              className="v4-card v4-card-photo"
+            >
+              <img src={imageSrc(profile.hero_image)} alt={profile.name} className="v4-photo-img" />
+              <div className="v4-photo-fade"></div>
+              <div className="v4-photo-foot">
+                <div className="v4-card-foot">
+                  <div>
+                    <p className="v4-label">About me</p>
+                    <h2 className="v4-card-title">{profile.name}</h2>
                   </div>
                 </div>
               </div>
             </a>
-          </div>
 
-          <div className="col-lg-6 col-12">
-            <div className="row">
-              {/* Role marquee: one empty leading item, then the list twice, which is what the
-                  -33.33% keyframe in style.css is tuned against. */}
-              <div className="col-lg-12 col-12">
-                <div className="primary-card2">
-                  <CardBg />
-                  <div className="marquee-container">
-                    <div className="marquee">
-                      <MarqueeItem text="" star={false} />
-                      {[...marquee, ...marquee].map((text, i) => (
-                        <MarqueeItem key={i} text={text} />
+            <div data-span="8" className="v4-card v4-marquee-card">
+              <Texture />
+              <div className="marquee-container">
+                <div className="marquee">
+                  <span>
+                    <img alt="" /> <b></b>{" "}
+                  </span>
+                  {[...marquee, ...marquee].map((m, i) => (
+                    <span key={i}>
+                      <img src={DECOR.marqueeStar} alt="" /> <b>{m}</b>{" "}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <a href="#about" data-card="" data-span="4" className="v4-card v4-card-pad">
+              <Texture />
+              <div className="v4-card-body">
+                <img src={imageSrc(profile.signature_image)} alt={`${profile.name} signature`} />
+              </div>
+              <Foot label={home.credentials_label} title={home.credentials_title} />
+            </a>
+            <a href="#projects" data-card="" data-span="4" className="v4-card v4-card-pad">
+              <Texture />
+              <div className="v4-card-body">
+                <img src={asset(CARD_IMAGES.works)} alt="My works" />
+              </div>
+              <Foot label={home.projects_label} title={home.projects_title} />
+            </a>
+
+            <div data-span="8" data-stats="" className="v4-card v4-stats">
+              <Texture />
+              {stats.map((s, i) =>
+                i === 2 ? (
+                  <div className="v4-stat" key={s.id}>
+                    <div className="v4-chips">
+                      {chips(s.value).map((c) => (
+                        <span className="v4-chip-blue" key={c}>
+                          {c}
+                        </span>
                       ))}
                     </div>
+                    <span className="v4-label">{plain(s.label)}</span>
                   </div>
-                </div>
-              </div>
-
-              <div className="col-lg-12 col-12">
-                <div className="row">
-                  <div className="col-lg-6 col-12 mt-4">
-                    <LinkCard
-                      href={sectionHref("about")}
-                      label={copy.credentials_title}
-                      style={important({ padding: "50px 25px" })}
-                      media={
-                        <img
-                          src={asset(profile.signature_image)}
-                          className="proj-img mx-auto d-block"
-                          alt={`${profile.name} signature`}
-                          width={224}
-                          height={126}
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      }
-                      heading={
-                        <CardHeading
-                          className="mt-4"
-                          label={copy.credentials_label}
-                          title={copy.credentials_title}
-                        />
-                      }
-                    />
+                ) : (
+                  <div className="v4-stat" key={s.id}>
+                    <span className="v4-stat-value">{s.value}</span>
+                    <span className="v4-label">{plain(s.label)}</span>
                   </div>
-                  <div className="col-lg-6 col-12 mt-4">
-                    <LinkCard
-                      href={sectionHref("projects")}
-                      label={copy.projects_title}
-                      style={important({ padding: "50px 25px" })}
-                      media={
-                        <img
-                          src={asset(PROJECTS_CARD_IMAGE.src)}
-                          className="proj-img mx-auto d-block"
-                          alt={PROJECTS_CARD_IMAGE.alt}
-                          width={224}
-                          height={126}
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      }
-                      heading={
-                        <CardHeading
-                          className="mt-4"
-                          label={copy.projects_label}
-                          title={copy.projects_title}
-                        />
-                      }
-                    />
-                  </div>
-                </div>
-              </div>
+                ),
+              )}
             </div>
-          </div>
 
-          {/* GitHub: one external link around the whole card (no nested link in v2 here). */}
-          <div className="col-lg-3 col-12">
             <a
-              href={copy.github_url}
+              href={github}
               target="_blank"
               rel="noopener"
-              style={{ textDecoration: "none", color: "inherit" }}
+              data-card=""
+              data-span="3"
+              className="v4-card v4-card-pad"
             >
-              <div
-                className="primary-card credentials-card"
-                style={important({ padding: "35px 25px" })}
-              >
-                <CardBg />
-                <img
-                  src={asset(GITHUB_CARD_IMAGE.src)}
-                  className="proj-img mx-auto d-block mb-3"
-                  alt={GITHUB_CARD_IMAGE.alt}
-                  width={224}
-                  height={126}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="d-flex align-items-center justify-content-between">
-                  <CardHeading
-                    className="mt-2"
-                    label={copy.github_label}
-                    title={copy.github_title}
-                  />
-                  <div className="about-btn">
-                    <ArrowIcon />
-                  </div>
-                </div>
+              <Texture />
+              <div className="v4-card-body">
+                <img src={asset(CARD_IMAGES.github)} alt="GitHub" className="v4-github-img" />
               </div>
+              <Foot label={home.github_label} title={home.github_title} />
             </a>
-          </div>
-
-          <div className="col-lg-6 col-12">
-            <LinkCard
-              href={sectionHref("services")}
-              label={copy.services_title}
-              style={important({ padding: "35px 25px" })}
-              media={
-                <div className="icon-boxes">
-                  {SERVICES_CARD_ICONS.map((icon) => (
-                    <i key={icon} className={icon} aria-hidden="true"></i>
+            <a href="#services" data-card="" data-span="6" className="v4-card v4-card-pad">
+              <Texture />
+              <div className="v4-card-body">
+                <div className="v4-tiles">
+                  {SERVICE_ICONS.map((c) => (
+                    <span className="v4-icon-tile" key={c}>
+                      <i className={c} aria-hidden="true"></i>
+                    </span>
                   ))}
                 </div>
-              }
-              heading={
-                <CardHeading
-                  className="mt-2"
-                  label={copy.services_label}
-                  title={copy.services_title}
-                />
-              }
-            />
-          </div>
+              </div>
+              <Foot label={home.services_label} title={home.services_title} />
+            </a>
+            <div data-card="" data-span="3" className="v4-card v4-card-pad">
+              <Texture />
+              <div className="v4-circles">
+                {socials
+                  .filter((s) => PROFILE_ICONS[s.id])
+                  .map((s) => (
+                    <a
+                      key={s.id}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener"
+                      aria-label={s.label}
+                      className="v4-circle-link"
+                    >
+                      <i className={PROFILE_ICONS[s.id]} aria-hidden="true"></i>
+                    </a>
+                  ))}
+              </div>
+              <a href="#contact" className="v4-card-foot">
+                <div>
+                  <p className="v4-label">{home.profiles_label}</p>
+                  <h2 className="v4-card-title">{home.profiles_title}</h2>
+                </div>
+              </a>
+            </div>
 
-          {/* Profiles: the social links themselves; the arrow goes to Contact. */}
-          <div className="col-lg-3 col-12">
-            <div
-              className="primary-card credentials-card"
-              style={important({ padding: "35px 25px" })}
+            <a
+              href="#contact"
+              data-card=""
+              data-span="12"
+              data-cta=""
+              className="v4-card v4-cta-card"
             >
-              <CardBg />
-              <div className="inner-profile-icons">
-                <div className="row mt-lg-0 mt-4">
-                  {profileLinks.map((s) => (
-                    <div key={s.id} className="col-lg-6 col-6">
-                      <a
-                        href={s.href}
-                        target="_blank"
-                        rel="noopener"
-                        aria-label={s.label}
-                        style={{ textDecoration: "none" }}
-                      >
-                        <div className="social-card">
-                          <i className={PROFILE_CARD_ICONS[s.id]} aria-hidden="true"></i>
-                        </div>
-                      </a>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="d-flex align-items-center justify-content-between">
-                <CardHeading
-                  className="mt-2"
-                  label={copy.profiles_label}
-                  title={copy.profiles_title}
-                  labelStyle={important({ zIndex: "999" })}
-                />
-                <a
-                  href={sectionHref("contact")}
-                  className="about-btn"
-                  aria-label={copy.profiles_title}
-                >
-                  <ArrowIcon />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Stats. */}
-          <div className="col-lg-6 col-12">
-            <div className="primary-card" style={important({ padding: "25px 25px" })}>
-              <CardBg />
-              <div className="row">
-                {stats.map((s) => (
-                  <div key={s.id} className="col-lg-4 col-12 mt-lg-0 mt-4">
-                    <div className="client-card">
-                      <h2 style={parseInlineStyle(s.value_style)}>
-                        <Breaks text={s.value} />
-                      </h2>
-                      <p className="mb-0">
-                        <Breaks text={s.label} />
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-6 col-12">
-            <LinkCard
-              href={sectionHref("contact")}
-              label={copy.cta_title}
-              style={important({ padding: "50px 25px" })}
-              media={<img decoding="async" src={DECOR.ctaStar} alt="" className="star-icon" />}
-              heading={
-                <div className="last-infos">
-                  <CtaTitle text={copy.cta_title} />
-                </div>
-              }
-            />
+              <Texture />
+              <img src={DECOR.ctaStar} alt="" className="v4-cta-star" />
+              <h2 className="v4-cta-title">
+                {home.cta_title.replace(/\s*\S+$/, "")}{" "}
+                <span className="v4-accent">{home.cta_title.match(/\S+$/)?.[0]}</span>
+              </h2>
+              <span className="v4-btn">
+                Get in touch <i className="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </span>
+            </a>
           </div>
         </div>
       </div>
