@@ -1,8 +1,12 @@
 # task.md — The one-page portfolio
 
-> **Status: 🚧 IN PROGRESS.** Started 2026-10-07. **Resumed 2026-10-11: Phases 3b, 8 and 9 done, 3a–7 re-checked. Everything before the cutover is built. 2026-10-22: Phase 10 planned as 10A–10F; 10A and 10B running, 10C waits for Ayush.** Follows [`documentation/version3.md`](documentation/version3.md)
-> (v3 foundation, done). Branch: `v3-nextjs`. `main` is not touched until the cutover (Phase 10), and that
-> phase needs Ayush.
+> **Status: 🚧 IN PROGRESS.** Started 2026-10-07. **2026-10-22/23: Phase 10 done through 10C; v3 is live at
+> https://ayush-sleeping.github.io/ from `main`. 2026-10-24: Phase 11 (the v4 redesign, §5) started on branch
+> `v4-redesign`.** Follows [`documentation/version3.md`](documentation/version3.md) (v3 foundation, done).
+> `main` is live; only Phase 11F touches it again.
+>
+> **Phase 11 overrides §1, §2 T1–T5 and §4 wherever they say "same as v2".** The design in
+> `documentation/design/v4.dc.html` is the single source of truth for the UI from now on.
 
 ---
 
@@ -39,7 +43,7 @@ Three Claude sessions work in parallel:
 | Role | Session | Owns |
 |---|---|---|
 | Manager | `personal-portfolio-9c` | `task.md`, assigning work, relaying test findings, reporting to Ayush |
-| Developer | `personal-portfolio-9b` | All source changes on `v3-nextjs`, in the main working tree |
+| Developer | `personal-portfolio-9b` | All source changes on the working branch (`v3-nextjs`; `v4-redesign` from Phase 11), in the main working tree |
 | Tester / monitor | `personal-portfolio-77` | Verifying each finished phase, in its own git worktree. Never edits the main tree |
 
 (Sessions changed on 2026-10-22. Earlier phases ran with `a6` / `42` / `4f`.)
@@ -78,8 +82,10 @@ server (live reloading, no base path), `7301` is `npm run preview` (the built si
 
 ## 4. Ground rules (from CLAUDE.md, restated)
 
-- Same UI/UX as v2: reuse `public/assets/css/style.css` **unchanged**, keep v2's classes, keep the stylesheet
-  order. No Tailwind, no component kits.
+- ~~Same UI/UX as v2: reuse `public/assets/css/style.css` **unchanged**, keep v2's classes~~ **Superseded by
+  Phase 11 (2026-10-24):** the UI/UX is the v4 design, 1:1. `style.css` still loads (the marquee, the footer
+  tech icons and the old print rules use it) but may now change where the design needs it. New CSS goes in
+  `public/assets/css/v4.css` as classes, never inline. Keep the stylesheet order. No Tailwind, no component kits.
 - Server components by default. `'use client'` only for behaviour, each wrapping the matching v2 script in
   `useEffect` with cleanup. `lib/data.ts` is server-only.
 - Never hardcode `/Personal-Portfolio`: use `asset()` / `basePath` from `lib/site.ts`.
@@ -242,6 +248,122 @@ Apps Script deploy (B21 Phases 0 and 2). Then: one manual refresh, confirm the b
 **10F — Backlog**, below, one item per round after 10D. Needs Ayush first: may `style.css` change now that
 parity is proven (M3, M5, M10 need it)? The preloader stays either way.
 
+**10C result (2026-10-23):** `v2-html` branch and tag `v2-html-final` at `d5f6306`; repo renamed to
+`ayush-sleeping/ayush-sleeping.github.io`; Pages switched to GitHub Actions; `main` fast-forwarded to
+`266aa49`; CI run 39730817342 and deploy run 39731432704 green. Live checks: root 200 with the 5 section ids,
+`about.html` / `sitemap.xml` / `robots.txt` / `404.html` 200, all 12 old URLs land on the right section,
+`/DailyBuzz/` untouched. 10D and 10E are still open and now run alongside Phase 11.
+
+### Phase 11 — The v4 redesign (started 2026-10-24)
+
+**Source of truth:** `documentation/design/v4.dc.html`, Ayush's redesign made in Claude Design over several
+days. It is split for reading into `v4-styles.css` (its style block), `v4-template.html` (its markup; `{{ }}`,
+`<sc-for>` and `<sc-if>` are the design tool's template syntax) and `v4-logic.js` (its behaviour; `DCLogic` is
+the design tool's React wrapper). **Ayush's ruling: nothing in the design is dropped or changed.** Anything the
+old site had and the design does not show (the why-hire modal, the purple preloader, the slide-out menu, the
+old header) is **not** ported. The design's colours, fonts, Bootstrap, Remixicon and Font Awesome are the
+ones already loaded; no new library.
+
+**What carries over from v3 unchanged (invisible plumbing):** content from the sheet JSON via `lib/data.ts`
+(the design hardcodes its strings; every one of them already exists in `assets/data/`, same field names);
+the real EmailJS send in `ContactForm.tsx` (honeypot, "fill in all fields", 5-second clear); SEO metadata,
+structured data, sitemap, robots, llms.txt, manifest; the old `.html` redirect routes and the 404 forwarder;
+print-to-PDF; the data pipeline and validator; Docker, CI, deploy, liveness.
+
+**Facts checked 2026-10-24:** the download's `style.css`, `v3.css`, all 24 JSON files and all images are
+byte-identical to the repo. The design's two "GitHub" links use the old repo name; use `SITE.repoUrl`. The
+design's "Last updated on Oct 2026" and the footer copyright come from the sheet (`profile.copyright`, or a
+new `last_updated` key: `TODO(sheet)` until then).
+
+Section ids, top to bottom: `home`, `about`, `experience`, `education`, `certifications`, `skills`,
+`projects` (each project also gets `id="project-<slug>"`), `services`, `contact`, `faq`, then the un-id'd
+Help band and the footer. `resume.html` now redirects to `#experience`; the other `.html` stubs keep their
+targets.
+
+**11A — Prep (manager, then developer).**
+1. ✅ Branch `v4-redesign` from `v3-nextjs`; design files into `documentation/design/`; this plan; rule
+   changes in `CLAUDE.md` and §4 (manager, this commit).
+2. Developer: `public/assets/css/v4.css`. Start from `v4-styles.css`, then turn every inline `style=""` and
+   `style-hover=""` in the template into classes (`v4-` prefix, one class per distinct style string; a
+   `style-hover` becomes `.cls:hover`). Load it last in `layout.tsx`, after `v3.css`. Move the print rules
+   that target `#about` into `v4.css` and point them at `#about`, `#experience`, `#education`, `#skills`.
+3. Developer: `lib/site.ts` `SECTION_IDS` → the ten ids above; `llms.txt` notes for the new ids;
+   `resume.html` → `experience`; `SITE.repoUrl` → `ayush-sleeping.github.io`.
+
+**11B — Shell (developer; tester verifies at 390/768/1440).**
+1. `components/layout/Sidebar.tsx` (server markup from navigation, projects and socials JSON) +
+   `components/client/SidebarDrawer.tsx`: open/close, backdrop, Escape, body scroll lock, closes on a hash
+   link click and when the viewport reaches 1024 px (the design's `drawer` state).
+2. `components/layout/TopBar.tsx` (mobile only, sticky, with search, "Let's talk" and the drawer toggle).
+3. Remove `Header.tsx`, `NavigationMenu.tsx`, `MobileMenu.tsx`, `StickyHeader.tsx`, `Preloader.tsx`,
+   `WhyHire.tsx`, `WhyHireModal.tsx`, `ScrollCardAnimations.tsx` and their CSS hooks in `v3.css`.
+4. `ActiveSection.tsx` rewritten: the `active` (5 nav ids, top ≤ 120 px) and `activeItem` (all spy ids,
+   top ≤ 140 px, last id when scrolled to the bottom) rules, the `parent` state for Career/Projects, and the
+   sliding `[data-ind]` indicator (`_placeInd` in `v4-logic.js`).
+5. `Footer.tsx` rewritten: four columns (brand + tagline, Sections, first 5 Projects, Connect), the
+   `home__socials` tech row from `footer-tech.json` plus the two inline SVGs (Django, Next.js), copyright and
+   "View source on GitHub".
+6. `app/page.tsx` assembles: progress bar, backdrop, sidebar, `main-content` with top bar, `<main>` with the
+   ten sections, Help band, footer, then the certificate lightbox, search palette, back-to-top and toast.
+
+**11C — Sections (developer, one commit each; tester verifies each).**
+1. Home: breadcrumb, `<h1>`, typed terminal line (client; 650 ms start, 38/70 ms per char), intro, three
+   buttons, then the 12-column bento: photo card (span 4, row-span 3), marquee (8), Credentials (4),
+   Projects (4), stats (8, three cells from `stats.json`; the chips from the sheet's stack line), GitHub (3),
+   Services Offering (6), Profiles (3), CTA (12).
+2. About: heading + bio from `about.json`, the 7-item info grid (`profile`/`about` keys; icons per
+   `INFO_ICONS` in `v4-logic.js`, a T10 constant).
+3. Experience: first three rows as "Professional" with chips grouped from `details` (`Backend::…`), the
+   "Current role" pill on the first, then the rest as "Training & programs · during college" rows with the
+   stack line. The sheet's `order` decides the split, as the design's `slice(0, 3)` does.
+4. Education: cards with icon, dates, title, linked school (`institution_url`), location · duration,
+   description, and the course list parsed into `code` / `name` (`/^([A-Z]{2,}\d+)\s*:\s*(.+)$/`).
+5. Certifications: heading, intro, prev/next buttons, snap scroller (4 per row, 82% on phones), and the
+   lightbox (`components/client/CertLightbox.tsx`: Escape, ←/→, prev/next/close buttons, "n / total",
+   body scroll lock, fade/pop animations). Replaces the Bootstrap carousel.
+6. Skills: "Established / Working With" and "Currently Focusing On" grids from `skills.json`
+   (`SKILL_ICONS` as a T10 constant; focus items get the blue icon box).
+7. Projects: `auto-fill 320px` grid, `article id="project-<slug>"`, 16:10 image, title + year, category,
+   summary with `<br>` flattened, tag chips from `tech_stack`, Source and (if `live_url`) Live demo links.
+8. Services: cards from `services.json` with the check-list from `bullet_points`.
+9. Contact: left column heading, blurb and the 5 contact rows (`contact.json` + socials); right card
+   "Let's work together." wrapping the existing `ContactForm` restyled to the design's labelled inputs,
+   status text colour by tone, "Send message →" button. EmailJS and the honeypot stay.
+10. FAQ: `FaqAccordion.tsx` restyled: one open at a time, chevron rotates, answer HTML from the sheet.
+11. Help band (Download my resume → `window.print()`, Have a project in mind? → `#contact`) and the
+    "Last updated" / "Edit on GitHub" line.
+
+**11D — Behaviour (developer; each its own client component, all idle under `prefers-reduced-motion`).**
+1. `SearchPalette.tsx`: ⌘K / Ctrl K and `/` open, Escape closes, ↑/↓/Enter, mouse hover selects, groups
+   Sections / Projects / Actions (copy email, download resume, open GitHub / LinkedIn / Twitter), "No results
+   for …", `⌘K` vs `Ctrl K` hint by platform, body scroll lock, focus on open.
+2. `ScrollProgress.tsx`: the 2 px top bar and the back-to-top ring (`stroke-dashoffset`), shown after
+   0.6 × viewport height, hidden while the drawer is open; click scrolls to top and clears the hash.
+3. `Reveal.tsx`: IntersectionObserver reveal for bento cards (120 ms + 60 ms × i) and every `[data-doc] >
+   div`, the experience-row line sweep, chip stagger (30 ms × i, max 600, +200), stat counters (1200 ms
+   ease-out, zero-padded), heading scramble (650 ms), 2.5 s fallback if the observer never fires.
+4. `SectionLinks.tsx`: click on an `h2` copies the section URL (`history.replaceState` + clipboard with the
+   textarea fallback) and shows the toast for 1.8 s; card spotlight (`--mx`/`--my` on `[data-card]`).
+5. The console greeting (`%c ayushSleeping …`), once per page.
+
+**11E — Quality (tester leads, developer fixes).**
+1. Delete `tests/parity.spec.ts` and the `version2/` step in `ci.yml`; `npm run v2` stays as a historical
+   viewer only.
+2. `tests/smoke.spec.ts` rewritten for the new shell: the ten section ids in order, sidebar links and the
+   indicator, drawer open/close at 390, search palette (open, type, Enter lands on the section), lightbox,
+   every old `.html` and `/Personal-Portfolio/` URL still lands on the right section, contact form messages,
+   Download PDF opens print, back-to-top.
+3. `tests/seo.spec.ts`: the new ids in `sitemap.xml` / `llms.txt`; `tests/resume.spec.ts`: print shows
+   About + Experience + Education + Skills only.
+4. No-JS render (content visible, no fixed overlays stuck), reduced-motion (no animations run), console and
+   network clean at 390/768/1440, both the `/Personal-Portfolio` build and the root build.
+5. `lint`, `typecheck`, `build`, `npm test` green on every commit.
+
+**11F — Cutover (manager).** Tag `v3-final` on `main`. Merge `v4-redesign` into `v3-nextjs` (fast-forward
+or merge commit), CI green, fast-forward `main`; the deploy is automatic. Tester repeats the 10C live
+checks. Then `README.md`, `documentation/architecture.md`, `documentation/version3.md`, `CLAUDE.md` and
+this file say "v4 live". Rollback: `git push origin v3-final:main --force-with-lease`.
+
 ### Backlog (after parity, not in this plan)
 
 Dark/light toggle (M5), container queries (M3), GSAP → CSS (M1), replacing Bootstrap (M10), Cloudflare
@@ -262,10 +384,17 @@ secrets and the Apps Script deploy (B21 Phases 0 and 2), and the `gh` login as `
 | 7 Behaviour | ✅ done | `3bece56` `52b98c9` `794efd0` `3aea948` `53a04cc` | ✅ re-checked 2026-10-11 (parity suite + smoke tests, no console errors or 404s at 390/768/1440) | `aba5f6f` fix(3a): first certificate image loaded late and pushed later sections down |
 | 8 SEO | ✅ done | `88b35a8` `336ae8a` `67a7e5c` `c3c7b1a` | ✅ `npm test` 62/62 (no tester session; checked by the developer) | |
 | 9 Parity | ✅ done | see `git log -- tests/parity.spec.ts` | ✅ 15/15 (5 sections × 3 widths); a one-word change in the build fails it | none needed: every block matches v2 except the three listed in the test |
-| 10A Pre-flight | — | `761600d` | 🔄 started 2026-10-22 | |
-| 10B Deploy setup | 🔄 started 2026-10-22 | | | |
-| 10C Cutover | ⏸ needs Ayush | | | |
-| 10D–10F | ⏸ after 10C | | | |
+| 10A Pre-flight | — | `761600d` | ✅ pass 2026-10-22 | |
+| 10B Deploy setup | ✅ done 2026-10-23 (11 items) | `b952455` `5c7751f` `de99876` `236cb4d` `afdde56` `5f89301` `24ab6f1` `78d2945` `a72802a` `2045698` `7a37913` `96ec4c6` `266aa49` | ✅ each item verified | |
+| 10C Cutover | ✅ done 2026-10-23 (manager) | `main` = `266aa49`; runs 39730817342 / 39731432704 | ✅ live checks pass (old URLs, sitemap, robots, DailyBuzz) | |
+| 10D After launch | 🔄 open: `SITE.repoUrl`, README, docs; Search Console (Ayush) | | | |
+| 10E Content pipeline | ⏸ needs Ayush (sheet secrets, Apps Script) | | | |
+| 11A Prep | ✅ manager part 2026-10-24; developer items 2–3 🔄 | | | |
+| 11B Shell | ⏸ | | | |
+| 11C Sections | ⏸ | | | |
+| 11D Behaviour | ⏸ | | | |
+| 11E Quality | ⏸ | | | |
+| 11F Cutover | ⏸ | | | |
 
 **Intentional differences from v2, recorded as they come up** (the tester does not report these):
 
