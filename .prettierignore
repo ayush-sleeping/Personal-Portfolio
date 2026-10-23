@@ -16,3 +16,5 @@ public/
 scripts/
 sheets/
 .github/
+# The v4 design export (Claude Design runtime syntax), kept as reference.
+documentation/design/
